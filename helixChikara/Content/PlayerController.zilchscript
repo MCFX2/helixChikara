@@ -1,0 +1,28 @@
+class PlayerController : ZilchComponent
+{
+  //controls
+  var LeftKey : Keys = Keys.A;
+  var RightKey : Keys = Keys.D;
+  var UpKey : Keys = Keys.W;
+  var DownKey : Keys = Keys.S;
+  
+  //constants
+  var Speed = 1.0;
+  var MaxVel = 5.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+    if(Zero.Keyboard.KeyIsDown(this.RightKey)){
+      this.Owner.RigidBody.Velocity += Real3(1, 0, 0);
+    }
+    
+  }
+}

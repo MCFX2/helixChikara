@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "helixChikara"
+	var LibraryId = 0x5bc94756fa41e3ad
+	var SourceControlType = ""
+	var ReadOnly = false
+}
