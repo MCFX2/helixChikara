@@ -1,28 +1,62 @@
 class PlayerController : ZilchComponent
 {
   //controls
-  var LeftKey : Keys = Keys.A;
-  var RightKey : Keys = Keys.D;
-  var UpKey : Keys = Keys.W;
-  var DownKey : Keys = Keys.S;
+  [Property] var UpKey : Keys = Keys.W;
+  [Property] var LeftKey : Keys = Keys.A;
+  [Property] var DownKey : Keys = Keys.S;
+  [Property] var RightKey : Keys = Keys.D;
   
   //constants
-  var Speed = 1.0;
-  var MaxVel = 5.0;
+  [Property] var LSpeed = 0.5; //left speed modifier
+  [Property] var RSpeed = 1.0; //right speed modifier
+  [Property] var VSpeed = 1.0; //vertical speed multiplier
+  [Property] var Speed = 1.0; //speed multiplier
+  
+  [Property] var MaxRVel = 10.0; //max right velocity
+  [Property] var MaxLVel = 10.0; //max left velocity
+  [Property] var MaxVVel = 10.0; //max vertical velocity
+  
   
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
 
+
+  function ClampVelocity(){
+    if(this.Owner.RigidBody.Velocity.X > this.MaxRVel){
+      this.Owner.RigidBody.Velocity = Real3(this.MaxRVel, 0, 0);
+    }
+    if(this.Owner.RigidBody.Velocity.X * -1 > this.MaxLVel){
+      this.Owner.RigidBody.Velocity = Real3(this.MaxLVel * -1, 0, 0);
+    }
+    if(Math.Abs(this.Owner.RigidBody.Velocity.X) > this.MaxVVel){
+      
+    }
+    
+  }
   
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    
+    var velVector : Real2 = Real2(0);
+    //check input
     if(Zero.Keyboard.KeyIsDown(this.RightKey)){
-      this.Owner.RigidBody.Velocity += Real3(1, 0, 0);
+      velVector.X += this.RSpeed;
+    }
+    if(Zero.Keyboard.KeyIsDown(this.LeftKey)){
+      velVector.X += -1*this.LSpeed;
     }
     
+    //Actually apply the physics here
+    this.Owner.RigidBody.Velocity += Real3(velVector, 0); //linear acceleration, i'd love to swizzle this but zero says no.
+    
+    this.ClampVelocity();
+    
+    if(velVector == Real2(0)){ //instantly decelerate if net input is 0
+      this.Owner.RigidBody.Velocity = Real3(0);
+    }
+    
+    velVector = Real2(0);
   }
 }
