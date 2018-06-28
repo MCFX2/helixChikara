@@ -5,58 +5,128 @@ class PlayerController : ZilchComponent
   [Property] var LeftKey : Keys = Keys.A;
   [Property] var DownKey : Keys = Keys.S;
   [Property] var RightKey : Keys = Keys.D;
+  [Property] var PauseKey : Keys = Keys.Control;
   
-  //constants
-  [Property] var LSpeed = 0.5; //left speed modifier
-  [Property] var RSpeed = 1.0; //right speed modifier
-  [Property] var VSpeed = 1.0; //vertical speed multiplier
-  [Property] var Speed = 1.0; //speed multiplier
+  //physics constants
+  [Property] var LSpeed = 0.5; //left acceleration modifier
+  [Property] var RSpeed = 1.0; //right acceleration modifier
+  [Property] var VSpeed = 1.0; //vertical acceleration multiplier
+  [Property] var Speed = 1.0; //base acceleration
+  
+  [Property] var Deceleration : Real2 = Real2(0.2); //deceleration X,Y. Lower = slippery
   
   [Property] var MaxRVel = 10.0; //max right velocity
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
+  var CorrectRotation : Quaternion = Quaternion();
+  //rotation patching
+  [Property] var RotCorrectionStrict = true; //whether to use strict rotation correction. Off = fun :)
   
   
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    this.CorrectRotation = this.Owner.Transform.LocalRotation;
+  }
+
+  function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
+    if(input <= min){
+      return min;
+    }
+    else if(input >= max){
+      return max;
+    }
+    else{
+      return input;
+    }
   }
 
 
-  function ClampVelocity(){
-    if(this.Owner.RigidBody.Velocity.X > this.MaxRVel){
-      this.Owner.RigidBody.Velocity = Real3(this.MaxRVel, 0, 0);
-    }
-    if(this.Owner.RigidBody.Velocity.X * -1 > this.MaxLVel){
-      this.Owner.RigidBody.Velocity = Real3(this.MaxLVel * -1, 0, 0);
-    }
-    if(Math.Abs(this.Owner.RigidBody.Velocity.X) > this.MaxVVel){
-      
-    }
+  function ClampVelocity(){ //clamp our velocity within bounds specified in Properties
+    this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
+    this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
+    this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel), 0);
     
   }
   
+  function ParseKeyboard() : Real2 {
+    var velocity : Real2 = Real2(0);
+    if(Zero.Keyboard.KeyIsDown(this.RightKey)){
+      velocity.X += this.RSpeed * this.Speed;
+    }
+    if(Zero.Keyboard.KeyIsDown(this.LeftKey)){
+      velocity.X -= this.LSpeed * this.Speed;
+    }
+    if(Zero.Keyboard.KeyIsDown(this.UpKey)){
+      velocity.Y += this.VSpeed * this.Speed;
+    }
+    if(Zero.Keyboard.KeyIsDown(this.DownKey)){
+      velocity.Y -= this.VSpeed * this.Speed;
+    }
+    return velocity;
+  }
+  
+  function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
+    var velVector : Real2 = Real2(0);
+    velVector = this.ParseKeyboard();    
+    this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:
+    
+    /*
+    When we take input, we build that input into a vector called velVector.
+    Afterwards, we immediately apply that to our real velocity but then modify it again.
+    The reason for this is because we need to know our real velocity for all future physics from here,
+    and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
+    */
+    
+    if(velVector == Real2(0)){ //if net input == 0
+      if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
+        this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
+      }
+      else if(this.Owner.RigidBody.Velocity.X > 0){ //accelerate towards 0
+        this.Owner.RigidBody.Velocity -= Real3(this.Deceleration.X, 0, 0);
+      }
+      else{
+        this.Owner.RigidBody.Velocity += Real3(this.Deceleration.X, 0, 0);
+      }
+      
+      //again but for Y
+      if(Math.Abs(this.Owner.RigidBody.Velocity.Y) < this.Deceleration.Y){
+        this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
+      }
+      else if(this.Owner.RigidBody.Velocity.Y > 0){ //accelerate towards 0
+        this.Owner.RigidBody.Velocity -= Real3(0, this.Deceleration.Y, 0);
+      }
+      else{
+        this.Owner.RigidBody.Velocity += Real3(0, this.Deceleration.Y, 0);
+      }
+    }
+    
+  }
+
+  function FixRotation(){ //bumping obstacles can make us rotate. Let's fix that.
+    if(this.RotCorrectionStrict){ //strict correction tries to force us to never rotate
+      this.Owner.Transform.LocalRotation = this.CorrectRotation;
+    }
+  }
+
+  
+  function OnKeyDown(event : KeyboardEvent){
+    if(event.Key == this.PauseKey){
+      this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
+    }
+  }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    var velVector : Real2 = Real2(0);
-    //check input
-    if(Zero.Keyboard.KeyIsDown(this.RightKey)){
-      velVector.X += this.RSpeed;
-    }
-    if(Zero.Keyboard.KeyIsDown(this.LeftKey)){
-      velVector.X += -1*this.LSpeed;
-    }
-    
-    //Actually apply the physics here
-    this.Owner.RigidBody.Velocity += Real3(velVector, 0); //linear acceleration, i'd love to swizzle this but zero says no.
-    
-    this.ClampVelocity();
-    
-    if(velVector == Real2(0)){ //instantly decelerate if net input is 0
-      this.Owner.RigidBody.Velocity = Real3(0);
-    }
-    
-    velVector = Real2(0);
+    this.FixRotation();
+    this.Accelerate();
+    this.ClampVelocity(); //clamping must be the last step
   }
+  
+  function OnFrameUpdate(event : UpdateEvent){ //used for actions that should continue resolving while paused
+    
+  }
+  
 }

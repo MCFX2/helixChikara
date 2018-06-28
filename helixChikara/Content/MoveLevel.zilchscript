@@ -1,0 +1,14 @@
+class MoveLevel : ZilchComponent
+{
+  [Property] var Speed = 1.0;
+  [Property] var Direction : Real2 = Real2(-1, 0);
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Owner.Transform.Translation += Real3(this.Direction, 0) * this.Speed;
+  }
+}
