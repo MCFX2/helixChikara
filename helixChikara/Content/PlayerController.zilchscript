@@ -30,7 +30,6 @@ class PlayerController : ZilchComponent
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
     this.CorrectRotation = this.Owner.Transform.LocalRotation;
   }
-
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
     if(input <= min){
       return min;

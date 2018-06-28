@@ -48,7 +48,7 @@ Level
 			var GameDebugDraw = true
 			var RenderDiffuse = true
 			var RenderSpecular = true
-			var RenderSkybox = false
+			var RenderSkybox = true
 			var Skybox = "5822dec85e380cf1:SimpleSkybox"
 			var ClearColor = Real4{0, 0, 0, 1}
 			var DirectLighting = true
@@ -440,11 +440,17 @@ Level
 							var RSpeed = 1
 							var VSpeed = 0.800000012
 							var Speed = 1
+<<<<<<< HEAD
 							var Deceleration = Real2{0.200000003, 0.200000003}
 							var MaxRVel = 10
 							var MaxLVel = 10
 							var MaxVVel = 10
 							var RotCorrectionStrict = false
+=======
+							var MaxRVel = 10
+							var MaxLVel = 10
+							var MaxVVel = 10
+>>>>>>> 24d134101ffd30dae08c69092f59995b0091390d
 						}
 						RigidBody 
 						{
