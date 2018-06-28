@@ -111,7 +111,7 @@ class PlayerController : ZilchComponent
   }
 
   
-  function OnKeyDown(event : KeyboardEvent){
+  function OnKeyDown(event : KeyboardEvent){ //pause
     if(event.Key == this.PauseKey){
       this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
     }
