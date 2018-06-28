@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.163140565, 0.875608504, 20}
+			var Translation = Real3{0, 0, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 16.3746223
+			var Size = 16.3746109
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.163140565, 0.875608504, 7.13110149e-09}
+			var LookTarget = Real3{0, 0, 0}
 			var MoveSensitivity = 1
 		}
 	}
@@ -239,7 +239,7 @@ Level
 			var Material = "582c575af53d18c9:AlphaSprite"
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "Helix Force"
+			var Text = "Select Mode"
 			var Font = "57343753bb4eaaec:NotoSans-Regular"
 			var FontSize = 128
 			var PixelsPerUnit = 64
@@ -280,7 +280,7 @@ Level
 		}
 		UseButton 
 		{
-			var LevelToLoad = "5b3c6b554b52d99d:playMenu"
+			var LevelToLoad = "5b3c6ac55f6c28b8:missionMenu"
 			var IsQuit = false
 		}
 		Hierarchy 
@@ -306,7 +306,7 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{0, 0, 0, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var Text = "PLAY"
+					var Text = "MISSIONS"
 					var Font = "57343753bb4eaaec:NotoSans-Regular"
 					var FontSize = 48
 					var PixelsPerUnit = 64
@@ -349,7 +349,7 @@ Level
 		}
 		UseButton 
 		{
-			var LevelToLoad = "5b3c69c18c6b5c1b:Instructions"
+			var LevelToLoad = "null"
 			var IsQuit = false
 		}
 		Hierarchy 
@@ -375,7 +375,7 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{0, 0, 0, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var Text = "INSTRUCTIONS"
+					var Text = "ENDLESS"
 					var Font = "57343753bb4eaaec:NotoSans-Regular"
 					var FontSize = 48
 					var PixelsPerUnit = 64
@@ -418,8 +418,8 @@ Level
 		}
 		UseButton 
 		{
-			var LevelToLoad = "null"
-			var IsQuit = true
+			var LevelToLoad = "5b3c55ba57dd01ce:mainMenu"
+			var IsQuit = false
 		}
 		Hierarchy 
 		{
@@ -444,7 +444,7 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{0, 0, 0, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var Text = "QUIT"
+					var Text = "BACK"
 					var Font = "57343753bb4eaaec:NotoSans-Regular"
 					var FontSize = 48
 					var PixelsPerUnit = 64
