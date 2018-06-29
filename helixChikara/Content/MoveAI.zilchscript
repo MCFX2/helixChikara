@@ -3,7 +3,7 @@ class MoveAI : ZilchComponent {
   [Dependency] var Transform : Transform;
   
   [Property] var VerticalRange : Real = 5;
-  [Property] var Speed : Real = 0.1; // Space moved per loop iteration
+  [Property] var Speed : Real = 0.01; // Space moved per loop iteration
   
   var DeltaVertical : Real = 0; // Count of how much the ship has moved
   
@@ -12,13 +12,12 @@ class MoveAI : ZilchComponent {
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
-    //while (this.DeltaVertical < this.VerticalRange || this.DeltaVertical > -this.VerticalRange) {
-    //  // Loop only runs while the ship is in the movement range
-    //  this.Owner.Transform.Translation.Y += this.Speed; // Move the ship vertically
-    //  this.DeltaVertical += this.Speed; // Update to reflect change in position
-    //}
-    //this.Speed*=-1;
-    //this.DeltaVertical = 0; // resets position change tracker so it can track in topposite direction
+      this.Owner.Transform.Translation.Y += this.Speed; // Move the ship vertically
+      this.DeltaVertical += this.Speed;
+      if (this.DeltaVertical == this.VerticalRange || this.DeltaVertical == -this.VerticalRange) {
+        Console.WriteLine("fat sheesh");
+        this.Speed*=-1;   
+        this.DeltaVertical = 0; // resets position change tracker so it can track in opposite direction    
+      }
   }
-  
 }
