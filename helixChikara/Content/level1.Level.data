@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 53.2447433
+			var Size = 23.9244175
 		}
 		EditorCameraController 
 		{
@@ -489,11 +489,11 @@ Level
 							var RightKey = Keys.D
 							var PauseKey = Keys.Control
 							var LSpeed = 0.5
-							var RSpeed = 1
+							var RSpeed = 1.75
 							var VSpeed = 0.800000012
 							var Speed = 1
-							var Deceleration = Real2{1, 1}
-							var MaxRVel = 10
+							var Deceleration = Real2{1.60000002, 1.60000002}
+							var MaxRVel = 15
 							var MaxLVel = 10
 							var MaxVVel = 10
 						}
@@ -505,8 +505,8 @@ Level
 							var ReaganShipKey = Keys.Three
 							var ScoutShipKey = Keys.Four
 							var BulletSpawnOffset = Real2{1.5, 0}
-							var BulletSpeedAnime = 2.5
-							var BulletFireDelay = 10
+							var BulletSpeedAnime = 42.0098076
+							var BulletFireDelay = 7
 						}
 					}
 				}
@@ -744,34 +744,6 @@ Level
 					}
 				}
 			}
-		}
-	}
-	Cog [ContextId:39]
-	{
-		var Name = "testingtestingdeletethis"
-		Transform 
-		{
-			var Translation = Real3{-5.39282513, -1.25514269, -7.50157142e-07}
-			var Scale = Real3{10, 10, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		SpriteText 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "EASTON WUZ HERE"
-			var Font = "57343753bb4eaaec:NotoSans-Regular"
-			var FontSize = 32
-			var PixelsPerUnit = 128
-			var TextAlign = TextAlign.Center
 		}
 	}
 }
