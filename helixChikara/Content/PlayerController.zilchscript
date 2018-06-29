@@ -95,7 +95,8 @@ class PlayerController : ZilchComponent
     and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
     */
     
-    if(velVector == Real2(0)){ //if net input == 0
+    if(velVector.X == 0){ //if net input == 0
+    //todo: split this between vertical and horizontal input. its not decelerating vertically if you move sideways
       if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
         this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
       }
@@ -105,7 +106,8 @@ class PlayerController : ZilchComponent
       else{
         this.Owner.RigidBody.Velocity += Real3(this.Deceleration.X, 0, 0);
       }
-      
+    }
+    if(velVector.Y == 0){ 
       //again but for Y
       if(Math.Abs(this.Owner.RigidBody.Velocity.Y) < this.Deceleration.Y){
         this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
