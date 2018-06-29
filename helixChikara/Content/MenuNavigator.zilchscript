@@ -1,0 +1,97 @@
+class MenuNavigator : ZilchComponent {
+  
+  [Property] var Button1 : CogPath;
+  [Property] var Button2 : CogPath;
+  [Property] var Button3 : CogPath;  
+  
+  [Property] var Button1Text : CogPath;
+  [Property] var Button2Text : CogPath;
+  [Property] var Button3Text : CogPath;
+  [Property] var Title : CogPath;
+  
+  [Property] var GameLevel1 : Level;
+  [Property] var MainMenuLevel : Level;
+  [Property] var InstructionsLevel : Level;  
+      
+  var Button1Content : String;
+  var Button2Content : String;
+  var Button3Content : String;
+  var TitleContent : String;
+  
+  var CurrentState : String;
+  
+  var Button1Range : Real4 = Real4(583, 952, 221, 302); 
+  var Button2Range : Real4 = Real4(583, 952, 482, 563); 
+  var Button3Range : Real4 = Real4(583, 952, 352, 433); 
+
+  function SetText() {
+    this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
+    this.Button2Text.Cog.SpriteText.Text = this.Button2Content;
+    this.Button3Text.Cog.SpriteText.Text = this.Button3Content;
+    this.Title.Cog.SpriteText.Text = this.TitleContent;
+  }
+  
+  function SetMainMenu() {
+    this.Button1Content = "PLAY";
+    this.Button2Content = "INSTRUCTIONS";
+    this.Button3Content = "QUIT";
+    this.TitleContent = "Helix Force";
+    this.SetText();
+    this.CurrentState = "Main Menu";
+  }
+  
+  function SetModeMenu() {
+    this.Button1Content = "MISSIONS";
+    this.Button2Content = "ENDLESS";
+    this.Button3Content = "BACK";
+    this.TitleContent = "Select Mode";
+    this.SetText();
+    this.CurrentState = "Select Mode";
+  }
+  
+  function SetMissionMenu() {
+    this.Button1Content = "MISSION 1";
+    this.Button2Content = "MISSION 2";
+    this.Button3Content = "BACK";
+    this.TitleContent = "Select Mission";
+    this.SetText();
+    this.CurrentState = "Select Mission";
+  }
+  
+  function CheckRange(coords : Real2, range: Real4) : Boolean {
+    if (coords.X > range.W && coords.X < range.X && coords.Y > range.Y && coords.Y < range.Z) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+    this.SetMainMenu();
+
+  }
+  
+  
+  function OnMouseUpdate(event : ViewportMouseEvent) {
+
+    if (event.IsButtonDown(MouseButtons.Left)) {
+      var coords : Real2 = event.Position;
+      Console.WriteLine(coords);
+      if (this.CurrentState == "Main Menu") {
+        if (this.CheckRange(coords, this.Button1Range)) {
+          this.SetModeMenu();
+        } else if (this.CheckRange(coords, this.Button2Range)) {
+          this.Space.LoadLevel(this.InstructionsLevel);
+        } else if (this.CheckRange(coords, this.Button3Range)) {
+          this.GameSession.RequestQuit();
+        } 
+        
+      } else if (this.CurrentState == "Select Mode") {
+      } else if (this.CurrentState == "Select Mission") {
+      }
+
+
+    }
+  }
+}
