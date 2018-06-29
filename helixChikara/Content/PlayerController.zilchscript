@@ -49,8 +49,9 @@ class PlayerController : ZilchComponent
 
   function ClampVelocity(){ //clamp our velocity within bounds specified in Properties
     this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
-    this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
-    this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel), 0);
+      this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
+      this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel), 0
+    );
     
   }
   
@@ -83,19 +84,8 @@ class PlayerController : ZilchComponent
     return velocity;
   }
   
-  function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
-    var velVector : Real2 = Real2(0);
-    velVector = this.ParseKeyboard();    
-    this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:
-    
-    /*
-    When we take input, we build that input into a vector called velVector.
-    Afterwards, we immediately apply that to our real velocity but then modify it again.
-    The reason for this is because we need to know our real velocity for all future physics from here,
-    and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
-    */
-    
-    if(velVector.X == 0){ //if net input == 0
+  function Decelerate(){
+    //if(velVector.X == 0){ //if net input == 0
     //todo: split this between vertical and horizontal input. its not decelerating vertically if you move sideways
       if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
         this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
@@ -106,8 +96,8 @@ class PlayerController : ZilchComponent
       else{
         this.Owner.RigidBody.Velocity += Real3(this.Deceleration.X, 0, 0);
       }
-    }
-    if(velVector.Y == 0){ 
+    //}
+    //if(velVector.Y == 0){ 
       //again but for Y
       if(Math.Abs(this.Owner.RigidBody.Velocity.Y) < this.Deceleration.Y){
         this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
@@ -118,7 +108,44 @@ class PlayerController : ZilchComponent
       else{
         this.Owner.RigidBody.Velocity += Real3(0, this.Deceleration.Y, 0);
       }
+    //}
+    
+  }
+  
+  function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
+    var velVector : Real2 = Real2(0);
+    velVector = this.ParseKeyboard();
+    
+    /*
+    if (velVector.X != 0){
+      if (velVector.X > 0){
+        this.Owner.RigidBody.Velocity = Real3(
+          this.Clamp(this.Owner.RigidBody.Velocity.X, 0, this.MaxRVel),
+          this.Owner.RigidBody.Velocity.Y, 0
+        );
+      }
+      if (velVector.X < 0){
+        this.Owner.RigidBody.Velocity = Real3(
+          this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, 0),
+          this.Owner.RigidBody.Velocity.Y, 0
+        );
+      }
+      
     }
+    */
+    
+    this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:
+    this.Decelerate();
+    /*
+    When we take input, we build that input into a vector called velVector.
+    Afterwards, we immediately apply that to our real velocity but then modify it again.
+    The reason for this is because we need to know our real velocity for all future physics from here,
+    and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
+    */
+    
+    /*
+
+    */
     
   }
   
