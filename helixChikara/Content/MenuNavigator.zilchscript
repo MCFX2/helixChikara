@@ -1,3 +1,5 @@
+enum CurrentMenuState{MainMenu, SelectMode, SelectMission}
+
 class MenuNavigator : ZilchComponent {
   
   [Property] var Button1 : CogPath;
@@ -7,7 +9,8 @@ class MenuNavigator : ZilchComponent {
   [Property] var Button1Text : CogPath;
   [Property] var Button2Text : CogPath;
   [Property] var Button3Text : CogPath;
-  [Property] var Title : CogPath;
+  [Property] var MenuBG : CogPath;
+  //[Property] var Title : CogPath;
   
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
@@ -18,27 +21,29 @@ class MenuNavigator : ZilchComponent {
   var Button3Content : String;
   var TitleContent : String;
   
-  var CurrentState : String;
+  var CurrentState : CurrentMenuState;
   
-  var Button1Range : Real4 = Real4(583, 952, 221, 302); 
-  var Button2Range : Real4 = Real4(583, 952, 482, 563); 
-  var Button3Range : Real4 = Real4(583, 952, 352, 433); 
+  var Button1Range : Real2x2 = Real2x2(583, 952, 221, 302);  //fix these
+  var Button2Range : Real2x2 = Real2x2(583, 952, 482, 563); 
+  var Button3Range : Real2x2 = Real2x2(583, 952, 352, 433); 
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
     this.Button2Text.Cog.SpriteText.Text = this.Button2Content;
     this.Button3Text.Cog.SpriteText.Text = this.Button3Content;
-    this.Title.Cog.SpriteText.Text = this.TitleContent;
+    //this.Title.Cog.SpriteText.Text = this.TitleContent;
+    
   }
   
   function SetMainMenu() {
     this.Button1Content = "PLAY";
     this.Button2Content = "INSTRUCTIONS";
     this.Button3Content = "QUIT";
-    this.TitleContent = "Helix Force";
+    //this.TitleContent = "Helix Force";
     this.SetText();
-    this.CurrentState = "Main Menu";
+    this.CurrentState = CurrentMenuState.MainMenu;
   }
+  
   
   function SetModeMenu() {
     this.Button1Content = "MISSIONS";
@@ -46,7 +51,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
     this.SetText();
-    this.CurrentState = "Select Mode";
+    this.CurrentState = CurrentMenuState.SelectMode;
   }
   
   function SetMissionMenu() {
@@ -55,11 +60,11 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mission";
     this.SetText();
-    this.CurrentState = "Select Mission";
+    this.CurrentState = CurrentMenuState.SelectMission;
   }
   
-  function CheckRange(coords : Real2, range: Real4) : Boolean {
-    if (coords.X > range.W && coords.X < range.X && coords.Y > range.Y && coords.Y < range.Z) {
+  function CheckRange(coords : Real2, range: Real2x2) : Boolean {
+    if (coords.X > range.M00 && coords.X < range.M01 && coords.Y > range.M10 && coords.Y < range.M11) {
       return true;
     } else {
       return false;
@@ -67,18 +72,18 @@ class MenuNavigator : ZilchComponent {
   }
   
   function Initialize(init : CogInitializer) {
-    Zero.Connect(this.Owner, Events.MouseUpdate, this.OnMouseUpdate);
+    Zero.Connect(this.Space, Events.MouseUpdate, this.OnMouseUpdate);
     this.SetMainMenu();
 
   }
   
   
   function OnMouseUpdate(event : ViewportMouseEvent) {
-
+    Console.Write(this.Button1Range.M01);
     if (event.IsButtonDown(MouseButtons.Left)) {
       var coords : Real2 = event.Position;
       Console.WriteLine(coords);
-      if (this.CurrentState == "Main Menu") {
+      if (this.CurrentState == CurrentMenuState.MainMenu) {
         if (this.CheckRange(coords, this.Button1Range)) {
           this.SetModeMenu();
         } else if (this.CheckRange(coords, this.Button2Range)) {
@@ -87,11 +92,15 @@ class MenuNavigator : ZilchComponent {
           this.GameSession.RequestQuit();
         } 
         
-      } else if (this.CurrentState == "Select Mode") {
-      } else if (this.CurrentState == "Select Mission") {
       }
-
-
+      else if (this.CurrentState == CurrentMenuState.SelectMode) {
+        
+      }
+      else if (this.CurrentState == CurrentMenuState.SelectMission) {
+        
+      }
     }
+    
+
   }
 }
