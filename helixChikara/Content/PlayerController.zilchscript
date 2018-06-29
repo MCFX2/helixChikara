@@ -1,3 +1,5 @@
+enum Ship {Anime, MachoCheese, Reagan, Scout}
+
 class PlayerController : ZilchComponent
 {
   //controls
@@ -6,6 +8,11 @@ class PlayerController : ZilchComponent
   [Property] var DownKey : Keys = Keys.S;
   [Property] var RightKey : Keys = Keys.D;
   [Property] var PauseKey : Keys = Keys.Control;
+  [Property] var ShootKey : Keys = Keys.Space;
+  [Property] var AnimeShipKey : Keys = Keys.NumPad1;
+  [Property] var MachoCheeseShipKey : Keys = Keys.NumPad2;
+  
+  
   
   //physics constants
   [Property] var LSpeed = 0.5; //left acceleration modifier
@@ -19,9 +26,20 @@ class PlayerController : ZilchComponent
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
   var CorrectRotation : Quaternion = Quaternion();
-  //rotation patching
-  [Property] var RotCorrectionStrict = true; //whether to use strict rotation correction. Off = fun :)
   
+  
+  //rotation patching [DEPRECATED]
+  
+  [Property] var RotCorrectionStrict = true; //DEPRECATED whether to use strict rotation correction. Off = fun :)
+  
+  //bullet stuff TODO: make this its own script
+  [Property] var BulletSpawnOffset = Real2(1.5, 0); //Bullet creation position relative to ship X, Y
+  [Property] var BulletSpeedAnime = 2.5;
+  [Property] var BulletFireDelay = 10; //number of logic ticks between reloads
+  var TimeSinceLastBullet = 0;
+  
+  //player vars
+  var CurrentShip : Ship = Ship.Anime;
   
   function Initialize(init : CogInitializer)
   {
@@ -50,7 +68,40 @@ class PlayerController : ZilchComponent
     
   }
   
-  function ParseKeyboard() : Real2 {
+  function ChangeShip(newShip : Ship){
+    this.CurrentShip = newShip;
+    //do other stuff we do when switching here
+  }
+  
+  function Shoot(){
+    if(this.CurrentShip == Ship.Anime){
+      if(this.TimeSinceLastBullet >= this.BulletFireDelay){
+        var currentBullet : Cog = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        currentBullet.RigidBody.Velocity = Real3(this.BulletSpeedAnime, 0, 0);
+        //Note that bullets are intentionally NOT made children of Screen, so if the level changes direction bullets don't follow. Realism!
+        this.TimeSinceLastBullet = 0;
+      }
+    }
+
+
+    
+    
+  }
+  
+  function CheckKeyboard() { //used for any key inputs that do NOT DIRECTLY affect acceleration
+    if(Zero.Keyboard.KeyIsDown(this.ShootKey)){
+      this.Shoot();
+    }
+    if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD to select a ship to replace from a radial menu
+      this.ChangeShip(Ship.Anime);
+    }
+    if(Zero.Keyboard.KeyIsDown(this.MachoCheeseShipKey)){
+      this.ChangeShip(Ship.MachoCheese);
+    }
+    
+  }
+  
+  function ParseKeyboard() : Real2 { //used for key inputs that DIRECTLY AFFECT acceleration
     var velocity : Real2 = Real2(0);
     if(Zero.Keyboard.KeyIsDown(this.RightKey)){
       velocity.X += this.RSpeed * this.Speed;
@@ -119,9 +170,12 @@ class PlayerController : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    this.FixRotation();
+    this.FixRotation(); //deprecated
+    this.CheckKeyboard();
     this.Accelerate();
-    this.ClampVelocity(); //clamping must be the last step
+    this.ClampVelocity(); //clamping must be the last movement step
+    
+    ++this.TimeSinceLastBullet;
   }
   
   function OnFrameUpdate(event : UpdateEvent){ //used for actions that should continue resolving while paused
