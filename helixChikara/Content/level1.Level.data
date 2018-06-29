@@ -471,29 +471,6 @@ Level
 							var Offset = Real3{0, 0, 0}
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
-						PlayerController 
-						{
-							var UpKey = Keys.W
-							var LeftKey = Keys.A
-							var DownKey = Keys.S
-							var RightKey = Keys.D
-							var PauseKey = Keys.Control
-							var ShootKey = Keys.Space
-							var AnimeShipKey = Keys.NumPad1
-							var MachoCheeseShipKey = Keys.NumPad2
-							var LSpeed = 0.5
-							var RSpeed = 1
-							var VSpeed = 0.800000012
-							var Speed = 1
-							var Deceleration = Real2{1, 1}
-							var MaxRVel = 10
-							var MaxLVel = 10
-							var MaxVVel = 10
-							var RotCorrectionStrict = false
-							var BulletSpawnOffset = Real2{1.5, 0}
-							var BulletSpeedAnime = 2.5
-							var BulletFireDelay = 10
-						}
 						RigidBody 
 						{
 							var Velocity = Real3{0, 0, 0}
@@ -503,6 +480,33 @@ Level
 							var Asleep = false
 							var RotationLocked = true
 							var Mode2D = Mode2DStates.InheritFromSpace
+						}
+						PlayerController 
+						{
+							var UpKey = Keys.W
+							var LeftKey = Keys.A
+							var DownKey = Keys.S
+							var RightKey = Keys.D
+							var PauseKey = Keys.Control
+							var LSpeed = 0.5
+							var RSpeed = 1
+							var VSpeed = 0.800000012
+							var Speed = 1
+							var Deceleration = Real2{1, 1}
+							var MaxRVel = 10
+							var MaxLVel = 10
+							var MaxVVel = 10
+						}
+						PlayerShooting 
+						{
+							var ShootKey = Keys.Space
+							var AnimeShipKey = Keys.One
+							var MachoCheeseShipKey = Keys.Two
+							var ReaganShipKey = Keys.Three
+							var ScoutShipKey = Keys.Four
+							var BulletSpawnOffset = Real2{1.5, 0}
+							var BulletSpeedAnime = 2.5
+							var BulletFireDelay = 10
 						}
 					}
 				}

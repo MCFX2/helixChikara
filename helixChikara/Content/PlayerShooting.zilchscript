@@ -1,0 +1,60 @@
+class PlayerShooting : ZilchComponent
+{
+  //keys
+  [Property] var ShootKey : Keys = Keys.Space;
+  [Property] var AnimeShipKey : Keys = Keys.One;
+  [Property] var MachoCheeseShipKey : Keys = Keys.Two;
+  [Property] var ReaganShipKey : Keys = Keys.Three;
+  [Property] var ScoutShipKey : Keys = Keys.Four;
+  
+  //bullet physics
+  [Property] var BulletSpawnOffset = Real2(1.5, 0); //Bullet creation position relative to ship X, Y
+  [Property] var BulletSpeedAnime = 2.5;
+  [Property] var BulletFireDelay = 10; //number of logic ticks between reloads
+  
+  
+  var TimeSinceLastBullet = 0;
+  var CurrentShip : Ship = Ship.Anime;
+    
+    
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function Shoot(){
+    if(this.CurrentShip == Ship.Anime){
+      if(this.TimeSinceLastBullet >= this.BulletFireDelay){
+        var currentBullet : Cog = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        currentBullet.RigidBody.Velocity = Real3(this.BulletSpeedAnime, 0, 0);
+        //Note that bullets are intentionally NOT made children of Screen, so if the level changes direction bullets don't follow. Realism!
+        this.TimeSinceLastBullet = 0;
+      }
+    }
+  }
+  
+  function ChangeShip(newShip : Ship){
+    this.CurrentShip = newShip;
+    //do other stuff we do when switching here
+  }
+  
+  
+  function CheckKeyboard() { //used for any key inputs that do NOT DIRECTLY affect acceleration
+    if(Zero.Keyboard.KeyIsDown(this.ShootKey)){
+      this.Shoot();
+    }
+    if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD to select a ship to replace from a radial menu
+      this.ChangeShip(Ship.Anime);
+    }
+    if(Zero.Keyboard.KeyIsDown(this.MachoCheeseShipKey)){
+      this.ChangeShip(Ship.MachoCheese);
+    }
+    
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.CheckKeyboard();
+    ++this.TimeSinceLastBullet;
+  }
+}
