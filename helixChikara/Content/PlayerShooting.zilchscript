@@ -10,12 +10,14 @@ class PlayerShooting : ZilchComponent
   //bullet physics
   [Property] var BulletSpawnOffset = Real2(1.5, 0); //Bullet creation position relative to ship X, Y
   [Property] var BulletSpeedAnime = 2.5;
-  [Property] var BulletFireDelay = 10; //number of logic ticks between reloads
+  [Property] var BulletFireDelayAnime = 10; //number of logic ticks between reloads
+  [Property] var BulletSpreadAnime = 0.05; //ratio of bullet spread. 0 = laser, 1 = 180 degree firing range
   
   
   var TimeSinceLastBullet = 0;
   var CurrentShip : Ship = Ship.Anime;
-    
+  
+  var Rand : Random = Random();
     
   function Initialize(init : CogInitializer)
   {
@@ -24,9 +26,13 @@ class PlayerShooting : ZilchComponent
   
   function Shoot(){
     if(this.CurrentShip == Ship.Anime){
-      if(this.TimeSinceLastBullet >= this.BulletFireDelay){
+      if(this.TimeSinceLastBullet >= this.BulletFireDelayAnime){
         var currentBullet : Cog = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
-        currentBullet.RigidBody.Velocity = Real3(this.BulletSpeedAnime, 0, 0);
+        //Y=Speed^2 * sin(ang)
+        var spreadAngle = this.Rand.Range(-90, 90) * this.BulletSpreadAnime;
+        var velY = Math.Pow(this.BulletSpeedAnime, 2) * Math.Sin(Math.ToRadians(spreadAngle));
+        var velX = Math.Pow(this.BulletSpeedAnime, 2) * Math.Cos(Math.ToRadians(spreadAngle));
+        currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
         //Note that bullets are intentionally NOT made children of Screen, so if the level changes direction bullets don't follow. Realism!
         this.TimeSinceLastBullet = 0;
       }

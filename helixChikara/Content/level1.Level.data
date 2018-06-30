@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{1.95213342, -0.026874505, 20}
+			var Translation = Real3{3.03790379, -0.816588998, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 6.11255264
+			var Size = 27.394495
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{1.95213342, -0.026874505, -3.42017614e-07}
+			var LookTarget = Real3{3.03790379, -0.816588998, -2.94557253e-07}
 			var MoveSensitivity = 1
 		}
 	}
@@ -314,7 +314,7 @@ Level
 				var Name = "rightBound"
 				Transform 
 				{
-					var Translation = Real3{18.5, 0, 0}
+					var Translation = Real3{18.5, 0, 0.5}
 					var Scale = Real3{1.00000012, 1.00000012, 1}
 					var Rotation = Quaternion{0, 0, -0.707106829, 0.707106769}
 				}
@@ -342,7 +342,7 @@ Level
 				var Name = "leftBound"
 				Transform 
 				{
-					var Translation = Real3{-18.5, 0, 0}
+					var Translation = Real3{-18.5, 0, 0.5}
 					var Scale = Real3{1.00000012, 1.00000012, 1}
 					var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
 				}
@@ -370,7 +370,7 @@ Level
 				var Name = "upperBound"
 				Transform 
 				{
-					var Translation = Real3{0, 10.6000004, 0}
+					var Translation = Real3{0, 10.6000004, 0.5}
 					var Scale = Real3{1, 1, 1}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -398,7 +398,7 @@ Level
 				var Name = "lowerBound"
 				Transform 
 				{
-					var Translation = Real3{0, -10.5, 0}
+					var Translation = Real3{0, -10.5, 0.5}
 					var Scale = Real3{1, 1, 1}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -549,9 +549,38 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
+					Cog [Id:0x5bccb237fbc799c5][ContextId:18]
+					{
+						var Name = "Sprite"
+						Transform 
+						{
+							var Translation = Real3{16.3550568, 9.59716606, 0}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Sprite 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{1, 1, 1, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var SpriteSource = "5bccb279c95ae85c:animename"
+							var FlipX = false
+							var FlipY = false
+							var AnimationActive = true
+							var AnimationSpeed = 1
+							var StartFrame = 0
+						}
+					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:18]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:19]
 			{
 				var Name = "User"
 				Transform 
@@ -562,31 +591,103 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bcc918f0c3281df][InheritId:"5bcc918f0c32c24d:Player"][ContextId:19]
+					Cog [Id:0x5bcc85de04c7cb5f][ContextId:20]
 					{
+						var Name = "Ship"
 						Transform 
 						{
-							var Translation = Real3{1.94894791, 0, 0}
-							var Rotation = Quaternion{0, 0, 0, 1}
+							var Translation = Real3{2, 0, 0}
 							var Scale = Real3{4, 4, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
 						}
 						Sprite 
 						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{1, 1, 1, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
 							var SpriteSource = "5bcc811dd3f87f15:scout_ship"
+							var FlipX = false
+							var FlipY = false
+							var AnimationActive = true
+							var AnimationSpeed = 1
+							var StartFrame = 0
+						}
+						PlayerShooting 
+						{
+							var ShootKey = Keys.Space
+							var AnimeShipKey = Keys.One
+							var MachoCheeseShipKey = Keys.Two
+							var ReaganShipKey = Keys.Three
+							var ScoutShipKey = Keys.Four
+							var BulletSpawnOffset = Real2{1.5, 0}
+							var BulletSpeedAnime = 5
+							var BulletFireDelayAnime = 6
+							var BulletSpreadAnime = 0.0500000007
+						}
+						PlayerController 
+						{
+							var UpKey = Keys.W
+							var LeftKey = Keys.A
+							var DownKey = Keys.S
+							var RightKey = Keys.D
+							var PauseKey = Keys.Control
+							var LSpeed = 1
+							var RSpeed = 1
+							var VSpeed = 1
+							var Speed = 4
+							var Deceleration = Real2{1.60000002, 1.60000002}
+							var MaxRVel = 10
+							var MaxLVel = 8
+							var MaxVVel = 10
+						}
+						RigidBody 
+						{
+							var Velocity = Real3{0, 0, 0}
+							var AngularVelocity = Real3{0, 0, 0}
+							var DynamicState = RigidBodyDynamicState.Dynamic
+							var AllowSleep = true
+							var Asleep = false
+							var RotationLocked = true
+							var Mode2D = Mode2DStates.InheritFromSpace
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bcc8b20de63fbf0][ContextId:20]
+							Cog [Id:0x5bccb1e6efd97e33][ContextId:21]
 							{
+								var Name = "PlayerHitbox"
 								Transform 
 								{
+									var Translation = Real3{0, 0, 0.100000001}
 									var Scale = Real3{0.0700000003, 0.0700000003, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
 								}
 								Sprite 
 								{
-									var SpriteSource = "5274db4c2e7c11f9:Circle"
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "582c575af53d18c9:AlphaSprite"
+									var VertexColor = Real4{1, 1, 1, 1}
+									var GeometryMode = SpriteGeometryMode.ZPlane
+									var SpriteSource = "5586f1922250b073:CircleBordered"
+									var FlipX = false
+									var FlipY = false
+									var AnimationActive = true
+									var AnimationSpeed = 1
+									var StartFrame = 0
 								}
-								SphereCollider [LocallyAdded]
+								SphereCollider 
 								{
 									var Ghost = false
 									var SendsEvents = true
@@ -595,16 +696,10 @@ Level
 									var Offset = Real3{0, 0, 0}
 									var Radius = 0.119999997
 								}
-								BoxCollider [LocallyRemoved]
-								{
-								}
 							}
 						}
-						BoxCollider [LocallyRemoved]
-						{
-						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:21]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:22]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -615,7 +710,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:22]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:23]
 							{
 								Transform 
 								{
@@ -624,7 +719,7 @@ Level
 									var Scale = Real3{30, 1.00000024, 1}
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:23]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:24]
 							{
 								Transform 
 								{
@@ -637,7 +732,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bcc8eea60ae50e2][ContextId:24]
+			Cog [Id:0x5bcc8eea60ae50e2][ContextId:25]
 			{
 				var Name = "Level"
 				Transform 
@@ -648,7 +743,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bcc8ed36724d453][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:25]
+					Cog [Id:0x5bcc8ed36724d453][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:26]
 					{
 						Transform 
 						{
@@ -656,12 +751,16 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
+						BasicCannon 
 						{
-							var FireDelay = 30
+							var FireDelay = 5
+						}
+						BoxCollider 
+						{
+							var Ghost = true
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d4f7][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:26]
+					Cog [Id:0x5bcc8ed36724d4f7][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:27]
 					{
 						Transform 
 						{
@@ -669,12 +768,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d555][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:27]
+					Cog [Id:0x5bcc8ed36724d555][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:28]
 					{
 						Transform 
 						{
@@ -682,12 +777,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d5a9][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:28]
+					Cog [Id:0x5bcc8ed36724d5a9][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:29]
 					{
 						Transform 
 						{
@@ -695,12 +786,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d5fc][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:29]
+					Cog [Id:0x5bcc8ed36724d5fc][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:30]
 					{
 						Transform 
 						{
@@ -708,12 +795,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d650][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:30]
+					Cog [Id:0x5bcc8ed36724d650][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:31]
 					{
 						Transform 
 						{
@@ -721,12 +804,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d6a6][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:31]
+					Cog [Id:0x5bcc8ed36724d6a6][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:32]
 					{
 						Transform 
 						{
@@ -734,12 +813,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d6f5][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:32]
+					Cog [Id:0x5bcc8ed36724d6f5][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:33]
 					{
 						Transform 
 						{
@@ -747,12 +822,8 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d745][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:33]
+					Cog [Id:0x5bcc8ed36724d745][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:34]
 					{
 						Transform 
 						{
@@ -760,22 +831,14 @@ Level
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
-						}
 					}
-					Cog [Id:0x5bcc8ed36724d79a][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:34]
+					Cog [Id:0x5bcc8ed36724d79a][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:35]
 					{
 						Transform 
 						{
 							var Translation = Real3{14.4929495, -6.5614109, -4.02331352e-07}
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
-						}
-						BasicCannon [LocallyAdded]
-						{
-							var FireDelay = 30
 						}
 					}
 				}

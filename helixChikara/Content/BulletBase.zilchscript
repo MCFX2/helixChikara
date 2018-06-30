@@ -1,18 +1,20 @@
 class BulletBase : ZilchComponent
 {
+  [Property] var Damage = 0.5;
   
   function Initialize(init : CogInitializer)
   {
-    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.WallHit);
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-   if(this.Owner.BoxCollider.ContactCount > 0){
-     this.WallHit();
-   }
+    
   }
-  function WallHit(){
-    this.Owner.Destroy();
+  function WallHit(event : CollisionEvent){
+    if(event.OtherObject.Collider.CollisionGroup != CollisionGroup.EnemyPierce){
+      this.Owner.Destroy();
+    }
+
   }
 }

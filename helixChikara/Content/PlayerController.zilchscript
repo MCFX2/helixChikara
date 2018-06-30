@@ -42,6 +42,7 @@ class PlayerController : ZilchComponent
       return input;
     }
   }
+  
 
 
   function ClampVelocity(){ //clamp our velocity within bounds specified in Properties
@@ -49,7 +50,6 @@ class PlayerController : ZilchComponent
       this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
       this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel), 0
     );
-    
   }
   
   function ChangeShip(newShip : Ship){
