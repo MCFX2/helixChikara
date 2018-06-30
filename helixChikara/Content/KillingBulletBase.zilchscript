@@ -1,0 +1,18 @@
+class KillingBulletBase : ZilchComponent
+{
+  [Property] var Player : CogPath;
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnHit);
+  }
+  
+  function OnHit(event : CollisionEvent){
+    if(event.OtherObject == this.Player.Cog){
+      event.OtherObject.Destroy();
+    }
+    else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyIgnore){
+      this.Owner.Destroy();
+    }
+  }
+}

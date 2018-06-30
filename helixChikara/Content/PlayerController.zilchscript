@@ -22,7 +22,6 @@ class PlayerController : ZilchComponent
   [Property] var MaxRVel = 10.0; //max right velocity
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
-  //var CorrectRotation : Quaternion = Quaternion();
   
   //player vars
   var CurrentShip : Ship = Ship.Anime;
@@ -30,9 +29,7 @@ class PlayerController : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
-    //this.CorrectRotation = this.Owner.Transform.LocalRotation;
   }
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
     if(input <= min){
@@ -60,13 +57,6 @@ class PlayerController : ZilchComponent
     //do other stuff we do when switching here
   }
   
-
-  
-  function CheckKeyboard() { //used for any key inputs that do NOT DIRECTLY affect acceleration
-    
-    
-  }
-  
   function ParseKeyboard() : Real2 { //used for key inputs that DIRECTLY AFFECT acceleration
     var velocity : Real2 = Real2(0);
     if(Zero.Keyboard.KeyIsDown(this.RightKey)){
@@ -85,8 +75,6 @@ class PlayerController : ZilchComponent
   }
   
   function Decelerate(){
-    //if(velVector.X == 0){ //if net input == 0
-    //todo: split this between vertical and horizontal input. its not decelerating vertically if you move sideways
       if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
         this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
       }
@@ -96,8 +84,6 @@ class PlayerController : ZilchComponent
       else{
         this.Owner.RigidBody.Velocity += Real3(this.Deceleration.X, 0, 0);
       }
-    //}
-    //if(velVector.Y == 0){ 
       //again but for Y
       if(Math.Abs(this.Owner.RigidBody.Velocity.Y) < this.Deceleration.Y){
         this.Owner.RigidBody.Velocity = Real3(this.Owner.RigidBody.Velocity.X, 0, 0);
@@ -108,31 +94,11 @@ class PlayerController : ZilchComponent
       else{
         this.Owner.RigidBody.Velocity += Real3(0, this.Deceleration.Y, 0);
       }
-    //}
-    
   }
   
   function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
     var velVector : Real2 = Real2(0);
     velVector = this.ParseKeyboard();
-    
-    /*
-    if (velVector.X != 0){
-      if (velVector.X > 0){
-        this.Owner.RigidBody.Velocity = Real3(
-          this.Clamp(this.Owner.RigidBody.Velocity.X, 0, this.MaxRVel),
-          this.Owner.RigidBody.Velocity.Y, 0
-        );
-      }
-      if (velVector.X < 0){
-        this.Owner.RigidBody.Velocity = Real3(
-          this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, 0),
-          this.Owner.RigidBody.Velocity.Y, 0
-        );
-      }
-      
-    }
-    */
     
     this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:
     this.Decelerate();
@@ -141,10 +107,6 @@ class PlayerController : ZilchComponent
     Afterwards, we immediately apply that to our real velocity but then modify it again.
     The reason for this is because we need to know our real velocity for all future physics from here,
     and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
-    */
-    
-    /*
-
     */
     
   }
@@ -157,14 +119,8 @@ class PlayerController : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    this.CheckKeyboard();
     this.Accelerate();
     this.ClampVelocity(); //clamping must be the last movement step
-  
-  }
-  
-  function OnFrameUpdate(event : UpdateEvent){ //used for actions that should continue resolving while paused
-    
   }
   
 }

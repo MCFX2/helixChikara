@@ -1,4 +1,4 @@
-class BulletMovement : ZilchComponent
+class BulletBase : ZilchComponent
 {
   
   function Initialize(init : CogInitializer)
