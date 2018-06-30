@@ -8,9 +8,12 @@ class KillingBulletBase : ZilchComponent
   }
   
   function OnHit(event : CollisionEvent){
-    if(event.OtherObject == this.Player.Cog){
+    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyDestructible){
       event.OtherObject.Destroy();
     }
+    /*else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce){
+      //keep going, add a blink effect maybe? idk
+    }*/
     else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyIgnore){
       this.Owner.Destroy();
     }
