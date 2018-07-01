@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{3.03790379, -0.816588998, 20}
+			var Translation = Real3{4.37029457, -0.316683114, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 27.394495
+			var Size = 22.5599098
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{3.03790379, -0.816588998, -2.94557253e-07}
+			var LookTarget = Real3{4.37029457, -0.316683114, -2.94557253e-07}
 			var MoveSensitivity = 1
 		}
 	}
@@ -554,7 +554,7 @@ Level
 						var Name = "Sprite"
 						Transform 
 						{
-							var Translation = Real3{16.3550568, 9.59716606, 0}
+							var Translation = Real3{9.78199482, 9.59716606, 0}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -570,12 +570,15 @@ Level
 							var Material = "582c575af53d18c9:AlphaSprite"
 							var VertexColor = Real4{1, 1, 1, 1}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5bccb279c95ae85c:animename"
+							var SpriteSource = "5bccb22bea946d71:titleanime"
 							var FlipX = false
 							var FlipY = false
 							var AnimationActive = true
 							var AnimationSpeed = 1
 							var StartFrame = 0
+						}
+						CurrentPlayerIndicator 
+						{
 						}
 					}
 				}
@@ -610,7 +613,7 @@ Level
 							var LocalAabbHalfExtents = Real3{1, 1, 1}
 							var GroupSortValue = 0
 							var Material = "582c575af53d18c9:AlphaSprite"
-							var VertexColor = Real4{1, 1, 1, 1}
+							var VertexColor = Real4{1, 1, 1, 0.300000012}
 							var GeometryMode = SpriteGeometryMode.ZPlane
 							var SpriteSource = "5bcc811dd3f87f15:scout_ship"
 							var FlipX = false
@@ -678,7 +681,7 @@ Level
 									var LocalAabbHalfExtents = Real3{1, 1, 1}
 									var GroupSortValue = 0
 									var Material = "582c575af53d18c9:AlphaSprite"
-									var VertexColor = Real4{1, 1, 1, 1}
+									var VertexColor = Real4{0.230000496, 0, 1, 1}
 									var GeometryMode = SpriteGeometryMode.ZPlane
 									var SpriteSource = "5586f1922250b073:CircleBordered"
 									var FlipX = false
@@ -753,7 +756,7 @@ Level
 						}
 						BasicCannon 
 						{
-							var FireDelay = 5
+							var FireDelay = 30
 						}
 						BoxCollider 
 						{

@@ -5,12 +5,12 @@ ImageContent
 	{
 		var Name = "titleanime"
 		var ResourceId = 0x5bccb22bea946d71
-		var FrameSizeX = 500
-		var FrameSizeY = 500
+		var FrameSizeX = 219
+		var FrameSizeY = 59
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 250
-		var OriginY = 250
+		var OriginX = 0
+		var OriginY = 0
 		var PixelsPerUnit = 64
 		var Sampling = SpriteSampling.Linear
 		var Looping = true

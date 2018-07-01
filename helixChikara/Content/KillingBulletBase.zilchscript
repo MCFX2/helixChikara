@@ -11,9 +11,7 @@ class KillingBulletBase : ZilchComponent
     if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyDestructible){
       event.OtherObject.Destroy();
     }
-    /*else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce){
-      //keep going, add a blink effect maybe? idk
-    }*/
+
     else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyIgnore){
       this.Owner.Destroy();
     }
