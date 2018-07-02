@@ -4,40 +4,36 @@ class ButtonClick : ZilchComponent {
   
   function Initialize(init : CogInitializer) {
     this.MenuNavigator = this.Space.FindObjectByName( "LevelSettings" ).GetComponentByName( "MenuNavigator" ) as MenuNavigator;    
-    Zero.Connect(this.Space, Events.MouseUpdate, this.OnMouseUpdate);
+    Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
   }
   
-  function OnMouseUpdate(event : ViewportMouseEvent) {
-    if (event.IsButtonDown(MouseButtons.Left)) {
-      // At the moment, it appears that clicking one button makes
-      // the game think all buttons were clicked
-      Console.WriteLine(this.Owner.Archetype.Name);
-      Console.WriteLine("--------------------------");
-      if (this.Owner.Archetype == Archetype.Button1) {
-        if (this.MenuNavigator.CurrentState == CurrentMenuState.MainMenu) {
-          this.MenuNavigator.SetModeMenu();
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMode) {
-          this.MenuNavigator.SetMissionMenu();
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMission) {
-          this.Space.LoadLevel(this.MenuNavigator.GameLevel1);
-        }
-      } else if (this.Owner.Archetype == Archetype.Button2) {
-        if (this.MenuNavigator.CurrentState == CurrentMenuState.MainMenu) {
-          this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMode) {
-          // We'll get there eventually
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMission) {
-          // We'll get there eventually
-        }
-      } else if (this.Owner.Archetype == Archetype.Button3) {
-        if (this.MenuNavigator.CurrentState == CurrentMenuState.MainMenu) {
-          this.GameSession.RequestQuit();
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMode) {
-          this.MenuNavigator.SetMainMenu();
-        } else if (this.MenuNavigator.CurrentState == CurrentMenuState.SelectMission) {
-          this.MenuNavigator.SetModeMenu();
-        }
+  function OnLeftClick(event : ViewportMouseEvent) {
+    Console.WriteLine(this.Owner.Archetype.Name);
+    Console.WriteLine("--------------------------");
+    if (this.Owner.Archetype == Archetype.Button1) {
+      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
+        this.MenuNavigator.SetModeMenu();
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
+        this.MenuNavigator.SetMissionMenu();
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
+        this.Space.LoadLevel(this.MenuNavigator.GameLevel1);
       }
-    }    
+    } else if (this.Owner.Archetype == Archetype.Button2) {
+      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
+        this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
+        // We'll get there eventually
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
+        // We'll get there eventually
+      }
+    } else if (this.Owner.Archetype == Archetype.Button3) {
+      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
+        this.GameSession.RequestQuit();
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
+        this.MenuNavigator.SetMainMenu();
+      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
+        this.MenuNavigator.SetModeMenu();
+      }
+    }
   }
 }

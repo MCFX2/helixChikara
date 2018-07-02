@@ -1,11 +1,7 @@
-enum CurrentMenuState{MainMenu, SelectMode, SelectMission}
+enum MenuStates{MainMenu, SelectMode, SelectMission}
 
 class MenuNavigator : ZilchComponent {
-  
-  [Property] var Button1 : CogPath;
-  [Property] var Button2 : CogPath;
-  [Property] var Button3 : CogPath;  
-  
+
   [Property] var Button1Text : CogPath;
   [Property] var Button2Text : CogPath;
   [Property] var Button3Text : CogPath;
@@ -21,7 +17,7 @@ class MenuNavigator : ZilchComponent {
   var Button3Content : String;
   var TitleContent : String;
   
-  var CurrentState : CurrentMenuState;
+  var CurrentState : MenuStates;
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
@@ -37,7 +33,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
     this.SetText();
-    this.CurrentState = CurrentMenuState.MainMenu;
+    this.CurrentState = MenuStates.MainMenu;
   }
   
   
@@ -47,7 +43,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
     this.SetText();
-    this.CurrentState = CurrentMenuState.SelectMode;
+    this.CurrentState = MenuStates.SelectMode;
   }
   
   function SetMissionMenu() {
@@ -56,7 +52,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mission";
     this.SetText();
-    this.CurrentState = CurrentMenuState.SelectMission;
+    this.CurrentState = MenuStates.SelectMission;
   }
 
   
