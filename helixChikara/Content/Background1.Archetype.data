@@ -1,0 +1,115 @@
+[Version:1]
+Cog 
+{
+	var Name = "Background"
+	Transform 
+	{
+		var Translation = Real3{-0.0854567364, 0.75728792, -3.73539644e-09}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Reactive 
+	{
+		var Active = true
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b3386b23ddc3da2][InheritId:"5b3386b23ddc7d9c:Button2"]
+		{
+			Transform 
+			{
+				var Translation = Real3{0.0854567364, -1.75728786, 0.99999994}
+				var Rotation = Quaternion{0, 0, 0, 1}
+				var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+			}
+			ButtonClick [LocallyAdded]
+			{
+			}
+		}
+		Cog [Id:0x5b3386b83cc896e0][InheritId:"5b3386b83cc8e198:Button3"]
+		{
+			Transform 
+			{
+				var Translation = Real3{0.0854567364, -4.25728798, 0.99999994}
+				var Rotation = Quaternion{0, 0, 0, 1}
+				var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+			}
+			ButtonClick [LocallyAdded]
+			{
+			}
+		}
+		Cog [Id:0x5be67a145ff3b030]
+		{
+			var Name = "TitleText"
+			Transform 
+			{
+				var Translation = Real3{0.0854567364, 3.39344692, 0.99999994}
+				var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5be67bc09aad140b:titlecard"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+		}
+		Cog [Id:0x5be67a16587b50db]
+		{
+			var Name = "BGImage"
+			Transform 
+			{
+				var Translation = Real3{0.0854567364, -0.75728792, -0.000999996322}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{0.395000041, 0.945550084, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5be67aaa6979da7d:maxresdefault"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5b3386b43ef6d197][InheritId:"5b3386b43ef6fbde:Button1"]
+		{
+			Transform 
+			{
+				var Translation = Real3{0.0854567364, 0.742711961, 0.99999994}
+				var Rotation = Quaternion{0, 0, 0, 1}
+				var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+			}
+			ButtonClick [LocallyAdded]
+			{
+			}
+		}
+	}
+}

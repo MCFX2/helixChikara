@@ -278,10 +278,9 @@ Level
 		{
 			var Active = true
 		}
-		UseButton 
+		BackToMain 
 		{
-			var LevelToLoad = "5b3c55ba57dd01ce:mainMenu"
-			var IsQuit = false
+			var MainMenu = "5b3c55ba57dd01ce:mainMenu"
 		}
 		Hierarchy 
 		{

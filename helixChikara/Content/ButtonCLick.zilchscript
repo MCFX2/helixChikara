@@ -2,37 +2,48 @@ class ButtonClick : ZilchComponent {
     
   var MenuNavigator : MenuNavigator;
   
+  var JustClicked : Boolean = false;
+  
   function Initialize(init : CogInitializer) {
     this.MenuNavigator = this.Space.FindObjectByName( "LevelSettings" ).GetComponentByName( "MenuNavigator" ) as MenuNavigator;    
     Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
   }
   
-  function OnLeftClick(event : ViewportMouseEvent) {
-    Console.WriteLine(this.Owner.Archetype.Name);
-    Console.WriteLine("--------------------------");
-    if (this.Owner.Archetype == Archetype.Button1) {
-      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
-        this.MenuNavigator.SetModeMenu();
+  function OnLeftClick(event : ViewportMouseEvent) {   
+    Console.WriteLine(this.JustClicked);
+    if (event.HitObject != null) {
+      var button = event.HitObject.Archetype;
+      
+      if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
+        
+        if (button == Archetype.Button1) {
+          this.Space.LoadLevel(this.MenuNavigator.GameLevel1);
+        } else if (button == Archetype.Button2) {
+          // We'll figure it out
+        } else if (button == Archetype.Button3) {
+          this.MenuNavigator.SetModeMenu();
+        }
+        
       } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
-        this.MenuNavigator.SetMissionMenu();
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
-        this.Space.LoadLevel(this.MenuNavigator.GameLevel1);
-      }
-    } else if (this.Owner.Archetype == Archetype.Button2) {
-      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
-        this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
-        // We'll get there eventually
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
-        // We'll get there eventually
-      }
-    } else if (this.Owner.Archetype == Archetype.Button3) {
-      if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
-        this.GameSession.RequestQuit();
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
-        this.MenuNavigator.SetMainMenu();
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
-        this.MenuNavigator.SetModeMenu();
+        
+        if (button == Archetype.Button1) {
+          this.MenuNavigator.SetMissionMenu();
+        } else if (button == Archetype.Button2) {
+          // We'll figure it out
+        } else if (button == Archetype.Button3) {
+          this.MenuNavigator.SetMainMenu();
+        }
+        
+      } else if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
+        
+        if (button == Archetype.Button1) {
+          this.MenuNavigator.SetModeMenu();
+        } else if (button == Archetype.Button2) {
+          this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
+        } else if (button == Archetype.Button3) {
+          this.GameSession.RequestQuit();
+        }
+        
       }
     }
   }

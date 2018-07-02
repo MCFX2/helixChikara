@@ -1,0 +1,12 @@
+class BackToMain : ZilchComponent {
+  
+  [Property] var MainMenu : Level;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
+  }
+  
+  function OnLeftClick(event : ViewportMouseEvent) {
+    this.Space.LoadLevel(this.MainMenu);
+  }
+}
