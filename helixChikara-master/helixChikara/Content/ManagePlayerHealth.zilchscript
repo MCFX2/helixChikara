@@ -1,0 +1,33 @@
+class ManagePlayerHealth : ZilchComponent {
+  
+  [Property] var HealthBar : CogPath;
+  [Property] var PlayerHealth : Real = 100;
+  [Property] var GameOver : Level;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
+    this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (this.PlayerHealth <= 0) {
+      // Ideally we want a destruction animation to play before the Game Over Screen
+      
+      this.Space.LoadLevel(this.GameOver);
+    }
+  }
+  
+  function OnCollide(event : CollisionEvent) {
+    // Same basic structure as EnemyTakeDown
+    if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce) {
+      
+      if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
+        event.OtherObject.Destroy();
+        this.PlayerHealth -= 1;
+        this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
+      }
+    }
+  }
+  
+}

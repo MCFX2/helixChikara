@@ -1,0 +1,32 @@
+class MoveAI : ZilchComponent {
+  
+  [Dependency] var Transform : Transform;
+  
+  [Property] var VerticalRange : Real = 5;
+  [Property] var Speed : Real = 0.1; // Space moved per loop iteration
+  
+  var InitialPosition : Real3;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.InitialPosition = this.Owner.Transform.Translation;
+  }
+  
+  function CheckVerticalPosition(currentPosition : Real3) : Boolean {
+    if (this.InitialPosition.Y + this.VerticalRange <= currentPosition.Y || this.InitialPosition.Y - this.VerticalRange >= currentPosition.Y)
+      return true;
+    else {
+      //Console.WriteLine(currentPosition.Y - this.InitialPosition.Y);
+      return false;
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+      this.Owner.Transform.Translation += Real3(0, this.Speed, 0); // Move the ship vertically
+      if (this.CheckVerticalPosition(this.Owner.Transform.Translation)) {
+        this.InitialPosition = this.Owner.Transform.Translation;
+        //Console.WriteLine("fat sheesh");
+        this.Speed*=-1;   
+      }
+  }
+}
