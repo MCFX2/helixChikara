@@ -1,0 +1,50 @@
+enum EnemyType { BasicEnemy, SliderEnemy }
+class WaveSpawner : ZilchComponent
+{
+  var CurrentWave : Integer = 0;
+  
+  var Waves : Array[Array[Array[Real]]] = Array[Array[Array[Real]]]();
+  var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
+  
+  //
+  //no touch zone
+  //
+  
+  function AddEnemy(wave : Array[Array[Real]], targetCoords : Real2, enemy : EnemyType, moveTime : Integer, spawnDelay : Integer){
+    var orderedArray : Array[Real] = Array[Real](){targetCoords.X, targetCoords.Y, enemy as Integer, moveTime, spawnDelay};
+    wave.Add(orderedArray);
+  }
+  
+  function SummonWave(waveNumber : Integer){
+    //foreach(
+    
+  }
+  
+  function NextWave(){
+    
+    
+    
+    
+    ++this.CurrentWave;
+    this.SummonWave(this.CurrentWave);
+        
+  }
+  //
+  //end no touch zone
+  //
+  
+  function Initialize(init : CogInitializer)
+  {
+    //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyType.TYPE, MoveTime, SpawnDelay);
+    
+    //Wave 1 here
+    this.AddEnemy(this.Wave1, Real2(50, 50), EnemyType.BasicEnemy, 30, 10);
+    
+    
+    //Wave 2 here
+    
+    
+    //etc
+    
+  }
+}

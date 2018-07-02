@@ -1,8 +1,10 @@
 enum Ship {Anime, MachoCheese, Reagan, Scout}
+enum ControlTypes{Keyboard, Mouse}
 
 class PlayerController : ZilchComponent
 {
   //controls
+  [Property] var ControlType : ControlTypes = ControlTypes.Mouse;
   [Property] var UpKey : Keys = Keys.W;
   [Property] var LeftKey : Keys = Keys.A;
   [Property] var DownKey : Keys = Keys.S;
@@ -74,6 +76,14 @@ class PlayerController : ZilchComponent
     return velocity;
   }
   
+  function ParseMouse() : Real2 { //ParseKeyboard, but for the mouse
+    var velocity : Real2 = Real2(0);
+  
+    
+    
+    return velocity;
+  }
+  
   function Decelerate(){
       if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
         this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
@@ -98,7 +108,13 @@ class PlayerController : ZilchComponent
   
   function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
     var velVector : Real2 = Real2(0);
-    velVector = this.ParseKeyboard();
+    if(this.ControlType == ControlTypes.Keyboard){
+      velVector = this.ParseKeyboard();
+    }
+    else {
+      velVector = this.ParseMouse();
+    }
+
     
     this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:
     this.Decelerate();

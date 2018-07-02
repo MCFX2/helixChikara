@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "WaveSpawner"
+		var ResourceId = 0x5bc0c74aa89cc53b
+	}
+}
