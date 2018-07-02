@@ -3,7 +3,7 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "scoutt"
+		var Name = "NameScout"
 		var ResourceId = 0x5bccb19104768fec
 		var FrameSizeX = 139
 		var FrameSizeY = 69
