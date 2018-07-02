@@ -22,10 +22,6 @@ class MenuNavigator : ZilchComponent {
   var TitleContent : String;
   
   var CurrentState : CurrentMenuState;
-  
-  var Button1Range : Real2x2 = Real2x2(583, 952, 221, 302);  //fix these
-  var Button2Range : Real2x2 = Real2x2(583, 952, 482, 563); 
-  var Button3Range : Real2x2 = Real2x2(583, 952, 352, 433); 
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
@@ -62,45 +58,16 @@ class MenuNavigator : ZilchComponent {
     this.SetText();
     this.CurrentState = CurrentMenuState.SelectMission;
   }
-  
-  function CheckRange(coords : Real2, range: Real2x2) : Boolean {
-    if (coords.X > range.M00 && coords.X < range.M01 && coords.Y > range.M10 && coords.Y < range.M11) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+
   
   function Initialize(init : CogInitializer) {
-    Zero.Connect(this.Space, Events.MouseUpdate, this.OnMouseUpdate);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.SetMainMenu();
 
   }
   
   
-  function OnMouseUpdate(event : ViewportMouseEvent) {
-    Console.Write(this.Button1Range.M01);
-    if (event.IsButtonDown(MouseButtons.Left)) {
-      var coords : Real2 = event.Position;
-      Console.WriteLine(coords);
-      if (this.CurrentState == CurrentMenuState.MainMenu) {
-        if (this.CheckRange(coords, this.Button1Range)) {
-          this.SetModeMenu();
-        } else if (this.CheckRange(coords, this.Button2Range)) {
-          this.Space.LoadLevel(this.InstructionsLevel);
-        } else if (this.CheckRange(coords, this.Button3Range)) {
-          this.GameSession.RequestQuit();
-        } 
-        
-      }
-      else if (this.CurrentState == CurrentMenuState.SelectMode) {
-        
-      }
-      else if (this.CurrentState == CurrentMenuState.SelectMission) {
-        
-      }
-    }
+  function OnLogicUpdate(event : UpdateEvent) {
     
-
   }
 }
