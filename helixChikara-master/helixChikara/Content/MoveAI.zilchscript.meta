@@ -1,9 +1,0 @@
-[Version:1]
-TextContent 
-{
-	ZilchScriptBuilder 
-	{
-		var Name = "MoveAI"
-		var ResourceId = 0x5b3c42d3187b4ede
-	}
-}

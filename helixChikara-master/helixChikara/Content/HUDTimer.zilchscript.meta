@@ -1,9 +1,0 @@
-[Version:1]
-TextContent 
-{
-	ZilchScriptBuilder 
-	{
-		var Name = "HUDTimer"
-		var ResourceId = 0x5bce7d125b783521
-	}
-}
