@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 33.6555405
+			var Size = 16.7128811
 		}
 		EditorCameraController 
 		{
@@ -175,7 +175,7 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{1, 1, 1, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var SpriteSource = "5bcc8e5baeb04421:spaaace"
+					var SpriteSource = "5bcc8e5baeb04421:Spaace"
 					var FlipX = false
 					var FlipY = false
 					var AnimationActive = true
@@ -211,7 +211,7 @@ Level
 							var Material = "582c575af53d18c9:AlphaSprite"
 							var VertexColor = Real4{1, 1, 1, 1}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5bcc8e5baeb04421:spaaace"
+							var SpriteSource = "5bcc8e5baeb04421:Spaace"
 							var FlipX = false
 							var FlipY = false
 							var AnimationActive = true
@@ -454,6 +454,37 @@ Level
 				{
 					Cog [Id:0x5bce7e71e686a677][ContextId:16]
 					{
+						var Name = "WaveCounter"
+						Transform 
+						{
+							var Translation = Real3{-8, 9.41316032, -6.63206265e-07}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{0.169999957, 1, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "Wave: 1"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 128
+							var PixelsPerUnit = 128
+							var TextAlign = TextAlign.Center
+						}
+						HUDWaveChange 
+						{
+						}
+					}
+					Cog [Id:0x5b33a737de32b8fc][ContextId:16]
+					{
 						var Name = "Timer"
 						Transform 
 						{
@@ -488,7 +519,7 @@ Level
 						var Name = "HPBar"
 						Transform 
 						{
-							var Translation = Real3{-10, 9.41316032, -6.63206265e-07}
+							var Translation = Real3{0, 9.41316032, -6.63206265e-07}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -589,7 +620,7 @@ Level
 					}
 					Cog [Id:0x5bccb237fbc799c5][ContextId:20]
 					{
-						var Name = "Sprite"
+						var Name = "CharacterName"
 						Transform 
 						{
 							var Translation = Real3{9.78199482, 9.56196213, 0}
@@ -608,7 +639,7 @@ Level
 							var Material = "582c575af53d18c9:AlphaSprite"
 							var VertexColor = Real4{1, 1, 1, 1}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5bccb22bea946d71:titleanime"
+							var SpriteSource = "5bccb22bea946d71:NameReagan"
 							var FlipX = false
 							var FlipY = false
 							var AnimationActive = true
@@ -653,7 +684,7 @@ Level
 							var Material = "582c575af53d18c9:AlphaSprite"
 							var VertexColor = Real4{1, 1, 1, 0.300000012}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5bcc811dd3f87f15:scout_ship"
+							var SpriteSource = "5bcc811dd3f87f15:ShipScout"
 							var FlipX = false
 							var FlipY = false
 							var AnimationActive = true
@@ -671,6 +702,21 @@ Level
 							var BulletSpeedAnime = 5
 							var BulletFireDelayAnime = 6
 							var BulletSpreadAnime = 0.0500000007
+							var HUDCharacterIndicator = CogPath
+							{
+								var Path = "../../HUD/CharacterName"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 20
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
 						}
 						PlayerController 
 						{
@@ -755,7 +801,7 @@ Level
 										var PathPreference1 = CogPathPreference.SpaceRelative
 										var PathPreference2 = CogPathPreference.Absolute
 									}
-									var PlayerHealth = 100
+									var PlayerHealth = 10
 									var GameOver = "5b11daa63b7bdd55:gameOver"
 								}
 							}

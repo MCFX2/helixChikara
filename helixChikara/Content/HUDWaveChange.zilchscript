@@ -1,0 +1,15 @@
+class HUDWaveChange : ZilchComponent {
+  
+  var Wave : Integer;
+  
+  function Initialize(init : CogInitializer) {
+    this.Wave = 1;
+    this.Owner.SpriteText.Text = "Wave: `this.Wave`";
+  }
+
+  function ChangeWave () {
+    ++this.Wave;
+    this.Owner.SpriteText.Text = "Wave: `this.Wave`";
+  }
+
+}

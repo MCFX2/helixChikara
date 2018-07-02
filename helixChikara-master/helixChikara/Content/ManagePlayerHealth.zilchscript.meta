@@ -1,9 +1,0 @@
-[Version:1]
-TextContent 
-{
-	ZilchScriptBuilder 
-	{
-		var Name = "ManagePlayerHealth"
-		var ResourceId = 0x5b11a5f5142c0931
-	}
-}

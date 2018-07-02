@@ -33,6 +33,7 @@ class PlayerController : ZilchComponent
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
   }
+  
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
     if(input <= min){
       return min;
@@ -58,6 +59,8 @@ class PlayerController : ZilchComponent
     this.CurrentShip = newShip;
     //do other stuff we do when switching here
   }
+  
+
   
   function ParseKeyboard() : Real2 { //used for key inputs that DIRECTLY AFFECT acceleration
     var velocity : Real2 = Real2(0);

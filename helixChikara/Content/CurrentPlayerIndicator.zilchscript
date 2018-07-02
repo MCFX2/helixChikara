@@ -2,11 +2,24 @@ class CurrentPlayerIndicator : ZilchComponent
 {
   function Initialize(init : CogInitializer)
   {
-    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  //  Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function UpdateShipName (ship : Ship) {
+    if (ship == Ship.Anime) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.NameAnime;      
+    } else if (ship == Ship.MachoCheese) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.NameMacho;
+    } else if (ship == Ship.Reagan) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.NameReagan;
+    } else if (ship == Ship.Scout) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.NameScout;
+    }
   }
 
-  function OnLogicUpdate(event : UpdateEvent)
-  {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Circle;
-  }
+
+  //function OnLogicUpdate(event : UpdateEvent)
+  //{
+  //  this.Owner.Sprite.SpriteSource = SpriteSource.Circle;
+  //}
 }
