@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{4.37029457, -0.316683114, 20}
+			var Translation = Real3{-6.36563778, -0.743710995, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.5599098
+			var Size = 3.37426066
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{4.37029457, -0.316683114, -2.94557253e-07}
+			var LookTarget = Real3{-6.36563778, -0.743710995, -7.63839864e-07}
 			var MoveSensitivity = 1
 		}
 	}
@@ -473,7 +473,35 @@ Level
 						{
 						}
 					}
-					Cog [Id:0x5bce8f7097ef93e0][ContextId:16]
+					Cog [Id:0x5b11a5d7290f9ccc][ContextId:16]
+					{
+						var Name = "HPBar"
+						Transform 
+						{
+							var Translation = Real3{-10, 9.41316032, -6.63206265e-07}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{1, 0, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "HP: 100"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 128
+							var PixelsPerUnit = 128
+							var TextAlign = TextAlign.Center
+						}
+					}
+					Cog [Id:0x5bce8f7097ef93e0][ContextId:17]
 					{
 						var Name = "MoveBorderU"
 						Transform 
@@ -511,7 +539,7 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
-					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:17]
+					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:18]
 					{
 						var Name = "MovieBorderD"
 						Transform 
@@ -549,7 +577,7 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
-					Cog [Id:0x5bccb237fbc799c5][ContextId:18]
+					Cog [Id:0x5bccb237fbc799c5][ContextId:19]
 					{
 						var Name = "Sprite"
 						Transform 
@@ -583,7 +611,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:19]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:20]
 			{
 				var Name = "User"
 				Transform 
@@ -594,12 +622,12 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bcc85de04c7cb5f][ContextId:20]
+					Cog [Id:0x5bcc85de04c7cb5f][ContextId:21]
 					{
 						var Name = "Ship"
 						Transform 
 						{
-							var Translation = Real3{2, 0, 0}
+							var Translation = Real3{-7, 0, 0}
 							var Scale = Real3{4, 4, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -660,9 +688,38 @@ Level
 							var RotationLocked = true
 							var Mode2D = Mode2DStates.InheritFromSpace
 						}
+						ManagePlayerHealth 
+						{
+							var HealthBar = CogPath
+							{
+								var Path = "../../HUD/HPBar"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 16
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+							var PlayerHealth = 100
+							var GameOver = "5b11daa63b7bdd55:gameOver"
+						}
+						BoxCollider 
+						{
+							var Ghost = false
+							var SendsEvents = true
+							var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+							var CollisionGroup = "4e740859314e5515:DefaultGroup"
+							var Offset = Real3{0, 0, 0}
+							var HalfSize = Real3{0.25, 0.25, 0.5}
+						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bccb1e6efd97e33][ContextId:21]
+							Cog [Id:0x5bccb1e6efd97e33][ContextId:22]
 							{
 								var Name = "PlayerHitbox"
 								Transform 
@@ -702,7 +759,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:22]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:23]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -713,7 +770,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:23]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:24]
 							{
 								Transform 
 								{
@@ -722,7 +779,7 @@ Level
 									var Scale = Real3{30, 1.00000024, 1}
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:24]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:25]
 							{
 								Transform 
 								{
@@ -735,7 +792,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bcc8eea60ae50e2][ContextId:25]
+			Cog [Id:0x5bcc8eea60ae50e2][ContextId:26]
 			{
 				var Name = "Level"
 				Transform 
@@ -746,7 +803,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bcc8ed36724d453][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:26]
+					Cog [Id:0x5bcc8ed36724d453][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:27]
 					{
 						Transform 
 						{
@@ -763,7 +820,7 @@ Level
 							var Ghost = true
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d4f7][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:27]
+					Cog [Id:0x5bcc8ed36724d4f7][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:28]
 					{
 						Transform 
 						{
@@ -772,7 +829,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d555][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:28]
+					Cog [Id:0x5bcc8ed36724d555][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:29]
 					{
 						Transform 
 						{
@@ -781,7 +838,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d5a9][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:29]
+					Cog [Id:0x5bcc8ed36724d5a9][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:30]
 					{
 						Transform 
 						{
@@ -790,7 +847,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d5fc][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:30]
+					Cog [Id:0x5bcc8ed36724d5fc][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:31]
 					{
 						Transform 
 						{
@@ -799,7 +856,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d650][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:31]
+					Cog [Id:0x5bcc8ed36724d650][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:32]
 					{
 						Transform 
 						{
@@ -808,7 +865,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d6a6][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:32]
+					Cog [Id:0x5bcc8ed36724d6a6][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:33]
 					{
 						Transform 
 						{
@@ -817,7 +874,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d6f5][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:33]
+					Cog [Id:0x5bcc8ed36724d6f5][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:34]
 					{
 						Transform 
 						{
@@ -826,7 +883,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d745][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:34]
+					Cog [Id:0x5bcc8ed36724d745][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:35]
 					{
 						Transform 
 						{
@@ -835,7 +892,7 @@ Level
 							var Scale = Real3{1, 1, 1}
 						}
 					}
-					Cog [Id:0x5bcc8ed36724d79a][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:35]
+					Cog [Id:0x5bcc8ed36724d79a][InheritId:"5bcc96436f6541d8:BasicEnemy"][ContextId:36]
 					{
 						Transform 
 						{
