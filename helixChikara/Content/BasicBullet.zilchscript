@@ -1,6 +1,6 @@
 class BasicShot : ZilchComponent
 {
-  [Property] var Player : CogPath = CogPath(":/Screen/User/Ship");
+  [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
   var PlayerPosAtInit : Real3 = Real3(0);
   var InstantiatedPos : Real3 = Real3(0);
   var BaseVel : Real = 8;

@@ -4,7 +4,7 @@ Cog
 	var Name = "EnemyBulletBasic"
 	Transform 
 	{
-		var Translation = Real3{5.21408653, 4.11874723, 0}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{0.200000003, 0.200000003, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -31,7 +31,7 @@ Cog
 	{
 		var Player = CogPath
 		{
-			var Path = ":/Screen/User/Ship"
+			var Path = ":/Screen/User/PlayerHitbox"
 			var ErrorOnResolveToNull = false
 			var ErrorOnPathCantCompute = false
 			var ErrorOnDirectLinkFail = false
@@ -59,7 +59,7 @@ Cog
 	{
 		var Player = CogPath
 		{
-			var Path = ":/Screen/User/Ship"
+			var Path = ":/Screen/User/PlayerHitbox"
 			var ErrorOnResolveToNull = false
 			var ErrorOnPathCantCompute = false
 			var ErrorOnDirectLinkFail = false

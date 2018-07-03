@@ -4,7 +4,7 @@ Cog
 	var Name = "BasicEnemy"
 	Transform 
 	{
-		var Translation = Real3{0, 0, 0}
+		var Translation = Real3{14.4929495, 4.96204233, -4.02331352e-07}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -33,7 +33,7 @@ Cog
 	}
 	BoxCollider 
 	{
-		var Ghost = false
+		var Ghost = true
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
 		var CollisionGroup = "5bcc805e1ee7bce2:PlayerEnemy"
@@ -41,6 +41,20 @@ Cog
 		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}
 	EnemyTakeDamage 
+	{
+		var Health = 5
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	EnemySpawnComponenent 
 	{
 	}
 }

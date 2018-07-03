@@ -10,8 +10,12 @@ class PlayerController : ZilchComponent
   [Property] var DownKey : Keys = Keys.S;
   [Property] var RightKey : Keys = Keys.D;
   [Property] var PauseKey : Keys = Keys.Control;
+
+  var LastMousePos : Real2;
   
-  
+  //mouse-specific physics constants
+  [Property] var MouseMinDistance : Real = 0; //minimum distance from mouse before ship will move
+  [Property] var MouseFarDistance : Real = 0.8; //distance from mouse at which ship moves at max speed
   
   //physics constants
   [Property] var LSpeed = 0.5; //left acceleration modifier
@@ -25,13 +29,11 @@ class PlayerController : ZilchComponent
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
   
-  //player vars
-  var CurrentShip : Ship = Ship.Anime;
-  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    Zero.Connect(this.Space, Events.MouseUpdate , this.UpdateMousePos);
   }
   
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
@@ -46,20 +48,19 @@ class PlayerController : ZilchComponent
     }
   }
   
-
+  function UpdateMousePos(event : ViewportMouseEvent){
+    this.LastMousePos = event.ToWorldZPlane(0).XY;
+  }
 
   function ClampVelocity(){ //clamp our velocity within bounds specified in Properties
+  var velocityCorrectiveFactor = Math.Abs(Math.Normalize(this.Owner.Transform.Translation.XY - this.LastMousePos));
+  
     this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
-      this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
-      this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel), 0
+      velocityCorrectiveFactor * Real2(this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
+      this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel)), 0
     );
+    
   }
-  
-  function ChangeShip(newShip : Ship){
-    this.CurrentShip = newShip;
-    //do other stuff we do when switching here
-  }
-  
 
   
   function ParseKeyboard() : Real2 { //used for key inputs that DIRECTLY AFFECT acceleration
@@ -81,8 +82,24 @@ class PlayerController : ZilchComponent
   
   function ParseMouse() : Real2 { //ParseKeyboard, but for the mouse
     var velocity : Real2 = Real2(0);
-  
+    var distance = Math.Distance(this.Owner.Transform.Translation.XY, this.LastMousePos);
     
+    var distanceRatio = this.Clamp(distance / this.MouseFarDistance, 0, 1);
+    if(this.Owner.Transform.Translation.X > this.LastMousePos.X){
+      velocity.X -= this.LSpeed * this.Speed * distanceRatio;
+    }
+    else{
+      velocity.X += this.RSpeed * this.Speed * distanceRatio;
+    }
+    
+    if(this.Owner.Transform.Translation.Y > this.LastMousePos.Y){
+      velocity.Y -= this.VSpeed * this.Speed * distanceRatio;
+    }
+    else{
+      velocity.Y += this.VSpeed * this.Speed * distanceRatio;
+    }
+    
+
     
     return velocity;
   }

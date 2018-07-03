@@ -1,22 +1,53 @@
 enum EnemyType { BasicEnemy, SliderEnemy }
 class WaveSpawner : ZilchComponent
 {
-  var CurrentWave : Integer = 0;
+  [Property] var VictoryLevel : Level;
+  var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
+  var EnemyOffscreenX : Real = 20;
+  var TotalWaves = 0;
+  
+  var EnemiesLeft : Integer = 0;
   
   var Waves : Array[Array[Array[Real]]] = Array[Array[Array[Real]]]();
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
   
   //
   //no touch zone
   //
   
-  function AddEnemy(wave : Array[Array[Real]], targetCoords : Real2, enemy : EnemyType, moveTime : Integer, spawnDelay : Integer){
+  function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
+    if(enemy == 0){
+      return Archetype.BasicEnemy;
+    }
+    
+    else{
+        Console.Write("\n\n----------\nATTEMPTED TO EXECUTE GetEnemyArchetypeByEnum() WITH UNKNOWN TYPE", enemy, "\n---------\n\n");
+        return null;
+    }
+  }
+  
+  function RegisterWave(w : Array[Array[Real]]){
+    this.Waves.Add(w);
+    ++this.TotalWaves;
+  }
+  
+  function AddEnemy(wave : Array[Array[Real]], targetCoords : Real2, enemy : Integer, moveTime : Real, spawnDelay : Integer){
     var orderedArray : Array[Real] = Array[Real](){targetCoords.X, targetCoords.Y, enemy as Integer, moveTime, spawnDelay};
     wave.Add(orderedArray);
   }
   
   function SummonWave(waveNumber : Integer){
-    //foreach(
+
+    foreach(var enemy in this.Waves[waveNumber]){
+      //Console.Write("\n",enemy);
+      ++this.EnemiesLeft;
+      var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
+      var distanceX = this.EnemyOffscreenX - enemy[0];
+      currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0);
+      currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]);
+      currentEnemy.EnemySpawnComponenent.WaveController = this.Owner;
+    }
     
   }
   
@@ -24,9 +55,14 @@ class WaveSpawner : ZilchComponent
     
     
     
-    
     ++this.CurrentWave;
-    this.SummonWave(this.CurrentWave);
+    if(this.CurrentWave == this.TotalWaves){
+      //"you win" or some shit
+      this.Space.LoadLevel(this.VictoryLevel);
+    }
+    else{
+      this.SummonWave(this.CurrentWave);
+    }
         
   }
   //
@@ -35,16 +71,55 @@ class WaveSpawner : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
-    //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyType.TYPE, MoveTime, SpawnDelay);
+    //add waves to wavetable
+    this.RegisterWave(this.Wave1);
+    this.RegisterWave(this.Wave2);
     
+    
+    /*
+    Current list of enemy IDs for reference:
+    
+    0 = basic shooter enemy
+    
+    
+    */
+    
+    //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
+    //Detailed description below
+    
+    /*
+    Real2(X,Y) - target final position for enemy being spawned. Absolute coords.
+    EnemyTypeID - see above
+    MoveTime - Time in SECONDS to reach target position
+    SpawnDelay Time in FRAMES before enemy actually gets spawned (not working right now)
+    
+    
+    */
     //Wave 1 here
-    this.AddEnemy(this.Wave1, Real2(50, 50), EnemyType.BasicEnemy, 30, 10);
-    
-    
+    this.AddEnemy(this.Wave1, Real2(8, 1), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, 2), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, 3), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, 0), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, -1), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, -2), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(8, -3), 0, 2, 0);
+    this.AddEnemy(this.Wave1, Real2(5, 0), 0, 2, 0);
     //Wave 2 here
     
-    
+    this.AddEnemy(this.Wave2, Real2(2, 0), 0, 2, 0);
     //etc
     
+    
+    Zero.Connect(this.Space, Events.LogicUpdate, this.CheckWaveCompletion);
+  }
+  
+  function CheckWaveCompletion(event : UpdateEvent){
+    if(this.EnemiesLeft == 0){
+      this.NextWave();
+    }
+  }
+  
+  function EnemyDestroyed(){
+    --this.EnemiesLeft;
   }
 }

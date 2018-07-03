@@ -1,0 +1,24 @@
+class EnemySpawnComponenent : ZilchComponent
+{
+  //this component freezes the enemy once it reaches the target coordinates at TargetPosition=(X,Y)
+  //it also acts as the interface from Enemy types to the Wave Controller.
+  [Property] var TargetPosition : Real2 = Real2(0);
+  [Property] var WaveController : Cog;
+  var ErrorBound = 0.05;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CogDestroy, this.OnDestroy);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Math.Distance(this.Owner.Transform.Translation.XY, this.TargetPosition) < this.ErrorBound){
+      this.Owner.RigidBody.Velocity = Real3(0);
+    }
+    
+  }
+  function OnDestroy(event : Event){
+    this.WaveController.WaveSpawner.EnemyDestroyed();
+  }
+}
