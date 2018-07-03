@@ -1,4 +1,4 @@
-class ButtonClick : ZilchComponent {
+class MainMenuButtonClick : ZilchComponent {
     
   var MenuNavigator : MenuNavigator;
   
@@ -10,7 +10,6 @@ class ButtonClick : ZilchComponent {
   }
   
   function OnLeftClick(event : ViewportMouseEvent) {   
-    Console.WriteLine(this.JustClicked);
     if (event.HitObject != null) {
       var button = event.HitObject.Archetype;
       
@@ -31,17 +30,43 @@ class ButtonClick : ZilchComponent {
         } else if (button == Archetype.Button2) {
           // We'll figure it out
         } else if (button == Archetype.Button3) {
-          this.MenuNavigator.SetMainMenu();
+          this.MenuNavigator.SetMainMenu(false);
+        }
+        
+      } else if (this.MenuNavigator.CurrentState == MenuStates.ControlType) {
+        
+        if (button == Archetype.Button1) {
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
+        } else if (button == Archetype.Button2) {
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
+        } else if (button == Archetype.Button3) {
+          this.MenuNavigator.SetOptionsMenu();
+        }
+        
+      } else if (this.MenuNavigator.CurrentState == MenuStates.Options) {
+        
+        if (button == Archetype.Button1) {
+          this.MenuNavigator.SetControlTypeMenu();
+        } else if (button == Archetype.Button2) {
+          // We'll figure it out
+        } else if (button == Archetype.Button3) {
+          this.MenuNavigator.SetMainMenu(false);
         }
         
       } else if (this.MenuNavigator.CurrentState == MenuStates.MainMenu) {
         
         if (button == Archetype.Button1) {
           this.MenuNavigator.SetModeMenu();
+          this.MenuNavigator.PurgeOptionsButton();
+          this.MenuNavigator.MoveButton2(false);
         } else if (button == Archetype.Button2) {
           this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
         } else if (button == Archetype.Button3) {
           this.GameSession.RequestQuit();
+        } else if (button == Archetype.OptionsButton) {
+          this.MenuNavigator.SetOptionsMenu();
+          this.MenuNavigator.PurgeOptionsButton();
+          this.MenuNavigator.MoveButton2(false);
         }
         
       }

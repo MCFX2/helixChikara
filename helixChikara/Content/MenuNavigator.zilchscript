@@ -1,13 +1,24 @@
-enum MenuStates{MainMenu, SelectMode, SelectMission}
+enum MenuStates{MainMenu, SelectMode, SelectMission, Options, ControlType}
 
 class MenuNavigator : ZilchComponent {
 
+  [Dependency] var Transform : Transform;
+
+  // Buttons (in the event they need to move)
+  [Property] var Button1 : CogPath;
+  [Property] var Button2 : CogPath;
+  [Property] var Button3 : CogPath;
+  [Property] var OptionsButton : CogPath;
+
+  // Button Text
   [Property] var Button1Text : CogPath;
   [Property] var Button2Text : CogPath;
   [Property] var Button3Text : CogPath;
+  [Property] var OptionsButtonText : CogPath;
   [Property] var MenuBG : CogPath;
   //[Property] var Title : CogPath;
   
+  // Accessible Levels
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
   [Property] var InstructionsLevel : Level;  
@@ -27,13 +38,29 @@ class MenuNavigator : ZilchComponent {
     
   }
   
-  function SetMainMenu() {
+  function SetMainMenu(firstInstance : Boolean) {
     this.Button1Content = "PLAY";
     this.Button2Content = "INSTRUCTIONS";
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
+    if (!firstInstance) {
+      this.OptionsButton.Cog = this.Space.CreateAtPosition(Archetype.OptionsButton, Real3(0, -2, 1));
+      this.MoveButton2(true);
+    }
     this.SetText();
     this.CurrentState = MenuStates.MainMenu;
+  }
+  
+  function PurgeOptionsButton() {
+    this.OptionsButton.Cog.Destroy();
+  }
+  
+  function MoveButton2(isMainMenu : Boolean) {
+    if (isMainMenu) {
+      this.Button2.Transform.Translation = Real3(0, -1, 1);
+    } else {
+      this.Button2.Transform.Translation = Real3(0, -1.75, 1);
+    }
   }
   
   
@@ -54,12 +81,30 @@ class MenuNavigator : ZilchComponent {
     this.SetText();
     this.CurrentState = MenuStates.SelectMission;
   }
+  
+  function SetOptionsMenu() {
+    this.Button1Content = "CONTROL TYPE";
+    this.Button2Content = "VOLUME";
+    this.Button3Content = "BACK";
+    this.TitleContent = "Options";
+    this.SetText();
+    this.CurrentState = MenuStates.Options;    
+  }
+  
+  function SetControlTypeMenu() {
+    this.Button1Content = "MOUSE";
+    this.Button2Content = "KEYBOARD";
+    this.Button3Content = "BACK";
+    this.TitleContent = "Choose Control Style";
+    this.SetText();
+    this.CurrentState = MenuStates.ControlType;    
+  }
 
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    this.SetMainMenu();
-
+    this.SetMainMenu(true);
+    
   }
   
   

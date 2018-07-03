@@ -3,7 +3,7 @@ TextContent
 {
 	ZilchScriptBuilder 
 	{
-		var Name = "ButtonCLick"
+		var Name = "MainMenuButtonClick"
 		var ResourceId = 0x5b3387fe1ae6e93f
 	}
 }

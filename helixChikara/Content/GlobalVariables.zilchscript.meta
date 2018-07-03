@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "GlobalVariables"
+		var ResourceId = 0x5b32fbb9ca602b0a
+	}
+}
