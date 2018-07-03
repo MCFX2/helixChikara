@@ -2,6 +2,8 @@ enum EnemyType { BasicEnemy, SliderEnemy }
 class WaveSpawner : ZilchComponent
 {
   [Property] var VictoryLevel : Level;
+  [Property] var WaveHUD : CogPath;
+  
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
   var TotalWaves = 0;
@@ -12,9 +14,9 @@ class WaveSpawner : ZilchComponent
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
   
-  //
-  //no touch zone
-  //
+  /////////////////
+  //no touch zone//
+  /////////////////
   
   function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
     if(enemy == 0){
@@ -56,6 +58,8 @@ class WaveSpawner : ZilchComponent
     
     
     ++this.CurrentWave;
+    this.WaveHUD.Cog.HUDWaveChange.Wave = this.CurrentWave + 1;
+    
     if(this.CurrentWave == this.TotalWaves){
       //"you win" or some shit
       this.Space.LoadLevel(this.VictoryLevel);
@@ -65,9 +69,9 @@ class WaveSpawner : ZilchComponent
     }
         
   }
-  //
-  //end no touch zone
-  //
+  /////////////////////
+  //end no touch zone//
+  /////////////////////
   
   function Initialize(init : CogInitializer)
   {

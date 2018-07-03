@@ -246,9 +246,24 @@ Level
 				WaveSpawner 
 				{
 					var VictoryLevel = "5b3c55ba57dd01ce:mainMenu"
+					var WaveHUD = CogPath
+					{
+						var Path = "../HUD/WaveCounter"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 9
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
 				}
 			}
-			Cog [Id:0x5bc978d484a97104][ContextId:9]
+			Cog [Id:0x5bc978d484a97104][ContextId:10]
 			{
 				var Name = "GameCamera"
 				Transform 
@@ -281,7 +296,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 9
+						var Cog = 10
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -323,7 +338,7 @@ Level
 					var AttenuationScale = 1
 				}
 			}
-			Cog [Id:0x5bc9788991d5dbc9][ContextId:10]
+			Cog [Id:0x5bc9788991d5dbc9][ContextId:11]
 			{
 				var Name = "rightBound"
 				Transform 
@@ -351,7 +366,7 @@ Level
 					var TextAlign = TextAlign.Center
 				}
 			}
-			Cog [Id:0x5bc9788991d5dc7d][ContextId:11]
+			Cog [Id:0x5bc9788991d5dc7d][ContextId:12]
 			{
 				var Name = "leftBound"
 				Transform 
@@ -379,7 +394,7 @@ Level
 					var TextAlign = TextAlign.Center
 				}
 			}
-			Cog [Id:0x5bc978f888fe556e][ContextId:12]
+			Cog [Id:0x5bc978f888fe556e][ContextId:13]
 			{
 				var Name = "upperBound"
 				Transform 
@@ -407,7 +422,7 @@ Level
 					var TextAlign = TextAlign.Center
 				}
 			}
-			Cog [Id:0x5bc978e38c1626fe][ContextId:13]
+			Cog [Id:0x5bc978e38c1626fe][ContextId:14]
 			{
 				var Name = "lowerBound"
 				Transform 
@@ -435,7 +450,7 @@ Level
 					var TextAlign = TextAlign.Center
 				}
 			}
-			Cog [Id:0x5bcc9fec8f81d120][InheritId:"5bcc9fec8f801cc9:enemyBasicShoot"][ContextId:14]
+			Cog [Id:0x5bcc9fec8f81d120][InheritId:"5bcc9fec8f801cc9:enemyBasicShoot"][ContextId:15]
 			{
 				var Name = "enemyBasicShoot"
 				Transform 
@@ -445,7 +460,7 @@ Level
 					var Scale = Real3{2, 1, 1}
 				}
 			}
-			Cog [Id:0x5bce7e0ae13ad046][ContextId:15]
+			Cog [Id:0x5bce7e0ae13ad046][ContextId:16]
 			{
 				var Name = "HUD"
 				Transform 
@@ -456,7 +471,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bce7e71e686a677][ContextId:16]
+					Cog [Id:0x5bce7e71e686a677][ContextId:9]
 					{
 						var Name = "WaveCounter"
 						Transform 
@@ -485,6 +500,7 @@ Level
 						}
 						HUDWaveChange 
 						{
+							var Wave = -1
 						}
 					}
 					Cog [Id:0x5b33a737de32b8fc][ContextId:17]
