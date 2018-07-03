@@ -38,29 +38,31 @@ class MenuNavigator : ZilchComponent {
     
   }
   
+  function CreateButton(button : Cog, archetype : Archetype, coords : Real3) {
+    button = this.Space.CreateAtPosition(archetype, coords);
+  }
+  
   function SetMainMenu(firstInstance : Boolean) {
     this.Button1Content = "PLAY";
     this.Button2Content = "INSTRUCTIONS";
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
     if (!firstInstance) {
-      this.OptionsButton.Cog = this.Space.CreateAtPosition(Archetype.OptionsButton, Real3(0, -2, 1));
-      this.MoveButton2(true);
+      this.CreateButton(this.OptionsButton.Cog, Archetype.OptionsButton, Real3(0, -2, 1));
+      this.MoveButton(this.Button2.Cog, Real3(0, -1, 1));
     }
     this.SetText();
     this.CurrentState = MenuStates.MainMenu;
   }
   
-  function PurgeOptionsButton() {
-    this.OptionsButton.Cog.Destroy();
+  function PurgeButton(button : Cog) {
+    button.Destroy();
   }
   
-  function MoveButton2(isMainMenu : Boolean) {
-    if (isMainMenu) {
-      this.Button2.Transform.Translation = Real3(0, -1, 1);
-    } else {
-      this.Button2.Transform.Translation = Real3(0, -1.75, 1);
-    }
+  function MoveButton(button : Cog, coords : Real3) {
+    button.Transform.Translation = coords;
+    // this.Button2.Transform.Translation = Real3(0, -1, 1);
+    // this.Button2.Transform.Translation = Real3(0, -1.75, 1);
   }
   
   

@@ -57,16 +57,16 @@ class MainMenuButtonClick : ZilchComponent {
         
         if (button == Archetype.Button1) {
           this.MenuNavigator.SetModeMenu();
-          this.MenuNavigator.PurgeOptionsButton();
-          this.MenuNavigator.MoveButton2(false);
+          this.MenuNavigator.PurgeButton(this.MenuNavigator.OptionsButton.Cog);
+          this.MenuNavigator.MoveButton(this.MenuNavigator.Button2.Cog, Real3(0, -1.75, 1));
         } else if (button == Archetype.Button2) {
           this.Space.LoadLevel(this.MenuNavigator.InstructionsLevel);
         } else if (button == Archetype.Button3) {
           this.GameSession.RequestQuit();
         } else if (button == Archetype.OptionsButton) {
           this.MenuNavigator.SetOptionsMenu();
-          this.MenuNavigator.PurgeOptionsButton();
-          this.MenuNavigator.MoveButton2(false);
+          this.MenuNavigator.PurgeButton(this.MenuNavigator.OptionsButton.Cog);
+          this.MenuNavigator.MoveButton(this.MenuNavigator.Button2.Cog, Real3(0, -1.75, 1));
         }
         
       }
