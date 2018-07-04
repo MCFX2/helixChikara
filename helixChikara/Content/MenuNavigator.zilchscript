@@ -1,5 +1,3 @@
-enum MenuStates{MainMenu, SelectMode, SelectMission, Options, ControlType}
-
 class MenuNavigator : ZilchComponent {
 
   [Dependency] var Transform : Transform;
@@ -71,7 +69,7 @@ class MenuNavigator : ZilchComponent {
   
   function SetModeMenu() {
     this.Button1Content = "STORY";
-    this.Button2Content = "ENDLESS";
+    this.Button2Content = "ENDLESS[NO]";
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
     this.SetText();
@@ -80,7 +78,7 @@ class MenuNavigator : ZilchComponent {
   
   function SetOptionsMenu() {
     this.Button1Content = "CONTROL TYPE";
-    this.Button2Content = "VOLUME";
+    this.Button2Content = "VOLUME[NO]";
     this.Button3Content = "BACK";
     this.TitleContent = "Options";
     this.SetText();
@@ -89,7 +87,7 @@ class MenuNavigator : ZilchComponent {
   
   function SetControlTypeMenu() {
     this.Button1Content = "MOUSE";
-    this.Button2Content = "KEYBOARD";
+    this.Button2Content = "KEYBOARD[NO]";
     this.Button3Content = "BACK";
     this.TitleContent = "Choose Control Style";
     this.SetText();

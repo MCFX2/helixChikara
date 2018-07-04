@@ -1,4 +1,3 @@
-enum EnemyType { BasicEnemy, SliderEnemy }
 class WaveSpawner : ZilchComponent
 {
   [Property] var VictoryLevel : Level;
@@ -11,6 +10,7 @@ class WaveSpawner : ZilchComponent
   var EnemiesLeft : Integer = 0;
   
   var Waves : Array[Array[Array[Real]]] = Array[Array[Array[Real]]]();
+  
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave3 : Array[Array[Real]] = Array[Array[Real]]();

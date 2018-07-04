@@ -1,10 +1,7 @@
-enum Ship {Anime, MachoCheese, Reagan, Scout}
-enum ControlTypes {Keyboard, Mouse}
-
 class PlayerController : ZilchComponent
 {
   //controls
-  [Property] var ControlType : ControlTypes = ControlTypes.Mouse;
+  [Property] var ControlType : ControlTypes = ControlTypes.Keyboard;
   [Property] var UpKey : Keys = Keys.W;
   [Property] var LeftKey : Keys = Keys.A;
   [Property] var DownKey : Keys = Keys.S;
@@ -39,6 +36,7 @@ class PlayerController : ZilchComponent
   }
   
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
+  //this differs from Math.Clamp because it alters the input variable.
     if(input <= min){
       return min;
     }
@@ -58,8 +56,9 @@ class PlayerController : ZilchComponent
   var velocityCorrectiveFactor = Math.Abs(Math.Normalize(this.Owner.Transform.Translation.XY - this.LastMousePos));
   
     this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
-      velocityCorrectiveFactor * Real2(this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
-      this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel)), 0
+      velocityCorrectiveFactor * Real2(
+        this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
+        this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel)), 0
     );
     
   }
@@ -100,8 +99,6 @@ class PlayerController : ZilchComponent
     else{
       velocity.Y += this.VSpeed * this.Speed * distanceRatio;
     }
-    
-
     
     return velocity;
   }
@@ -150,7 +147,7 @@ class PlayerController : ZilchComponent
   }
   
   function AttemptMouseSnap(event : CollisionEvent){
-    if( event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerSnapTo){
+    if( event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerSnapTo && this.ControlType == ControlTypes.Mouse){
       this.Owner.Transform.Translation = event.OtherObject.Transform.Translation;
     }
   }

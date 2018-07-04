@@ -27,6 +27,8 @@ class ManagePlayerHealth : ZilchComponent {
         this.PlayerHealth -= 1;
         this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
       }
+      
+      //we need invincibility frames
     }
   }
   

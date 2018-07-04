@@ -233,7 +233,71 @@ Level
 		}
 		Hierarchy 
 		{
-			Cog [Id:0x5bc691e4e6f7e688][ContextId:6]
+			Cog [Id:0x5b3386b43ef6d197][ContextId:6]
+			{
+				var Name = "Button1"
+				Transform 
+				{
+					var Translation = Real3{0, 0.75, 0.99999994}
+					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{1, 1, 1, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Reactive 
+				{
+					var Active = true
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5bc68fd3d9b62ea2][ContextId:7]
+					{
+						var Name = "Button1Text"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 9.99999975e-05}
+							var Scale = Real3{0.142857, 0.666700006, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{0, 0, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "PLAY"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 48
+							var PixelsPerUnit = 64
+							var TextAlign = TextAlign.Center
+						}
+					}
+				}
+			}
+			Cog [Id:0x5bc691e4e6f7e688][ContextId:8]
 			{
 				var Name = "Button2"
 				Transform 
@@ -267,7 +331,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b3c54d298194842][ContextId:7]
+					Cog [Id:0x5b3c54d298194842][ContextId:9]
 					{
 						var Name = "Button2Text"
 						Transform 
@@ -297,7 +361,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc691e1d8752592][ContextId:8]
+			Cog [Id:0x5bc691e1d8752592][ContextId:10]
 			{
 				var Name = "OptionsButton"
 				Transform 
@@ -331,7 +395,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b3c54d298194842][ContextId:9]
+					Cog [Id:0x5b3c54d298194842][ContextId:11]
 					{
 						var Name = "OptionsButtonText"
 						Transform 
@@ -361,7 +425,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc691dbd69c2fac][ContextId:10]
+			Cog [Id:0x5bc691dbd69c2fac][ContextId:12]
 			{
 				var Name = "Button3"
 				Transform 
@@ -395,7 +459,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b3c54d298194842][ContextId:11]
+					Cog [Id:0x5b3c54d298194842][ContextId:13]
 					{
 						var Name = "Button3Text"
 						Transform 
@@ -425,7 +489,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5be67a16587b50db][ContextId:12]
+			Cog [Id:0x5be67a16587b50db][ContextId:14]
 			{
 				var Name = "BGImage"
 				Transform 
@@ -455,7 +519,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b32ed74b8260eac][ContextId:13]
+					Cog [Id:0x5b32ed74b8260eac][ContextId:15]
 					{
 						var Name = "TitleText"
 						Transform 
@@ -486,16 +550,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5b3386b43ef6d197][InheritId:"5b3386b43ef6fbde:Button1"][ContextId:14]
-			{
-				Transform 
-				{
-					var Translation = Real3{0, 0.75, 0.99999994}
-					var Rotation = Quaternion{0, 0, 0, 1}
-					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
-				}
-			}
-			Cog [Id:0x5bc6937866aa41ef][ContextId:15]
+			Cog [Id:0x5bc6937866aa41ef][ContextId:16]
 			{
 				var Name = "MenuController"
 				Transform 
@@ -519,7 +574,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 14
+						var Cog = 6
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -534,7 +589,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 6
+						var Cog = 8
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -549,7 +604,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 10
+						var Cog = 12
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -564,7 +619,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 8
+						var Cog = 10
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -579,7 +634,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 16
+						var Cog = 4294967293
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -594,7 +649,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 7
+						var Cog = 9
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -609,7 +664,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 11
+						var Cog = 13
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -624,7 +679,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 9
+						var Cog = 11
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
