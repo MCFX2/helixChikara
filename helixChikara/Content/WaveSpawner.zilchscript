@@ -16,6 +16,9 @@ class WaveSpawner : ZilchComponent
   var Wave3 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave4 : Array[Array[Real]] = Array[Array[Real]]();
   
+  var ENEMYBASIC = 0;
+  var ENEMYBURST = 1;
+  
   /////////////////
   //no touch zone//
   /////////////////
@@ -23,6 +26,8 @@ class WaveSpawner : ZilchComponent
   function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
     if(enemy == 0){
       return Archetype.BasicEnemy;
+    } else if (enemy == 1){
+      return Archetype.BurstEnemy;
     }
     
     else{
@@ -85,9 +90,11 @@ class WaveSpawner : ZilchComponent
     Current list of enemy IDs for reference:
     
     0 = basic shooter enemy
-    
+    1 = burst-firing enemy
     
     */
+    
+    //DEPRECATED, use new constants
     
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
     //Detailed description below
@@ -103,27 +110,27 @@ class WaveSpawner : ZilchComponent
     //Wave 1 here
    // this.AddEnemy(this.Wave1, Real2(8, 1), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, 2), 0, 2, 0);
-    this.AddEnemy(this.Wave1, Real2(9, 5), 0, 1, 0);
+    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBASIC, 1, 0);
     //this.AddEnemy(this.Wave1, Real2(8, 0), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, -1), 0, 2, 0);
     //this.AddEnemy(this.Wave1, Real2(8, -2), 0, 2, 0);
-    this.AddEnemy(this.Wave1, Real2(9, -5), 0, 1, 0);
+    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYBASIC, 1, 0);
     //this.AddEnemy(this.Wave1, Real2(5, 0), 0, 2, 0);
     //Wave 2 here
     
-    this.AddEnemy(this.Wave2, Real2(7, -6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave2, Real2(7, 6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave2, Real2(7, 0), 0, 1.5, 0);
+    this.AddEnemy(this.Wave2, Real2(7, -6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave2, Real2(7, 6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave2, Real2(7, 0), this.ENEMYBASIC, 1.5, 0);
 
 
 //yo wave 3
     
-    this.AddEnemy(this.Wave3, Real2(7, -6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave3, Real2(7, 6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave3, Real2(4.5, -6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave3, Real2(4.5, 6), 0, 1.5, 0);
-    this.AddEnemy(this.Wave3, Real2(5.75, 0), 0, 1.5, 0);
-    //etc
+    this.AddEnemy(this.Wave3, Real2(7, -6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave3, Real2(7, 6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave3, Real2(4.5, -6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave3, Real2(4.5, 6), this.ENEMYBASIC, 1.5, 0);
+    this.AddEnemy(this.Wave3, Real2(5.75, 0), this.ENEMYBASIC, 1.5, 0);
+        //etc
     
     
     Zero.Connect(this.Space, Events.LogicUpdate, this.CheckWaveCompletion);

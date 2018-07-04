@@ -1,0 +1,41 @@
+class BurstCannon : ZilchComponent
+{
+  [Property] var FireDelay : Integer = 100; //num of LogicTicks between shots
+  [Property] var BurstAmount : Integer = 3;
+  [Property] var BulletDelay : Integer = 10;
+  
+  var CurrentlyFiring = false;
+  var CurrentCooldown = 0;
+  var CurrentShot = 0;
+  var CurrentSubCooldown = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.CurrentCooldown == this.FireDelay){
+      //this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+      this.CurrentlyFiring = true;
+      this.CurrentShot = 0;
+      this.CurrentSubCooldown = 0;
+      this.CurrentCooldown = 0;
+    }
+    else if (this.CurrentlyFiring){
+      ++this.CurrentSubCooldown;
+      if(this.CurrentSubCooldown == this.BulletDelay){
+        this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+        this.CurrentSubCooldown = 0;
+        ++this.CurrentShot;
+      }
+      
+      if(this.CurrentShot == this.BurstAmount){
+        this.CurrentlyFiring = false;
+      }
+    }
+    
+    ++this.CurrentCooldown;
+  }
+}
