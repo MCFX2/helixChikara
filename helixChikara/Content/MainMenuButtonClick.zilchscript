@@ -12,21 +12,10 @@ class MainMenuButtonClick : ZilchComponent {
   function OnLeftClick(event : ViewportMouseEvent) {   
     if (event.HitObject != null) {
       var button = event.HitObject.Archetype;
-      
-      if (this.MenuNavigator.CurrentState == MenuStates.SelectMission) {
+      if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
         
         if (button == Archetype.Button1) {
           this.Space.LoadLevel(this.MenuNavigator.GameLevel1);
-        } else if (button == Archetype.Button2) {
-          // We'll figure it out
-        } else if (button == Archetype.Button3) {
-          this.MenuNavigator.SetModeMenu();
-        }
-        
-      } else if (this.MenuNavigator.CurrentState == MenuStates.SelectMode) {
-        
-        if (button == Archetype.Button1) {
-          this.MenuNavigator.SetMissionMenu();
         } else if (button == Archetype.Button2) {
           // We'll figure it out
         } else if (button == Archetype.Button3) {

@@ -70,21 +70,12 @@ class MenuNavigator : ZilchComponent {
   
   
   function SetModeMenu() {
-    this.Button1Content = "MISSIONS";
+    this.Button1Content = "STORY";
     this.Button2Content = "ENDLESS";
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
     this.SetText();
     this.CurrentState = MenuStates.SelectMode;
-  }
-  
-  function SetMissionMenu() {
-    this.Button1Content = "MISSION 1";
-    this.Button2Content = "MISSION 2";
-    this.Button3Content = "BACK";
-    this.TitleContent = "Select Mission";
-    this.SetText();
-    this.CurrentState = MenuStates.SelectMission;
   }
   
   function SetOptionsMenu() {
