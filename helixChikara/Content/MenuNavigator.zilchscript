@@ -29,6 +29,8 @@ class MenuNavigator : ZilchComponent {
   var TitleContent : String;
   
   var CurrentState : MenuStates;
+  
+  var OptionsButtonCog : Cog;
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
@@ -38,8 +40,9 @@ class MenuNavigator : ZilchComponent {
     
   }
   
-  function CreateButton(button : Cog, archetype : Archetype, coords : Real3) {
+  function CreateButton(button : Cog, archetype : Archetype, coords : Real3) : Cog {
     button = this.Space.CreateAtPosition(archetype, coords);
+    return button;
   }
   
   function SetMainMenu(firstInstance : Boolean) {
@@ -48,7 +51,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
     if (!firstInstance) {
-      this.CreateButton(this.OptionsButton.Cog, Archetype.OptionsButton, Real3(0, -2, 1));
+      this.OptionsButtonCog = this.CreateButton(this.OptionsButton.Cog, Archetype.OptionsButton, Real3(0, -2, 1));
       this.MoveButton(this.Button2.Cog, Real3(0, -1, 1));
     }
     this.SetText();
@@ -106,7 +109,7 @@ class MenuNavigator : ZilchComponent {
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.SetMainMenu(true);
-    
+    this.OptionsButtonCog = this.OptionsButton.Cog;
   }
   
   
