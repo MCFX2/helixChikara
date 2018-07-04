@@ -245,7 +245,7 @@ Level
 				}
 				WaveSpawner 
 				{
-					var VictoryLevel = "5b3c55ba57dd01ce:mainMenu"
+					var VictoryLevel = "5bc685316872f6e6:VictoryScreen1"
 					var WaveHUD = CogPath
 					{
 						var Path = "../HUD/WaveCounter"
