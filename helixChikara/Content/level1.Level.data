@@ -938,23 +938,4 @@ Level
 			}
 		}
 	}
-	Cog [InheritId:"5bc6ae749347a09d:EnemyBulletSpread"][ContextId:29]
-	{
-		var Name = "EnemyBulletSpread"
-		Transform 
-		{
-			var Translation = Real3{5.37880039, 1.76708567, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{0.200000003, 0.200000003, 1}
-		}
-	}
-	Cog [InheritId:"5bc6ae749347a09d:EnemyBulletSpread"][ContextId:30]
-	{
-		Transform 
-		{
-			var Translation = Real3{1.92225766, 3.59318423, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{0.200000003, 0.200000003, 1}
-		}
-	}
 }
