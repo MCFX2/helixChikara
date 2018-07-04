@@ -1,5 +1,5 @@
 enum Ship {Anime, MachoCheese, Reagan, Scout}
-enum ControlTypes{Keyboard, Mouse}
+enum ControlTypes {Keyboard, Mouse}
 
 class PlayerController : ZilchComponent
 {
@@ -35,6 +35,7 @@ class PlayerController : ZilchComponent
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
     Zero.Connect(this.Space, Events.MouseUpdate , this.UpdateMousePos);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.AttemptMouseSnap);
+    this.ControlType = this.GameSession.GlobalVariables.ControlType;
   }
   
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min

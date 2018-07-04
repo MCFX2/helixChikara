@@ -38,74 +38,8 @@ Level
 			var HighlightInterval = 10
 			var FollowEditorCamera = false
 		}
-		MenuNavigator 
-		{
-			var Button1Text = CogPath
-			{
-				var Path = ":/Background/Button1/Button1Text"
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 2
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
-			var Button2Text = CogPath
-			{
-				var Path = ":/Background/Button2/Button2Text"
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 3
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
-			var Button3Text = CogPath
-			{
-				var Path = ":/Background/Button3/Button3Text"
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 4
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
-			var MenuBG = CogPath
-			{
-				var Path = ":/Background/BGImage"
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 5
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
-			var GameLevel1 = "59097123da28242a:level1"
-			var MainMenuLevel = "5b3c55ba57dd01ce:mainMenu"
-			var InstructionsLevel = "5b3c69c18c6b5c1b:instructions"
-		}
 	}
-	Cog [ContextId:6]
+	Cog [ContextId:2]
 	{
 		var Name = "Renderer"
 		ForwardRenderer 
@@ -138,12 +72,12 @@ Level
 			}
 		}
 	}
-	Cog [ContextId:7]
+	Cog [ContextId:3]
 	{
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.812585711, 0.216855288, 20.4995499}
+			var Translation = Real3{0.85400176, -0.430274427, 20.4995499}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -162,7 +96,7 @@ Level
 				var UpdatePathOnCogChange = true
 				var UpdateCogOnInitialize = true
 				var ResolvedNullErrorOccurred = false
-				var Cog = 7
+				var Cog = 3
 				var PathPreference0 = CogPathPreference.CogRelative
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
@@ -177,7 +111,7 @@ Level
 				var UpdatePathOnCogChange = true
 				var UpdateCogOnInitialize = true
 				var ResolvedNullErrorOccurred = false
-				var Cog = 6
+				var Cog = 2
 				var PathPreference0 = CogPathPreference.CogRelative
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
@@ -196,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 14.8163767
+			var Size = 16.3746262
 		}
 		EditorCameraController 
 		{
@@ -205,11 +139,11 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.812585711, 0.216855288, 0.499549955}
+			var LookTarget = Real3{0.85400176, -0.430274427, 0.499549866}
 			var MoveSensitivity = 1
 		}
 	}
-	Cog [ContextId:8]
+	Cog [ContextId:4]
 	{
 		var Name = "GameCamera"
 		Transform 
@@ -242,7 +176,7 @@ Level
 				var UpdatePathOnCogChange = true
 				var UpdateCogOnInitialize = true
 				var ResolvedNullErrorOccurred = false
-				var Cog = 8
+				var Cog = 4
 				var PathPreference0 = CogPathPreference.CogRelative
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
@@ -257,7 +191,7 @@ Level
 				var UpdatePathOnCogChange = true
 				var UpdateCogOnInitialize = true
 				var ResolvedNullErrorOccurred = false
-				var Cog = 6
+				var Cog = 2
 				var PathPreference0 = CogPathPreference.CogRelative
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
@@ -284,35 +218,28 @@ Level
 			var AttenuationScale = 1
 		}
 	}
-	Cog [InheritId:"5b3381d333ab413d:Background1"][ContextId:9]
+	Cog [ContextId:5]
 	{
+		var Name = "Background"
 		Transform 
 		{
 			var Translation = Real3{-0.0854567364, 0.75728792, -3.73539644e-09}
-			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
 		}
-		Hierarchy [ChildOrderOverride]
+		Reactive 
 		{
-			Cog [Id:0x5b3386b23ddc3da2][InheritId:"5b3386b23ddc7d9c:Button2"][ContextId:10]
+			var Active = true
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5bc691e4e6f7e688][ContextId:6]
 			{
-				ButtonClick [LocallyRemoved]
-				{
-				}
-			}
-			Cog [Id:0x5b3386b83cc896e0][InheritId:"5b3386b83cc8e198:Button3"][ContextId:11]
-			{
-				ButtonClick [LocallyRemoved]
-				{
-				}
-			}
-			Cog [Id:0x5b33816a406292c5][LocallyAdded][ContextId:12]
-			{
-				var Name = "TitleText"
+				var Name = "Button2"
 				Transform 
 				{
-					var Translation = Real3{0.0854567364, 3.39344692, 0.99999994}
-					var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+					var Translation = Real3{0, -1, 0.99999994}
+					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
 				Sprite 
@@ -327,22 +254,400 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{1, 1, 1, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var SpriteSource = "5be67bc09aad140b:titlecard"
+					var SpriteSource = "5586f579ca73ecc2:SquareBordered"
 					var FlipX = false
 					var FlipY = false
 					var AnimationActive = true
 					var AnimationSpeed = 1
 					var StartFrame = 0
 				}
+				Reactive 
+				{
+					var Active = true
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b3c54d298194842][ContextId:7]
+					{
+						var Name = "Button2Text"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 9.99999975e-05}
+							var Scale = Real3{0.142857149, 0.666666687, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{0, 0, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "INSTRUCTIONS"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 48
+							var PixelsPerUnit = 64
+							var TextAlign = TextAlign.Center
+						}
+					}
+				}
 			}
-			Cog [Id:0x5be67a16587b50db][ContextId:5]
+			Cog [Id:0x5bc691e1d8752592][ContextId:8]
 			{
+				var Name = "OptionsButton"
+				Transform 
+				{
+					var Translation = Real3{0, -2.75, 0.99999994}
+					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{1, 1, 1, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Reactive 
+				{
+					var Active = true
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b3c54d298194842][ContextId:9]
+					{
+						var Name = "OptionsButtonText"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 9.99999975e-05}
+							var Scale = Real3{0.142857149, 0.666666687, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{0, 0, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "OPTIONS"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 48
+							var PixelsPerUnit = 64
+							var TextAlign = TextAlign.Center
+						}
+					}
+				}
 			}
-			Cog [Id:0x5b3386b43ef6d197][InheritId:"5b3386b43ef6fbde:Button1"][ContextId:13]
+			Cog [Id:0x5bc691dbd69c2fac][ContextId:10]
 			{
+				var Name = "Button3"
+				Transform 
+				{
+					var Translation = Real3{0, -4.5, 0.99999994}
+					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{1, 1, 1, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Reactive 
+				{
+					var Active = true
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b3c54d298194842][ContextId:11]
+					{
+						var Name = "Button3Text"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 9.99999975e-05}
+							var Scale = Real3{0.142857149, 0.666666687, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{0, 0, 0, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "QUIT"
+							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var FontSize = 48
+							var PixelsPerUnit = 64
+							var TextAlign = TextAlign.Center
+						}
+					}
+				}
 			}
-			Cog [Id:0x5be67a145ff3b030][LocallyRemoved]
+			Cog [Id:0x5be67a16587b50db][ContextId:12]
 			{
+				var Name = "BGImage"
+				Transform 
+				{
+					var Translation = Real3{0.0854567364, -0.75728792, -0.000999996322}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.395000041, 0.945550084, 1, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "5be67aaa6979da7d:MaxResDefault"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b32ed74b8260eac][ContextId:13]
+					{
+						var Name = "TitleText"
+						Transform 
+						{
+							var Translation = Real3{0, 4.1507349, 1.00099993}
+							var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Sprite 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{1, 1, 1, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var SpriteSource = "5be67bc09aad140b:TitleCard"
+							var FlipX = false
+							var FlipY = false
+							var AnimationActive = true
+							var AnimationSpeed = 1
+							var StartFrame = 0
+						}
+					}
+				}
+			}
+			Cog [Id:0x5b3386b43ef6d197][InheritId:"5b3386b43ef6fbde:Button1"][ContextId:14]
+			{
+				Transform 
+				{
+					var Translation = Real3{0, 0.75, 0.99999994}
+					var Rotation = Quaternion{0, 0, 0, 1}
+					var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+				}
+			}
+			Cog [Id:0x5bc6937866aa41ef][ContextId:15]
+			{
+				var Name = "MenuController"
+				Transform 
+				{
+					var Translation = Real3{0, 0, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				MainMenuButtonClick 
+				{
+				}
+				MenuNavigator 
+				{
+					var Button1 = CogPath
+					{
+						var Path = "../Button1"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 14
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var Button2 = CogPath
+					{
+						var Path = "../Button2"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 6
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var Button3 = CogPath
+					{
+						var Path = "../Button3"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 10
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var OptionsButton = CogPath
+					{
+						var Path = "../OptionsButton"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 8
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var Button1Text = CogPath
+					{
+						var Path = "../Button1/Button1Text"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 16
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var Button2Text = CogPath
+					{
+						var Path = "../Button2/Button2Text"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 7
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var Button3Text = CogPath
+					{
+						var Path = "../Button3/Button3Text"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 11
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var OptionsButtonText = CogPath
+					{
+						var Path = "../OptionsButton/OptionsButtonText"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 9
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var MenuBG = CogPath
+					{
+						var Path = ".."
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 5
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var GameLevel1 = "59097123da28242a:level1"
+					var MainMenuLevel = "5b3c55ba57dd01ce:mainMenu"
+					var InstructionsLevel = "5b3c69c18c6b5c1b:instructions"
+				}
 			}
 		}
 	}

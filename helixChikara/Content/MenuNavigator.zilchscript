@@ -1,13 +1,24 @@
-enum MenuStates{MainMenu, SelectMode, SelectMission}
+enum MenuStates{MainMenu, SelectMode, SelectMission, Options, ControlType}
 
 class MenuNavigator : ZilchComponent {
 
+  [Dependency] var Transform : Transform;
+
+  // Buttons (in the event they need to move)
+  [Property] var Button1 : CogPath;
+  [Property] var Button2 : CogPath;
+  [Property] var Button3 : CogPath;
+  [Property] var OptionsButton : CogPath;
+
+  // Button Text
   [Property] var Button1Text : CogPath;
   [Property] var Button2Text : CogPath;
   [Property] var Button3Text : CogPath;
+  [Property] var OptionsButtonText : CogPath;
   [Property] var MenuBG : CogPath;
   //[Property] var Title : CogPath;
   
+  // Accessible Levels
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
   [Property] var InstructionsLevel : Level;  
@@ -18,6 +29,8 @@ class MenuNavigator : ZilchComponent {
   var TitleContent : String;
   
   var CurrentState : MenuStates;
+  
+  var OptionsButtonCog : Cog;
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
@@ -27,18 +40,37 @@ class MenuNavigator : ZilchComponent {
     
   }
   
-  function SetMainMenu() {
+  function CreateButton(button : Cog, archetype : Archetype, coords : Real3) : Cog {
+    button = this.Space.CreateAtPosition(archetype, coords);
+    return button;
+  }
+  
+  function SetMainMenu(firstInstance : Boolean) {
     this.Button1Content = "PLAY";
     this.Button2Content = "INSTRUCTIONS";
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
+    if (!firstInstance) {
+      this.OptionsButtonCog = this.CreateButton(this.OptionsButton.Cog, Archetype.OptionsButton, Real3(0, -2, 1));
+      this.MoveButton(this.Button2.Cog, Real3(0, -1, 1));
+    }
     this.SetText();
     this.CurrentState = MenuStates.MainMenu;
   }
   
+  function PurgeButton(button : Cog) {
+    button.Destroy();
+  }
+  
+  function MoveButton(button : Cog, coords : Real3) {
+    button.Transform.Translation = coords;
+    // this.Button2.Transform.Translation = Real3(0, -1, 1);
+    // this.Button2.Transform.Translation = Real3(0, -1.75, 1);
+  }
+  
   
   function SetModeMenu() {
-    this.Button1Content = "MISSIONS";
+    this.Button1Content = "STORY";
     this.Button2Content = "ENDLESS";
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
@@ -46,20 +78,29 @@ class MenuNavigator : ZilchComponent {
     this.CurrentState = MenuStates.SelectMode;
   }
   
-  function SetMissionMenu() {
-    this.Button1Content = "MISSION 1";
-    this.Button2Content = "MISSION 2";
+  function SetOptionsMenu() {
+    this.Button1Content = "CONTROL TYPE";
+    this.Button2Content = "VOLUME";
     this.Button3Content = "BACK";
-    this.TitleContent = "Select Mission";
+    this.TitleContent = "Options";
     this.SetText();
-    this.CurrentState = MenuStates.SelectMission;
+    this.CurrentState = MenuStates.Options;    
+  }
+  
+  function SetControlTypeMenu() {
+    this.Button1Content = "MOUSE";
+    this.Button2Content = "KEYBOARD";
+    this.Button3Content = "BACK";
+    this.TitleContent = "Choose Control Style";
+    this.SetText();
+    this.CurrentState = MenuStates.ControlType;    
   }
 
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    this.SetMainMenu();
-
+    this.SetMainMenu(true);
+    this.OptionsButtonCog = this.OptionsButton.Cog;
   }
   
   
