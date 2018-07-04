@@ -4,9 +4,17 @@ DataContent
 	DataBuilder 
 	{
 		var Name = "EnemyBulletSpread"
-		var ResourceId = 0x5bc6ae749347a09d
+		var ResourceId = 0x5bc77b0dfeee4044
 		var LoaderType = "Cog"
 		var Version = 0
 		var ShowInEditor = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Archetype"
+			"Cog"
+		}
 	}
 }

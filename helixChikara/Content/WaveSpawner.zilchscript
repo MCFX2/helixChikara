@@ -23,6 +23,8 @@ class WaveSpawner : ZilchComponent
   //no touch zone//
   /////////////////
   
+  //TODO: use Actions instead of hard-coded spawning rules
+  
   function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
     if(enemy == this.ENEMYBASIC){
       return Archetype.BasicEnemy;

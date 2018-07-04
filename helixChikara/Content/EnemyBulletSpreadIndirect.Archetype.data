@@ -1,10 +1,10 @@
 [Version:1]
 Cog 
 {
-	var Name = "EnemyBulletBasic"
+	var Name = "EnemyBulletSpread"
 	Transform 
 	{
-		var Translation = Real3{-3.39299822, 1.37577891, -0.0950012207}
+		var Translation = Real3{5.10236025, 0.136537552, -0.0950012207}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}

@@ -22,13 +22,7 @@ class BasicShot : ZilchComponent
     var dx : Real = y/x;
     var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
     this.Owner.RigidBody.Velocity = Real3(newVel * this.BaseVel, 0);
-    
-    var angle = Math.ATan2(y, x);
-    //this.Owner.Transform.Rotation = Math.ToQuaternion(0, 0, angle);
-    //this.Owner.Transform.SetEulerAnglesXYZ(0, 0, angle);
-    
     this.Owner.Orientation.LookAtPoint(this.PlayerPosAtInit);
-    Console.Write("\n",Math.ToDegrees(angle));
   }
 
 }

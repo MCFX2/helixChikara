@@ -1,0 +1,29 @@
+class SpreadingShotChild : ZilchComponent
+{
+  [Property] var BaseTargetAngle : Real3;
+  
+  function Initialize(init : CogInitializer)
+  {
+    /*
+    var xdirection = 0;
+    if(this.PlayerPosAtInit.X > this.InstantiatedPos.X) { xdirection = 1; }
+    else { xdirection = -1; }
+    var ydirection = 0;
+    if(this.PlayerPosAtInit.Y > this.InstantiatedPos.Y) { ydirection = 1; }
+    else { ydirection = -1; }
+    var dx : Real = y/x;
+    var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
+    this.Owner.RigidBody.Velocity = Real3(newVel * this.BaseVel, 0);
+    */
+    
+    
+
+  }
+  function UpdateTargetAngle(target : Quaternion){
+    //this.Owner.Orientation.SetLocalLookAtRotation(this.BaseTargetAngle);
+    //Action.Call(
+    
+    //need to figure out how to add 2 quaternions
+  }
+
+}

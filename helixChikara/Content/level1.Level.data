@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 20.4131699
+			var Size = 22.5600452
 		}
 		EditorCameraController 
 		{
@@ -936,6 +936,26 @@ Level
 				{
 				}
 			}
+		}
+	}
+	Cog [InheritId:"5bc77b0dfeee4044:EnemyBulletSpread"][ContextId:29]
+	{
+		var Name = "EnemyBulletSpread"
+		Transform 
+		{
+			var Translation = Real3{5.10236025, 1.37577891, -0.0950012207}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [InheritId:"5bc77ae9fba780bf:EnemyBulletSpreadIndirect"][ContextId:30]
+	{
+		var Name = "EnemyBulletSpread"
+		Transform 
+		{
+			var Translation = Real3{5.10236025, 0.172575712, -0.0950012207}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
 		}
 	}
 }
