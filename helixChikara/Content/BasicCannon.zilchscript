@@ -1,5 +1,6 @@
 class BasicCannon : ZilchComponent
 {
+  [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
   [Property] var FireDelay : Integer = 30; //num of LogicTicks between shots
   var CurrentCooldown = 0;
   
@@ -11,7 +12,9 @@ class BasicCannon : ZilchComponent
   function OnLogicUpdate(event : UpdateEvent)
   {
     if(this.CurrentCooldown == this.FireDelay){
-      this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+      var bullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+      bullet.BasicShot.PlayerPosAtInit = this.Player.Cog.Transform.Translation;
+      
       this.CurrentCooldown = 0;
     }
     ++this.CurrentCooldown;

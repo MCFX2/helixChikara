@@ -24,14 +24,14 @@ class WaveSpawner : ZilchComponent
   /////////////////
   
   function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
-    if(enemy == 0){
+    if(enemy == this.ENEMYBASIC){
       return Archetype.BasicEnemy;
-    } else if (enemy == 1){
+    } else if (enemy == this.ENEMYBURST){
       return Archetype.BurstEnemy;
     }
     
     else{
-        Console.Write("\n\n----------\nATTEMPTED TO EXECUTE GetEnemyArchetypeByEnum() WITH UNKNOWN TYPE", enemy, "\n---------\n\n");
+        Console.Write("\n\n----------\nATTEMPTED TO EXECUTE GetEnemyArchetypeByInt() WITH UNKNOWN TYPE", enemy, "\n---------\n\n");
         return null;
     }
   }

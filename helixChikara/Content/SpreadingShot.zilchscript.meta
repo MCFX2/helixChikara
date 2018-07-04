@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SpreadingShot"
+		var ResourceId = 0x5bc6ae955dbe1962
+	}
+}

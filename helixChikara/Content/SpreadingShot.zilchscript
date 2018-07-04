@@ -1,0 +1,37 @@
+class SpreadingShot : ZilchComponent
+{
+  [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
+  [Property] var NumShots : Integer = 1;
+  var PlayerPosAtInit : Real3 = Real3(0);
+  var InstantiatedPos : Real3 = Real3(0);
+  var BaseVel : Real = 8;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.PlayerPosAtInit = this.Player.Cog.Transform.Translation;
+    this.InstantiatedPos = this.Owner.Transform.Translation;
+    
+    var x = Math.Abs(this.PlayerPosAtInit.X - this.InstantiatedPos.X);
+    var y = Math.Abs(this.PlayerPosAtInit.Y - this.InstantiatedPos.Y);
+    var distance = Math.Distance(this.PlayerPosAtInit.XY, this.InstantiatedPos.XY);
+    
+    var xdirection = 0;
+    if(this.PlayerPosAtInit.X > this.InstantiatedPos.X) { xdirection = 1; }
+    else { xdirection = -1; }
+    var ydirection = 0;
+    if(this.PlayerPosAtInit.Y > this.InstantiatedPos.Y) { ydirection = 1; }
+    else { ydirection = -1; }
+    var dx : Real = y/x;
+    var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
+    this.Owner.RigidBody.Velocity = Real3(newVel * this.BaseVel, 0);
+    
+    
+    for(var i = 0; i < this.NumShots; ++i){
+      this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+      
+    }
+  }
+  
+  
+  
+}
