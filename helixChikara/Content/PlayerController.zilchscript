@@ -1,7 +1,7 @@
 class PlayerController : ZilchComponent
 {
   //controls
-  [Property] var ControlType : ControlTypes = ControlTypes.Keyboard;
+  [Property] var ControlType : ControlTypes = ControlTypes.Mouse;
   [Property] var UpKey : Keys = Keys.W;
   [Property] var LeftKey : Keys = Keys.A;
   [Property] var DownKey : Keys = Keys.S;

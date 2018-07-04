@@ -3,6 +3,7 @@ class ManagePlayerHealth : ZilchComponent {
   [Property] var HealthBar : CogPath;
   [Property] var PlayerHealth : Real = 100;
   [Property] var GameOver : Level;
+  [Property] var NearMissBox : CogPath;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -21,7 +22,7 @@ class ManagePlayerHealth : ZilchComponent {
   function OnCollide(event : CollisionEvent) {
     // Same basic structure as EnemyTakeDown
     if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce) {
-      
+      this.NearMissBox.NearMissTrigger.NearMissFailed();
       if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
         event.OtherObject.Destroy();
         this.PlayerHealth -= 1;

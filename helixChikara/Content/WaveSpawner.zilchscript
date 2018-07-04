@@ -57,8 +57,6 @@ class WaveSpawner : ZilchComponent
   
   function NextWave(){
     
-    
-    
     ++this.CurrentWave;
     this.WaveHUD.Cog.HUDWaveChange.Wave = this.CurrentWave + 1;
     

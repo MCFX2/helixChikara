@@ -1,0 +1,28 @@
+class NearMissTrigger : ZilchComponent
+{
+  [Property] var Attempting : Boolean = false;
+  [Property] var Player : CogPath;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.NearMissAttempt);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.NearMissCheck);
+  }
+
+  function NearMissAttempt(event : CollisionEvent){
+    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce){
+      this.Attempting = true;
+    }
+  }
+  
+  function NearMissCheck(event: CollisionEvent){
+    if(this.Attempting){
+      this.Player.NearMissReciever.NearMissSuccess();
+    }
+  }
+  
+  function NearMissFailed(){
+    this.Attempting = false;
+  }
+
+}

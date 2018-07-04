@@ -1,0 +1,15 @@
+class NearMissReciever : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function NearMissSuccess(){
+    //do stuff here
+    Console.Write("\nNear Miss Success!");
+  }
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

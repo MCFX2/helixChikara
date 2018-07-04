@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "NearMissTrigger"
+		var ResourceId = 0x5bc6822464b88ed7
+	}
+}
