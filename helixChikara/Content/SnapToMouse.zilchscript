@@ -1,0 +1,11 @@
+class SnapToMouse : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.MouseUpdate, this.OnMouseUpdate);
+  }
+
+  function OnMouseUpdate(event : ViewportMouseEvent){
+    this.Owner.Transform.Translation = event.ToWorldZPlane(0);
+  }
+}

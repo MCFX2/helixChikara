@@ -34,6 +34,7 @@ class PlayerController : ZilchComponent
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
     Zero.Connect(this.Space, Events.MouseUpdate , this.UpdateMousePos);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.AttemptMouseSnap);
   }
   
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
@@ -145,6 +146,12 @@ class PlayerController : ZilchComponent
     and it's wasteful to copy our velocity when we can safely just write to it and read from it directly.
     */
     
+  }
+  
+  function AttemptMouseSnap(event : CollisionEvent){
+    if( event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerSnapTo){
+      this.Owner.Transform.Translation = event.OtherObject.Transform.Translation;
+    }
   }
   
   function OnKeyDown(event : KeyboardEvent){ //pause
