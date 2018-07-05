@@ -47,7 +47,7 @@ class PlayerShooting : ZilchComponent
   
   
   function CheckKeyboard() { //used for any key inputs that do NOT DIRECTLY affect acceleration
-    if(Zero.Keyboard.KeyIsDown(this.ShootKey)){
+    if(Zero.Keyboard.KeyIsDown(this.ShootKey) && this.Owner.PlayerController.ControlType == ControlTypes.Keyboard){
       this.Shoot();
     }
     if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD/mouse to select a ship to replace from a radial menu
@@ -70,19 +70,14 @@ class PlayerShooting : ZilchComponent
   }
   
   function CheckMouse() {
-    if(Zero.Mouse.IsButtonDown(MouseButtons.Left)) {
+    if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Owner.PlayerController.ControlType == ControlTypes.Mouse) {
         this.Shoot();
     }
   }
 
-  function OnLogicUpdate(event : UpdateEvent)
-  {
-    if(this.Owner.PlayerController.ControlType == ControlTypes.Keyboard){
-      this.CheckKeyboard();
-    }
-    else{
-      this.CheckMouse();
-    }
+  function OnLogicUpdate(event : UpdateEvent) {
+    this.CheckMouse();
+    this.CheckKeyboard();
     ++this.TimeSinceLastBullet;
   }
   

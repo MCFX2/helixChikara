@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.405943871, -0.059012305, 20.2000008}
+			var Translation = Real3{6.18230152, 6.75218534, 20.2000008}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.5600452
+			var Size = 18.4706059
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.405943871, -0.059012305, 0.200000286}
+			var LookTarget = Real3{6.18230152, 6.75218534, 0.200000539}
 			var MoveSensitivity = 1
 		}
 	}
@@ -552,7 +552,16 @@ Level
 							var TextAlign = TextAlign.Center
 						}
 					}
-					Cog [Id:0x5bce8f7097ef93e0][ContextId:18]
+					Cog [Id:0x5b15ae58d5f22451][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:18]
+					{
+						Transform 
+						{
+							var Translation = Real3{7, 9.41316032, -6.63206265e-07}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+					}
+					Cog [Id:0x5bce8f7097ef93e0][ContextId:19]
 					{
 						var Name = "MoveBorderU"
 						Transform 
@@ -590,7 +599,7 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
-					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:19]
+					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:20]
 					{
 						var Name = "MovieBorderD"
 						Transform 
@@ -628,12 +637,12 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
-					Cog [Id:0x5bccb237fbc799c5][ContextId:20]
+					Cog [Id:0x5bccb237fbc799c5][ContextId:21]
 					{
 						var Name = "CharacterName"
 						Transform 
 						{
-							var Translation = Real3{9.78199482, 9.56196213, 0}
+							var Translation = Real3{14, 9.56196213, 0}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -662,7 +671,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:21]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:22]
 			{
 				var Name = "User"
 				Transform 
@@ -673,7 +682,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bc0e2924852b849][ContextId:22]
+					Cog [Id:0x5bc0e2924852b849][ContextId:23]
 					{
 						var Name = "PlayerHitbox"
 						Transform 
@@ -739,7 +748,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 23
+								var Cog = 24
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -795,7 +804,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 20
+								var Cog = 21
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -806,7 +815,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:23]
+							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:24]
 							{
 								var Name = "Ship"
 								Transform 
@@ -856,7 +865,7 @@ Level
 										var UpdatePathOnCogChange = true
 										var UpdateCogOnInitialize = true
 										var ResolvedNullErrorOccurred = false
-										var Cog = 22
+										var Cog = 23
 										var PathPreference0 = CogPathPreference.CogRelative
 										var PathPreference1 = CogPathPreference.SpaceRelative
 										var PathPreference2 = CogPathPreference.Absolute
@@ -868,7 +877,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:24]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:25]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -879,7 +888,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:25]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:26]
 							{
 								Transform 
 								{
@@ -888,7 +897,7 @@ Level
 									var Scale = Real3{30, 1.00000024, 1}
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:26]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:27]
 							{
 								Transform 
 								{
@@ -899,7 +908,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bc1b16bafc525e0][ContextId:27]
+					Cog [Id:0x5bc1b16bafc525e0][ContextId:28]
 					{
 						var Name = "MouseSnapTo"
 						Transform 
@@ -923,7 +932,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bcc8eea60ae50e2][ContextId:28]
+			Cog [Id:0x5bcc8eea60ae50e2][ContextId:29]
 			{
 				var Name = "Level"
 				Transform 

@@ -1,0 +1,17 @@
+class HUDScoreController : ZilchComponent {
+  
+  var Score : Integer;
+  var GlobalVariables : GlobalVariables;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.GlobalVariables = this.GameSession.GlobalVariables;
+    this.Score = this.GlobalVariables.Score;    
+    this.Owner.SpriteText.Text = "Score: `this.Score`";
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    this.Score = this.GlobalVariables.Score;
+    this.Owner.SpriteText.Text = "Score: `this.Score`";
+  }
+}

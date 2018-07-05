@@ -1,10 +1,15 @@
 class EnemyTakeDamage : ZilchComponent
 {
   [Property] var Health : Real = 5.0;
+  [Property] var ScoreIncrease : Integer = 10;
+  
+  var GLobalVariables : GlobalVariables;
+  
   function Initialize(init : CogInitializer)
   {
     //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
+    this.GLobalVariables = this.GameSession.GlobalVariables;
   }
 
   function OnLogicUpdate(event : UpdateEvent)
@@ -29,6 +34,7 @@ class EnemyTakeDamage : ZilchComponent
         //On-death effects here
         
         this.Owner.Destroy();
+        this.GLobalVariables.AddToScore(this.ScoreIncrease);
       }
     }
   }
