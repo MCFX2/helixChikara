@@ -1,16 +1,21 @@
 class EnemyTakeDamage : ZilchComponent
 {
+  [Dependency] var Transform : Transform;
+  
   [Property] var Health : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
   
+  var Iterations : Integer = 0;
+  var PointPopUp : Cog;
+  
   function Initialize(init : CogInitializer)
   {
-    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
   }
 
-  function OnLogicUpdate(event : UpdateEvent)
-  {
+  function OnLogicUpdate(event : UpdateEvent) {
+
   }
   
   function OnCollide(event : CollisionEvent){
@@ -29,9 +34,10 @@ class EnemyTakeDamage : ZilchComponent
       //finally,
       if(this.Health <= 0){
         //On-death effects here
-        
+        var coords : Real3 = this.Owner.Transform.Translation;
         this.Owner.Destroy();
         this.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
+        this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
       }
     }
   }

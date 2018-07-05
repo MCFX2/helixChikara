@@ -1,0 +1,18 @@
+class DestroyOnTimer : ZilchComponent
+{
+  [Property] var SecondsBeforeDeath : Real = 1.0;
+  
+  var Iterations : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    ++this.Iterations;
+    if (this.Iterations == this.SecondsBeforeDeath*60) {
+      this.Owner.Destroy();
+    }
+  }
+}
