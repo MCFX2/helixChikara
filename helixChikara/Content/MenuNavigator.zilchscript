@@ -49,7 +49,7 @@ class MenuNavigator : ZilchComponent {
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
     if (!firstInstance) {
-      this.OptionsButtonCog = this.CreateButton(this.OptionsButton.Cog, Archetype.OptionsButton, Real3(0, -2, 1));
+      this.OptionsButtonCog = this.CreateButton(this.OptionsButtonCog, Archetype.OptionsButton, Real3(0, -2, 1));
       this.MoveButton(this.Button2.Cog, Real3(0, -1, 1));
     }
     this.SetText();

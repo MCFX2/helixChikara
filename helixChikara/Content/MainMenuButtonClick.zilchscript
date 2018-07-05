@@ -49,7 +49,7 @@ class MainMenuButtonClick : ZilchComponent {
           this.Space.LoadLevel(this.Owner.MenuNavigator.InstructionsLevel);
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
           this.GameSession.RequestQuit();
-        } else if (button == this.Owner.MenuNavigator.OptionsButton.Cog) {
+        } else if (button == this.Owner.MenuNavigator.OptionsButtonCog) {
           this.Owner.MenuNavigator.SetOptionsMenu();
           this.Owner.MenuNavigator.PurgeButton(this.Owner.MenuNavigator.OptionsButtonCog);
           this.Owner.MenuNavigator.MoveButton(this.Owner.MenuNavigator.Button2.Cog, Real3(0, -1.75, 1));
