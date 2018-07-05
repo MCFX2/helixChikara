@@ -1,0 +1,123 @@
+class VN : ZilchComponent
+{
+  var Prog : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //initialize speak progress
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+    
+    {
+      this.Prog = this.Prog+1;
+    }
+    
+    //this is all diolouge
+    
+    if(this.Prog == 0)
+    {
+      this.Owner.SpriteText.Text = "Time: 8:10, Place: Darkside Palace *siren sfx*";
+    }
+    
+    else if(this.Prog == 1)
+    {
+      this.Owner.SpriteText.Text = "*Yawn* Ugguu.. Haaaah... And good morning to you too, Mister Alarm!";
+    }
+  
+    
+    else if(this.Prog == 2)
+    {
+      this.Owner.SpriteText.Text = "Gee, I can't wait to see what today has in store for this great, great moon!";
+    }
+    
+    else if(this.Prog == 3)
+    {
+      this.Owner.SpriteText.Text = "FOR GOD'S SAKE, EVEN WHEN THE ENTIRE WORLD IS FINALLY ENDING, YOU STILL CAN'T LOSE THAT ATTITUDE, HUH?";
+    }
+    
+    else if(this.Prog == 4)
+    {
+      this.Owner.SpriteText.Text = "Eheh.. Nope! Geez... you guys always are so down, why don't you have some joy for...";
+    }
+    
+    else if(this.Prog == 5)
+    {
+      this.Owner.SpriteText.Text = "Wait, What was that about the world ending?";
+    }
+    
+    else if(this.Prog == 6)
+    {
+      this.Owner.SpriteText.Text = "Miss May! What are you doing? Didn't you hear the sirens!? We're under attack!";
+    }
+    
+    else if(this.Prog == 7)
+    {
+      this.Owner.SpriteText.Text = "Whaaaa?! Under attack? By what? We've been at peace for YEARS!";
+    }
+    
+    else if(this.Prog == 8)
+    {
+      this.Owner.SpriteText.Text = "Perodius somehow isn't dead, and he's hitting us as we speak. Look, there isn't time to explain! ";
+    }
+    
+    else if(this.Prog == 9)
+    {
+      this.Owner.SpriteText.Text = "Your mother and father have already had a safe evacuation to our nearby shelter planet. Your pod's waiting, let's go!";
+    }
+
+    else if(this.Prog == 10)
+    {
+      this.Owner.SpriteText.Text = "Perodius lives?! W-wait, but what about all the people! We can't just leave them here! Even if they've been mopey all this time, no one should just give up and surrender their lives!";
+    }    
+    
+    else if(this.Prog == 11)
+    {
+      this.Owner.SpriteText.Text = "Like I said, there isn't time! The pod is gonna launch any minute! We need to move NOW!";
+    }
+    
+    else if(this.Prog == 12)
+    {
+      this.Owner.SpriteText.Text = "...I'm not going.";
+    }
+    
+    else if(this.Prog == 13)
+    {
+      this.Owner.SpriteText.Text = "What?!";
+    }
+    
+    else if(this.Prog == 14)
+    {
+      this.Owner.SpriteText.Text = "I said I'm not going! Call the force together! We're gonna hold off Perodius's forces as best as we can, that's an order!";
+    }
+    
+    else if(this.Prog == 15)
+    {
+      this.Owner.SpriteText.Text = "I... But we!... *sigh*";
+    }
+    
+    else if(this.Prog == 16)
+    {
+      this.Owner.SpriteText.Text = "Fine. Our shield systems can only sustain us for three hits... but if you insist. Macho and Reagan are preparing their ships and will be prepared to launch as soon as we get there.";
+    }
+    
+    else if(this.Prog == 17)
+    {
+      this.Owner.SpriteText.Text = "But listen. I don't care how many are left. When our shields go down. We retreat. Period. Got it?";
+    }
+    
+    else if(this.Prog == 18)
+    {
+      this.Owner.SpriteText.Text = "So be it! What are we waiting for? Let go kick some polygonal butt!";
+    }
+    
+    else if(this.Prog == 19)
+    {
+      this.Owner.SpriteText.Text = "HELIX FORCE, INTO POSITION!";
+    }
+    
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

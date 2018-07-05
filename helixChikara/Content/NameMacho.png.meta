@@ -9,7 +9,7 @@ ImageContent
 		var FrameSizeY = 68
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 231
+		var OriginX = 231.5
 		var OriginY = 34
 		var PixelsPerUnit = 64
 		var Sampling = SpriteSampling.Linear

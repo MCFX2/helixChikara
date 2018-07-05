@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "VN"
+		var ResourceId = 0x5b375a2c1647ac29
+	}
+}

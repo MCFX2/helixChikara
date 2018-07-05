@@ -3,16 +3,16 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "NameReagan"
-		var ResourceId = 0x5bccb22bea946d71
-		var FrameSizeX = 219
-		var FrameSizeY = 59
+		var Name = "bg1"
+		var ResourceId = 0x5bc4d8f10a6cdfec
+		var FrameSizeX = 1006
+		var FrameSizeY = 755
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 109.5
-		var OriginY = 29.5
+		var OriginX = 503
+		var OriginY = 377
 		var PixelsPerUnit = 64
-		var Sampling = SpriteSampling.Linear
+		var Sampling = SpriteSampling.Nearest
 		var Looping = true
 		var Slices = Real4{0, 0, 0, 0}
 		var Fill = SpriteFill.Stretch
