@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{9.30764294, 0.306926459, 20.2000008}
+			var Translation = Real3{26.0070896, 2.47276163, 20.2000008}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 45.4302979
+			var Size = 74.9019012
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{9.30764294, 0.306926459, 0.200000241}
+			var LookTarget = Real3{26.0070896, 2.47276163, 0.200000927}
 			var MoveSensitivity = 1
 		}
 	}
@@ -148,7 +148,7 @@ Level
 		var Name = "BG"
 		Transform 
 		{
-			var Translation = Real3{0, 0, -0.100000001}
+			var Translation = Real3{-17.3822994, 0, -0.100000001}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -159,8 +159,8 @@ Level
 				var Name = "BGLayerClosest"
 				Transform 
 				{
-					var Translation = Real3{0, 0, 0}
-					var Scale = Real3{2.4000001, 2, 1}
+					var Translation = Real3{19.3824368, 0, 0}
+					var Scale = Real3{3, 2, 1}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
 				Sprite 
@@ -195,7 +195,7 @@ Level
 						var Name = "BGLayers"
 						Transform 
 						{
-							var Translation = Real3{15.6000004, 0, 0}
+							var Translation = Real3{13.0837059, 0, 0}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
