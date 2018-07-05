@@ -1,6 +1,6 @@
 class HUDScoreController : ZilchComponent {
   
-  var Score : Integer;
+  var Score : Integer = 0;
   var GlobalVariables : GlobalVariables;
   
   function Initialize(init : CogInitializer) {

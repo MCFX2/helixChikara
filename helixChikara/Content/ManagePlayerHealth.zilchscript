@@ -9,6 +9,7 @@ class ManagePlayerHealth : ZilchComponent {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
     this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
+    this.GameSession.GlobalVariables.Score = 0;
   }
 
   function OnLogicUpdate(event : UpdateEvent) {

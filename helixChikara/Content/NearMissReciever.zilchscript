@@ -8,6 +8,8 @@ class NearMissReciever : ZilchComponent
   function NearMissSuccess(){
     //do stuff here
     Console.Write("\nNear Miss Success!");
+    this.GameSession.GlobalVariables.AddToScore(10);
+    
   }
   function OnLogicUpdate(event : UpdateEvent)
   {
