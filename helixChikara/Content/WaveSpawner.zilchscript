@@ -7,6 +7,8 @@ class WaveSpawner : ZilchComponent
   var EnemyOffscreenX : Real = 20;
   var TotalWaves = 0;
   
+  [Property] var TestArray : Array[Integer] = Array[Integer](){0, 1, 2};
+  
   var EnemiesLeft : Integer = 0;
   
   var Waves : Array[Array[Array[Real]]] = Array[Array[Array[Real]]]();
