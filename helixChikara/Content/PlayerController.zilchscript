@@ -53,13 +53,15 @@ class PlayerController : ZilchComponent
   }
 
   function ClampVelocity(){ //clamp our velocity within bounds specified in Properties
-  var velocityCorrectiveFactor = Math.Abs(Math.Normalize(this.Owner.Transform.Translation.XY - this.LastMousePos));
-  
-    this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
-      velocityCorrectiveFactor * Real2(
-        this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
-        this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel)), 0
-    );
+    var velocityCorrectiveFactor : Real2 = Real2(1,1);
+    if (this.ControlType == ControlTypes.Mouse) {
+      velocityCorrectiveFactor = Math.Abs(Math.Normalize(this.Owner.Transform.Translation.XY - this.LastMousePos));
+    }
+      this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
+        velocityCorrectiveFactor * Real2(
+          this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
+          this.Clamp(this.Owner.RigidBody.Velocity.Y, this.MaxVVel * -1, this.MaxVVel)), 0
+      );
     
   }
 
