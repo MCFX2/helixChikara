@@ -10,12 +10,7 @@ class EnemyTakeDamage : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
-    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
-  }
-
-  function OnLogicUpdate(event : UpdateEvent) {
-
   }
   
   function OnCollide(event : CollisionEvent){

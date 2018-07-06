@@ -220,10 +220,11 @@ class WaveSpawner : ZilchComponent
     
     
     
-    Zero.Connect(this.Space, Events.LogicUpdate, this.CheckWaveCompletion);
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.CheckWaveCompletion);
+    this.CheckWaveCompletion();
   }
   
-  function CheckWaveCompletion(event : UpdateEvent){
+  function CheckWaveCompletion(){
     if(this.EnemiesLeft == 0){
       this.NextWave();
     }
@@ -231,5 +232,6 @@ class WaveSpawner : ZilchComponent
   
   function EnemyDestroyed(){
     --this.EnemiesLeft;
+    this.CheckWaveCompletion();
   }
 }
