@@ -54,14 +54,18 @@ class PlayerShooting : ZilchComponent
     }
     else if (this.CurrentShip == Ship.Scout){
       if(this.TimeSinceLastBullet >= this.RandalFireDelay){
-        if(this.WaveController.WaveSpawner.CurrentEnemies == null) return;
         var currentBullet = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        Console.WriteLine(this.WaveController);
+        Console.WriteLine(this.WaveController.WaveSpawner);
+        Console.WriteLine(this.WaveController.WaveSpawner.CurrentEnemies);
         var nearestEnemyPos = Math.Distance(this.WaveController.WaveSpawner.CurrentEnemies[0].Transform.Translation, this.Owner.Transform.Translation);
-        
         var nearestEnemy = this.WaveController.WaveSpawner.CurrentEnemies[0];
+        
         foreach(var enemy in this.WaveController.WaveSpawner.CurrentEnemies){
-          if(Math.Distance(this.Owner.Transform.Translation, enemy.Transform.Translation) > nearestEnemyPos){
-            nearestEnemy = enemy;
+          if(enemy!=null){
+            if(Math.Distance(this.Owner.Transform.Translation, enemy.Transform.Translation) > nearestEnemyPos){
+              nearestEnemy = enemy;
+            }
           }
         }
         var bulletPos = this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0);
@@ -80,7 +84,7 @@ class PlayerShooting : ZilchComponent
         var dx : Real = y/x;
         var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
         currentBullet.RigidBody.Velocity = Real3(newVel * this.RandalFireSpeed, 0);
-        //currentBullet.Orientation.LookAtPoint(this.PlayerPosAtInit);
+        currentBullet.Orientation.LookAtPoint(targetPos);
         //currentBullet.RigidBody.Velocity 
         this.TimeSinceLastBullet = 0;
       }

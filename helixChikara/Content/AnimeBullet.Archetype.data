@@ -37,17 +37,26 @@ Cog
 		var RotationLocked = false
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
-	BoxCollider 
+	BulletBase 
 	{
-		var Ghost = false
+		var Damage = 0.5
+	}
+	CapsuleCollider 
+	{
+		var Ghost = true
 		var SendsEvents = true
 		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
 		var CollisionGroup = "5bcc8fccebcfe79f:PlayerBullet"
 		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{0.5, 0.5, 0.5}
+		var Radius = 0.100000001
+		var Height = 0.699999988
+		var Direction = AxisDirection.X
+		var ScalingMode = CapsuleScalingMode.PreserveHeight
 	}
-	BulletBase 
+	Orientation 
 	{
-		var Damage = 0.5
+		var GlobalUp = Real3{0, 1, 0}
+		var LocalOrientationBasis = Quaternion{0, -0.707106769, 0, 0.707106769}
+		var DefaultBases = OrientationBases.ForwardXUpY
 	}
 }

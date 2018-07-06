@@ -24,6 +24,6 @@ class EnemySpawnComponenent : ZilchComponent
 
   }
   function OnDestroy(event : Event){
-    this.WaveController.WaveSpawner.EnemyDestroyed();
+    this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
   }
 }

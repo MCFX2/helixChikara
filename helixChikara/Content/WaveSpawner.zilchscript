@@ -236,7 +236,8 @@ class WaveSpawner : ZilchComponent
     }
   }
   
-  function EnemyDestroyed(){
+  function EnemyDestroyed(which : Cog){
+    this.CurrentEnemies.RemoveFirst(which);
     --this.EnemiesLeft;
     this.CheckWaveCompletion();
   }
