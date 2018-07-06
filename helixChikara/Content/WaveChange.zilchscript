@@ -1,0 +1,12 @@
+class WaveChange : ZilchComponent {
+    
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.ChangeWave);
+  }
+  
+  function ChangeWave(event : UpdateEvent) {
+    this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave`";
+  }
+
+
+}

@@ -6,6 +6,7 @@ class GlobalVariables : ZilchComponent {
   
   var Score : Integer = 0;
   var ControlType : ControlTypes = ControlTypes.Mouse;
+  var CurrentWave : Integer = -1;
   
   function AddToScore(score : Integer) {
     this.Score += score;

@@ -78,8 +78,8 @@ class WaveSpawner : ZilchComponent
   function NextWave(){
     
     ++this.CurrentWave;
-    this.WaveHUD.Cog.HUDWaveChange.Wave = this.CurrentWave + 1;
-    
+    this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave+1;
+    this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
     if(this.CurrentWave == this.TotalWaves){
       //"you win" or some shit
       this.Space.LoadLevel(this.VictoryLevel);
@@ -95,7 +95,8 @@ class WaveSpawner : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
-     //add waves to wavetable
+    //add waves to wavetable
+    
     this.RegisterWave(this.Wave1);
     this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave3);
