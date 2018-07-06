@@ -17,6 +17,9 @@ class PlayerShooting : ZilchComponent
   [Property] var MachoBombFireDelay = 240;
   [Property] var MachoBombVelocity = 5;
   
+  [Property] var RandalFireDelay = 4;
+  [Property] var RandalFireSpeed = 8;  
+  [Property] var WaveController : CogPath;
   [Property] var HUDCharacterIndicator : CogPath;
   
   var TimeSinceLastBullet = 0;
@@ -46,6 +49,39 @@ class PlayerShooting : ZilchComponent
       if(this.TimeSinceLastBullet >= this.MachoBombFireDelay){
         var currentBullet = this.Space.CreateAtPosition(Archetype.MachoBomb, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
         currentBullet.RigidBody.Velocity = Real3(this.MachoBombVelocity, 0, 0);
+        this.TimeSinceLastBullet = 0;
+      }
+    }
+    else if (this.CurrentShip == Ship.Scout){
+      if(this.TimeSinceLastBullet >= this.RandalFireDelay){
+        if(this.WaveController.WaveSpawner.CurrentEnemies == null) return;
+        var currentBullet = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        var nearestEnemyPos = Math.Distance(this.WaveController.WaveSpawner.CurrentEnemies[0].Transform.Translation, this.Owner.Transform.Translation);
+        
+        var nearestEnemy = this.WaveController.WaveSpawner.CurrentEnemies[0];
+        foreach(var enemy in this.WaveController.WaveSpawner.CurrentEnemies){
+          if(Math.Distance(this.Owner.Transform.Translation, enemy.Transform.Translation) > nearestEnemyPos){
+            nearestEnemy = enemy;
+          }
+        }
+        var bulletPos = this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0);
+        var targetPos = nearestEnemy.Transform.Translation;
+        
+        //ripped from basic enemy bullet script
+        var x = Math.Abs(targetPos.X - bulletPos.X);
+        var y = Math.Abs(targetPos.Y - bulletPos.Y);
+        
+        var xdirection = 0;
+        if(targetPos.X > bulletPos.X) { xdirection = 1; }
+        else { xdirection = -1; }
+        var ydirection = 0;
+        if(targetPos.Y > bulletPos.Y) { ydirection = 1; }
+        else { ydirection = -1; }
+        var dx : Real = y/x;
+        var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
+        currentBullet.RigidBody.Velocity = Real3(newVel * this.RandalFireSpeed, 0);
+        //currentBullet.Orientation.LookAtPoint(this.PlayerPosAtInit);
+        //currentBullet.RigidBody.Velocity 
         this.TimeSinceLastBullet = 0;
       }
     }

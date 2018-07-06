@@ -6,12 +6,15 @@ class WaveSpawner : ZilchComponent
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
   var TotalWaves = 0;
+  var CurrentlyInWave = false;
   
   [Property] var TestArray : Array[Integer] = Array[Integer](){0, 1, 2};
   
   var EnemiesLeft : Integer = 0;
   
   var Waves : Array[Array[Array[Real]]] = Array[Array[Array[Real]]]();
+  
+  var CurrentEnemies : Array[Cog] = Array[Cog]();
   
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
@@ -57,7 +60,7 @@ class WaveSpawner : ZilchComponent
   }
   
   function SummonWave(waveNumber : Integer){
-
+    this.CurrentEnemies.Clear();
     foreach(var enemy in this.Waves[waveNumber]){
       //Console.Write("\n",enemy);
       ++this.EnemiesLeft;
@@ -66,7 +69,9 @@ class WaveSpawner : ZilchComponent
       currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0);
       currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]);
       currentEnemy.EnemySpawnComponenent.WaveController = this.Owner;
+      this.CurrentEnemies.Add(currentEnemy);
     }
+    this.CurrentlyInWave = true;
     
   }
   
@@ -226,6 +231,7 @@ class WaveSpawner : ZilchComponent
   
   function CheckWaveCompletion(){
     if(this.EnemiesLeft == 0){
+      this.CurrentlyInWave = false;
       this.NextWave();
     }
   }
