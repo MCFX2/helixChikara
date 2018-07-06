@@ -28,11 +28,13 @@ class ManagePlayerHealth : ZilchComponent {
       if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
         event.OtherObject.Destroy();
         this.PlayerHealth -= 1;
+        this.Owner.SimpleSound.Play();
         this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
       }
       if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
         event.OtherObject.Destroy();
         this.PlayerHealth -= 1;
+        this.Owner.SimpleSound.Play();
         this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
       }
       

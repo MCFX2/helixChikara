@@ -20,9 +20,11 @@ class EnemyTakeDamage : ZilchComponent
       //first check what type of bullet it was and apply the corresponding damage
       if(event.OtherObject.Archetype == Archetype.AnimeBullet){
         this.Health -= 0.5;
+        this.Owner.SimpleSound.Play();
       }
       else if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
         this.Health -= 1;
+        this.Owner.SimpleSound.Play();
       }
       
       //next apply feedback effects here (blinking/whatever)

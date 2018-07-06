@@ -5,7 +5,7 @@ Cog
 	Transform 
 	{
 		var Translation = Real3{7.52353144, 1.70686972, -0.0950012207}
-		var Scale = Real3{1, 1, 1}
+		var Scale = Real3{1.5, 1.5, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -18,9 +18,9 @@ Cog
 		var LocalAabbHalfExtents = Real3{1, 1, 1}
 		var GroupSortValue = 0
 		var Material = "582c575af53d18c9:AlphaSprite"
-		var VertexColor = Real4{1, 0.389999986, 0, 1}
+		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+		var SpriteSource = "5b16f069a5a269eb:Enemy1"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -39,6 +39,7 @@ Cog
 	EnemyTakeDamage 
 	{
 		var Health = 5
+		var ScoreIncrease = 1000
 	}
 	RigidBody 
 	{
@@ -60,5 +61,20 @@ Cog
 		var FireDelay = 100
 		var BurstAmount = 3
 		var BulletDelay = 10
+	}
+	SoundEmitter 
+	{
+		var Volume = 1.00999999
+		var Pitch = 0
+		var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+		var Directional = false
+		var EmitAngle = 90
+		var RearVolume = 0.200000003
+	}
+	SimpleSound 
+	{
+		var StartPlaying = false
+		var Positional = false
+		var Cue = "5b16f47ede91e727:PlayEnemyHit"
 	}
 }

@@ -5,7 +5,7 @@ Cog
 	Transform 
 	{
 		var Translation = Real3{0, 0, 0}
-		var Scale = Real3{0.200000003, 0.200000003, 1}
+		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5275aa4d802dd6dc:Square"
+		var SpriteSource = "5b16ec74aecd526f:Bullet_player"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -48,5 +48,6 @@ Cog
 	}
 	BulletBase 
 	{
+		var Damage = 0.5
 	}
 }
