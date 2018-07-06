@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.081372872, -0.309136003, 20.1999989}
+			var Translation = Real3{5.35944891, 1.54486907, 20.2000008}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 30.4529247
+			var Size = 30.4528809
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.081372872, -0.309136003, 0.199999765}
+			var LookTarget = Real3{5.35944891, 1.54486907, 0.199999958}
 			var MoveSensitivity = 1
 		}
 	}
@@ -790,9 +790,8 @@ Level
 						{
 							var ShootKey = Keys.Space
 							var AnimeShipKey = Keys.One
-							var MachoCheeseShipKey = Keys.Two
-							var ReaganShipKey = Keys.Three
-							var ScoutShipKey = Keys.Four
+							var ReaganShipKey = Keys.Two
+							var ScoutShipKey = Keys.Three
 							var BulletSpawnOffset = Real2{1.5, 0}
 							var BulletSpeedAnime = 5
 							var BulletFireDelayAnime = 6

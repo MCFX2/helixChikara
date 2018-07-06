@@ -8,9 +8,11 @@ class CurrentPlayerIndicator : ZilchComponent
   function UpdateShipName (ship : Ship) {
     if (ship == Ship.Anime) {
       this.Owner.Sprite.SpriteSource = SpriteSource.NameAnime;      
-    } else if (ship == Ship.MachoCheese) {
+    }/* else if (ship == Ship.MachoCheese) {
       this.Owner.Sprite.SpriteSource = SpriteSource.NameMacho;
-    } else if (ship == Ship.Reagan) {
+    }*/
+    //RIP Macho Cheese
+     else if (ship == Ship.Reagan) {
       this.Owner.Sprite.SpriteSource = SpriteSource.NameReagan;
     } else if (ship == Ship.Scout) {
       this.Owner.Sprite.SpriteSource = SpriteSource.NameScout;

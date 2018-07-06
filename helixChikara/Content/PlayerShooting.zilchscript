@@ -3,9 +3,10 @@ class PlayerShooting : ZilchComponent
   //keys
   [Property] var ShootKey : Keys = Keys.Space;
   [Property] var AnimeShipKey : Keys = Keys.One;
-  [Property] var MachoCheeseShipKey : Keys = Keys.Two;
-  [Property] var ReaganShipKey : Keys = Keys.Three;
-  [Property] var ScoutShipKey : Keys = Keys.Four;
+  //[Property] var MachoCheeseShipKey : Keys = Keys.Two;
+  //RIP Macho Cheese
+  [Property] var ReaganShipKey : Keys = Keys.Two;
+  [Property] var ScoutShipKey : Keys = Keys.Three;
   
   //bullet physics
   [Property] var BulletSpawnOffset = Real2(1.5, 0); //Bullet creation position relative to ship X, Y
@@ -54,10 +55,12 @@ class PlayerShooting : ZilchComponent
       this.ChangeShip(Ship.Anime);
       this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Anime);
     }
-    if(Zero.Keyboard.KeyIsDown(this.MachoCheeseShipKey)){
+    /*if(Zero.Keyboard.KeyIsDown(this.MachoCheeseShipKey)){
       this.ChangeShip(Ship.MachoCheese);
       this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.MachoCheese);
-    }
+    }*/
+    
+    //RIP Macho Cheese
     if(Zero.Keyboard.KeyIsDown(this.ReaganShipKey)){
       this.ChangeShip(Ship.Reagan);
       this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Reagan);
