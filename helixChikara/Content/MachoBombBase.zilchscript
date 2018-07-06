@@ -1,0 +1,33 @@
+class MachoBombBase : ZilchComponent
+{
+  var NumSpreadShots = 60;
+  [Property] var FuseTime = 90;
+  [Property] var EjectionVelocity : Real = 2;
+  var CurrentTime = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function Detonate(){
+    Console.Write("\n",this.NumSpreadShots);
+    var bulletSpread = (2 * Math.Pi / this.NumSpreadShots);
+    for(var i = 0; i < this.NumSpreadShots; ++i){
+      var currentBullet = this.Space.CreateAtPosition(Archetype.MachoShrapnel, this.Owner.Transform.Translation);
+      var velY = Math.Pow(this.EjectionVelocity, 2) * Math.Sin(i * bulletSpread);
+      var velX = Math.Pow(this.EjectionVelocity, 2) * Math.Cos(i * bulletSpread);
+      currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+      
+    }
+    this.Owner.Destroy();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.CurrentTime >= this.FuseTime){
+      this.Detonate();
+    }
+    ++this.CurrentTime;
+  }
+}

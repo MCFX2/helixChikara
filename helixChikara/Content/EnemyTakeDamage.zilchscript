@@ -19,11 +19,15 @@ class EnemyTakeDamage : ZilchComponent
   }
   
   function OnCollide(event : CollisionEvent){
-    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerBullet){
+    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerBullet ||
+        event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything){
       
       //first check what type of bullet it was and apply the corresponding damage
       if(event.OtherObject.Archetype == Archetype.AnimeBullet){
         this.Health -= 0.5;
+      }
+      else if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
+        this.Health -= 1;
       }
       
       //next apply feedback effects here (blinking/whatever)

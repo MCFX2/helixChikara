@@ -10,9 +10,12 @@ class PlayerShooting : ZilchComponent
   
   //bullet physics
   [Property] var BulletSpawnOffset = Real2(1.5, 0); //Bullet creation position relative to ship X, Y
-  [Property] var BulletSpeedAnime = 2.5;
-  [Property] var BulletFireDelayAnime = 10; //number of logic ticks between reloads
-  [Property] var BulletSpreadAnime = 0.05; //ratio of bullet spread. 0 = laser, 1 = 180 degree firing range
+  [Property] var BulletSpeedAnime = 5;
+  [Property] var BulletFireDelayAnime = 6; //number of logic ticks between reloads
+  [Property] var BulletSpreadAnime = 0.02; //ratio of bullet spread. 0 = laser, 1 = 180 degree firing range
+  
+  [Property] var MachoBombFireDelay = 240;
+  [Property] var MachoBombVelocity = 5;
   
   [Property] var HUDCharacterIndicator : CogPath;
   
@@ -36,6 +39,13 @@ class PlayerShooting : ZilchComponent
         var velX = Math.Pow(this.BulletSpeedAnime, 2) * Math.Cos(Math.ToRadians(spreadAngle));
         currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
         //Note that bullets are intentionally NOT made children of Screen, so if the level changes direction bullets don't follow. Realism!
+        this.TimeSinceLastBullet = 0;
+      }
+    }
+    else if (this.CurrentShip == Ship.Reagan){
+      if(this.TimeSinceLastBullet >= this.MachoBombFireDelay){
+        var currentBullet = this.Space.CreateAtPosition(Archetype.MachoBomb, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        currentBullet.RigidBody.Velocity = Real3(this.MachoBombVelocity, 0, 0);
         this.TimeSinceLastBullet = 0;
       }
     }

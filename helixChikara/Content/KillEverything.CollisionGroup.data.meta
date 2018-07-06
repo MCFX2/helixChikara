@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "KillEverything"
+		var ResourceId = 0x5bc49dcffdb7207f
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

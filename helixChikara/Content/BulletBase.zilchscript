@@ -7,12 +7,14 @@ class BulletBase : ZilchComponent
     Zero.Connect(this.Owner, Events.CollisionStarted, this.WallHit);
   }
 
-  function OnLogicUpdate(event : UpdateEvent)
-  {
-    
+  function DoesDestroyBullet(cg : CollisionGroup) : Boolean {
+    if ( cg == CollisionGroup.PlayerEnemy ||
+        cg == CollisionGroup.EnemyIgnore) return true;
+    return false;
   }
+  
   function WallHit(event : CollisionEvent){
-    if(event.OtherObject.Collider.CollisionGroup != CollisionGroup.EnemyPierce){
+    if(this.DoesDestroyBullet(event.OtherObject.Collider.CollisionGroup)){
       this.Owner.Destroy();
     }
 
