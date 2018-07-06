@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 73.3196335
+			var Size = 24.406023
 		}
 		EditorCameraController 
 		{

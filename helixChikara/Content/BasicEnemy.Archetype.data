@@ -5,7 +5,7 @@ Cog
 	Transform 
 	{
 		var Translation = Real3{14.4929495, 4.96204233, -4.02331352e-07}
-		var Scale = Real3{1.5, 1.5, 1}
+		var Scale = Real3{2, 2, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b16ea94301e7c05:Enemy2"
+		var SpriteSource = "5b170b82cfcabb68:Enemy2"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
