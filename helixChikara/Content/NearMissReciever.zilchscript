@@ -1,18 +1,9 @@
 class NearMissReciever : ZilchComponent
 {
-  function Initialize(init : CogInitializer)
-  {
-    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-  }
-
   function NearMissSuccess(){
-    //do stuff here
-    Console.Write("\nNear Miss Success!");
     this.GameSession.GlobalVariables.AddToScore(10);
-    this.Space.CreateAtPosition(Archetype.NearMiss, Real3(0, 7.5, 1));
     
-  }
-  function OnLogicUpdate(event : UpdateEvent)
-  {
+    
+    this.Space.CreateAtPosition(Archetype.NearMiss, Real3(0, 7.5, 1));
   }
 }

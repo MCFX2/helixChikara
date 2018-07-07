@@ -10,6 +10,9 @@ class MoveLevel : ZilchComponent
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.StartX = this.Owner.Transform.Translation.X;
+    this.RepeatDistance = this.Owner.Area.Size.X;
+    Console.WriteLine(this.RepeatDistance);
+    
   }
 
   function OnLogicUpdate(event : UpdateEvent)

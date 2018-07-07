@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.688121974, 9.34173965, 20}
+			var Translation = Real3{1.65988064, -4.47743559, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 32.9447136
+			var Size = 59.1352577
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.688121974, 9.34173965, -3.00789473e-08}
+			var LookTarget = Real3{1.65988064, -4.47743559, 7.25542861e-08}
 			var MoveSensitivity = 1
 		}
 	}
@@ -148,7 +148,7 @@ Level
 		var Name = "BG"
 		Transform 
 		{
-			var Translation = Real3{-17.3822994, 0, -0.100000001}
+			var Translation = Real3{0, 0, -0.100000001}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -159,9 +159,15 @@ Level
 				var Name = "BGLayerClosest"
 				Transform 
 				{
-					var Translation = Real3{19.3824368, 0, 0}
-					var Scale = Real3{2, 2, 1}
+					var Translation = Real3{0, 0, 0}
+					var Scale = Real3{1, 1, 1}
 					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				MoveLevel 
+				{
+					var Speed = 0.300000012
+					var Direction = -1
+					var RepeatDistance = 38
 				}
 				Sprite 
 				{
@@ -182,11 +188,10 @@ Level
 					var AnimationSpeed = 1
 					var StartFrame = 0
 				}
-				MoveLevel 
+				Area 
 				{
-					var Speed = 0.300000012
-					var Direction = -1
-					var RepeatDistance = 38
+					var Size = Real2{40, 24}
+					var Origin = Location.Center
 				}
 				Hierarchy 
 				{
@@ -195,7 +200,7 @@ Level
 						var Name = "BGLayers"
 						Transform 
 						{
-							var Translation = Real3{29.893425, 0, 0}
+							var Translation = Real3{40, 0, 0}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -217,6 +222,11 @@ Level
 							var AnimationActive = true
 							var AnimationSpeed = 1
 							var StartFrame = 0
+						}
+						Area 
+						{
+							var Size = Real2{40, 24}
+							var Origin = Location.Center
 						}
 					}
 				}
@@ -936,6 +946,34 @@ Level
 					}
 				}
 			}
+		}
+	}
+	Cog [ContextId:28]
+	{
+		var Name = "BuildVer"
+		Transform 
+		{
+			var Translation = Real3{-2.00289297, -11.8265629, -8.75494663e-08}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SpriteText 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var Text = "[E] Build 65"
+			var Font = "57343753bb4eaaec:NotoSans-Regular"
+			var FontSize = 128
+			var PixelsPerUnit = 64
+			var TextAlign = TextAlign.Center
 		}
 	}
 }
