@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 59.1352577
+			var Size = 29.3657112
 		}
 		EditorCameraController 
 		{
@@ -776,8 +776,8 @@ Level
 							var BulletSpreadAnime = 0.0199999996
 							var MachoBombFireDelay = 240
 							var MachoBombVelocity = 5
-							var RandalFireDelay = 4
-							var RandalFireSpeed = 8
+							var RandalFireDelay = 0
+							var RandalFireSpeed = 200
 							var WaveController = CogPath
 							{
 								var Path = "../../WaveSpawner"
@@ -969,7 +969,7 @@ Level
 			var Material = "582c575af53d18c9:AlphaSprite"
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "[E] Build 65"
+			var Text = "[E] Build 66"
 			var Font = "57343753bb4eaaec:NotoSans-Regular"
 			var FontSize = 128
 			var PixelsPerUnit = 64
