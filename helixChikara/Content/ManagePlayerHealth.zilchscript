@@ -1,15 +1,27 @@
 class ManagePlayerHealth : ZilchComponent {
   
-  [Property] var HealthBar : CogPath;
   [Property] var PlayerHealth : Real = 100;
+  [Property] var InitialPosition : Real3 = Real3(-12, 9.5, 0);
   [Property] var GameOver : Level;
   [Property] var NearMissBox : CogPath;
+  
+  var HealthIcons : Array[Cog] = Array[Cog]();
+  
+  function CreateHealthBar() {
+    var healthIcon : Cog = null;
+    var coords : Real3 = this.InitialPosition;
+    for (var i : Integer = 0; i<this.PlayerHealth; ++i) {
+      healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
+      this.HealthIcons.Add(healthIcon);
+      coords += Real3(1, 0, 0);
+    }
+  }
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
-    this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
     this.GameSession.GlobalVariables.Score = 0;
+    this.CreateHealthBar();
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
@@ -28,14 +40,16 @@ class ManagePlayerHealth : ZilchComponent {
       if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
         event.OtherObject.Destroy();
         this.PlayerHealth -= 1;
+        this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
+        this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
         this.Owner.SimpleSound.Play();
-        this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
       }
       if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
         event.OtherObject.Destroy();
         this.PlayerHealth -= 1;
+        this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
+        this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
         this.Owner.SimpleSound.Play();
-        this.HealthBar.Cog.SpriteText.Text = "Health: `this.PlayerHealth`";
       }
       
       //we need invincibility frames
