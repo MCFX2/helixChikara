@@ -2,7 +2,8 @@ class SpreadingShot : ZilchComponent
 {
   [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
   [Property] var SpreadAng : Real = 0.02;
-  [Property] var FanSize : Integer = 1;
+  [Property] var FanSize : Integer = 10;
+  [Property] var BulletVelocity = 5.0;
   var PlayerPosAtInit : Real3 = Real3(0);
   var InstantiatedPos : Real3 = Real3(0);
   var BaseVel : Real = 8;
@@ -35,9 +36,15 @@ class SpreadingShot : ZilchComponent
     
     for(var i = 0; i < this.FanSize; ++i){
       var s = this.Space.CreateAtPosition(Archetype.EnemyBulletSpreadIndirect, this.Owner.Transform.Translation);
-      s.SpreadingShotChild.UpdateTargetAngle(Math.ToQuaternion(0, 0, this.SpreadAng * i));
+      //s.SpreadingShotChild.UpdateTargetAngle(Math.ToQuaternion(0, 0, ));
+      var velY = Math.Pow(this.BulletVelocity, 2) * Math.Sin(i * this.SpreadAng);
+      var velX = Math.Pow(this.BulletVelocity, 2) * Math.Cos(i * this.SpreadAng);
+      s.RigidBody.Velocity = Real3(velX, velY, 0);
       
-      
+      var s2 = this.Space.CreateAtPosition(Archetype.EnemyBulletSpreadIndirect, this.Owner.Transform.Translation);
+      var velY2 = Math.Pow(this.BulletVelocity, 2) * Math.Sin(-1 * i * this.SpreadAng);
+      var velX2 = Math.Pow(this.BulletVelocity, 2) * Math.Cos(-1 * i * this.SpreadAng);
+      s.RigidBody.Velocity = Real3(velX2, velY2, 0);
       //s.SpreadingShotChild.SetTargetAngle(this.Owner.Orientation.GetLookAtPointRotation(this.PlayerPosAtInit) + Math.ToQuaternion(Real3(0, 0, this.SpreadAng)));
       
       
