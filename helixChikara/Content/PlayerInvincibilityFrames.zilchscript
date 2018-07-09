@@ -1,6 +1,7 @@
 class PlayerInvincibilityFrames : ZilchComponent {
   
   [Property] var InvincibilityFrames : Integer = 20;
+  [Property] var Ship : CogPath;
   
   var IsInvincible : Boolean = false;
   var Frames : Integer = 0;
@@ -12,9 +13,15 @@ class PlayerInvincibilityFrames : ZilchComponent {
   function OnLogicUpdate(event : UpdateEvent) {
     if (this.IsInvincible) {
       ++this.Frames;
+      if (this.Frames%4==0 && this.Frames%8!=0) {
+        this.Ship.Sprite.Visible = true;
+      } else if (this.Frames%8==0) {
+        this.Ship.Sprite.Visible = false;
+      }
       if (this.Frames >= this.InvincibilityFrames) {
         this.Frames = 0;
         this.IsInvincible = false;
+        this.Ship.Sprite.Visible = true;
       }
     }
   }
