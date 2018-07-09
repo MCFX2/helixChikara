@@ -640,7 +640,7 @@ Level
 						var Name = "PlayerHitbox"
 						Transform 
 						{
-							var Translation = Real3{-7, 0, 0.100000001}
+							var Translation = Real3{5.56402493, 0.594243765, 0.100000001}
 							var Scale = Real3{0.280000001, 0.280000001, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -785,6 +785,10 @@ Level
 							var Positional = false
 							var Cue = "5b16e9bebc81476f:PlayPlayerHit"
 						}
+						PlayerInvincibilityFrames 
+						{
+							var InvincibilityFrames = 20
+						}
 						Hierarchy 
 						{
 							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:22]
@@ -927,41 +931,11 @@ Level
 			var Material = "582c575af53d18c9:AlphaSprite"
 			var VertexColor = Real4{1, 1, 1, 1}
 			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "[E] Build 67"
+			var Text = "[E] Build 70"
 			var Font = "57343753bb4eaaec:NotoSans-Regular"
 			var FontSize = 128
 			var PixelsPerUnit = 64
 			var TextAlign = TextAlign.Center
-		}
-	}
-	Cog [InheritId:"5bc77b0dfeee4044:EnemyBulletSpread"][ContextId:28]
-	{
-		Transform 
-		{
-			var Translation = Real3{-5.58666706, 0.733604372, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1, 1, 1}
-		}
-		SpreadingShot [LocallyAdded]
-		{
-			var Player = CogPath
-			{
-				var Path = ":/Screen/User/PlayerHitbox"
-				var ErrorOnResolveToNull = false
-				var ErrorOnPathCantCompute = false
-				var ErrorOnDirectLinkFail = false
-				var UpdateCogOnPathChange = true
-				var UpdatePathOnCogChange = true
-				var UpdateCogOnInitialize = true
-				var ResolvedNullErrorOccurred = false
-				var Cog = 21
-				var PathPreference0 = CogPathPreference.CogRelative
-				var PathPreference1 = CogPathPreference.SpaceRelative
-				var PathPreference2 = CogPathPreference.Absolute
-			}
-			var SpreadAng = 0.0199999996
-			var FanSize = 10
-			var BulletVelocity = 5
 		}
 	}
 }

@@ -11,5 +11,4 @@ class GlobalVariables : ZilchComponent {
   function AddToScore(score : Integer) {
     this.Score += score;
   }
-  
 }

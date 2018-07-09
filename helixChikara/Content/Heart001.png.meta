@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Heart001"
+		var ResourceId = 0x5b4ac88ce0bde54a
+		var FrameSizeX = 31
+		var FrameSizeY = 31
+		var FrameCount = 1
+		var FrameDelay = 1
+		var OriginX = 15.5
+		var OriginY = 15.5
+		var PixelsPerUnit = 31
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

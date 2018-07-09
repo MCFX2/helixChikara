@@ -10,8 +10,10 @@ class NearMissTrigger : ZilchComponent
   }
 
   function NearMissAttempt(event : CollisionEvent){
-    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce){
-      this.Attempting = true;
+    if(!this.Player.PlayerInvincibilityFrames.IsInvincible) {
+      if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce){
+        this.Attempting = true;
+      }
     }
   }
   

@@ -4,7 +4,7 @@ Cog
 	var Name = "EnemyBulletBasic"
 	Transform 
 	{
-		var Translation = Real3{-3.39299822, 1.37577891, -0.0950012207}
+		var Translation = Real3{-5.58666706, 0.733604372, -0.0950012207}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,30 +20,12 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5bc74198413d630c:BulletEnemy"
+		var SpriteSource = "5b36dcb8f3e838a4:EnemyBullet"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
-	}
-	BasicShot 
-	{
-		var Player = CogPath
-		{
-			var Path = ":/Screen/User/PlayerHitbox"
-			var ErrorOnResolveToNull = false
-			var ErrorOnPathCantCompute = false
-			var ErrorOnDirectLinkFail = false
-			var UpdateCogOnPathChange = true
-			var UpdatePathOnCogChange = true
-			var UpdateCogOnInitialize = true
-			var ResolvedNullErrorOccurred = false
-			var Cog = 4294967293
-			var PathPreference0 = CogPathPreference.CogRelative
-			var PathPreference1 = CogPathPreference.SpaceRelative
-			var PathPreference2 = CogPathPreference.Absolute
-		}
 	}
 	RigidBody 
 	{
@@ -90,5 +72,26 @@ Cog
 		var Height = 0.5
 		var Direction = AxisDirection.X
 		var ScalingMode = CapsuleScalingMode.PreserveHeight
+	}
+	SpreadingShot 
+	{
+		var Player = CogPath
+		{
+			var Path = ":/Screen/User/PlayerHitbox"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var SpreadAng = 0.200000003
+		var FanSize = 3
+		var BulletVelocity = 2
 	}
 }

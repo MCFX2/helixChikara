@@ -1,0 +1,20 @@
+class HeartChangeFrame : ZilchComponent {
+  
+  var HasChanged : Boolean = false;
+  var Frames : Integer = 0;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (this.HasChanged) {
+      ++this.Frames;
+      if (this.Frames >= 15) {
+        this.Frames = 0;
+        this.HasChanged = false;
+        this.Owner.Sprite.SpriteSource = SpriteSource.Heart000;
+      }
+    }
+  }
+}

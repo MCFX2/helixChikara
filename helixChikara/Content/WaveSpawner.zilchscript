@@ -29,6 +29,7 @@ class WaveSpawner : ZilchComponent
   
   var ENEMYBASIC = 0;
   var ENEMYBURST = 1;
+  var ENEMYSPREAD = 2;
   
   /////////////////
   //no touch zone//
@@ -41,6 +42,8 @@ class WaveSpawner : ZilchComponent
       return Archetype.BasicEnemy;
     } else if (enemy == this.ENEMYBURST){
       return Archetype.BurstEnemy;
+    } else if (enemy == this.ENEMYSPREAD){
+      return Archetype.SpreadingEnemy;
     }
     
     else{
@@ -133,7 +136,7 @@ class WaveSpawner : ZilchComponent
     //Wave 1 here
    // this.AddEnemy(this.Wave1, Real2(8, 1), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, 2), 0, 2, 0);
-    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBURST, 1, 0);
+    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYSPREAD, 1, 0);
     //this.AddEnemy(this.Wave1, Real2(8, 0), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, -1), 0, 2, 0);
     //this.AddEnemy(this.Wave1, Real2(8, -2), 0, 2, 0);
