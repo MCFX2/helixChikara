@@ -39,34 +39,22 @@ class ManagePlayerHealth : ZilchComponent {
           event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything) {
         this.NearMissBox.NearMissTrigger.NearMissFailed();
         if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
-          event.OtherObject.Destroy();
           this.PlayerHealth -= 1;
-          this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
-          if (this.PlayerHealth > 0) {
-            this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
-            this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
-            foreach (var heart in this.HealthIcons) {
-              heart.Sprite.SpriteSource = SpriteSource.Heart001;
-              heart.HeartChangeFrame.HasChanged = true;
-            }
-          }
-        
-          this.Owner.SimpleSound.Play();
-        }
-        if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
-          event.OtherObject.Destroy();
+        } else if (event.OtherObject.Archetype == Archetype.MachoShrapnel){
           this.PlayerHealth -= 1;
-          this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
-          if (this.PlayerHealth > 0) {
-            this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
-            this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
-            foreach (var heart in this.HealthIcons) {
-              heart.Sprite.SpriteSource = SpriteSource.Heart001;
-              heart.HeartChangeFrame.HasChanged = true;
-            }
-          }
-          this.Owner.SimpleSound.Play();
         }
+        this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
+        this.NearMissBox.Sprite.Visible = false;
+        if (this.PlayerHealth > 0) {
+          this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
+          this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
+          foreach (var heart in this.HealthIcons) {
+            heart.Sprite.SpriteSource = SpriteSource.Heart001;
+            heart.HeartChangeFrame.HasChanged = true;
+          }
+        }
+      
+        this.Owner.SimpleSound.Play();
         
         //we need invincibility frames
       }

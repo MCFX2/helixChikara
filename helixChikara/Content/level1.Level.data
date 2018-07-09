@@ -787,7 +787,22 @@ Level
 						}
 						PlayerInvincibilityFrames 
 						{
-							var InvincibilityFrames = 20
+							var InvincibilityFrames = 40
+							var Ship = CogPath
+							{
+								var Path = "Ship"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 22
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
 						}
 						Hierarchy 
 						{
