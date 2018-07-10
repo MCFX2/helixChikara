@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{1.03729558, -10.9402008, 20.1800003}
+			var Translation = Real3{0.0626382753, -2.65561318, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 21.7546806
+			var Size = 35.8673897
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{1.03729558, -10.9402008, 0.180000544}
+			var LookTarget = Real3{0.0626382753, -2.65561318, 0.180000499}
 			var MoveSensitivity = 1
 		}
 	}
@@ -955,34 +955,6 @@ Level
 					}
 				}
 			}
-		}
-	}
-	Cog [ContextId:28]
-	{
-		var Name = "BuildVer"
-		Transform 
-		{
-			var Translation = Real3{-0.384639621, -13.9071751, -8.75494663e-08}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		SpriteText 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "[E] Build 73"
-			var Font = "57343753bb4eaaec:NotoSans-Regular"
-			var FontSize = 128
-			var PixelsPerUnit = 64
-			var TextAlign = TextAlign.Center
 		}
 	}
 }
