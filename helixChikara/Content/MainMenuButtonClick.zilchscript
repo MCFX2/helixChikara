@@ -24,7 +24,7 @@ class MainMenuButtonClick : ZilchComponent {
         if (button == this.Owner.MenuNavigator.Button1.Cog) {
           this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
         } else if (button == this.Owner.MenuNavigator.Button2.Cog) {
-          this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
           this.Owner.MenuNavigator.SetOptionsMenu();
         }

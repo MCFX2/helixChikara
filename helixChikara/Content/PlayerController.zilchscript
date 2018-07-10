@@ -26,6 +26,8 @@ class PlayerController : ZilchComponent
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
   
+  var Controller : Gamepad;
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -33,7 +35,10 @@ class PlayerController : ZilchComponent
     Zero.Connect(this.Space, Events.MouseUpdate , this.UpdateMousePos);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.AttemptMouseSnap);
     this.ControlType = this.GameSession.GlobalVariables.ControlType;
+    this.Controller = Zero.Gamepads.GetGamePad(0);
   }
+  
+  
   
   function Clamp(input : Real, min : Real, max : Real) : Real{ //Clamp input between max and min
   //this differs from Math.Clamp because it alters the input variable.
@@ -105,6 +110,17 @@ class PlayerController : ZilchComponent
     return velocity;
   }
   
+  function ParseGamePad() : Real2{
+    var velocity : Real2 = Real2(0);
+
+    if (this.Controller.IsActive) {
+        velocity.X += this.Controller.LeftStick.X;
+        velocity.Y += this.Controller.LeftStick.Y;
+    }
+    
+    return velocity;
+  }
+  
   function Decelerate(){
       if(Math.Abs(this.Owner.RigidBody.Velocity.X) < this.Deceleration.X){ //to avoid sperging we set to 0 and forget if speed is too small
         this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
@@ -129,12 +145,9 @@ class PlayerController : ZilchComponent
   
   function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
     var velVector : Real2 = Real2(0);
-    if(this.ControlType == ControlTypes.Keyboard){
-      velVector = this.ParseKeyboard();
-    }
-    else {
-      velVector = this.ParseMouse();
-    }
+    if(this.ControlType == ControlTypes.Keyboard) {/*velVector = this.ParseKeyboard();*/}
+    else if (this.ControlType == ControlTypes.Mouse) velVector = this.ParseMouse();
+    else velVector = this.ParseGamePad();
 
     
     this.Owner.RigidBody.Velocity += Real3(velVector, 0); //this seems out of order, but there's a reason for it:

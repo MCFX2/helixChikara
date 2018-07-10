@@ -1,6 +1,6 @@
 enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType}
 enum Ship {Anime, Reagan, Scout}
-enum ControlTypes {Keyboard, Mouse}
+enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
 
 class GlobalVariables : ZilchComponent {
