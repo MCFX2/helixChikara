@@ -71,9 +71,18 @@ class WaveSpawner : ZilchComponent
       //Console.Write("\n",enemy);
       ++this.EnemiesLeft;
       var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
-      var distanceX = this.EnemyOffscreenX - enemy[0]; //distance to travel
-      currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0); //set velocity based on distance / time
-      currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]); //enemies know their destination
+      //var distanceX = this.EnemyOffscreenX - enemy[0]; //distance to travel
+      
+      //time to use actions
+      
+      Actions.Property(currentEnemy.Actions,
+        @currentEnemy.Transform.Translation,
+        Real3(enemy[0], enemy[1], 0),
+        enemy[3],
+        Ease.QuadInOut);
+      
+      /*currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0); //set velocity based on distance / time
+      currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]); //enemies know their destination*/
       currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
       this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
     }
