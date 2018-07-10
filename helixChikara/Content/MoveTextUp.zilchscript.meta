@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "MoveTextUp"
+		var ResourceId = 0x5b6c48df5544ec65
+	}
+}
