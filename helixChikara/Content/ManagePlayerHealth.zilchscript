@@ -38,15 +38,7 @@ class ManagePlayerHealth : ZilchComponent {
       if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce ||
           event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything) {
         this.NearMissBox.NearMissTrigger.NearMissFailed();
-        if (event.OtherObject.Archetype == Archetype.EnemyBulletBasic) {
-          this.PlayerHealth -= 1;
-        } else if (event.OtherObject.Archetype == Archetype.MachoShrapnel){
-          this.PlayerHealth -= 1;
-        } else if (event.OtherObject.Archetype == Archetype.EnemyBulletSpread){
-          this.PlayerHealth -= 1;
-        } else if (event.OtherObject.Archetype == Archetype.EnemyBulletTracking){
-          this.PlayerHealth -= 1;
-        }  
+        this.PlayerHealth -= 1;
         Console.WriteLine(this.PlayerHealth);
         this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
         this.NearMissBox.Sprite.Visible = false;

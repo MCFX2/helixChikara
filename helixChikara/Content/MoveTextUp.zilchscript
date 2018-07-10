@@ -3,6 +3,8 @@ class MoveTextUp : ZilchComponent
   
   [Dependency] var Transform : Transform;
   
+  [Property] var Speed : Real = 0.05;
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -10,6 +12,6 @@ class MoveTextUp : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    this.Owner.Transform.Translation += Real3(0, 0.1, 0);
+    this.Owner.Transform.Translation += Real3(0, this.Speed, 0);
   }
 }

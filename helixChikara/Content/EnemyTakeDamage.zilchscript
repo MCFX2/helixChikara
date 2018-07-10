@@ -1,6 +1,7 @@
-class EnemyTakeDamage : ZilchComponent
-{
+class EnemyTakeDamage : ZilchComponent {
+  
   [Dependency] var Transform : Transform;
+  [Dependency] var RigidBody : RigidBody;
   
   [Property] var Health : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
@@ -8,9 +9,21 @@ class EnemyTakeDamage : ZilchComponent
   var Iterations : Integer = 0;
   var PointPopUp : Cog;
   
-  function Initialize(init : CogInitializer)
-  {
+  function Initialize(init : CogInitializer) {
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
+  }
+  
+  function SpawnParticles (coords : Real3) {
+    var angle : Real = 0;
+    var ex : Cog = null;
+    var magRand : Random = Random();
+    var mag : Real = 0;
+    for (var i : Integer = 0; i<24; ++i) {
+      mag = magRand.Range(1, 15);
+      angle+=(i*(Math.Pi/12));
+      ex = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
+      ex.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
+    }
   }
   
   function OnCollide(event : CollisionEvent){
@@ -43,7 +56,7 @@ class EnemyTakeDamage : ZilchComponent
         this.Owner.Destroy();
         this.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
         this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
-        this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
+        this.SpawnParticles(coords);
       }
     }
   }

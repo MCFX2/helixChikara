@@ -4,8 +4,8 @@ Cog
 	var Name = "EnemyExplosion"
 	Transform 
 	{
-		var Translation = Real3{2.030792, -1.27236116, 0.180000603}
-		var Scale = Real3{1, 1, 1}
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{0.100000001, 0.100000001, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -30,5 +30,15 @@ Cog
 	DestroyOnTimer 
 	{
 		var SecondsBeforeDeath = 1
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
 	}
 }
