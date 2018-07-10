@@ -14,7 +14,8 @@ class MainMenuButtonClick : ZilchComponent {
         if (button == this.Owner.MenuNavigator.Button1.Cog) {
           this.Space.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (button == this.Owner.MenuNavigator.Button2.Cog) {
-          // We'll figure it out
+          this.GameSession.GlobalVariables.IsTutorial = true;
+          this.Space.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
           this.Owner.MenuNavigator.SetMainMenu(false);
         }

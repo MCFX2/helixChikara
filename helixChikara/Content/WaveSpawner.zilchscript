@@ -117,7 +117,6 @@ class WaveSpawner : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     //add waves to wavetable
-    
     this.RegisterWave(this.Wave1);
     this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave3);
@@ -169,7 +168,7 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave2, Real2(7, 0), this.ENEMYBURST, 1.5, 0);
 
 
-//yo wave 3
+    //yo wave 3
     
     this.AddEnemy(this.Wave3, Real2(7, -6), this.ENEMYBURST, 1.5, 0);
     this.AddEnemy(this.Wave3, Real2(7, 6), this.ENEMYBURST, 1.5, 0);
@@ -177,7 +176,7 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave3, Real2(4.5, 6), this.ENEMYBURST, 1.5, 0);
     this.AddEnemy(this.Wave3, Real2(5.75, 0), this.ENEMYBURST, 1.5, 0);
         
-        //YO YO YO WAVE 4 IS A GO
+    //YO YO YO WAVE 4 IS A GO
         
     this.AddEnemy(this.Wave4, Real2(3.5, 0), this.ENEMYBURST, 1.5, 0);
     this.AddEnemy(this.Wave4, Real2(5.5, -4), this.ENEMYBURST, 1.5, 0);
@@ -252,9 +251,14 @@ class WaveSpawner : ZilchComponent
   }
   
   function CheckWaveCompletion(){
-    if(this.EnemiesLeft == 0){
-      this.CurrentlyInWave = false;
-      this.NextWave();
+    if (!this.GameSession.GlobalVariables.IsTutorial) {
+      if(this.EnemiesLeft == 0){
+        this.CurrentlyInWave = false;
+        this.NextWave();        
+      }
+    } else {
+      Console.WriteLine("top");
+      this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,0));
     }
   }
   

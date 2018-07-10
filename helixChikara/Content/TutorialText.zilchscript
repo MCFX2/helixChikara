@@ -1,0 +1,48 @@
+class TutorialText : ZilchComponent {
+  
+  [Property] var SecondsBeforeDeath : Real = 5.0;
+  [Property] var TextType : TutorialTextTypes;
+  
+  var Iterations : Integer = 0;
+  
+  function SetText() {
+    if (this.TextType == TutorialTextTypes.Move) {
+      var s : String = "";
+      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse) {
+        s = "Mouse";
+      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
+        s = "W, A, S, and D keys";
+      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
+        s = "Left Stick";
+      }
+      this.Owner.SpriteText.Text = "Use the `s` to move.";
+    } else if (this.TextType == TutorialTextTypes.Shoot) {
+      var s : String = "";
+      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse) {
+        s = "Left Mouse Button";
+      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
+        s = "Spacebar";
+      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
+        s = "idk lmao";
+      }
+      this.Owner.SpriteText.Text = "Press the `s` to shoot.";
+    } else if (this.TextType == TutorialTextTypes.Enemy) {
+      this.Owner.SpriteText.Text = "An enemy has appeared! Shoot it!\nDon't worry, it can't hurt you.";
+    }
+    this.GameSession.GlobalVariables.TutTextExists = true;
+  }
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.SetText();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    ++this.Iterations;
+    if (this.Iterations >= this.SecondsBeforeDeath*60) {
+      ++this.GameSession.GlobalVariables.TutorialPhase;
+      this.GameSession.GlobalVariables.TutTextExists = false;
+      this.Owner.Destroy();
+    }
+  }
+}

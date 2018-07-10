@@ -1,0 +1,21 @@
+class TutorialController : ZilchComponent {
+    
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Console.WriteLine("kek");
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (!this.GameSession.GlobalVariables.TutTextExists) {
+      if (this.GameSession.GlobalVariables.TutorialPhase==1) {
+        this.Space.CreateAtPosition(Archetype.MoveText, Real3(0, 5, 1));
+      }
+      if (this.GameSession.GlobalVariables.TutorialPhase==2) {
+        this.Space.CreateAtPosition(Archetype.ShootText, Real3(0, 5, 1));
+      }
+      if (this.GameSession.GlobalVariables.TutorialPhase==3) {
+        this.Space.CreateAtPosition(Archetype.EnemyText, Real3(0, 5, 1));
+      }
+    }
+  }
+}

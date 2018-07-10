@@ -68,8 +68,8 @@ class MenuNavigator : ZilchComponent {
   
   
   function SetModeMenu() {
-    this.Button1Content = "STORY";
-    this.Button2Content = "ENDLESS[NO]";
+    this.Button1Content = "PLAY NOW";
+    this.Button2Content = "TUTORIAL";
     this.Button3Content = "BACK";
     this.TitleContent = "Select Mode";
     this.SetText();

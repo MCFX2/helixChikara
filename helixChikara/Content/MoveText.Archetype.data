@@ -1,0 +1,34 @@
+[Version:1]
+Cog 
+{
+	var Name = "MoveText"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{5, 5, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	SpriteText 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{0, 1, 0.188235283, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var Text = "Movement Text"
+		var Font = "57343753bb4eaaec:NotoSans-Regular"
+		var FontSize = 32
+		var PixelsPerUnit = 128
+		var TextAlign = TextAlign.Center
+	}
+	TutorialText 
+	{
+		var SecondsBeforeDeath = 5
+		var TextType = TutorialTextTypes.Move
+	}
+}
