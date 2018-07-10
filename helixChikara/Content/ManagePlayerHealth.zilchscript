@@ -45,7 +45,7 @@ class ManagePlayerHealth : ZilchComponent {
         }
         this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
         this.NearMissBox.Sprite.Visible = false;
-        if (this.PlayerHealth > 0) {
+        if (this.HealthIcons.Count > 0) {
           this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
           this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
           foreach (var heart in this.HealthIcons) {

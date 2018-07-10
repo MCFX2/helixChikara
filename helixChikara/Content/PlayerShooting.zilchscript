@@ -54,7 +54,7 @@ class PlayerShooting : ZilchComponent
     }
     else if (this.CurrentShip == Ship.Scout){
       if(this.TimeSinceLastBullet >= this.RandalFireDelay){
-        var currentBullet = this.Space.CreateAtPosition(Archetype.AnimeBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        var currentBullet = this.Space.CreateAtPosition(Archetype.RandallBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
         //if(this.WaveController.WaveSpawner.CurrentEnemies == Array[Cog](){}) return;
         var nearestEnemyPos = Math.Distance(this.WaveController.WaveSpawner.CurrentEnemies[0].Transform.Translation, this.Owner.Transform.Translation);
         var nearestEnemy = this.WaveController.WaveSpawner.CurrentEnemies[0];

@@ -1,0 +1,22 @@
+class TrackingCannon : ZilchComponent
+{
+  [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
+  [Property] var FireDelay : Integer = 30; //num of LogicTicks between shots
+  var CurrentCooldown = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.CurrentCooldown == this.FireDelay){
+      var bullet = this.Space.CreateAtPosition(Archetype.EnemyBulletTracking, this.Owner.Transform.Translation);
+      //bullet.BasicShot.PlayerPosAtInit = this.Player.Cog.Transform.Translation;
+      
+      this.CurrentCooldown = 0;
+    }
+    ++this.CurrentCooldown;
+  }
+}

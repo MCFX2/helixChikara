@@ -1,0 +1,53 @@
+class TrackingShot : ZilchComponent
+{
+  [Property] var Aggressiveness : Real = 1.02; //how hard the bullet adjusts for the player
+  [Property] var BaseVel : Real = 2;
+  [Property] var Player : CogPath = CogPath(":/Screen/User/PlayerHitbox");
+  
+  var PlayerPosAtInit : Real3;
+  var InstantiatedPos : Real3;
+  
+  var CurrentX : Real;
+  var CurrentY : Real;
+  
+  function Accelerate(baseVelocity : Real3, directionVector : Real3 ) : Real3{
+    //directionVector = difference in position from us -> target
+    //baseVelocity = current velocity
+    
+    var vec = Math.Normalize(baseVelocity - directionVector);
+    
+    return vec;
+  }
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.CurrentX = this.Owner.Transform.Translation.X;
+    this.CurrentY = this.Owner.Transform.Translation.Y;
+    
+    this.PlayerPosAtInit = this.Player.Cog.Transform.Translation;
+    this.InstantiatedPos = this.Owner.Transform.Translation;
+    
+    var x = Math.Abs(this.PlayerPosAtInit.X - this.InstantiatedPos.X);
+    var y = Math.Abs(this.PlayerPosAtInit.Y - this.InstantiatedPos.Y);
+    
+    var xdirection = 0;
+    if(this.PlayerPosAtInit.X > this.InstantiatedPos.X) { xdirection = 1; }
+    else { xdirection = -1; }
+    var ydirection = 0;
+    if(this.PlayerPosAtInit.Y > this.InstantiatedPos.Y) { ydirection = 1; }
+    else { ydirection = -1; }
+    var dx : Real = y/x;
+    var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
+    this.Owner.RigidBody.Velocity = Real3(newVel * this.BaseVel, 0);
+    this.Owner.Orientation.LookAtPoint(this.PlayerPosAtInit);
+    
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Owner.RigidBody.Velocity += this.Aggressiveness * 
+      this.Accelerate(this.Owner.RigidBody.Velocity, this.Owner.Transform.Translation - this.Player.Transform.Translation);
+    
+  }
+}

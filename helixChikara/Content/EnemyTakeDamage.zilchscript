@@ -26,6 +26,10 @@ class EnemyTakeDamage : ZilchComponent
         this.Health -= 1;
         this.Owner.SimpleSound.Play();
       }
+      else if(event.OtherObject.Archetype == Archetype.RandallBullet){
+        this.Health -= 0.09; //not kidding
+        this.Owner.SimpleSound.Play();
+      }
       
       //next apply feedback effects here (blinking/whatever)
       

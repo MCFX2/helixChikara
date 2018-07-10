@@ -1,7 +1,7 @@
 class PlayerInvincibilityFrames : ZilchComponent {
   
   [Property] var InvincibilityFrames : Integer = 20;
-  [Property] var Ship : CogPath;
+  [Property] var Ship : CogPath = CogPath("Ship");
   
   var IsInvincible : Boolean = false;
   var Frames : Integer = 0;
@@ -11,6 +11,7 @@ class PlayerInvincibilityFrames : ZilchComponent {
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
+    if (this.Owner.ManagePlayerHealth.PlayerHealth < 1) return;
     if (this.IsInvincible) {
       ++this.Frames;
       if (this.Frames%4==0 && this.Frames%8!=0) {

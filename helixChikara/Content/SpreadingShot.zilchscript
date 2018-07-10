@@ -27,22 +27,12 @@ class SpreadingShot : ZilchComponent
     this.Owner.RigidBody.Velocity = Real3(newVel * this.BaseVel, 0);
     this.Owner.Orientation.LookAtPoint(this.PlayerPosAtInit);
     
-    /*
-    var velY = Math.Pow(this.BulletSpeedAnime, 2) * Math.Sin(Math.ToRadians(spreadAngle));
-    var velX = Math.Pow(this.BulletSpeedAnime, 2) * Math.Cos(Math.ToRadians(spreadAngle));
-    currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
-    */
     var baseAngle = Math.Normalize(this.Owner.RigidBody.Velocity);
     var magnitude = Math.Distance(this.Owner.RigidBody.Velocity.XY, Real2(0)); //equivalent to sqrt(X^2+Y^2)
     var absAngle = Math.ACos(this.Owner.RigidBody.Velocity.X / magnitude);
     
     for(var i = 0; i < this.FanSize; ++i){
       var s = this.Space.CreateAtPosition(Archetype.EnemyBulletSpreadIndirect, this.Owner.Transform.Translation);
-      
-      
-      //s.SpreadingShotChild.UpdateTargetAngle(Math.ToQuaternion(0, 0, ));
-      /*var velY = Math.Sin(absAngle) * ydirection * Math.Pow(this.BulletVelocity, 2) * Math.Sin(i * this.SpreadAng);
-      var velX = Math.Cos(absAngle) * xdirection * Math.Pow(this.BulletVelocity, 2) * Math.Cos(i * this.SpreadAng);*/
       
       var velX = Math.Cos(absAngle + (i * this.SpreadAng)) * magnitude;
       var velY = ydirection * Math.Sin(absAngle + (i * this.SpreadAng)) * magnitude;
@@ -54,8 +44,6 @@ class SpreadingShot : ZilchComponent
       var s2 = this.Space.CreateAtPosition(Archetype.EnemyBulletSpreadIndirect, this.Owner.Transform.Translation);
 
       s2.RigidBody.Velocity = Real3(velX2, velY2, 0);
-      //s.SpreadingShotChild.SetTargetAngle(this.Owner.Orientation.GetLookAtPointRotation(this.PlayerPosAtInit) + Math.ToQuaternion(Real3(0, 0, this.SpreadAng)));
-      
       
     }
   }

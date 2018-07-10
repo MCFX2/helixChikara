@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TrackingCannon"
+		var ResourceId = 0x5bb9a45a58823df4
+	}
+}
