@@ -1,17 +1,23 @@
 class HUDScoreController : ZilchComponent {
   
+  [Property] var ScoreType : ScoreTypes = ScoreTypes.CurrentScore;
+  
   var Score : Integer = 0;
-  var GlobalVariables : GlobalVariables;
+  var HighScore : Integer = 0;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    this.GlobalVariables = this.GameSession.GlobalVariables;
-    this.Score = this.GlobalVariables.Score;    
-    this.Owner.SpriteText.Text = "Score: `this.Score`";
+    this.Score = this.GameSession.GlobalVariables.Score;
+    this.HighScore = this.GameSession.GlobalVariables.HighScore;       
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
-    this.Score = this.GlobalVariables.Score;
-    this.Owner.SpriteText.Text = "Score: `this.Score`";
+    if (this.ScoreType == ScoreTypes.CurrentScore) {
+      this.Score = this.GameSession.GlobalVariables.Score;
+      this.Owner.SpriteText.Text = "Score: `this.Score`";
+    } else {
+      this.HighScore = this.GameSession.GlobalVariables.HighScore;
+      this.Owner.SpriteText.Text = "High Score: `this.HighScore`";    }
   }
+  
 }

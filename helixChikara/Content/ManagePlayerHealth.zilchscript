@@ -27,7 +27,7 @@ class ManagePlayerHealth : ZilchComponent {
   function OnLogicUpdate(event : UpdateEvent) {
     if (this.PlayerHealth <= 0) {
       // Ideally we want a destruction animation to play before the Game Over Screen
-      
+      this.GameSession.GlobalVariables.CheckHighScore();
       this.Space.LoadLevel(this.GameOver);
     }
   }
@@ -42,7 +42,12 @@ class ManagePlayerHealth : ZilchComponent {
           this.PlayerHealth -= 1;
         } else if (event.OtherObject.Archetype == Archetype.MachoShrapnel){
           this.PlayerHealth -= 1;
-        }
+        } else if (event.OtherObject.Archetype == Archetype.EnemyBulletSpread){
+          this.PlayerHealth -= 1;
+        } else if (event.OtherObject.Archetype == Archetype.EnemyBulletTracking){
+          this.PlayerHealth -= 1;
+        }  
+        Console.WriteLine(this.PlayerHealth);
         this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
         this.NearMissBox.Sprite.Visible = false;
         if (this.HealthIcons.Count > 0) {

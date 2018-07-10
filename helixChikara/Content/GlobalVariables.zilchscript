@@ -1,14 +1,20 @@
-enum MenuStates{MainMenu, SelectMode, SelectMission, Options, ControlType}
+enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse}
+enum ScoreTypes {CurrentScore, HighScore}
 
 class GlobalVariables : ZilchComponent {
   
   var Score : Integer = 0;
+  var HighScore : Integer = 0;
   var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentWave : Integer = -1;
   
   function AddToScore(score : Integer) {
     this.Score += score;
+  }
+  
+  function CheckHighScore() {
+    if (this.Score > this.HighScore) this.HighScore = this.Score;
   }
 }
