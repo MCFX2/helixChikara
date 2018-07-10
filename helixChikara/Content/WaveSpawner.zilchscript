@@ -31,6 +31,7 @@ class WaveSpawner : ZilchComponent
   var ENEMYBURST = 1;
   var ENEMYSPREAD = 2;
   var ENEMYTRACKER = 3;
+  var ENEMYNOSHOOT = 4;
   
   /////////////////
   //no touch zone//
@@ -47,6 +48,8 @@ class WaveSpawner : ZilchComponent
       return Archetype.SpreadingEnemy;
     } else if (enemy == this.ENEMYTRACKER){
       return Archetype.TrackerEnemy;
+    } else if (enemy == this.ENEMYNOSHOOT){
+      return Archetype.NoShootEnemy;
     }
     
     else{
@@ -74,12 +77,14 @@ class WaveSpawner : ZilchComponent
       //var distanceX = this.EnemyOffscreenX - enemy[0]; //distance to travel
       
       //time to use actions
-      
-      Actions.Property(currentEnemy.Actions,
+      currentEnemy.EnemySpawnComponenent.ActionData = enemy;
+      //currentEnemy.EnemySpawnComponenent.SpawnDelay = enemy[4];
+      /*Actions.Property(currentEnemy.Actions,
         @currentEnemy.Transform.Translation,
         Real3(enemy[0], enemy[1], 0),
         enemy[3],
         Ease.QuadInOut);
+      */
       
       /*currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0); //set velocity based on distance / time
       currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]); //enemies know their destination*/
@@ -149,11 +154,11 @@ class WaveSpawner : ZilchComponent
     //Wave 1 here
    // this.AddEnemy(this.Wave1, Real2(8, 1), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, 2), 0, 2, 0);
-    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYSPREAD, 1, 0);
+    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYSPREAD, 1, 60);
     //this.AddEnemy(this.Wave1, Real2(8, 0), 0, 2, 0);
    // this.AddEnemy(this.Wave1, Real2(8, -1), 0, 2, 0);
     //this.AddEnemy(this.Wave1, Real2(8, -2), 0, 2, 0);
-    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYTRACKER, 1, 0);
+    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYTRACKER, 1, 60);
     //this.AddEnemy(this.Wave1, Real2(5, 0), 0, 2, 0);
     
     

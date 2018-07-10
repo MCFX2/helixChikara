@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.0626382753, -2.65561318, 20.1800003}
+			var Translation = Real3{1.39187372, 0.273170859, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 35.8673897
+			var Size = 19.6844425
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.0626382753, -2.65561318, 0.180000499}
+			var LookTarget = Real3{1.39187372, 0.273170859, 0.180000618}
 			var MoveSensitivity = 1
 		}
 	}
@@ -727,7 +727,7 @@ Level
 						}
 						PlayerController 
 						{
-							var ControlType = ControlTypes.Mouse
+							var ControlType = ControlTypes.GamePad
 							var UpKey = Keys.W
 							var LeftKey = Keys.A
 							var DownKey = Keys.S
@@ -739,6 +739,7 @@ Level
 							var RSpeed = 1
 							var VSpeed = 1
 							var Speed = 40
+							var ControllerSpeed = 1
 							var Deceleration = Real2{0.800000012, 0.800000012}
 							var MaxRVel = 10
 							var MaxLVel = 10
@@ -857,7 +858,7 @@ Level
 									var LocalAabbHalfExtents = Real3{1, 1, 1}
 									var GroupSortValue = 0
 									var Material = "582c575af53d18c9:AlphaSprite"
-									var VertexColor = Real4{1, 1, 1, 0.300000012}
+									var VertexColor = Real4{1, 1, 1, 0.400000006}
 									var GeometryMode = SpriteGeometryMode.ZPlane
 									var SpriteSource = "5bcc811dd3f87f15:ShipScout"
 									var FlipX = false

@@ -20,6 +20,8 @@ class PlayerController : ZilchComponent
   [Property] var VSpeed = 1.0; //vertical acceleration multiplier
   [Property] var Speed = 1.0; //base acceleration
   
+  [Property] var ControllerSpeed = 1.1;
+  
   [Property] var Deceleration : Real2 = Real2(0.2); //deceleration X,Y. Lower = slippery
   
   [Property] var MaxRVel = 10.0; //max right velocity
@@ -114,8 +116,11 @@ class PlayerController : ZilchComponent
     var velocity : Real2 = Real2(0);
 
     if (this.Controller.IsActive) {
-        velocity.X += this.Controller.LeftStick.X;
-        velocity.Y += this.Controller.LeftStick.Y;
+      
+        Console.Write(this.Controller.LeftStick, "\n");
+        
+        velocity.X += this.Controller.LeftStick.X * this.LSpeed * this.Speed * this.ControllerSpeed;
+        velocity.Y += this.Controller.LeftStick.Y * this.VSpeed * this.Speed * this.ControllerSpeed;
     }
     
     return velocity;

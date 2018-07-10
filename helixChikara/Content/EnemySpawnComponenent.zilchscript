@@ -5,9 +5,11 @@ class EnemySpawnComponenent : ZilchComponent
   [Property] var TargetPosition : Real2 = Real2(0);
   [Property] var DecelDistance : Real = 1.0;
   [Property] var WaveController : Cog;
-  
+  var CurrentFrame = 0;
   var DecelRate : Real;
   var ErrorBound = 0.05;
+  [Property] var ActionData : Array[Real];
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -17,11 +19,16 @@ class EnemySpawnComponenent : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-
-    if(Math.Distance(this.Owner.Transform.Translation.XY, this.TargetPosition) < (this.ErrorBound)){
-      this.Owner.RigidBody.Velocity = Real3(0);
+    
+    if(this.CurrentFrame == this.ActionData[4]){
+        Actions.Property(this.Owner.Actions,
+        @this.Owner.Transform.Translation,
+        Real3(this.ActionData[0], this.ActionData[1], 0),
+        this.ActionData[3],
+        Ease.QuadInOut);
     }
-
+    
+    ++this.CurrentFrame;
   }
   function OnDestroy(event : Event){
     this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
