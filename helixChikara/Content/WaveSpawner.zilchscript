@@ -318,8 +318,8 @@ class WaveSpawner : ZilchComponent
         this.NextWave();        
       }
     } else {
-      Console.WriteLine("top");
-      this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,0));
+      var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,0));
+      tutController.TutorialController.WaveSpawn = this.Owner;
     }
   }
   

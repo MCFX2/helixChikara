@@ -5,6 +5,7 @@ class EnemyTakeDamage : ZilchComponent {
   
   [Property] var Health : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
+  [Property] var IsTutorial : Boolean = false;
   
   var Iterations : Integer = 0;
   var PointPopUp : Cog;
@@ -54,9 +55,13 @@ class EnemyTakeDamage : ZilchComponent {
         //On-death effects here
         var coords : Real3 = this.Owner.Transform.Translation;
         this.Owner.Destroy();
-        this.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
-        this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
         this.SpawnParticles(coords);
+        if (this.IsTutorial) {
+          ++this.GameSession.GlobalVariables.TutorialPhase;
+        } else {
+          this.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
+          this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
+        }
       }
     }
   }

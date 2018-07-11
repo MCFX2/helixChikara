@@ -19,7 +19,6 @@ class EnemySpawnComponenent : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    
     if(this.CurrentFrame == this.ActionData[4]){
         Actions.Property(this.Owner.Actions,
         @this.Owner.Transform.Translation,
@@ -31,6 +30,8 @@ class EnemySpawnComponenent : ZilchComponent
     ++this.CurrentFrame;
   }
   function OnDestroy(event : Event){
-    this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
+    if (!this.GameSession.GlobalVariables.IsTutorial) {
+      this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
+    }
   }
 }
