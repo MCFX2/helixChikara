@@ -4,7 +4,7 @@ Cog
 	var Name = "BasicEnemy"
 	Transform 
 	{
-		var Translation = Real3{14.4929495, 4.96204233, -4.02331352e-07}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{2, 2, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b170b82cfcabb68:Enemy2"
+		var SpriteSource = "5b4f86d872a47b5b:enemy2_0"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -59,6 +59,7 @@ Cog
 	{
 		var Health = 5
 		var ScoreIncrease = 1000
+		var IsTutorial = false
 	}
 	RigidBody 
 	{
@@ -74,6 +75,9 @@ Cog
 	{
 		var TargetPosition = Real2{0, 0}
 		var DecelDistance = 1
+		var ActionData = Array[Real]
+		{
+		}
 	}
 	SoundEmitter 
 	{
