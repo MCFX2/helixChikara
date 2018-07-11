@@ -6,13 +6,11 @@ class MenuNavigator : ZilchComponent {
   [Property] var Button1 : CogPath;
   [Property] var Button2 : CogPath;
   [Property] var Button3 : CogPath;
-  [Property] var OptionsButton : CogPath;
 
   // Button Text
   [Property] var Button1Text : CogPath;
   [Property] var Button2Text : CogPath;
   [Property] var Button3Text : CogPath;
-  [Property] var OptionsButtonText : CogPath;
   [Property] var MenuBG : CogPath;
   //[Property] var Title : CogPath;
   
@@ -27,8 +25,6 @@ class MenuNavigator : ZilchComponent {
   var TitleContent : String;
   
   var CurrentState : MenuStates;
-  
-  var OptionsButtonCog : Cog;
 
   function SetText() {
     this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
@@ -43,15 +39,11 @@ class MenuNavigator : ZilchComponent {
     return button;
   }
   
-  function SetMainMenu(firstInstance : Boolean) {
+  function SetMainMenu() {
     this.Button1Content = "PLAY";
-    this.Button2Content = "INSTRUCTIONS";
+    this.Button2Content = "OPTIONS";
     this.Button3Content = "QUIT";
     //this.TitleContent = "Helix Force";
-    if (!firstInstance) {
-      this.OptionsButtonCog = this.CreateButton(this.OptionsButtonCog, Archetype.OptionsButton, Real3(0, -2, 1));
-      this.MoveButton(this.Button2.Cog, Real3(0, -1, 1));
-    }
     this.SetText();
     this.CurrentState = MenuStates.MainMenu;
   }
@@ -62,8 +54,6 @@ class MenuNavigator : ZilchComponent {
   
   function MoveButton(button : Cog, coords : Real3) {
     button.Transform.Translation = coords;
-    // this.Button2.Transform.Translation = Real3(0, -1, 1);
-    // this.Button2.Transform.Translation = Real3(0, -1.75, 1);
   }
   
   
@@ -96,7 +86,6 @@ class MenuNavigator : ZilchComponent {
 
   
   function Initialize(init : CogInitializer) {
-    this.SetMainMenu(true);
-    this.OptionsButtonCog = this.OptionsButton.Cog;
+    this.SetMainMenu();
   }
 }

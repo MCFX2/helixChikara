@@ -17,7 +17,7 @@ class MainMenuButtonClick : ZilchComponent {
           this.GameSession.GlobalVariables.IsTutorial = true;
           this.Space.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
-          this.Owner.MenuNavigator.SetMainMenu(false);
+          this.Owner.MenuNavigator.SetMainMenu();
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.ControlType) {
@@ -37,23 +37,17 @@ class MainMenuButtonClick : ZilchComponent {
         } else if (button == this.Owner.MenuNavigator.Button2.Cog) {
           // We'll figure it out
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
-          this.Owner.MenuNavigator.SetMainMenu(false);
+          this.Owner.MenuNavigator.SetMainMenu();
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.MainMenu) {
         
         if (button == this.Owner.MenuNavigator.Button1.Cog) {
           this.Owner.MenuNavigator.SetModeMenu();
-          this.Owner.MenuNavigator.PurgeButton(this.Owner.MenuNavigator.OptionsButtonCog);
-          this.Owner.MenuNavigator.MoveButton(this.Owner.MenuNavigator.Button2.Cog, Real3(0, -1.75, 1));
-        } else if (button == this.Owner.MenuNavigator.Button2.Cog) {
-          this.Space.LoadLevel(this.Owner.MenuNavigator.InstructionsLevel);
         } else if (button == this.Owner.MenuNavigator.Button3.Cog) {
           this.GameSession.RequestQuit();
-        } else if (button == this.Owner.MenuNavigator.OptionsButtonCog) {
+        } else if (button == this.Owner.MenuNavigator.Button2.Cog) {
           this.Owner.MenuNavigator.SetOptionsMenu();
-          this.Owner.MenuNavigator.PurgeButton(this.Owner.MenuNavigator.OptionsButtonCog);
-          this.Owner.MenuNavigator.MoveButton(this.Owner.MenuNavigator.Button2.Cog, Real3(0, -1.75, 1));
         }
         
       }
