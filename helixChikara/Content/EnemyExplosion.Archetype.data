@@ -41,4 +41,7 @@ Cog
 		var RotationLocked = false
 		var Mode2D = Mode2DStates.InheritFromSpace
 	}
+	ScaleOverTime 
+	{
+	}
 }

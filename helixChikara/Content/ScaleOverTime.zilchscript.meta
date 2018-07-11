@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ScaleOverTime"
+		var ResourceId = 0x5b4f820b31e9c9a4
+	}
+}

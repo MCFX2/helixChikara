@@ -1,0 +1,13 @@
+class ScaleOverTime : ZilchComponent {
+  
+  [Property] 
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Actions.Property(this.Owner.Actions, @this.Owner.Transform.Scale, 
+                      Real3(0), 1, Ease.Linear);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+  }
+}
