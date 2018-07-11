@@ -27,6 +27,17 @@ class WaveSpawner : ZilchComponent
   var Wave9 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave10 : Array[Array[Real]] = Array[Array[Real]]();
   
+  var Wave11 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave12 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave13 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave14 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave15 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave16 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave17 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave18 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave19 : Array[Array[Real]] = Array[Array[Real]]();
+  var Wave20 : Array[Array[Real]] = Array[Array[Real]]();
+  
   var ENEMYBASIC = 0;
   var ENEMYBURST = 1;
   var ENEMYSPREAD = 2;
@@ -37,7 +48,6 @@ class WaveSpawner : ZilchComponent
   //no touch zone//
   /////////////////
   
-  //TODO: use Actions instead of hard-coded spawning rules
   
   function GetEnemyArchetypeByInt(enemy : Integer) : Archetype{
     if(enemy == this.ENEMYBASIC){
@@ -74,20 +84,7 @@ class WaveSpawner : ZilchComponent
       //Console.Write("\n",enemy);
       ++this.EnemiesLeft;
       var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
-      //var distanceX = this.EnemyOffscreenX - enemy[0]; //distance to travel
-      
-      //time to use actions
       currentEnemy.EnemySpawnComponenent.ActionData = enemy;
-      //currentEnemy.EnemySpawnComponenent.SpawnDelay = enemy[4];
-      /*Actions.Property(currentEnemy.Actions,
-        @currentEnemy.Transform.Translation,
-        Real3(enemy[0], enemy[1], 0),
-        enemy[3],
-        Ease.QuadInOut);
-      */
-      
-      /*currentEnemy.RigidBody.Velocity = Real3(-1 * distanceX / enemy[3], 0, 0); //set velocity based on distance / time
-      currentEnemy.EnemySpawnComponenent.TargetPosition = Real2(enemy[0], enemy[1]); //enemies know their destination*/
       currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
       this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
     }
@@ -128,16 +125,19 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave9);
     this.RegisterWave(this.Wave10);
     
-    
+    this.RegisterWave(this.Wave11);
     /*
-    Current list of enemy IDs for reference:
-    
-    ENEMYBASIC = basic shooter enemy
-    ENEMYBURST = burst-firing enemy
-    
+    this.RegisterWave(this.Wave12);
+    this.RegisterWave(this.Wave13);
+    this.RegisterWave(this.Wave14);
+    this.RegisterWave(this.Wave15);
+    this.RegisterWave(this.Wave16);
+    this.RegisterWave(this.Wave17);
+    this.RegisterWave(this.Wave18);
+    this.RegisterWave(this.Wave19);
+    this.RegisterWave(this.Wave20);
     */
     
-    //DEPRECATED, use new constants
     
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
     //Detailed description below
@@ -146,19 +146,14 @@ class WaveSpawner : ZilchComponent
     Real2(X,Y) - target final position for enemy being spawned. Absolute coords.
     EnemyTypeID - see above
     MoveTime - Time in SECONDS to reach target position
-    SpawnDelay Time in FRAMES before enemy actually gets spawned (not working right now)
+    SpawnDelay Time in FRAMES before enemy actually gets spawned
     
     
     */
     //Wave 1 here
-   // this.AddEnemy(this.Wave1, Real2(8, 1), 0, 2, 0);
-   // this.AddEnemy(this.Wave1, Real2(8, 2), 0, 2, 0);
+
     this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYSPREAD, 1, 60);
-    //this.AddEnemy(this.Wave1, Real2(8, 0), 0, 2, 0);
-   // this.AddEnemy(this.Wave1, Real2(8, -1), 0, 2, 0);
-    //this.AddEnemy(this.Wave1, Real2(8, -2), 0, 2, 0);
     this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYTRACKER, 1, 60);
-    //this.AddEnemy(this.Wave1, Real2(5, 0), 0, 2, 0);
     
     
     //Wave 2 here
@@ -243,10 +238,29 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave10, Real2(13, 6), this.ENEMYBASIC, 1.5, 0);
     this.AddEnemy(this.Wave10, Real2(13, 0), this.ENEMYBASIC, 1.5, 0);
 
+
+    //challenge wave
+    this.AddEnemy(this.Wave11, Real2(0, 0), this.ENEMYSPREAD, 5, 0);
+    this.AddEnemy(this.Wave11, Real2(5,-8), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(5,8), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(5,-7), this.ENEMYBASIC, 2, 20);
+    this.AddEnemy(this.Wave11, Real2(5,7), this.ENEMYBASIC, 2, 20);
+    this.AddEnemy(this.Wave11, Real2(5,-6), this.ENEMYBASIC, 2, 40);
+    this.AddEnemy(this.Wave11, Real2(5,6), this.ENEMYBASIC, 2, 40);
+    this.AddEnemy(this.Wave11, Real2(5,-5), this.ENEMYBASIC, 2, 60);
+    this.AddEnemy(this.Wave11, Real2(5,5), this.ENEMYBASIC, 2, 60);
+    this.AddEnemy(this.Wave11, Real2(5,-4), this.ENEMYBASIC, 2, 80);
+    this.AddEnemy(this.Wave11, Real2(5,4), this.ENEMYBASIC, 2, 80);
+    this.AddEnemy(this.Wave11, Real2(5,-3), this.ENEMYBASIC, 2, 100);
+    this.AddEnemy(this.Wave11, Real2(5,3), this.ENEMYBASIC, 2, 100);
+    this.AddEnemy(this.Wave11, Real2(5,-2), this.ENEMYBASIC, 2, 120);
+    this.AddEnemy(this.Wave11, Real2(5,2), this.ENEMYBASIC, 2, 120);
+    this.AddEnemy(this.Wave11, Real2(5,-1), this.ENEMYBASIC, 2, 140);
+    this.AddEnemy(this.Wave11, Real2(5,1), this.ENEMYBASIC, 2, 140);
+    this.AddEnemy(this.Wave11, Real2(5,0), this.ENEMYBASIC, 2, 160);
+    this.AddEnemy(this.Wave11, Real2(8,5), this.ENEMYTRACKER, 4, 10); 
+    this.AddEnemy(this.Wave11, Real2(8,-5), this.ENEMYTRACKER, 4, 10); 
     
-    
-    
-    //Zero.Connect(this.Space, Events.LogicUpdate, this.CheckWaveCompletion);
     this.CheckWaveCompletion();
   }
   

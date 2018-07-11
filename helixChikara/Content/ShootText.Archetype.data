@@ -30,5 +30,20 @@ Cog
 	{
 		var SecondsBeforeDeath = 5
 		var TextType = TutorialTextTypes.Shoot
+		var WaveSpawn = CogPath
+		{
+			var Path = ":/Screen/WaveSpawner"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
 	}
 }
