@@ -114,29 +114,29 @@ class WaveSpawner : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     //add waves to wavetable
-    this.RegisterWave(this.Wave1);
-    this.RegisterWave(this.Wave2);
-    this.RegisterWave(this.Wave3);
-    this.RegisterWave(this.Wave4);
-    this.RegisterWave(this.Wave5);
-    this.RegisterWave(this.Wave6);
-    this.RegisterWave(this.Wave7);
-    this.RegisterWave(this.Wave8);
-    this.RegisterWave(this.Wave9);
-    this.RegisterWave(this.Wave10);
+   // this.RegisterWave(this.Wave1);
+   // this.RegisterWave(this.Wave2);
+   // this.RegisterWave(this.Wave3);
+   // this.RegisterWave(this.Wave4);
+   // this.RegisterWave(this.Wave5);
+   // this.RegisterWave(this.Wave6);
+  //  this.RegisterWave(this.Wave7);
+  //  this.RegisterWave(this.Wave8);
+  //  this.RegisterWave(this.Wave9);
+  //  this.RegisterWave(this.Wave10);
     
-    this.RegisterWave(this.Wave11);
-    /*
-    this.RegisterWave(this.Wave12);
-    this.RegisterWave(this.Wave13);
-    this.RegisterWave(this.Wave14);
+   // this.RegisterWave(this.Wave11);
+    
+    //this.RegisterWave(this.Wave12);
+   // this.RegisterWave(this.Wave13);
+ //   this.RegisterWave(this.Wave14);
     this.RegisterWave(this.Wave15);
     this.RegisterWave(this.Wave16);
     this.RegisterWave(this.Wave17);
     this.RegisterWave(this.Wave18);
     this.RegisterWave(this.Wave19);
     this.RegisterWave(this.Wave20);
-    */
+
     
     
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
@@ -240,27 +240,74 @@ class WaveSpawner : ZilchComponent
 
 
     //challenge wave
-    this.AddEnemy(this.Wave11, Real2(0, 0), this.ENEMYSPREAD, 5, 0);
-    this.AddEnemy(this.Wave11, Real2(5,-8), this.ENEMYBASIC, 2, 0);
-    this.AddEnemy(this.Wave11, Real2(5,8), this.ENEMYBASIC, 2, 0);
-    this.AddEnemy(this.Wave11, Real2(5,-7), this.ENEMYBASIC, 2, 20);
-    this.AddEnemy(this.Wave11, Real2(5,7), this.ENEMYBASIC, 2, 20);
-    this.AddEnemy(this.Wave11, Real2(5,-6), this.ENEMYBASIC, 2, 40);
-    this.AddEnemy(this.Wave11, Real2(5,6), this.ENEMYBASIC, 2, 40);
-    this.AddEnemy(this.Wave11, Real2(5,-5), this.ENEMYBASIC, 2, 60);
-    this.AddEnemy(this.Wave11, Real2(5,5), this.ENEMYBASIC, 2, 60);
-    this.AddEnemy(this.Wave11, Real2(5,-4), this.ENEMYBASIC, 2, 80);
-    this.AddEnemy(this.Wave11, Real2(5,4), this.ENEMYBASIC, 2, 80);
-    this.AddEnemy(this.Wave11, Real2(5,-3), this.ENEMYBASIC, 2, 100);
-    this.AddEnemy(this.Wave11, Real2(5,3), this.ENEMYBASIC, 2, 100);
-    this.AddEnemy(this.Wave11, Real2(5,-2), this.ENEMYBASIC, 2, 120);
-    this.AddEnemy(this.Wave11, Real2(5,2), this.ENEMYBASIC, 2, 120);
-    this.AddEnemy(this.Wave11, Real2(5,-1), this.ENEMYBASIC, 2, 140);
-    this.AddEnemy(this.Wave11, Real2(5,1), this.ENEMYBASIC, 2, 140);
-    this.AddEnemy(this.Wave11, Real2(5,0), this.ENEMYBASIC, 2, 160);
-    this.AddEnemy(this.Wave11, Real2(8,5), this.ENEMYTRACKER, 4, 10); 
-    this.AddEnemy(this.Wave11, Real2(8,-5), this.ENEMYTRACKER, 4, 10); 
     
+    this.AddEnemy(this.Wave11, Real2(9, 4), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(9, -4), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(10.5, 8), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(10.5, -8), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave11, Real2(12, 0), this.ENEMYSPREAD, 2, 60);
+  //  this.AddEnemy(this.Wave11, Real2(0, 0), this.ENEMYSPREAD, 5, 0);
+ //   this.AddEnemy(this.Wave11, Real2(5,-8), this.ENEMYBASIC, 2, 0);
+  //  this.AddEnemy(this.Wave11, Real2(5,8), this.ENEMYBASIC, 2, 0);
+  //  this.AddEnemy(this.Wave11, Real2(5,-7), this.ENEMYBASIC, 2, 20);
+ //   this.AddEnemy(this.Wave11, Real2(5,7), this.ENEMYBASIC, 2, 20);
+  //  this.AddEnemy(this.Wave11, Real2(5,-6), this.ENEMYBASIC, 2, 40);
+   // this.AddEnemy(this.Wave11, Real2(5,6), this.ENEMYBASIC, 2, 40);
+  //  this.AddEnemy(this.Wave11, Real2(5,-5), this.ENEMYBASIC, 2, 60);
+  //  this.AddEnemy(this.Wave11, Real2(5,5), this.ENEMYBASIC, 2, 60);
+ //   this.AddEnemy(this.Wave11, Real2(5,-4), this.ENEMYBASIC, 2, 80);
+ //   this.AddEnemy(this.Wave11, Real2(5,4), this.ENEMYBASIC, 2, 80);
+  //  this.AddEnemy(this.Wave11, Real2(5,-3), this.ENEMYBASIC, 2, 100);
+ //   this.AddEnemy(this.Wave11, Real2(5,3), this.ENEMYBASIC, 2, 100);
+ //   this.AddEnemy(this.Wave11, Real2(5,-2), this.ENEMYBASIC, 2, 120);
+ //   this.AddEnemy(this.Wave11, Real2(5,2), this.ENEMYBASIC, 2, 120);
+  //  this.AddEnemy(this.Wave11, Real2(5,-1), this.ENEMYBASIC, 2, 140);
+ //   this.AddEnemy(this.Wave11, Real2(5,1), this.ENEMYBASIC, 2, 140);
+ //   this.AddEnemy(this.Wave11, Real2(5,0), this.ENEMYBASIC, 2, 160);
+ //   this.AddEnemy(this.Wave11, Real2(8,5), this.ENEMYTRACKER, 4, 10); 
+ //   this.AddEnemy(this.Wave11, Real2(8,-5), this.ENEMYTRACKER, 4, 10); 
+    
+    
+    //wave 12
+    
+    this.AddEnemy(this.Wave12, Real2(7, 0), this.ENEMYSPREAD, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(9, -3), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(9, 3), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(11, -6), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(11, 6), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(11, -3), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave12, Real2(11, 3), this.ENEMYBURST, 2, 0);
+    
+    //Wave13
+    
+    this.AddEnemy(this.Wave13, Real2(9.80, 0), this.ENEMYSPREAD, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(12.5, -2.5), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(7, -2.5), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(12.5, 2.5), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(7, 2.5), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(9.80, -5), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave13, Real2(9.80, 5), this.ENEMYBASIC, 2, 0);
+    
+    //wave 14
+    
+    this.AddEnemy(this.Wave14, Real2(12, -6), this.ENEMYSPREAD, 2, 0);
+    this.AddEnemy(this.Wave14, Real2(12, 6), this.ENEMYSPREAD, 2, 0);
+    this.AddEnemy(this.Wave14, Real2(10, 0), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave14, Real2(8, 3), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave14, Real2(8, -3), this.ENEMYBURST, 2, 0);
+    
+    //wave 15
+  
+    this.AddEnemy(this.Wave15, Real2(12, 0), this.ENEMYSPREAD, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(10, 0), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(8, 0), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(9, 3), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(9, -3), this.ENEMYBURST, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(10, 0), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(12, 6), this.ENEMYBASIC, 2, 0);
+    this.AddEnemy(this.Wave15, Real2(12, -6), this.ENEMYBASIC, 2, 0);
+    
+   
     this.CheckWaveCompletion();
   }
   
