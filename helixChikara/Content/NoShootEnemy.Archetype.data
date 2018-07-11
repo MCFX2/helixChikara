@@ -4,7 +4,7 @@ Cog
 	var Name = "BasicEnemy"
 	Transform 
 	{
-		var Translation = Real3{10.0141907, 1.96306717, -0.0950012207}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{1.5, 1.5, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -40,6 +40,7 @@ Cog
 	{
 		var Health = 5
 		var ScoreIncrease = 1000
+		var IsTutorial = true
 	}
 	RigidBody 
 	{
@@ -55,7 +56,9 @@ Cog
 	{
 		var TargetPosition = Real2{0, 0}
 		var DecelDistance = 1
-		var SpawnDelay = 0
+		var ActionData = Array[Real]
+		{
+		}
 	}
 	SoundEmitter 
 	{

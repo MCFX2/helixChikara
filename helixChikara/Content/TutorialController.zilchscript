@@ -1,8 +1,9 @@
 class TutorialController : ZilchComponent {
-    
+  
+  var WaveSpawn : Cog;
+  
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    Console.WriteLine("kek");
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
@@ -15,6 +16,18 @@ class TutorialController : ZilchComponent {
       }
       if (this.GameSession.GlobalVariables.TutorialPhase==3) {
         this.Space.CreateAtPosition(Archetype.EnemyText, Real3(0, 5, 1));
+        this.Space.CreateAtPosition(Archetype.NoShootEnemy, Real3(4, 0, 1));
+      }
+      if (this.GameSession.GlobalVariables.TutorialPhase==4) {
+        this.Space.CreateAtPosition(Archetype.NoShootEnemy, Real3(7, 0, 0));
+      }
+      if (this.GameSession.GlobalVariables.TutorialPhase==5) {
+        this.Space.CreateAtPosition(Archetype.FinalText, Real3(0, 5, 1));
+      }
+      if (this.GameSession.GlobalVariables.TutorialPhase==6) {
+        this.GameSession.GlobalVariables.IsTutorial = false;
+        this.WaveSpawn.WaveSpawner.CheckWaveCompletion();
+        this.Owner.Destroy;
       }
     }
   }

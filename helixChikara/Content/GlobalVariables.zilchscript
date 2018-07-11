@@ -2,7 +2,7 @@ enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
-enum TutorialTextTypes {Move, Shoot, Enemy}
+enum TutorialTextTypes {Move, Shoot, Enemy, ChangeWeapon, Final}
 
 class GlobalVariables : ZilchComponent {
   

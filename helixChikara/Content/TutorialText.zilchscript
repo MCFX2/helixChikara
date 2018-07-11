@@ -4,8 +4,6 @@ class TutorialText : ZilchComponent {
   [Property] var SecondsBeforeDeath : Real = 5.0;
   [Property] var TextType : TutorialTextTypes;
   
-  [Property] var WaveSpawn : CogPath;
-  
   var Iterations : Integer = 0;
   
   function SetText() {
@@ -31,6 +29,17 @@ class TutorialText : ZilchComponent {
       this.Owner.SpriteText.Text = "Press the `s` to shoot.";
     } else if (this.TextType == TutorialTextTypes.Enemy) {
       this.Owner.SpriteText.Text = "An enemy has appeared! Shoot it!\nDon't worry, this one can't hurt you.";
+    } else if (this.TextType == TutorialTextTypes.ChangeWeapon) {
+      var s : String = "";
+      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse || 
+          this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
+        s = "1, 2, and 3 keys";
+      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
+        s = "idk lmao";
+      }
+      this.Owner.SpriteText.Text = "Use the `s` to changes characters and weapons!\nFind out for yourself what they do.";
+    } else if (this.TextType == TutorialTextTypes.Final) {
+      this.Owner.SpriteText.Text = "All right, you're all set! Get ready to begin!";
     }
     this.GameSession.GlobalVariables.TutTextExists = true;
   }
@@ -45,12 +54,6 @@ class TutorialText : ZilchComponent {
     if (this.Iterations >= this.SecondsBeforeDeath*60) {
       ++this.GameSession.GlobalVariables.TutorialPhase;
       this.GameSession.GlobalVariables.TutTextExists = false;
-      
-      if(this.TextType==TutorialTextTypes.Enemy){ //replace with proper trigger later
-        this.GameSession.GlobalVariables.IsTutorial = false;
-        this.WaveSpawn.WaveSpawner.CheckWaveCompletion();
-      }
-      
       this.Owner.Destroy();
     }
   }
