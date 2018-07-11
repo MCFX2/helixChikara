@@ -4,7 +4,7 @@ Cog
 	var Name = "BasicEnemy"
 	Transform 
 	{
-		var Translation = Real3{6.99004793, 4.65833044, -0.0950012207}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{2, 2, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5274db4c2e7c11f9:Circle"
+		var SpriteSource = "5b4f6aa5f3f7d242:Enemy3"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -40,6 +40,7 @@ Cog
 	{
 		var Health = 5
 		var ScoreIncrease = 1000
+		var IsTutorial = false
 	}
 	RigidBody 
 	{
@@ -55,6 +56,9 @@ Cog
 	{
 		var TargetPosition = Real2{0, 0}
 		var DecelDistance = 1
+		var ActionData = Array[Real]
+		{
+		}
 	}
 	SoundEmitter 
 	{
@@ -73,5 +77,21 @@ Cog
 	}
 	SpreadingCannon 
 	{
+		var Player = CogPath
+		{
+			var Path = ":/Screen/User/PlayerHitbox"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var FireDelay = 30
 	}
 }

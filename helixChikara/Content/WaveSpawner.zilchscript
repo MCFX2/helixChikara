@@ -162,8 +162,8 @@ class WaveSpawner : ZilchComponent
     
     //Wave 1 here
 
-    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYSPREAD, 1, 60);
-    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYTRACKER, 1, 60);
+    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBURST, 1, 60);
+    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYBURST, 1, 60);
     
     
     //Wave 2 here
