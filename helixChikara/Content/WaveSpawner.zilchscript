@@ -16,6 +16,7 @@ class WaveSpawner : ZilchComponent
   
   var CurrentEnemies : Array[Cog] = Array[Cog]();
   
+  var WaveTutorial : Array[Array[Real]] = Array[Array[Real]]();
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave3 : Array[Array[Real]] = Array[Array[Real]]();
@@ -37,6 +38,8 @@ class WaveSpawner : ZilchComponent
   var Wave18 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave19 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave20 : Array[Array[Real]] = Array[Array[Real]]();
+  
+
   
   var ENEMYBASIC = 0;
   var ENEMYBURST = 1;
@@ -95,7 +98,7 @@ class WaveSpawner : ZilchComponent
   function NextWave(){
     
     ++this.CurrentWave;
-    this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave+1;
+    this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave;
     this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
     if(this.CurrentWave == this.TotalWaves){
       //"you win" or some shit
@@ -114,28 +117,29 @@ class WaveSpawner : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     //add waves to wavetable
-   // this.RegisterWave(this.Wave1);
-   // this.RegisterWave(this.Wave2);
-   // this.RegisterWave(this.Wave3);
-   // this.RegisterWave(this.Wave4);
-   // this.RegisterWave(this.Wave5);
-   // this.RegisterWave(this.Wave6);
-  //  this.RegisterWave(this.Wave7);
-  //  this.RegisterWave(this.Wave8);
-  //  this.RegisterWave(this.Wave9);
-  //  this.RegisterWave(this.Wave10);
+    this.RegisterWave(this.WaveTutorial);
+    this.RegisterWave(this.Wave1);
+    this.RegisterWave(this.Wave2);
+    this.RegisterWave(this.Wave3);
+    this.RegisterWave(this.Wave4);
+    this.RegisterWave(this.Wave5);
+    this.RegisterWave(this.Wave6);
+    this.RegisterWave(this.Wave7);
+    this.RegisterWave(this.Wave8);
+    this.RegisterWave(this.Wave9);
+    this.RegisterWave(this.Wave10);
     
-   // this.RegisterWave(this.Wave11);
+    this.RegisterWave(this.Wave11);
     
-    //this.RegisterWave(this.Wave12);
-   // this.RegisterWave(this.Wave13);
- //   this.RegisterWave(this.Wave14);
+    this.RegisterWave(this.Wave12);
+    this.RegisterWave(this.Wave13);
+    this.RegisterWave(this.Wave14);
     this.RegisterWave(this.Wave15);
-    this.RegisterWave(this.Wave16);
-    this.RegisterWave(this.Wave17);
-    this.RegisterWave(this.Wave18);
-    this.RegisterWave(this.Wave19);
-    this.RegisterWave(this.Wave20);
+    //this.RegisterWave(this.Wave16);
+    //this.RegisterWave(this.Wave17);
+    //this.RegisterWave(this.Wave18);
+    //this.RegisterWave(this.Wave19);
+    //this.RegisterWave(this.Wave20);
 
     
     
@@ -239,7 +243,7 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave10, Real2(13, 0), this.ENEMYBASIC, 1.5, 0);
 
 
-    //challenge wave
+    // the eleventh wave
     
     this.AddEnemy(this.Wave11, Real2(9, 4), this.ENEMYBASIC, 2, 0);
     this.AddEnemy(this.Wave11, Real2(9, -4), this.ENEMYBASIC, 2, 0);
@@ -307,12 +311,17 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave15, Real2(12, 6), this.ENEMYBASIC, 2, 0);
     this.AddEnemy(this.Wave15, Real2(12, -6), this.ENEMYBASIC, 2, 0);
     
+    // Tutorial "Wave"
+    
+    this.AddEnemy(this.WaveTutorial, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0);
+    
    
     this.CheckWaveCompletion();
   }
   
   function CheckWaveCompletion(){
     if (!this.GameSession.GlobalVariables.IsTutorial) {
+      if(this.CurrentWave == -1) ++this.CurrentWave;
       if(this.EnemiesLeft == 0){
         this.CurrentlyInWave = false;
         this.NextWave();        
