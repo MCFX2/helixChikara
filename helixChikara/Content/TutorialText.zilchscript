@@ -7,7 +7,7 @@ class TutorialText : ZilchComponent {
   var Iterations : Integer = 0;
   
   function SetText() {
-    if (this.TextType == TutorialTextTypes.Move) {
+    /*if (this.TextType == TutorialTextTypes.Move) {
       var s : String = "";
       if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse) {
         s = "mouse";
@@ -41,7 +41,7 @@ class TutorialText : ZilchComponent {
     } else if (this.TextType == TutorialTextTypes.Final) {
       this.Owner.SpriteText.Text = "All right, you're all set! Get ready to begin!";
     }
-    this.GameSession.GlobalVariables.TutTextExists = true;
+    this.GameSession.GlobalVariables.TutTextExists = true;*/
   }
   
   function Initialize(init : CogInitializer) {
@@ -50,11 +50,11 @@ class TutorialText : ZilchComponent {
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
-    ++this.Iterations;
+    /*++this.Iterations;
     if (this.Iterations >= this.SecondsBeforeDeath*60) {
       ++this.GameSession.GlobalVariables.TutorialPhase;
       this.GameSession.GlobalVariables.TutTextExists = false;
       this.Owner.Destroy();
-    }
+    }*/
   }
 }

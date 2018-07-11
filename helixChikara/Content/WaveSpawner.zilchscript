@@ -376,16 +376,16 @@ class WaveSpawner : ZilchComponent
   }
   
   function CheckWaveCompletion(){
-    if (!this.GameSession.GlobalVariables.IsTutorial) {
+    //if (!this.GameSession.GlobalVariables.IsTutorial) {
       if(this.CurrentWave == -1) ++this.CurrentWave;
       if(this.EnemiesLeft == 0){
         this.CurrentlyInWave = false;
         this.NextWave();        
       }
-    } else {
+    /*} else {
       var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,0));
       tutController.TutorialController.WaveSpawn = this.Owner;
-    }
+    //}*/
   }
   
   function EnemyDestroyed(which : Cog){

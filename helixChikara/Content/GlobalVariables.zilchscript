@@ -10,12 +10,17 @@ class GlobalVariables : ZilchComponent {
   var HighScore : Integer = 0;
   var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentWave : Integer = -1;
+  
+  /*
   var IsTutorial : Boolean = false;
   var TutTextExists : Boolean = false;
   var TutorialPhase : Integer = 1;
+  */
+  
   
   function AddToScore(score : Integer) {
     this.Score += score;
+    this.CheckHighScore();
   }
   
   function CheckHighScore() {

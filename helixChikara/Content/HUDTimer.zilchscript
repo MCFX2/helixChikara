@@ -10,13 +10,13 @@ class HUDTimer : ZilchComponent
   }
 
   function OnLogicUpdate(event : UpdateEvent){
-    if (!this.GameSession.GlobalVariables.IsTutorial) {
+    //if (!this.GameSession.GlobalVariables.IsTutorial) {
       this.Iterations += 1;
       if (this.Iterations == 60) {
         this.Time += 1;
         this.Iterations = 0;
         this.Owner.SpriteText.Text = "Time: `this.Time`";
       }
-    }
+    //}
   }
 }
