@@ -4,7 +4,7 @@ Cog
 	var Name = "EnemyBulletBasic"
 	Transform 
 	{
-		var Translation = Real3{-5.58666706, 0.733604372, -0.0950012207}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b36dcb8f3e838a4:EnemyBullet"
+		var SpriteSource = "5b4f66a0a9d7657d:bullet_enemy"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
