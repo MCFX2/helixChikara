@@ -39,9 +39,12 @@ class ManagePlayerHealth : ZilchComponent {
           event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything) {
         this.NearMissBox.NearMissTrigger.NearMissFailed();
         this.PlayerHealth -= 1;
-        Console.WriteLine(this.PlayerHealth);
         this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
         this.NearMissBox.Sprite.Visible = false;
+        
+        this.Owner.ScreenShake.Activate();
+        
+        
         if (this.HealthIcons.Count > 0) {
           this.HealthIcons[this.HealthIcons.LastIndex].Destroy();
           this.HealthIcons.RemoveAt(this.HealthIcons.LastIndex);
