@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 32.4541893
+			var Size = 14.5826149
 		}
 		EditorCameraController 
 		{
@@ -727,7 +727,6 @@ Level
 						}
 						PlayerController 
 						{
-							var ControlType = ControlTypes.Mouse
 							var UpKey = Keys.W
 							var LeftKey = Keys.A
 							var DownKey = Keys.S
@@ -832,6 +831,24 @@ Level
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
 								var Cog = 23
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+						}
+						ScreenShake 
+						{
+							var Cam = CogPath
+							{
+								var Path = "../../GameCamera"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 9
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute

@@ -1,0 +1,21 @@
+class ScreenShake : ZilchComponent
+{
+  [Property] var Cam : CogPath;
+  [Property] var Scale : Real = 1;
+  
+  var Rand : Random = Random();
+  var InitPos : Real3 = Real3(0);
+  
+  function Initialize(){
+    //this.InitPos = Cam.WorldTranslation;
+    this.InitPos = this.Cam.Cog.Transform.Translation;
+  }
+  
+  
+  function Activate(){
+    //this.Cam.WorldTranslation
+    var startCoords = this.Rand.UnitReal2();
+    this.Cam.Cog.Transform.Translation = this.InitPos + Real3(startCoords, 0);
+    //Actions.Property(
+  }
+}
