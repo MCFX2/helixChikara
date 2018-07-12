@@ -2,7 +2,7 @@ class TutorialController : ZilchComponent {
   
   var WaveSpawn : Cog;
   
-  var CurrentPhase : TutorialPhase = TutorialPhase.Move;
+  var CurrentPhase : TutorialPhase = TutorialPhase.Init;
   var CurrentFrame = 0;
   
   function Initialize(init : CogInitializer) {
@@ -10,8 +10,12 @@ class TutorialController : ZilchComponent {
   }
 
   function AdvanceText(){
-    this.Space.CreateAtPosition(Archetype.TutorialText, Real3(0, 5, 1)).TutorialText.TutorialController = this;
-      if(this.CurrentPhase == TutorialPhase.Move){
+    if(this.CurrentPhase == TutorialPhase.Init){
+      this.Space.CreateAtPosition(Archetype.TutorialObject, Real3(0, 5, 1)).TutorialText.TutorialController = this;
+      this.CurrentPhase = TutorialPhase.Move;
+    }
+
+    if(this.CurrentPhase == TutorialPhase.Move){
       this.CurrentPhase = TutorialPhase.Shoot;
     }
     else if(this.CurrentPhase == TutorialPhase.Shoot){
@@ -30,10 +34,11 @@ class TutorialController : ZilchComponent {
       this.GameSession.GlobalVariables.DoTutorial = false;
       this.WaveSpawn.WaveSpawner.EnemiesLeft = 0;
       this.WaveSpawn.WaveSpawner.CheckWaveCompletion();
+      this.Owner.Destroy();
     }
   }
   function OnLogicUpdate(event : UpdateEvent) {
     ++this.CurrentFrame;
-    if(this.CurrentFrame % 300 == 0) this.AdvanceText(); //workaround until proper moving forward is in
+    if(this.CurrentFrame % 300 == 1) this.AdvanceText(); //workaround until proper moving forward is in
   }
 }
