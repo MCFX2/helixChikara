@@ -8,7 +8,7 @@ class TutorialText : ZilchComponent {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
   
-  function ControlBasedText(moveMethod : ControlTypes, keyboard : String, mouse : String, gamepad : String) : String {
+  function ControlBasedText(moveMethod : ControlTypes, keyboard : SpriteSource, mouse : SpriteSource, gamepad : SpriteSource) : SpriteSource {
     if(moveMethod == ControlTypes.Keyboard){
       return keyboard;
     }
@@ -18,39 +18,39 @@ class TutorialText : ZilchComponent {
     if(moveMethod == ControlTypes.GamePad){
       return gamepad;
     }
-    return "Unrecognized control type: `moveMethod`";
+    return null;
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
     var inferredMoveMethod = this.GameSession.GlobalVariables.ControlType;
     if(this.TutorialController.CurrentPhase == TutorialPhase.Move)
-      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-        "Use WASD to move",
-        "The ship follows your mouse",
-        "Use the left joystick to move");
+      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+        null,//"Use WASD to move",
+        null,//"The ship follows your mouse",
+        null);//"Use the left joystick to move");
     
     if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot)
-      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-        "Press SPACE to shoot",
-        "Click to shoot",
-        "A,B and triggers shoot");
+      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+        null,//"Press SPACE to shoot",
+        null,//"Click to shoot",
+        null);//"A,B and triggers shoot");
     
     if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy)
-      this.Owner.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
+      //this.Owner.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
     
     if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
-      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+        null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+        null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+        null);//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
     if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack)
-      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-        "This one's not so harmless. Try using Scout's weapon (3)",
-        "This one's not so harmless. Try using Scout's weapon (3)",
-        "This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
+      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+        null,//"This one's not so harmless. Try using Scout's weapon (3)",
+        null,//"This one's not so harmless. Try using Scout's weapon (3)",
+        null);//"This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
   
     if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
-      this.Owner.SpriteText.Text = "You got it now, Good luck";
+      //this.Owner.SpriteText.Text = "You got it now, Good luck";
       ++this.CurrentFrame;
       if(this.CurrentFrame == this.SecondsBeforeDeath) this.Owner.Destroy();
       
