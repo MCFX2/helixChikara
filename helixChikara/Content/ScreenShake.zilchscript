@@ -1,21 +1,34 @@
 class ScreenShake : ZilchComponent
 {
   [Property] var Cam : CogPath;
-  [Property] var Scale : Real = 1;
+  [Property] var Scale : Real = 0.01;
+  [Property] var Time : Real = 0.05;
+  [Property] var Repetitions : Integer = 10;
   
   var Rand : Random = Random();
   var InitPos : Real3 = Real3(0);
   
-  function Initialize(){
-    //this.InitPos = Cam.WorldTranslation;
+  function Initialize(init : CogInitializer){
     this.InitPos = this.Cam.Cog.Transform.Translation;
   }
   
   
   function Activate(){
-    //this.Cam.WorldTranslation
-    var startCoords = this.Rand.UnitReal2();
-    this.Cam.Cog.Transform.Translation = this.InitPos + Real3(startCoords, 0);
-    //Actions.Property(
+    var ag = Actions.Sequence(this.Cam.Cog.Actions);
+    var cbase : Real2 = Real2(0);
+    for(var i = 0; i < this.Repetitions; ++i){
+      cbase = this.Rand.UnitReal2();
+      Actions.Property(ag,
+      @this.Cam.Cog.Transform.Translation,
+      this.InitPos + Real3(cbase * this.Scale, this.InitPos.Z),
+      this.Time,
+      Ease.Linear);
+    }
+    
+    Actions.Property(ag,
+      @this.Cam.Cog.Transform.Translation,
+      this.InitPos,
+      this.Time,
+      Ease.ElasticInOut);
   }
 }

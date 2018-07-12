@@ -42,6 +42,7 @@ class ManagePlayerHealth : ZilchComponent {
         this.Owner.PlayerInvincibilityFrames.IsInvincible = true;
         this.NearMissBox.Sprite.Visible = false;
         
+        this.Owner.ScreenShake.Activate();
         
         
         if (this.HealthIcons.Count > 0) {
