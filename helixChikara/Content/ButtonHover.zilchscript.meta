@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ButtonHover"
+		var ResourceId = 0x5b4ecdf0041bac5d
+	}
+}
