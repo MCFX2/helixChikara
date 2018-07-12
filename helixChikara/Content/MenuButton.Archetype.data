@@ -1,11 +1,11 @@
 [Version:1]
 Cog 
 {
-	var Name = "OptionsButton"
+	var Name = "MenuButton"
 	Transform 
 	{
-		var Translation = Real3{0, -2.75, 0.99999994}
-		var Scale = Real3{6.99999952, 1.49999988, 0.99999994}
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{3.5, 1.49999988, 0.99999994}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+		var SpriteSource = "5b4ebd8120835691:Button_reg"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -31,15 +31,27 @@ Cog
 	{
 		var Active = true
 	}
+	ButtonHover 
+	{
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
 	Hierarchy 
 	{
 		Cog [Id:0x5b3c54d298194842]
 		{
-			var Name = "OptionsText"
+			var Name = "MenuText"
 			Transform 
 			{
 				var Translation = Real3{0, 0, 9.99999975e-05}
-				var Scale = Real3{0.142857149, 0.666666687, 1}
+				var Scale = Real3{0.300000012, 0.666666687, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
 			SpriteText 

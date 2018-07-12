@@ -1,91 +1,79 @@
 class MenuNavigator : ZilchComponent {
 
   [Dependency] var Transform : Transform;
-
-  // Buttons (in the event they need to move)
-  [Property] var Button1 : CogPath;
-  [Property] var Button2 : CogPath;
-  [Property] var Button3 : CogPath;
-
-  // Button Text
-  [Property] var Button1Text : CogPath;
-  [Property] var Button2Text : CogPath;
-  [Property] var Button3Text : CogPath;
+  
   [Property] var MenuBG : CogPath;
   //[Property] var Title : CogPath;
+  
+  var Buttons : Array[Cog] = Array[Cog]();
   
   // Accessible Levels
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
   [Property] var InstructionsLevel : Level;  
-      
-  var Button1Content : String;
-  var Button2Content : String;
-  var Button3Content : String;
+
   var TitleContent : String;
   
   var CurrentState : MenuStates;
-
-  function SetText() {
-    this.Button1Text.Cog.SpriteText.Text = this.Button1Content;
-    this.Button2Text.Cog.SpriteText.Text = this.Button2Content;
-    this.Button3Text.Cog.SpriteText.Text = this.Button3Content;
-    //this.Title.Cog.SpriteText.Text = this.TitleContent;
-    
+  
+  function CreateButton(coords : Real3){
+    var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.MenuButton, coords);
+    this.Buttons.Add(buttonBase);
+    var buttonText : Cog = buttonBase.Children.Current;
+    this.Buttons.Add(buttonText);
   }
   
-  function CreateButton(button : Cog, archetype : Archetype, coords : Real3) : Cog {
-    button = this.Space.CreateAtPosition(archetype, coords);
-    return button;
+  function LoadButtons() {
+    this.CreateButton(Real3(0, 1, 0));
+    this.CreateButton(Real3(0, -1, 0));
+    this.CreateButton(Real3(0, -3, 0));
   }
   
-  function SetMainMenu() {
-    this.Button1Content = "PLAY";
-    this.Button2Content = "OPTIONS";
-    this.Button3Content = "QUIT";
+  function SetMainMenu(firstLoad : Boolean) {
     //this.TitleContent = "Helix Force";
-    this.SetText();
+    if (firstLoad) {
+      this.LoadButtons();
+    }
+    this.Buttons[1].SpriteText.Text = "PLAY";
+    this.Buttons[3].SpriteText.Text = "OPTIONS";
+    this.Buttons[5].SpriteText.Text = "QUIT";
     this.CurrentState = MenuStates.MainMenu;
   }
-  
-  function PurgeButton(button : Cog) {
-    button.Destroy();
-  }
-  
-  function MoveButton(button : Cog, coords : Real3) {
-    button.Transform.Translation = coords;
-  }
-  
-  
+
   function SetModeMenu() {
-    this.Button1Content = "PLAY NOW";
-    this.Button2Content = "TUTORIAL";
-    this.Button3Content = "BACK";
+    this.Buttons[1].SpriteText.Text = "PLAY NOW";
+    this.Buttons[3].SpriteText.Text = "TUTORIAL";
+    this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Select Mode";
-    this.SetText();
     this.CurrentState = MenuStates.SelectMode;
   }
   
   function SetOptionsMenu() {
-    this.Button1Content = "CONTROL TYPE";
-    this.Button2Content = "VOLUME[NO]";
-    this.Button3Content = "BACK";
+    this.Buttons[1].SpriteText.Text = "CONTROL TYPE";
+    this.Buttons[3].SpriteText.Text = "VOLUME[NO]";
+    this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Options";
-    this.SetText();
     this.CurrentState = MenuStates.Options;    
   }
   
   function SetControlTypeMenu() {
-    this.Button1Content = "MOUSE";
-    this.Button2Content = "CONTROLLER";
-    this.Button3Content = "BACK";
+    this.Buttons[1].SpriteText.Text = "MOUSE";
+    this.Buttons[3].SpriteText.Text = "CONTROLLER";
+    this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Choose Control Style";
-    this.SetText();
     this.CurrentState = MenuStates.ControlType;    
   }
-
+  
+  //function PurgeButton(button : Cog) {
+  //  button.Destroy();
+  //}
+  
+  //function MoveButton(button : Cog, coords : Real3) {
+  //  button.Transform.Translation = coords;
+  //}
+  
   
   function Initialize(init : CogInitializer) {
-    this.SetMainMenu();
+    this.SetMainMenu(true);
   }
 }
