@@ -3,8 +3,8 @@ DataContent
 {
 	DataBuilder 
 	{
-		var Name = "ShootText"
-		var ResourceId = 0x5b4c32d67328f3aa
+		var Name = "TutorialText"
+		var ResourceId = 0x5b6d8863359f1427
 		var LoaderType = "Cog"
 		var Version = 0
 		var ShowInEditor = true
@@ -14,7 +14,6 @@ DataContent
 		var Tags = Array
 		{
 			"Archetype"
-			"Cog"
 		}
 	}
 }

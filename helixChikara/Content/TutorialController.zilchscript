@@ -2,11 +2,40 @@ class TutorialController : ZilchComponent {
   
   var WaveSpawn : Cog;
   
+  var CurrentPhase : TutorialPhase = TutorialPhase.Move;
+  var CurrentFrame = 0;
+  
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
 
+  function AdvanceText(){
+    this.Space.CreateAtPosition(Archetype.TutorialText, Real3(0, 5, 1)).TutorialText.TutorialController = this;
+      if(this.CurrentPhase == TutorialPhase.Move){
+      this.CurrentPhase = TutorialPhase.Shoot;
+    }
+    else if(this.CurrentPhase == TutorialPhase.Shoot){
+      this.CurrentPhase = TutorialPhase.Enemy;
+    }
+    else if(this.CurrentPhase == TutorialPhase.Enemy){
+      this.CurrentPhase = TutorialPhase.ChangeWeaponBomb;
+    }
+    else if(this.CurrentPhase == TutorialPhase.ChangeWeaponBomb){
+      this.CurrentPhase = TutorialPhase.ChangeWeaponTrack;
+    }
+    else if(this.CurrentPhase == TutorialPhase.ChangeWeaponTrack){
+      this.CurrentPhase = TutorialPhase.Final;
+    }
+    else if(this.CurrentPhase == TutorialPhase.Final){
+      this.GameSession.GlobalVariables.DoTutorial = false;
+      this.WaveSpawn.WaveSpawner.EnemiesLeft = 0;
+      this.WaveSpawn.WaveSpawner.CheckWaveCompletion();
+    }
+  }
   function OnLogicUpdate(event : UpdateEvent) {
+    ++this.CurrentFrame;
+    if(this.CurrentFrame % 300 == 0) this.AdvanceText(); //workaround until proper moving forward is in
+    
     //if (!this.GameSession.GlobalVariables.TutTextExists) {
       
       

@@ -1,0 +1,15 @@
+class Rainbowify : ZilchComponent
+{
+  var RND : Random = Random();
+  function Initialize(init : CogInitializer)
+  {
+    var r : Integer = this.RND.Range(127, 222) as Integer;
+    var g : Integer = this.RND.Range(127, 222) as Integer;
+    var b :Integer = this.RND.Range(127, 222) as Integer;
+    
+    Console.Write(r,g,b,"\n");
+    this.Owner.Sprite.VertexColor = Real4(r,g,b,1);
+    
+    
+  }
+}

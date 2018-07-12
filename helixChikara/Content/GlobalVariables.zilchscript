@@ -2,7 +2,7 @@ enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
-enum TutorialTextTypes {Move, Shoot, Enemy, ChangeWeapon, Final}
+enum TutorialPhase {Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrack, Final}
 
 class GlobalVariables : ZilchComponent {
   
@@ -11,11 +11,7 @@ class GlobalVariables : ZilchComponent {
   var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentWave : Integer = -1;
   
-  /*
-  var IsTutorial : Boolean = false;
-  var TutTextExists : Boolean = false;
-  var TutorialPhase : Integer = 1;
-  */
+  var DoTutorial : Boolean = false;
   
   
   function AddToScore(score : Integer) {

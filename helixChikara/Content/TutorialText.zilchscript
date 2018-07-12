@@ -1,60 +1,59 @@
 class TutorialText : ZilchComponent {
-  //this is too much to try and fix but i just wanna say i hate how you did this
-  //<3
-  [Property] var SecondsBeforeDeath : Real = 5.0;
-  [Property] var TextType : TutorialTextTypes;
-  
-  var Iterations : Integer = 0;
-  
-  function SetText() {
-    /*if (this.TextType == TutorialTextTypes.Move) {
-      var s : String = "";
-      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse) {
-        s = "mouse";
-      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
-        s = "W, A, S, and D keys";
-      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
-        s = "Left Stick";
-      }
-      this.Owner.SpriteText.Text = "Use the `s` to move.";
-    } else if (this.TextType == TutorialTextTypes.Shoot) {
-      var s : String = "";
-      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse) {
-        s = "left mouse button";
-      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
-        s = "spacebar";
-      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
-        s = "idk lmao";
-      }
-      this.Owner.SpriteText.Text = "Press the `s` to shoot.";
-    } else if (this.TextType == TutorialTextTypes.Enemy) {
-      this.Owner.SpriteText.Text = "An enemy has appeared! Shoot it!\nDon't worry, this one can't hurt you.";
-    } else if (this.TextType == TutorialTextTypes.ChangeWeapon) {
-      var s : String = "";
-      if (this.GameSession.GlobalVariables.ControlType == ControlTypes.Mouse || 
-          this.GameSession.GlobalVariables.ControlType == ControlTypes.Keyboard) {
-        s = "1, 2, and 3 keys";
-      } else if (this.GameSession.GlobalVariables.ControlType == ControlTypes.GamePad) {
-        s = "idk lmao";
-      }
-      this.Owner.SpriteText.Text = "Use the `s` to changes characters and weapons!\nFind out for yourself what they do.";
-    } else if (this.TextType == TutorialTextTypes.Final) {
-      this.Owner.SpriteText.Text = "All right, you're all set! Get ready to begin!";
-    }
-    this.GameSession.GlobalVariables.TutTextExists = true;*/
-  }
+  [Property] var SecondsBeforeDeath : Integer = 300;
+  [Property] var TutorialController : TutorialController;
+
+  var CurrentFrame = 0;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    this.SetText();
+  }
+  
+  function ControlBasedText(moveMethod : ControlTypes, keyboard : String, mouse : String, gamepad : String) : String {
+    if(moveMethod == ControlTypes.Keyboard){
+      return keyboard;
+    }
+    if(moveMethod == ControlTypes.Mouse){
+      return mouse;
+    }
+    if(moveMethod == ControlTypes.GamePad){
+      return gamepad;
+    }
+    return "Unrecognized control type: `moveMethod`";
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
-    /*++this.Iterations;
-    if (this.Iterations >= this.SecondsBeforeDeath*60) {
-      ++this.GameSession.GlobalVariables.TutorialPhase;
-      this.GameSession.GlobalVariables.TutTextExists = false;
-      this.Owner.Destroy();
-    }*/
+    var inferredMoveMethod = this.GameSession.GlobalVariables.ControlType;
+    if(this.TutorialController.CurrentPhase == TutorialPhase.Move)
+      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+        "Use WASD to move",
+        "The ship follows your mouse",
+        "Use the left joystick to move");
+    
+    if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot)
+      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+        "Press SPACE to shoot",
+        "Click to shoot",
+        "A,B and triggers shoot");
+    
+    if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy)
+      this.Owner.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
+    
+    if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
+      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+        "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+    if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack)
+      this.Owner.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+        "This one's not so harmless. Try using Scout's weapon (3)",
+        "This one's not so harmless. Try using Scout's weapon (3)",
+        "This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
+  
+    if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
+      this.Owner.SpriteText.Text = "You got it now, Good luck";
+      ++this.CurrentFrame;
+      if(this.CurrentFrame == this.SecondsBeforeDeath) this.Owner.Destroy();
+      
+    }
   }
 }
