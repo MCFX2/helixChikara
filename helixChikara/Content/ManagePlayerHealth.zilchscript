@@ -1,7 +1,7 @@
 class ManagePlayerHealth : ZilchComponent {
   
   [Property] var PlayerHealth : Real = 100;
-  [Property] var InitialPosition : Real3 = Real3(-12, 9.5, 0);
+  [Property] var InitialPosition : Real3 = Real3(-12, 9.25, 0);
   [Property] var GameOver : Level;
   [Property] var NearMissBox : CogPath;
   

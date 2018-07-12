@@ -3,12 +3,12 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Enemy1004"
-		var ResourceId = 0x5b16f06ea482e3f9
+		var Name = "Enemy4_feedback"
+		var ResourceId = 0x5b4edbc03d77d7c9
 		var FrameSizeX = 64
 		var FrameSizeY = 64
-		var FrameCount = 1
-		var FrameDelay = 0.0833333358
+		var FrameCount = 4
+		var FrameDelay = 0.142857149
 		var OriginX = 32
 		var OriginY = 32
 		var PixelsPerUnit = 64

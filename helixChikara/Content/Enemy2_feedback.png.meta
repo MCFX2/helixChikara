@@ -3,16 +3,16 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Enemy1005"
-		var ResourceId = 0x5b16f06ea483aa41
-		var FrameSizeX = 64
-		var FrameSizeY = 64
+		var Name = "Enemy2_feedback"
+		var ResourceId = 0x5b4edb9a33186665
+		var FrameSizeX = 256
+		var FrameSizeY = 256
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 32
-		var OriginY = 32
+		var OriginX = 128
+		var OriginY = 128
 		var PixelsPerUnit = 64
-		var Sampling = SpriteSampling.Nearest
+		var Sampling = SpriteSampling.Linear
 		var Looping = true
 		var Slices = Real4{0, 0, 0, 0}
 		var Fill = SpriteFill.Stretch

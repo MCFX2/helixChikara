@@ -49,7 +49,6 @@ class EnemyTakeDamage : ZilchComponent {
       
       
       
-      
       //finally,
       if(this.Health <= 0){
         //On-death effects here

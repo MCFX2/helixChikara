@@ -4,8 +4,8 @@ Cog
 	var Name = "NearMiss"
 	Transform 
 	{
-		var Translation = Real3{-1.83185458, 0.631857872, -8.00730646e-08}
-		var Scale = Real3{3, 3, 1}
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{2, 2, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -30,5 +30,9 @@ Cog
 	DestroyOnTimer 
 	{
 		var SecondsBeforeDeath = 1
+	}
+	MoveTextUp 
+	{
+		var Speed = 0.0500000007
 	}
 }
