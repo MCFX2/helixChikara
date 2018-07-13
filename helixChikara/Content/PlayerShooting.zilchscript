@@ -99,7 +99,7 @@ class PlayerShooting : ZilchComponent
     }
     if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD/mouse to select a ship to replace from a radial menu
       this.ChangeShip(Ship.Anime);
-      this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Anime);
+      //this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Anime);
     }
     /*if(Zero.Keyboard.KeyIsDown(this.MachoCheeseShipKey)){
       this.ChangeShip(Ship.MachoCheese);
@@ -109,11 +109,11 @@ class PlayerShooting : ZilchComponent
     //RIP Macho Cheese
     if(Zero.Keyboard.KeyIsDown(this.ReaganShipKey)){
       this.ChangeShip(Ship.Reagan);
-      this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Reagan);
+      //this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Reagan);
     }
     if(Zero.Keyboard.KeyIsDown(this.ScoutShipKey)){
       this.ChangeShip(Ship.Scout);
-      this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Scout);
+      //this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Scout);
     }
     
   }
