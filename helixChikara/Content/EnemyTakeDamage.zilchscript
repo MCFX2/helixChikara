@@ -47,7 +47,7 @@ class EnemyTakeDamage : ZilchComponent {
     }
     this.Owner.Sprite.VertexColor = this.FlashingColor;
     this.Owner.Sprite.CurrentFrame = currentFrame;
-    this.IsHit = true;
+    if (!this.IsHit) this.IsHit = true;
 
   }
   
@@ -89,10 +89,12 @@ class EnemyTakeDamage : ZilchComponent {
   function OnLogicUpdate (event : UpdateEvent) {
     if (this.IsHit) {
       ++this.Iterations;
-      if (this.Iterations%4==0 && this.Iterations%8!=0) {
-        this.Owner.Sprite.VertexColor = this.InitialColor;
-      } else if (this.Iterations%8==0) {
-        this.Owner.Sprite.VertexColor = this.FlashingColor;
+      if (this.Iterations <= 20) {
+        if (this.Iterations%4==0 && this.Iterations%8!=0) {
+          this.Owner.Sprite.VertexColor = this.InitialColor;
+        } else if (this.Iterations%8==0) {
+          this.Owner.Sprite.VertexColor = this.FlashingColor;
+        }
       }
       if (this.Iterations == 40) {
         var archetype = this.Owner.Archetype;

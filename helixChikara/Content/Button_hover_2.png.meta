@@ -3,14 +3,14 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Enemy2_feedback"
-		var ResourceId = 0x5b400deaee890ca1
-		var FrameSizeX = 64
-		var FrameSizeY = 64
-		var FrameCount = 16
-		var FrameDelay = 0.142857149
-		var OriginX = 32
-		var OriginY = 32
+		var Name = "Button_hover_2"
+		var ResourceId = 0x5b400bfa4ccfbe29
+		var FrameSizeX = 256
+		var FrameSizeY = 110
+		var FrameCount = 6
+		var FrameDelay = 0.0833333358
+		var OriginX = 128
+		var OriginY = 55
 		var PixelsPerUnit = 64
 		var Sampling = SpriteSampling.Nearest
 		var Looping = true

@@ -6,11 +6,12 @@ class ButtonHover : ZilchComponent {
   }
 
   function OnMouseEnter(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_hover;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_hover_2
+    ;
   }
 
 
   function OnMouseExit(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg_2;
   }
 }
