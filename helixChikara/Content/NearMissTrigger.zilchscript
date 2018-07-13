@@ -20,6 +20,7 @@ class NearMissTrigger : ZilchComponent
   function NearMissCheck(event: CollisionEvent){
     if(this.Attempting){
       this.Player.NearMissReciever.NearMissSuccess();
+      this.Attempting = false;
     }
   }
   
