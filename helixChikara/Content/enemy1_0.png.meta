@@ -3,7 +3,7 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "enemy1_0"
+		var Name = "Enemy1_0"
 		var ResourceId = 0x5b4f86f36e45138b
 		var FrameSizeX = 64
 		var FrameSizeY = 64

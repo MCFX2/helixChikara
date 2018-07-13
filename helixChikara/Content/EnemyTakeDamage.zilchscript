@@ -6,12 +6,18 @@ class EnemyTakeDamage : ZilchComponent {
   [Property] var Health : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
   [Property] var IsTutorial : Boolean = false;
+  [Property] var FlashingColor : Real4 = Real4(255, 0, 0, 1.0);
   
   var Iterations : Integer = 0;
   var PointPopUp : Cog;
-  
+  var IsHit : Boolean = false;
+  var InitialColor : Real4;
+
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.InitialColor = this.Owner.Sprite.VertexColor;
+
   }
   
   function SpawnParticles (coords : Real3) {
@@ -25,6 +31,24 @@ class EnemyTakeDamage : ZilchComponent {
       ex = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
       ex.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
     }
+  }
+  
+  function HandleAnimationChange() {
+    var archetype = this.Owner.Archetype;
+    var currentFrame : Integer = this.Owner.Sprite.CurrentFrame;
+    if (archetype == Archetype.BurstEnemy) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Enemy1_feedback;
+    } else if (archetype == Archetype.BasicEnemy) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Enemy2_feedback;
+    } else if (archetype == Archetype.SpreadingEnemy) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Enemy3_feedback;
+    } else if (archetype == Archetype.TrackerEnemy) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Enemy4_feedback;
+    }
+    this.Owner.Sprite.VertexColor = this.FlashingColor;
+    this.Owner.Sprite.CurrentFrame = currentFrame;
+    this.IsHit = true;
+
   }
   
   function OnCollide(event : CollisionEvent){
@@ -47,7 +71,7 @@ class EnemyTakeDamage : ZilchComponent {
       
       //next apply feedback effects here (blinking/whatever)
       
-      
+      this.HandleAnimationChange();
       
       //finally,
       if(this.Health <= 0){
@@ -61,4 +85,33 @@ class EnemyTakeDamage : ZilchComponent {
       }
     }
   }
+  
+  function OnLogicUpdate (event : UpdateEvent) {
+    if (this.IsHit) {
+      ++this.Iterations;
+      if (this.Iterations%4==0 && this.Iterations%8!=0) {
+        this.Owner.Sprite.VertexColor = this.InitialColor;
+      } else if (this.Iterations%8==0) {
+        this.Owner.Sprite.VertexColor = this.FlashingColor;
+      }
+      if (this.Iterations == 40) {
+        var archetype = this.Owner.Archetype;
+        var currentFrame : Integer = this.Owner.Sprite.CurrentFrame;
+        if (archetype == Archetype.BurstEnemy) {
+          this.Owner.Sprite.SpriteSource = SpriteSource.Enemy1_0;
+        } else if (archetype == Archetype.BasicEnemy) {
+          this.Owner.Sprite.SpriteSource = SpriteSource.Enemy2_0;
+        } else if (archetype == Archetype.SpreadingEnemy) {
+          this.Owner.Sprite.SpriteSource = SpriteSource.Enemy3;
+        } else if (archetype == Archetype.TrackerEnemy) {
+          this.Owner.Sprite.SpriteSource = SpriteSource.Enemy4;
+        }
+        this.Owner.Sprite.VertexColor = this.InitialColor;
+        this.Owner.Sprite.CurrentFrame = currentFrame;
+        this.IsHit = false;
+        this.Iterations = 0;
+      }
+    }
+  }
+  
 }
