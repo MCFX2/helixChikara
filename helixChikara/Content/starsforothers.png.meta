@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "starsforothers"
+		var ResourceId = 0x5bb350b9e283ae48
+		var FrameSizeX = 731
+		var FrameSizeY = 446
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 365
+		var OriginY = 223
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

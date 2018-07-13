@@ -1,0 +1,34 @@
+class CinematicEnemies : ZilchComponent
+{
+  [Property] var SpawnX : Real = 25;
+  [Property] var Direction : Real = -1;
+  [Property] var LiveTime : Integer = 600;
+  [Property] var FloatSpeed : Real = 2.0;
+  [Property] var SpawnRate : Real = 0.05;
+  
+  var R : Random = Random();
+  
+  var EnemySpawnTable : Array[Real] = Array[Real]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.EnemySpawnTable.Add(0.5); //freq in percentage of Burst
+    this.EnemySpawnTable.Add(0.35); //Basic
+    this.EnemySpawnTable.Add(0.1); //Spread
+    this.EnemySpawnTable.Add(0.05); //Tracker
+    
+    
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var spvar : Real = 0;
+    spvar = this.R.Range(0,1);
+    if(spvar < this.EnemySpawnTable[0]){
+      var ex = this.Space.CreateAtPosition(Archetype.BurstEnemyHarmless, Real3(this.SpawnX, this.R.Range(-14, 14), 0));
+      ex.RigidBody.Velocity = Real3(this.Direction * this.FloatSpeed, 0, 0);
+    }
+    
+  }
+}
