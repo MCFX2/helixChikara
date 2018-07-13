@@ -1,0 +1,32 @@
+class CreateStatDisplay : ZilchComponent {
+  
+  [Property] var EnemiesKilledCoords : Real3 = Real3(0, 1, 1);
+  [Property] var NearMissesCoords : Real3 = Real3(0, -1, 1);
+  [Property] var ScoreCoords : Real3 = Real3(0, -3, 1);
+  
+  
+  function CreateStatistic(stat : StatTypes, coords : Real3) {
+    var text = this.Space.CreateAtPosition(Archetype.StatDisplay, coords);
+    if (stat == StatTypes.EnemiesKilled) {
+      text.SpriteText.Text = "Enemies Killed: `this.Space.GameSession.GlobalVariables.EnemiesKilled`";
+    } else if (stat == StatTypes.NearMisses) {
+      text.SpriteText.Text = "Near Misses: `this.Space.GameSession.GlobalVariables.NearMisses`";
+    } else if (stat == StatTypes.Score) {
+      text.SpriteText.Text = "Score: `this.Space.GameSession.GlobalVariables.Score`";
+    }
+  }
+  
+  function ClearStatistics() {
+    this.Space.GameSession.GlobalVariables.EnemiesKilled = 0;
+    this.Space.GameSession.GlobalVariables.NearMisses = 0;
+    this.Space.GameSession.GlobalVariables.Score = 0;
+  }
+  
+  function Initialize(init : CogInitializer) {
+    this.CreateStatistic(StatTypes.EnemiesKilled, this.EnemiesKilledCoords);
+    this.CreateStatistic(StatTypes.NearMisses, this.NearMissesCoords);
+    this.CreateStatistic(StatTypes.Score, this.ScoreCoords);
+    this.ClearStatistics();
+  }
+
+}

@@ -79,7 +79,8 @@ class EnemyTakeDamage : ZilchComponent {
         var coords : Real3 = this.Owner.Transform.Translation;
         this.Owner.Destroy();
         this.SpawnParticles(coords);
-        this.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
+        this.Space.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
+        ++this.Space.GameSession.GlobalVariables.EnemiesKilled;
         var pointThing = this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
         Actions.Property(pointThing.Actions, @pointThing.Transform.Translation, Real3(coords.X, coords.Y + 1, coords.Z), 1, Ease.Linear);
       }

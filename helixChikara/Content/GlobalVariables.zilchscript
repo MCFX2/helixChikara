@@ -4,6 +4,7 @@ enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
 enum TutorialPhase {Init, Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrack, Final}
+enum StatTypes {EnemiesKilled, NearMisses, Score}
 
 class GlobalVariables : ZilchComponent {
   
@@ -11,6 +12,8 @@ class GlobalVariables : ZilchComponent {
   var HighScore : Integer = 0;
   var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentWave : Integer = -1;
+  var EnemiesKilled : Integer = 0;
+  var NearMisses : Integer = 0;
   
   var DoTutorial : Boolean = false;
   

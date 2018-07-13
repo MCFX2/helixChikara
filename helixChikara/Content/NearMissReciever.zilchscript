@@ -3,6 +3,7 @@ class NearMissReciever : ZilchComponent
   function NearMissSuccess(){
     var coords = this.Owner.Transform.Translation;
     this.GameSession.GlobalVariables.AddToScore(10);
+    ++this.Space.GameSession.GlobalVariables.NearMisses;
     
     if(this.Space.MarkedForDestruction) return;
     this.Space.CreateAtPosition(Archetype.NearMiss, coords);
