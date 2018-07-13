@@ -76,8 +76,8 @@ class WaveSpawner : ZilchComponent
     ++this.TotalWaves;
   }
   
-  function AddEnemy(wave : Array[Array[Real]], targetCoords : Real2, enemy : Integer, moveTime : Real, spawnDelay : Integer){
-    var orderedArray : Array[Real] = Array[Real](){targetCoords.X, targetCoords.Y, enemy as Integer, moveTime, spawnDelay};
+  function AddEnemy(wave : Array[Array[Real]], targetCoords : Real2, enemy : Integer, moveTime : Real, spawnDelay : Integer, health : Real){
+    var orderedArray : Array[Real] = Array[Real](){targetCoords.X, targetCoords.Y, enemy as Integer, moveTime, spawnDelay, health};
     wave.Add(orderedArray);
   }
   
@@ -88,6 +88,7 @@ class WaveSpawner : ZilchComponent
       ++this.EnemiesLeft;
       var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
       currentEnemy.EnemySpawnComponenent.ActionData = enemy;
+      currentEnemy.EnemyTakeDamage.Health = enemy[5];
       currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
       this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
     }
@@ -158,6 +159,7 @@ class WaveSpawner : ZilchComponent
         
     // Tutorial "Wave"
     
+    /*
     this.AddEnemy(this.WaveTutorial, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0);
     
     //Wave 1 here
@@ -370,7 +372,7 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave20, Real2(11, -4), this.ENEMYTRACKER, 2, 60);
     this.AddEnemy(this.Wave20, Real2(9, 2), this.ENEMYSPREAD, 2, 30);
     this.AddEnemy(this.Wave20, Real2(9, -2), this.ENEMYSPREAD, 2, 30);
-    this.AddEnemy(this.Wave20, Real2(7, 0), this.ENEMYNOSHOOT, 2, 0);
+    this.AddEnemy(this.Wave20, Real2(7, 0), this.ENEMYNOSHOOT, 2, 0);*/
     
     this.CheckWaveCompletion();
   }
