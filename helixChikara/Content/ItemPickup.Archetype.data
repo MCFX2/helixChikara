@@ -4,7 +4,7 @@ Cog
 	var Name = "ItemPickup"
 	Transform 
 	{
-		var Translation = Real3{0.770598054, -0.12003547, 0.180000558}
+		var Translation = Real3{0, 0, 0}
 		var Scale = Real3{1, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -26,5 +26,17 @@ Cog
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5b62a702621957a6:ItemPickup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	ItemPickupProperties 
+	{
 	}
 }

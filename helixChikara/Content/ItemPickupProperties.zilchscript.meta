@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ItemPickupProperties"
+		var ResourceId = 0x5b62a6b6748f540e
+	}
+}

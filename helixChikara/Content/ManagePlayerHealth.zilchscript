@@ -17,6 +17,17 @@ class ManagePlayerHealth : ZilchComponent {
     }
   }
   
+  function AddToHealthBar(health : Integer) {
+    for (var i : Integer = 1; i<=health; ++i) {
+      var coords : Real3 = Real3(1, 0, 0);
+      var lastHealth : Cog = this.HealthIcons.Get(this.HealthIcons.LastIndex);
+      coords += lastHealth.Transform.Translation;
+      var healthIcon : Cog = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
+      this.HealthIcons.Add(healthIcon);
+      ++this.PlayerHealth;
+    }
+  }
+  
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
@@ -33,6 +44,7 @@ class ManagePlayerHealth : ZilchComponent {
   }
   
   function OnCollide(event : CollisionEvent) {
+
     // Same basic structure as EnemyTakeDown
     if (!this.Owner.PlayerInvincibilityFrames.IsInvincible) {
       if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.EnemyPierce ||
@@ -55,9 +67,17 @@ class ManagePlayerHealth : ZilchComponent {
         }
       
         this.Owner.SimpleSound.Play();
-        
-        //we need invincibility frames
-      }
+      } //THIS SHOULD WORK, IDK WHY IT DOESN'T
+      
+       /*else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.ItemPickup) {
+        Console.WriteLine("OwO whats this");
+        if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Health) {
+          this.AddToHealthBar(1);
+        } else if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Shield) {
+          // make a heckin cool shield
+        }
+        event.OtherObject.Destroy();
+      }*/
     }
   }
   

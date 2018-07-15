@@ -3,6 +3,7 @@ class ItemSpawner : ZilchComponent {
   [Property] var UpperLeftPoint : Real2 = Real2(-12, 6);
   [Property] var LowerRightPoint : Real2 = Real2(0, -6);
   [Property] var SpawnRatePerFrame : Real = 0.005;
+  [Property] var ShipHitBox : CogPath;
   
   function CreatePickup() {
     var random : Random = Random();
@@ -13,8 +14,10 @@ class ItemSpawner : ZilchComponent {
     var pickup = this.Space.CreateAtPosition(Archetype.ItemPickup, coords);
     if (itemType>=1 && itemType<2) {
       pickup.Sprite.VertexColor = Real4(1.0, 0, 0, 1.0);
+      pickup.ItemPickupProperties.State = ItemTypes.Health;
     } else if (itemType>=2 && itemType<3) {
       pickup.Sprite.VertexColor = Real4(0, 0, 1.0, 1.0);
+      pickup.ItemPickupProperties.State = ItemTypes.Shield;
     }
   }
   
