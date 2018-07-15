@@ -898,7 +898,7 @@ Level
 		{
 			var StartPlaying = true
 			var Positional = false
-			var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
+			var Cue = "5bb1981b40591f87:BGMusic"
 		}
 	}
 }
