@@ -856,7 +856,7 @@ Level
 				{
 					var UpperLeftPoint = Real2{-12, 6}
 					var LowerRightPoint = Real2{0, -6}
-					var SpawnRatePerFrame = 0.0500000007
+					var SpawnRatePerFrame = 4.99999987e-05
 					var ShipHitBox = CogPath
 					{
 						var Path = "../User/PlayerHitbox"
@@ -898,7 +898,7 @@ Level
 		{
 			var StartPlaying = true
 			var Positional = false
-			var Cue = "5bb1981b40591f87:BGMusic"
+			var Cue = "4e1bd44008b4dc2a:DefaultSoundCue"
 		}
 	}
 }
