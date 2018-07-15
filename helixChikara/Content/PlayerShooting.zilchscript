@@ -22,6 +22,8 @@ class PlayerShooting : ZilchComponent
   [Property] var WaveController : CogPath;
   [Property] var HUDCharacterIndicator : CogPath;
   
+  var Controller : Gamepad;
+  
   var TimeSinceLastBullet = 0;
   var CurrentShip : Ship = Ship.Anime;
   
@@ -30,6 +32,7 @@ class PlayerShooting : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.Controller = Zero.Gamepads.GetGamePad(0);
   }
   
   function Shoot(){
@@ -118,15 +121,44 @@ class PlayerShooting : ZilchComponent
     
   }
   
+  function NextShip() : Ship{
+    if(this.CurrentShip == Ship.Anime) return Ship.Reagan;
+    if(this.CurrentShip == Ship.Reagan) return Ship.Scout;
+    return Ship.Anime;
+  }
+  
   function CheckMouse() {
     if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Owner.PlayerController.ControlType == ControlTypes.Mouse) {
         this.Shoot();
     }
   }
+  
+  function CheckGamepad(){
+    
+    //any face button shoots
+    if(this.Controller.IsButtonHeld(Buttons.A)){
+      this.Shoot();
+    }
+    else if(this.Controller.IsButtonHeld(Buttons.B)){
+      this.Shoot();
+    }
+    else if(this.Controller.IsButtonHeld(Buttons.Y)){
+      this.Shoot();
+    }
+    else if(this.Controller.IsButtonHeld(Buttons.X)){
+      this.Shoot();
+    }
+    
+    if(this.Controller.IsButtonPressed(Buttons.LeftShoulder) || this.Controller.IsButtonPressed(Buttons.RightShoulder)){
+      this.ChangeShip(this.NextShip());
+    }
+    
+  }
 
   function OnLogicUpdate(event : UpdateEvent) {
     this.CheckMouse();
     this.CheckKeyboard();
+    this.CheckGamepad();
     ++this.TimeSinceLastBullet;
   }
   

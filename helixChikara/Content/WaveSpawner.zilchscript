@@ -17,6 +17,8 @@ class WaveSpawner : ZilchComponent
   var CurrentEnemies : Array[Cog] = Array[Cog]();
   
   var WaveTutorial : Array[Array[Real]] = Array[Array[Real]]();
+  
+  
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave3 : Array[Array[Real]] = Array[Array[Real]]();
