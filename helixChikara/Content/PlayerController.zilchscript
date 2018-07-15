@@ -64,6 +64,9 @@ class PlayerController : ZilchComponent
     if (this.ControlType == ControlTypes.Mouse) {
       velocityCorrectiveFactor = Math.Abs(Math.Normalize(this.Owner.Transform.Translation.XY - this.LastMousePos));
     }
+    if (this.ControlType == ControlTypes.GamePad){
+      velocityCorrectiveFactor = Math.Abs(this.Controller.LeftStick);
+    }
       this.Owner.RigidBody.Velocity = Real3( //split into several lines for readability
         velocityCorrectiveFactor * Real2(
           this.Clamp(this.Owner.RigidBody.Velocity.X, -1 * this.MaxLVel, this.MaxRVel),
