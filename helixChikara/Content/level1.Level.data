@@ -847,9 +847,40 @@ Level
 					}
 				}
 			}
+			Cog [Id:0x5b62dae1a4e883c7][ContextId:23]
+			{
+				var Name = "ItemSpawner"
+				Transform 
+				{
+					var Translation = Real3{0.39382115, -0.12003547, 0.180000529}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				ItemSpawner 
+				{
+					var UpperLeftPoint = Real2{-12, 6}
+					var LowerRightPoint = Real2{0, -6}
+					var SpawnRatePerFrame = 4.99999987e-05
+					var ShipHitBox = CogPath
+					{
+						var Path = "../User/PlayerHitbox"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 17
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+				}
+			}
 		}
 	}
-	Cog [ContextId:23]
+	Cog [ContextId:24]
 	{
 		var Name = "BGMusic"
 		Transform 
