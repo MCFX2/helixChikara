@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.0573601946, -0.531431377, 20.1800003}
+			var Translation = Real3{0.39382115, -0.12003547, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 39.6396675
+			var Size = 24.0426903
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.0573601946, -0.531431377, 0.180000529}
+			var LookTarget = Real3{0.39382115, -0.12003547, 0.180000529}
 			var MoveSensitivity = 1
 		}
 	}
@@ -653,7 +653,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 19
+								var Cog = 4294967293
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -781,7 +781,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:20]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:19]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -792,7 +792,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:21]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:20]
 							{
 								Transform 
 								{
@@ -805,7 +805,7 @@ Level
 									var VertexColor = Real4{0, 0, 0, 1}
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:22]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:21]
 							{
 								Transform 
 								{
@@ -820,7 +820,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bc1b16bafc525e0][ContextId:23]
+					Cog [Id:0x5bc1b16bafc525e0][ContextId:22]
 					{
 						var Name = "MouseSnapTo"
 						Transform 
@@ -844,6 +844,22 @@ Level
 					}
 				}
 			}
+		}
+	}
+	Cog [ContextId:23]
+	{
+		var Name = "ItemSpawner"
+		Transform 
+		{
+			var Translation = Real3{0.39382115, -0.12003547, 0.180000529}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		ItemSpawner 
+		{
+			var UpperLeftPoint = Real2{-12, 6}
+			var LowerRightPoint = Real2{0, -6}
+			var SpawnRatePerFrame = 0.000500000024
 		}
 	}
 }

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ItemSpawner"
+		var ResourceId = 0x5b62ae9aba968eda
+	}
+}

@@ -1,0 +1,32 @@
+class ItemSpawner : ZilchComponent {
+  
+  [Property] var UpperLeftPoint : Real2 = Real2(-12, 6);
+  [Property] var LowerRightPoint : Real2 = Real2(0, -6);
+  [Property] var SpawnRatePerFrame : Real = 0.005;
+  
+  function CreatePickup() {
+    var random : Random = Random();
+    var itemType : Real = random.Range(1, 3);
+    var coords : Real3 = Real3(0, 0, 1);
+    coords.X = random.Range(this.UpperLeftPoint.X, this.LowerRightPoint.X);
+    coords.Y = random.Range(this.LowerRightPoint.Y, this.UpperLeftPoint.Y);
+    var pickup = this.Space.CreateAtPosition(Archetype.ItemPickup, coords);
+    if (itemType>=1 && itemType<2) {
+      pickup.Sprite.VertexColor = Real4(1.0, 0, 0, 1.0);
+    } else if (itemType>=2 && itemType<3) {
+      pickup.Sprite.VertexColor = Real4(0, 0, 1.0, 1.0);
+    }
+  }
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    var random : Random = Random();
+    var outcome : Real = random.Range(0,1);
+    if (outcome <= this.SpawnRatePerFrame) {
+      this.CreatePickup();
+    }
+  }
+}
