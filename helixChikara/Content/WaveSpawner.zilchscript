@@ -120,7 +120,7 @@ class WaveSpawner : ZilchComponent
     //add waves to wavetable
     this.RegisterWave(this.WaveTutorial);
     this.RegisterWave(this.Wave1);
-   this.RegisterWave(this.Wave2);
+    this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave3);
     this.RegisterWave(this.Wave4);
     this.RegisterWave(this.Wave5);

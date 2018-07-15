@@ -1,10 +1,12 @@
 class CinematicEnemies : ZilchComponent
 {
-  [Property] var SpawnX : Real = 25;
+  [Property] var SpawnX : Real = 20;
   [Property] var Direction : Real = -1;
   [Property] var LiveTime : Integer = 600;
-  [Property] var FloatSpeed : Real = 2.0;
+  [Property] var FloatSpeed : Real = 0.1;
   [Property] var SpawnRate : Real = 0.05;
+  [Property] var SpeedVariance : Real2 = Real2(0.1, 5.0);
+  [Property] var BaseSize : Real = 3.0;
   
   var R : Random = Random();
   
@@ -20,14 +22,43 @@ class CinematicEnemies : ZilchComponent
     
     
   }
+  
+  function CreateCinematicEnemy(enemyType : Archetype){
+    var enemySpawn = this.Space.CreateAtPosition(enemyType, Real3(this.SpawnX, this.R.Range(-12, 12), 0.05));
+    
+    var enemySeq = Actions.Sequence(enemySpawn.Actions);
+    var moveTime = this.R.Range(this.SpeedVariance.X, this.SpeedVariance.Y) / this.FloatSpeed;
+    enemySpawn.Transform.Scale = enemySpawn.Transform.Scale * (this.BaseSize / moveTime);
+    
+    Actions.Property(enemySeq,
+    @enemySpawn.Transform.Translation,
+    Real3(this.SpawnX * this.Direction, enemySpawn.Transform.Translation.YZ),
+    moveTime,
+    Ease.Linear);
+    
+    
+    
+  }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
     var spvar : Real = 0;
+    var envar : Real = 0;
     spvar = this.R.Range(0,1);
-    if(spvar < this.EnemySpawnTable[0]){
-      var ex = this.Space.CreateAtPosition(Archetype.BurstEnemyHarmless, Real3(this.SpawnX, this.R.Range(-14, 14), 0));
-      ex.RigidBody.Velocity = Real3(this.Direction * this.FloatSpeed, 0, 0);
+    
+    if(spvar < this.SpawnRate){
+      envar = this.R.Range(0,1);
+      if(envar < this.EnemySpawnTable[0]){
+        this.CreateCinematicEnemy(Archetype.BurstEnemyHarmless);
+      } else if (envar < this.EnemySpawnTable[0] + this.EnemySpawnTable[1]){
+        this.CreateCinematicEnemy(Archetype.BasicEnemyHarmless);
+      } else if (envar < this.EnemySpawnTable[0] + this.EnemySpawnTable[1] + this.EnemySpawnTable[2]){ //theres a better way than this but i dont care rn
+        this.CreateCinematicEnemy(Archetype.SpreadingEnemyHarmless);
+      } else if (envar < this.EnemySpawnTable[0] + this.EnemySpawnTable[1] + this.EnemySpawnTable[2] + this.EnemySpawnTable[3]){
+        this.CreateCinematicEnemy(Archetype.TrackerEnemyHarmless);
+      } else {
+        //???
+      }
     }
     
   }
