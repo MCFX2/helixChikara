@@ -803,6 +803,10 @@ Level
 								{
 									var VertexColor = Real4{0, 0, 0, 1}
 								}
+								BoxCollider 
+								{
+									var SendsEvents = true
+								}
 							}
 							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:21]
 							{

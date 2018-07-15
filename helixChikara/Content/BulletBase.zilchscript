@@ -8,8 +8,8 @@ class BulletBase : ZilchComponent
   }
 
   function DoesDestroyBullet(cg : CollisionGroup) : Boolean {
-    if ( cg == CollisionGroup.PlayerEnemy ||
-        cg == CollisionGroup.EnemyIgnore) return true;
+    if ( cg == CollisionGroup.PlayerEnemy/* ||
+        cg == CollisionGroup.EnemyIgnore*/) return true;
     return false;
   }
   

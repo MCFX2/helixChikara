@@ -2,7 +2,7 @@ class NearMissReciever : ZilchComponent
 {  
   function NearMissSuccess(){
     var coords = this.Owner.Transform.Translation;
-    this.GameSession.GlobalVariables.AddToScore(10);
+    this.GameSession.GlobalVariables.AddToScore(100);
     ++this.Space.GameSession.GlobalVariables.NearMisses;
     
     if(this.Space.MarkedForDestruction) return;
