@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 5.92886162
+			var Size = 8.84482193
 		}
 		EditorCameraController 
 		{
@@ -167,7 +167,6 @@ Level
 				{
 					var Speed = 0.300000012
 					var Direction = -1
-					var RepeatDistance = 38
 				}
 				Sprite 
 				{
@@ -875,6 +874,31 @@ Level
 					}
 				}
 			}
+		}
+	}
+	Cog [ContextId:24]
+	{
+		var Name = "BGMusic"
+		Transform 
+		{
+			var Translation = Real3{-11.3828754, 0.0855844468, 0.180000007}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = true
+			var Positional = false
+			var Cue = "5bb1981b40591f87:BGMusic"
 		}
 	}
 }
