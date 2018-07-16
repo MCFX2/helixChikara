@@ -2,6 +2,7 @@ class WaveSpawner : ZilchComponent
 {
   [Property] var VictoryLevel : Level;
   [Property] var WaveHUD : CogPath;
+  [Property] var Player : CogPath;
   
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
@@ -86,7 +87,6 @@ class WaveSpawner : ZilchComponent
   function SummonWave(waveNumber : Integer){
     this.CurrentEnemies.Clear();
     foreach(var enemy in this.Waves[waveNumber]){
-      //Console.Write("\n",enemy);
       ++this.EnemiesLeft;
       var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
       currentEnemy.EnemySpawnComponenent.ActionData = enemy;
@@ -103,6 +103,12 @@ class WaveSpawner : ZilchComponent
     ++this.CurrentWave;
     this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave;
     this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
+    if(this.Player.WavePerfect.IsPerfect){
+      Console.Write("\nWow!");
+      //spawn item here
+    }
+    this.Player.WavePerfect.ResetAttempt();
+    
     if(this.CurrentWave == this.TotalWaves){
       //"you win" or some shit
       this.GameSession.GlobalVariables.CheckHighScore();

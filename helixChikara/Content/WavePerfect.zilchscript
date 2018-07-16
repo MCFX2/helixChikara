@@ -1,0 +1,24 @@
+class WavePerfect : ZilchComponent
+{
+  var IsPerfect : Boolean = false; //:(
+  function Initialize(init : CogInitializer)
+  {
+    this.IsPerfect = true; //:)
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function ResetAttempt(){
+    this.IsPerfect = true;
+  }
+  
+  function FailAttempt(){
+    this.IsPerfect = false;
+  }
+  function SucceedAttempt(){
+    this.IsPerfect = true;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

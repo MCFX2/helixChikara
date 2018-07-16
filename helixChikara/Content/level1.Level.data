@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-10.3955498, 0.883168817, 20.1800003}
+			var Translation = Real3{0.150851235, -0.958452106, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 7.24153376
+			var Size = 32.4542999
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-10.3955498, 0.883168817, 0.180000007}
+			var LookTarget = Real3{0.150851235, -0.958452106, 0.180000454}
 			var MoveSensitivity = 1
 		}
 	}
@@ -270,12 +270,27 @@ Level
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
 					}
+					var Player = CogPath
+					{
+						var Path = "../User/PlayerHitbox"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 9
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
 					var TestArray = Array[Integer]
 					{
 					}
 				}
 			}
-			Cog [Id:0x5bc978d484a97104][ContextId:9]
+			Cog [Id:0x5bc978d484a97104][ContextId:10]
 			{
 				var Name = "GameCamera"
 				Transform 
@@ -308,7 +323,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 9
+						var Cog = 10
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -350,7 +365,7 @@ Level
 					var AttenuationScale = 1
 				}
 			}
-			Cog [Id:0x5bce7e0ae13ad046][ContextId:10]
+			Cog [Id:0x5bce7e0ae13ad046][ContextId:11]
 			{
 				var Name = "HUD"
 				Transform 
@@ -361,7 +376,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b15ae58d5f22451][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:11]
+					Cog [Id:0x5b15ae58d5f22451][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:12]
 					{
 						Transform 
 						{
@@ -374,7 +389,7 @@ Level
 							var VertexColor = Real4{0, 0, 0, 1}
 						}
 					}
-					Cog [Id:0x5b6c5fa70808ff81][ContextId:12]
+					Cog [Id:0x5b6c5fa70808ff81][ContextId:13]
 					{
 						var Name = "ScoreCounter"
 						Transform 
@@ -406,7 +421,7 @@ Level
 							var ScoreType = ScoreTypes.HighScore
 						}
 					}
-					Cog [Id:0x5bce8f7097ef93e0][ContextId:13]
+					Cog [Id:0x5bce8f7097ef93e0][ContextId:14]
 					{
 						var Name = "MoveBorderU"
 						Transform 
@@ -444,7 +459,7 @@ Level
 							var HalfSize = Real3{1.5, 0.0599999987, 0.5}
 						}
 					}
-					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:14]
+					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:15]
 					{
 						var Name = "MovieBorderD"
 						Transform 
@@ -484,7 +499,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:15]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:16]
 			{
 				var Name = "User"
 				Transform 
@@ -495,7 +510,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bc0e2924852b849][ContextId:16]
+					Cog [Id:0x5bc0e2924852b849][ContextId:9]
 					{
 						var Name = "PlayerHitbox"
 						Transform 
@@ -676,7 +691,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 9
+								var Cog = 10
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -684,6 +699,9 @@ Level
 							var Scale = 0.800000012
 							var Time = 0.0199999996
 							var Repetitions = 11
+						}
+						WavePerfect 
+						{
 						}
 						Hierarchy 
 						{
@@ -737,7 +755,7 @@ Level
 										var UpdatePathOnCogChange = true
 										var UpdateCogOnInitialize = true
 										var ResolvedNullErrorOccurred = false
-										var Cog = 16
+										var Cog = 9
 										var PathPreference0 = CogPathPreference.CogRelative
 										var PathPreference1 = CogPathPreference.SpaceRelative
 										var PathPreference2 = CogPathPreference.Absolute
@@ -840,7 +858,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 16
+						var Cog = 9
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
