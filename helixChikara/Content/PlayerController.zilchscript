@@ -153,7 +153,7 @@ class PlayerController : ZilchComponent
   
   function Accelerate(){ //takes movement from all sources and smacks it into our final velocity
     var velVector : Real2 = Real2(0);
-    if(this.ControlType == ControlTypes.Keyboard) {/*velVector = this.ParseKeyboard();*/}
+    if(this.ControlType == ControlTypes.Keyboard) {velVector = this.ParseKeyboard();}
     else if (this.ControlType == ControlTypes.Mouse) velVector = this.ParseMouse();
     else velVector = this.ParseGamePad();
 
