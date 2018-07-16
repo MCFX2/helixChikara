@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-1.43569922, 2.32194948, 20.1800003}
+			var Translation = Real3{-8.3969574, 4.44006395, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 24.0427876
+			var Size = 19.6845779
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-1.43569922, 2.32194948, 0.179999813}
+			var LookTarget = Real3{-8.3969574, 4.44006395, 0.179999396}
 			var MoveSensitivity = 1
 		}
 	}
@@ -457,7 +457,7 @@ Level
 							var Material = "582c575af53d18c9:AlphaSprite"
 							var VertexColor = Real4{1, 1, 1, 1}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5b651481e8177fee:Hud_reg"
+							var SpriteSource = "5b6512d810f943cc:Hud_armed"
 							var FlipX = false
 							var FlipY = false
 							var AnimationActive = true
@@ -480,6 +480,21 @@ Level
 						}
 						CurrentPlayerIndicator 
 						{
+							var Player = CogPath
+							{
+								var Path = "../../User/PlayerHitbox"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 9
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
 						}
 					}
 					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:16]
@@ -649,9 +664,9 @@ Level
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
 							}
-							var HUDCharacterIndicator = CogPath
+							var HUDBar = CogPath
 							{
-								var Path = "../../HUD/CharacterName"
+								var Path = "../../HUD/MoveBorderU"
 								var ErrorOnResolveToNull = false
 								var ErrorOnPathCantCompute = false
 								var ErrorOnDirectLinkFail = false
@@ -659,7 +674,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 4294967293
+								var Cog = 15
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute

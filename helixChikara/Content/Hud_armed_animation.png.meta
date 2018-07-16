@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Hud_armed_animation"
+		var ResourceId = 0x5b65394491603fd2
+		var FrameSizeX = 1300
+		var FrameSizeY = 64
+		var FrameCount = 25
+		var FrameDelay = 0.0416666679
+		var OriginX = 650
+		var OriginY = 32
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

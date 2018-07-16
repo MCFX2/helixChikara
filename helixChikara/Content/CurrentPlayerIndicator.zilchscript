@@ -1,27 +1,56 @@
-class CurrentPlayerIndicator : ZilchComponent
-{
-  function Initialize(init : CogInitializer)
-  {
-  //  Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+class CurrentPlayerIndicator : ZilchComponent {
+  
+  [Property] var Player : CogPath;
+  
+  var IsArming : Boolean = false; // true when animation is playing
+  var ReadyToArm : Boolean = false; // true when Reagan is out and animation has yet to play
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function ArmHUD() {
+    this.Owner.Sprite.SpriteSource = SpriteSource.Hud_armed_animation;
+    this.IsArming = true;
+    this.ReadyToArm = false;
+  }
+  
+  function DisarmHUD() {
+    this.Owner.Sprite.SpriteSource = SpriteSource.Hud_reg;
+    this.ReadyToArm = true;
   }
   
   function UpdateShipName (ship : Ship) {
     if (ship == Ship.Anime) {
-      this.Owner.Sprite.SpriteSource = SpriteSource.NameAnime;      
+      //this.Owner.Sprite.SpriteSource = SpriteSource.NameAnime;      
     }/* else if (ship == Ship.MachoCheese) {
       this.Owner.Sprite.SpriteSource = SpriteSource.NameMacho;
     }*/
     //RIP Macho Cheese
      else if (ship == Ship.Reagan) {
-      this.Owner.Sprite.SpriteSource = SpriteSource.NameReagan;
+      //this.Owner.Sprite.SpriteSource = SpriteSource.NameReagan;
+        if (this.Player.PlayerShooting.TimeSinceLastBullet < this.Player.PlayerShooting.MachoBombFireDelay) {
+          this.DisarmHUD();
+        } else {
+          this.ArmHUD();
+        }
     } else if (ship == Ship.Scout) {
-      this.Owner.Sprite.SpriteSource = SpriteSource.NameScout;
+      //this.Owner.Sprite.SpriteSource = SpriteSource.NameScout;
     }
   }
 
-
-  //function OnLogicUpdate(event : UpdateEvent)
-  //{
-  //  this.Owner.Sprite.SpriteSource = SpriteSource.Circle;
-  //}
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (this.ReadyToArm) {
+      if (this.Player.PlayerShooting.BombCooldown >= this.Player.PlayerShooting.MachoBombFireDelay) {
+        this.ArmHUD();
+      }
+    }
+    if (this.IsArming) {
+      if (this.Owner.Sprite.CurrentFrame >= 24) {
+        this.IsArming = false;
+        this.Owner.Sprite.SpriteSource = SpriteSource.Hud_armed;
+      }
+    }
+  }
+  
 }

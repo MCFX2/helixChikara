@@ -20,7 +20,7 @@ class PlayerShooting : ZilchComponent
   [Property] var RandalFireDelay = 4;
   [Property] var RandalFireSpeed = 8;  
   [Property] var WaveController : CogPath;
-  [Property] var HUDCharacterIndicator : CogPath;
+  [Property] var HUDBar : CogPath;
   
   var Controller : Gamepad;
   
@@ -55,6 +55,7 @@ class PlayerShooting : ZilchComponent
         currentBullet.RigidBody.Velocity = Real3(this.MachoBombVelocity, 0, 0);
         this.TimeSinceLastBullet = 0;
         this.BombCooldown = 0;
+        this.HUDBar.CurrentPlayerIndicator.DisarmHUD();
       }
     }
     else if (this.CurrentShip == Ship.Scout){
