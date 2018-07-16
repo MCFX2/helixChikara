@@ -3,15 +3,24 @@ class ButtonHover : ZilchComponent {
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
     Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+    Zero.Connect(this.Owner, Events.LeftMouseDown, this.OnLeftDown);
+    Zero.Connect(this.Owner, Events.LeftMouseUp, this.OnLeftUp);
   }
 
   function OnMouseEnter(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_hover_2
-    ;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_hover_2;
   }
-
 
   function OnMouseExit(event : ViewportMouseEvent) {
     this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+  }
+  
+  function OnLeftDown(event : ViewportMouseEvent) {
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_click_1;
+  }
+  
+  function OnLeftUp(event : ViewportMouseEvent) {
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+    this.Space.GameSession.GlobalVariables.ButtonClick = true;
   }
 }

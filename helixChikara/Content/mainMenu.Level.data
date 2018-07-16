@@ -58,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-0.331613094, -1.45430636, 20.4004993}
+			var Translation = Real3{0.864095271, -0.331065297, 20.4004993}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 16.3746338
+			var Size = 13.4064255
 		}
 		EditorCameraController 
 		{
@@ -120,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-0.331613094, -1.45430636, 0.40049994}
+			var LookTarget = Real3{0.864095271, -0.331065297, 0.40049994}
 			var MoveSensitivity = 1
 		}
 	}
@@ -219,7 +219,7 @@ Level
 				var Name = "TitleText"
 				Transform 
 				{
-					var Translation = Real3{0, 0.0143854618, 3.90100002}
+					var Translation = Real3{0, 0.0143854618, 0.900999904}
 					var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -369,7 +369,7 @@ Level
 		}
 		CinematicEnemies 
 		{
-			var SpawnX = 25
+			var SpawnX = 15
 			var Direction = -1
 			var LiveTime = 600
 			var FloatSpeed = 0.200000003

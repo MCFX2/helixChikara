@@ -1,0 +1,24 @@
+class DelayedAction : ZilchComponent {
+  
+  [Property] var Duration : Real = 1.0;
+  
+  var Iterations : Integer = 0;
+  var IsActive : Boolean = false;
+  var HasFinished : Boolean = false;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (this.IsActive) {
+      ++this.Iterations;
+      if (this.Iterations>=60*this.Duration) {
+        this.IsActive = false;
+        this.HasFinished = true;
+        this.Iterations = 0;
+      }
+    }
+  }
+  
+}

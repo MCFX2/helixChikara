@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "DelayedAction"
+		var ResourceId = 0x5b64dfd988ecbc84
+	}
+}

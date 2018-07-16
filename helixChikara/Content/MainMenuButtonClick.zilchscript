@@ -1,56 +1,65 @@
 class MainMenuButtonClick : ZilchComponent {
   
-  var JustClicked : Boolean = false;
+  var Button : Cog;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
   
   function OnLeftClick(event : ViewportMouseEvent) {   
     if (event.HitObject != null) {
-      var button = event.HitObject;
+      this.Button = event.HitObject;
+    }
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent) {
+    if (this.Space.GameSession.GlobalVariables.ButtonClick) {
+      this.Space.GameSession.GlobalVariables.ButtonClick = false;
       if (this.Owner.MenuNavigator.CurrentState == MenuStates.SelectMode) {
         
-        if (button == this.Owner.MenuNavigator.Buttons[0]) {
+        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Space.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
-        } else if (button == this.Owner.MenuNavigator.Buttons[2]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.GameSession.GlobalVariables.DoTutorial = true;
           this.Space.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
-        } else if (button == this.Owner.MenuNavigator.Buttons[4]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetMainMenu(false);
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.ControlType) {
         
-        if (button == this.Owner.MenuNavigator.Buttons[0]) {
+        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
-        } else if (button == this.Owner.MenuNavigator.Buttons[2]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
-        } else if (button == this.Owner.MenuNavigator.Buttons[4]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetOptionsMenu();
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.Options) {
         
-        if (button == this.Owner.MenuNavigator.Buttons[0]) {
+        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Owner.MenuNavigator.SetControlTypeMenu();
-        } else if (button == this.Owner.MenuNavigator.Buttons[2]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           // We'll figure it out
-        } else if (button == this.Owner.MenuNavigator.Buttons[4]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetMainMenu(false);
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.MainMenu) {
         
-        if (button == this.Owner.MenuNavigator.Buttons[0]) {
+        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Owner.MenuNavigator.SetModeMenu();
-        } else if (button == this.Owner.MenuNavigator.Buttons[2]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.Owner.MenuNavigator.SetOptionsMenu();
-        } else if (button == this.Owner.MenuNavigator.Buttons[4]) {
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.GameSession.RequestQuit();
         } 
         
       }
+
     }
   }
+  
 }

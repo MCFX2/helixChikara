@@ -16,6 +16,7 @@ class GlobalVariables : ZilchComponent {
   var EnemiesKilled : Integer = 0;
   var NearMisses : Integer = 0;
   
+  var ButtonClick : Boolean = false;
   var DoTutorial : Boolean = false;
   
   
