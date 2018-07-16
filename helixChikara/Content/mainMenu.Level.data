@@ -219,7 +219,7 @@ Level
 				var Name = "TitleText"
 				Transform 
 				{
-					var Translation = Real3{0, 3.11124182, 0.900999904}
+					var Translation = Real3{0, 0.0143854618, 0.900999904}
 					var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -235,7 +235,7 @@ Level
 					var Material = "582c575af53d18c9:AlphaSprite"
 					var VertexColor = Real4{1, 1, 1, 1}
 					var GeometryMode = SpriteGeometryMode.ZPlane
-					var SpriteSource = "5be67bc09aad140b:TitleCard"
+					var SpriteSource = "5bb698ec4e405bcf:HFrevised"
 					var FlipX = false
 					var FlipY = false
 					var AnimationActive = true
