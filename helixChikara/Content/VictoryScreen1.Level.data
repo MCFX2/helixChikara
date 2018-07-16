@@ -264,6 +264,10 @@ Level
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1.75, 1, 0.99999994}
 		}
+		BackToMain [LocallyAdded]
+		{
+			var MainMenu = "null"
+		}
 		Hierarchy 
 		{
 			Cog [Id:0x5b3c54d298194842][ContextId:7]
