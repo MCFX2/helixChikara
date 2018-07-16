@@ -1,3 +1,27 @@
 class ItemPickupProperties : ZilchComponent {
+  
+  [Property] var Duration : Real = 10.0;
+  [Property] var FlashFrames : Integer = 4;
+  
   var State : ItemTypes;
+  var Iterations : Integer = 0;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) {
+    ++this.Iterations;
+    if(this.Iterations>=45*this.Duration) {
+      if(this.Iterations%this.FlashFrames==0 &&
+          this.Iterations%(this.FlashFrames*2)!=0) {
+        this.Owner.Sprite.Visible = false;
+      } else if(this.Iterations%(this.FlashFrames*2)==0) {
+        this.Owner.Sprite.Visible = true;
+      }
+    }
+    if(this.Iterations>=60*this.Duration) {
+      this.Owner.Destroy();
+    }
+  }
 }

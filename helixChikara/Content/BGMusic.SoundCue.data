@@ -23,7 +23,7 @@ SoundCue
 			var StartTime = 0
 			var EndTime = 97.333313
 			var LoopEndTime = 97.333313
-			var LoopStartTime = 0
+			var LoopStartTime = 12
 			var LoopTailLength = 0
 			var CrossFadeLoopTail = false
 		}

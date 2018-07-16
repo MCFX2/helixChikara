@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-2.59651875, -0.381323457, 20.1800003}
+			var Translation = Real3{1.25239825, -0.0466350093, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-2.59651875, -0.381323457, 0.18000032}
+			var LookTarget = Real3{1.25239825, -0.0466350093, 0.180000469}
 			var MoveSensitivity = 1
 		}
 	}
@@ -361,38 +361,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5b33a737de32b8fc][ContextId:11]
-					{
-						var Name = "Timer"
-						Transform 
-						{
-							var Translation = Real3{-15, 9.41316032, -6.63206265e-07}
-							var Scale = Real3{1, 1, 1}
-							var Rotation = Quaternion{0, 0, 0, 1}
-						}
-						SpriteText 
-						{
-							var Visible = true
-							var ViewCulling = true
-							var VisibilityEvents = true
-							var OverrideBoundingBox = false
-							var LocalAabbCenter = Real3{0, 0, 0}
-							var LocalAabbHalfExtents = Real3{1, 1, 1}
-							var GroupSortValue = 0
-							var Material = "582c575af53d18c9:AlphaSprite"
-							var VertexColor = Real4{0.197000027, 0.299440116, 0.985000014, 1}
-							var GeometryMode = SpriteGeometryMode.ZPlane
-							var Text = "Time: 0"
-							var Font = "57343753bb4eaaec:NotoSans-Regular"
-							var FontSize = 128
-							var PixelsPerUnit = 128
-							var TextAlign = TextAlign.Center
-						}
-						HUDTimer 
-						{
-						}
-					}
-					Cog [Id:0x5b15ae58d5f22451][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:12]
+					Cog [Id:0x5b15ae58d5f22451][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:11]
 					{
 						Transform 
 						{
@@ -405,7 +374,7 @@ Level
 							var VertexColor = Real4{0, 0, 0, 1}
 						}
 					}
-					Cog [Id:0x5b6c5fa70808ff81][ContextId:13]
+					Cog [Id:0x5b6c5fa70808ff81][ContextId:12]
 					{
 						var Name = "ScoreCounter"
 						Transform 
@@ -437,7 +406,7 @@ Level
 							var ScoreType = ScoreTypes.HighScore
 						}
 					}
-					Cog [Id:0x5bce8f7097ef93e0][ContextId:14]
+					Cog [Id:0x5bce8f7097ef93e0][ContextId:13]
 					{
 						var Name = "MoveBorderU"
 						Transform 
@@ -475,7 +444,7 @@ Level
 							var HalfSize = Real3{1.5, 0.0599999987, 0.5}
 						}
 					}
-					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:15]
+					Cog [Id:0x5bcce79a6e3cc8dc][ContextId:14]
 					{
 						var Name = "MovieBorderD"
 						Transform 
@@ -515,7 +484,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:16]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:15]
 			{
 				var Name = "User"
 				Transform 
@@ -526,7 +495,7 @@ Level
 				}
 				Hierarchy 
 				{
-					Cog [Id:0x5bc0e2924852b849][ContextId:17]
+					Cog [Id:0x5bc0e2924852b849][ContextId:16]
 					{
 						var Name = "PlayerHitbox"
 						Transform 
@@ -578,7 +547,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 18
+								var Cog = 17
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -689,7 +658,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 18
+								var Cog = 17
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -718,7 +687,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:18]
+							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:17]
 							{
 								var Name = "Ship"
 								Transform 
@@ -768,7 +737,7 @@ Level
 										var UpdatePathOnCogChange = true
 										var UpdateCogOnInitialize = true
 										var ResolvedNullErrorOccurred = false
-										var Cog = 17
+										var Cog = 16
 										var PathPreference0 = CogPathPreference.CogRelative
 										var PathPreference1 = CogPathPreference.SpaceRelative
 										var PathPreference2 = CogPathPreference.Absolute
@@ -780,7 +749,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:19]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:18]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -791,7 +760,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:20]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:19]
 							{
 								Transform 
 								{
@@ -808,7 +777,7 @@ Level
 									var SendsEvents = true
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:21]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:20]
 							{
 								Transform 
 								{
@@ -823,7 +792,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bc1b16bafc525e0][ContextId:22]
+					Cog [Id:0x5bc1b16bafc525e0][ContextId:21]
 					{
 						var Name = "MouseSnapTo"
 						Transform 
@@ -847,7 +816,7 @@ Level
 					}
 				}
 			}
-			Cog [Id:0x5b62dae1a4e883c7][ContextId:23]
+			Cog [Id:0x5b62dae1a4e883c7][ContextId:22]
 			{
 				var Name = "ItemSpawner"
 				Transform 
@@ -860,7 +829,7 @@ Level
 				{
 					var UpperLeftPoint = Real2{-12, 6}
 					var LowerRightPoint = Real2{0, -6}
-					var SpawnRatePerFrame = 4.99999987e-05
+					var SpawnRatePerFrame = 9.99999975e-05
 					var ShipHitBox = CogPath
 					{
 						var Path = "../User/PlayerHitbox"
@@ -871,7 +840,7 @@ Level
 						var UpdatePathOnCogChange = true
 						var UpdateCogOnInitialize = true
 						var ResolvedNullErrorOccurred = false
-						var Cog = 17
+						var Cog = 16
 						var PathPreference0 = CogPathPreference.CogRelative
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
@@ -880,7 +849,7 @@ Level
 			}
 		}
 	}
-	Cog [ContextId:24]
+	Cog [ContextId:23]
 	{
 		var Name = "BGMusic"
 		Transform 
