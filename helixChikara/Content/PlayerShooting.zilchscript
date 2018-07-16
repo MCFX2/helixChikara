@@ -25,6 +25,7 @@ class PlayerShooting : ZilchComponent
   var Controller : Gamepad;
   
   var TimeSinceLastBullet = 0;
+  var BombCooldown = 0;
   var CurrentShip : Ship = Ship.Anime;
   
   var Rand : Random = Random();
@@ -49,10 +50,11 @@ class PlayerShooting : ZilchComponent
       }
     }
     else if (this.CurrentShip == Ship.Reagan){
-      if(this.TimeSinceLastBullet >= this.MachoBombFireDelay){
+      if(this.BombCooldown >= this.MachoBombFireDelay){
         var currentBullet = this.Space.CreateAtPosition(Archetype.MachoBomb, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
         currentBullet.RigidBody.Velocity = Real3(this.MachoBombVelocity, 0, 0);
         this.TimeSinceLastBullet = 0;
+        this.BombCooldown = 0;
       }
     }
     else if (this.CurrentShip == Ship.Scout){
@@ -127,6 +129,12 @@ class PlayerShooting : ZilchComponent
     return Ship.Anime;
   }
   
+  function PrevShip() : Ship{
+    if(this.CurrentShip == Ship.Anime) return Ship.Scout;
+    if(this.CurrentShip == Ship.Scout) return Ship.Reagan;
+    return Ship.Anime;
+  }
+    
   function CheckMouse() {
     if(Zero.Mouse.IsButtonDown(MouseButtons.Left) && this.Owner.PlayerController.ControlType == ControlTypes.Mouse) {
         this.Shoot();
@@ -149,8 +157,11 @@ class PlayerShooting : ZilchComponent
       this.Shoot();
     }
     
-    if(this.Controller.IsButtonPressed(Buttons.LeftShoulder) || this.Controller.IsButtonPressed(Buttons.RightShoulder)){
+    if(this.Controller.IsButtonPressed(Buttons.RightShoulder)){
       this.ChangeShip(this.NextShip());
+    }
+    else if (this.Controller.IsButtonPressed(Buttons.LeftShoulder)){
+      this.ChangeShip(this.PrevShip());
     }
     
   }
@@ -160,6 +171,7 @@ class PlayerShooting : ZilchComponent
     this.CheckKeyboard();
     this.CheckGamepad();
     ++this.TimeSinceLastBullet;
+    ++this.BombCooldown;
   }
   
 }
