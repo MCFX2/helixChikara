@@ -3,12 +3,11 @@ class Rainbowify : ZilchComponent
   var RND : Random = Random();
   function Initialize(init : CogInitializer)
   {
-    var r = this.RND.Range(0.5, 1);
-    var g = this.RND.Range(0.5, 1);
-    var b = this.RND.Range(0.5, 1);
-    
-    Console.Write(r,g,b,"\n");
-    this.Owner.Sprite.VertexColor = Real4(r,g,b,1);
+    var h = this.RND.Range(0.0, 1.0);
+    var s = 1.0;
+    var v = 1.0;
+
+    this.Owner.Sprite.VertexColor = Color.FromHsva(h,s,v);
     
     
   }

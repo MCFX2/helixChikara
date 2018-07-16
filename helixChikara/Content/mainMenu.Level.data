@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 16.3746338
+			var Size = 26.9972076
 		}
 		EditorCameraController 
 		{
@@ -369,7 +369,7 @@ Level
 		}
 		CinematicEnemies 
 		{
-			var SpawnX = 25
+			var SpawnX = 15
 			var Direction = -1
 			var LiveTime = 600
 			var FloatSpeed = 0.200000003
