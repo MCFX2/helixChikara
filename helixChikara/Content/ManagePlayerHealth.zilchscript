@@ -10,17 +10,28 @@ class ManagePlayerHealth : ZilchComponent {
   function CreateHealthBar() {
     var healthIcon : Cog = null;
     var coords : Real3 = this.InitialPosition;
-    for (var i : Integer = 0; i<this.PlayerHealth; ++i) {
-      healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
-      this.HealthIcons.Add(healthIcon);
-      coords += Real3(1, 0, 0);
+    for (var i : Integer = 0; i<=1; ++i) {
+      coords = Real3(this.InitialPosition.X, coords.Y-(i*0.6), 0);
+      for (var j : Integer = 0; j<this.PlayerHealth/2; ++j) {
+        healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
+        this.HealthIcons.Add(healthIcon);
+        coords += Real3(0.6, 0, 0);
+      }
     }
   }
   
   function AddToHealthBar(health : Integer) {
+    var coords : Real3 = Real3(0);
+    var lastHealth : Cog = this.HealthIcons.Get(this.HealthIcons.LastIndex);
+    if (this.PlayerHealth == 5) {
+      coords = Real3(this.InitialPosition.X, this.InitialPosition.Y-0.6, 0);
+      var healthIcon : Cog = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
+      this.HealthIcons.Add(healthIcon);
+      ++this.PlayerHealth;
+      --health;
+    }
     for (var i : Integer = 1; i<=health; ++i) {
-      var coords : Real3 = Real3(1, 0, 0);
-      var lastHealth : Cog = this.HealthIcons.Get(this.HealthIcons.LastIndex);
+      coords = Real3(0.75, 0, 0);
       coords += lastHealth.Transform.Translation;
       var healthIcon : Cog = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
       this.HealthIcons.Add(healthIcon);
