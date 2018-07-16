@@ -3,6 +3,7 @@ class WaveSpawner : ZilchComponent
   [Property] var VictoryLevel : Level;
   [Property] var WaveHUD : CogPath;
   [Property] var Player : CogPath;
+  [Property] var ItemSpawn : CogPath;
   
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
@@ -104,8 +105,7 @@ class WaveSpawner : ZilchComponent
     this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave;
     this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
     if(this.Player.WavePerfect.IsPerfect){
-      Console.Write("\nWow!");
-      //spawn item here
+      this.ItemSpawn.ItemSpawner.CreatePickup();
     }
     this.Player.WavePerfect.ResetAttempt();
     
