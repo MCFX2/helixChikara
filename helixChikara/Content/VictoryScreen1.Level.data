@@ -266,7 +266,7 @@ Level
 		}
 		BackToMain [LocallyAdded]
 		{
-			var MainMenu = "null"
+			var MainMenu = "5b3c55ba57dd01ce:mainMenu"
 		}
 		Hierarchy 
 		{
