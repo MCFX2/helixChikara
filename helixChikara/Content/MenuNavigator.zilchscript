@@ -24,9 +24,9 @@ class MenuNavigator : ZilchComponent {
   }
   
   function LoadButtons() {
-    this.CreateButton(Real3(0, 1, 0.1));
-    this.CreateButton(Real3(0, -1, 0.1));
-    this.CreateButton(Real3(0, -3, 0.1));
+    this.CreateButton(Real3(0, 1, 3.1));
+    this.CreateButton(Real3(0, -1, 3.1));
+    this.CreateButton(Real3(0, -3, 3.1));
   }
   
   function SetMainMenu(firstLoad : Boolean) {
