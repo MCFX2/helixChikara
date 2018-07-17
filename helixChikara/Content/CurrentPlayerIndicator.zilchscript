@@ -65,6 +65,12 @@ class CurrentPlayerIndicator : ZilchComponent {
     this.ReadyToArm = true;
   }
   
+  function AngleGun(angle : Real) {
+    var euler : Real3 = Real3(0, 0, angle);
+    var quat = Math.ToQuaternion(euler);
+    this.Gun.Transform.Rotation = quat;
+  }
+  
   function UpdateShipName (ship : Ship) {
     if (ship == Ship.Anime) {
       //this.Owner.Sprite.SpriteSource = SpriteSource.NameAnime;      
