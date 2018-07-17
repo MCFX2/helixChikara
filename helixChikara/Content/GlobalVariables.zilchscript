@@ -8,11 +8,11 @@ enum TutorialPhase {Init, Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrac
 enum StatTypes {EnemiesKilled, NearMisses, Score}
 
 class GlobalVariables : ZilchComponent {
+    var ControlType : ControlTypes = ControlTypes.Mouse;
+  var CurrentWave : Integer = -1;
   
   var Score : Integer = 0;
   var HighScore : Integer = 0;
-  var ControlType : ControlTypes = ControlTypes.Mouse;
-  var CurrentWave : Integer = -1;
   var EnemiesKilled : Integer = 0;
   var NearMisses : Integer = 0;
   

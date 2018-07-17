@@ -24,23 +24,25 @@ class CinematicEnemies : ZilchComponent
   }
   
   function CreateCinematicEnemy(enemyType : Archetype){
-    var enemySpawn = this.Space.CreateAtPosition(enemyType, Real3(this.SpawnX, this.R.Range(-12, 12), 0));
-    
-    var enemySeq = Actions.Sequence(enemySpawn.Actions);
-    var moveTime = this.R.Range(this.SpeedVariance.X, this.SpeedVariance.Y) / this.FloatSpeed;
-    enemySpawn.Transform.Scale = enemySpawn.Transform.Scale * (this.BaseSize / moveTime);
-    
-    
-    enemySpawn.Transform.Translation += Real3(0, 0, enemySpawn.Transform.Scale.X);
-    
-    Actions.Property(enemySeq,
-    @enemySpawn.Transform.Translation,
-    Real3(this.SpawnX * this.Direction, enemySpawn.Transform.Translation.YZ),
-    moveTime,
-    Ease.Linear);
-    
-    Actions.Call(enemySeq, enemySpawn.Destroy);
-    
+    if(!this.Space.MarkedForDestruction){
+        
+      var enemySpawn = this.Space.CreateAtPosition(enemyType, Real3(this.SpawnX, this.R.Range(-12, 12), 0));
+      
+      var enemySeq = Actions.Sequence(enemySpawn.Actions);
+      var moveTime = this.R.Range(this.SpeedVariance.X, this.SpeedVariance.Y) / this.FloatSpeed;
+      enemySpawn.Transform.Scale = enemySpawn.Transform.Scale * (this.BaseSize / moveTime);
+      
+      
+      enemySpawn.Transform.Translation += Real3(0, 0, enemySpawn.Transform.Scale.X);
+      
+      Actions.Property(enemySeq,
+      @enemySpawn.Transform.Translation,
+      Real3(this.SpawnX * this.Direction, enemySpawn.Transform.Translation.YZ),
+      moveTime,
+      Ease.Linear);
+      
+      Actions.Call(enemySeq, enemySpawn.Destroy);
+    }
   }
 
   function OnLogicUpdate(event : UpdateEvent)

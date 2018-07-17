@@ -16,17 +16,11 @@ class CreateStatDisplay : ZilchComponent {
     }
   }
   
-  function ClearStatistics() {
-    this.Space.GameSession.GlobalVariables.EnemiesKilled = 0;
-    this.Space.GameSession.GlobalVariables.NearMisses = 0;
-    this.Space.GameSession.GlobalVariables.Score = 0;
-  }
-  
   function Initialize(init : CogInitializer) {
     this.CreateStatistic(StatTypes.EnemiesKilled, this.EnemiesKilledCoords);
     this.CreateStatistic(StatTypes.NearMisses, this.NearMissesCoords);
     this.CreateStatistic(StatTypes.Score, this.ScoreCoords);
-    this.ClearStatistics();
+    
   }
 
 }
