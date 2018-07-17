@@ -6,4 +6,11 @@ TextContent
 		var Name = "DestroyLevelOnClick"
 		var ResourceId = 0x5b664fc52e10664f
 	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"ZilchScript"
+		}
+	}
 }

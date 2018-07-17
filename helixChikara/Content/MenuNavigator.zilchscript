@@ -14,8 +14,6 @@ class MenuNavigator : ZilchComponent {
 
   var TitleContent : String;
   
-  var CurrentState : MenuStates;
-  
   function CreateButton(coords : Real3){
     var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.MenuButton, coords);
     this.Buttons.Add(buttonBase);
@@ -42,7 +40,7 @@ class MenuNavigator : ZilchComponent {
     this.Buttons[3].SpriteText.Text = "OPTIONS";
     this.Buttons[5].SpriteText.Text = "QUIT";
     this.Buttons[7].SpriteText.Text = "CREDITS";
-    this.CurrentState = MenuStates.MainMenu;
+    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.MainMenu;
   }
 
   function SetModeMenu() {
@@ -52,7 +50,7 @@ class MenuNavigator : ZilchComponent {
     this.PurgeButton(this.Buttons.LastIndex-1);
     this.MoveButton(this.Buttons[2], Real3(0, -1.234375, 3.1));
     this.TitleContent = "Select Mode";
-    this.CurrentState = MenuStates.SelectMode;
+    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.SelectMode;
   }
   
   function SetOptionsMenu(fromMain : Boolean) {
@@ -64,7 +62,7 @@ class MenuNavigator : ZilchComponent {
       this.MoveButton(this.Buttons[2], Real3(0, -1.234375, 3.1));
     }
     this.TitleContent = "Options";
-    this.CurrentState = MenuStates.Options;    
+    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.Options;    
   }
   
   function SetControlTypeMenu() {
@@ -72,7 +70,7 @@ class MenuNavigator : ZilchComponent {
     this.Buttons[3].SpriteText.Text = "CONTROLLER";
     this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Choose Control Style";
-    this.CurrentState = MenuStates.ControlType;    
+    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.ControlType;    
   }
   
   function PurgeButton(i : Integer) {
