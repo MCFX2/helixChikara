@@ -1,7 +1,7 @@
 class ManagePlayerHealth : ZilchComponent {
   
   [Property] var PlayerHealth : Real = 100;
-  [Property] var InitialPosition : Real3 = Real3(-12, 9.25, 0);
+  [Property] var InitialPosition : Real3 = Real3(-12, 9.25, 1);
   [Property] var GameOver : Level;
   [Property] var NearMissBox : CogPath;
   
@@ -10,28 +10,17 @@ class ManagePlayerHealth : ZilchComponent {
   function CreateHealthBar() {
     var healthIcon : Cog = null;
     var coords : Real3 = this.InitialPosition;
-    //for (var i : Integer = 0; i<=1; ++i) {
-    //  coords = Real3(this.InitialPosition.X, coords.Y-(i*0.6), 0);
-      for (var j : Integer = 0; j<this.PlayerHealth/2; ++j) {
-        healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
-        this.HealthIcons.Add(healthIcon);
-        coords += Real3(1.1, 0, 0);
-      }
-    //}
+    for (var i : Integer = 0; i<this.PlayerHealth; ++i) {
+      healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
+      this.HealthIcons.Add(healthIcon);
+      coords += Real3(1.1, 0, 0);
+    }
   }
   
   function AddToHealthBar(health : Integer) {
-    var coords : Real3 = Real3(0);
-    var lastHealth : Cog = this.HealthIcons.Get(this.HealthIcons.LastIndex);
-    //if (this.PlayerHealth == 5) {
-    //  coords = Real3(this.InitialPosition.X, this.InitialPosition.Y-0.6, 0);
-    //  var healthIcon : Cog = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
-    //  this.HealthIcons.Add(healthIcon);
-    //  ++this.PlayerHealth;
-    //  --health;
-    //}
     for (var i : Integer = 1; i<=health; ++i) {
-      coords = Real3(1.1, 0, 0);
+      var lastHealth : Cog = this.HealthIcons.Get(this.HealthIcons.LastIndex);
+      var coords = Real3(1.1, 0, 0);
       coords += lastHealth.Transform.Translation;
       var healthIcon : Cog = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
       this.HealthIcons.Add(healthIcon);
@@ -80,8 +69,7 @@ class ManagePlayerHealth : ZilchComponent {
       
         this.Owner.SimpleSound.Play();
       } else if (event.OtherObject.Collider.CollisionGroup == CollisionGroup.ItemPickup) {
-        Console.WriteLine("OwO whats this");
-        if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Health && this.PlayerHealth<10) {
+        if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Health && this.PlayerHealth<5) {
           this.AddToHealthBar(1);
         } else if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Shield) {
           // make a heckin cool shield

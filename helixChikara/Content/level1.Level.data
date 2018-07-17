@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-9.65180016, 0.515071332, 20.1800003}
+			var Translation = Real3{-3.33726931, 0.376539022, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 24.0428047
+			var Size = 21.7548313
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-9.65180016, 0.515071332, 0.179999441}
+			var LookTarget = Real3{-3.33726931, 0.376539022, 0.179999679}
 			var MoveSensitivity = 1
 		}
 	}
@@ -602,7 +602,7 @@ Level
 						}
 						ManagePlayerHealth 
 						{
-							var PlayerHealth = 10
+							var PlayerHealth = 5
 							var InitialPosition = Real3{-11.25, 9.25, 0}
 							var GameOver = "5b11daa63b7bdd55:gameOver"
 							var NearMissBox = CogPath
