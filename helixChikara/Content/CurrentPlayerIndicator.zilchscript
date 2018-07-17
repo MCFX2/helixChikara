@@ -1,12 +1,57 @@
 class CurrentPlayerIndicator : ZilchComponent {
   
-  [Property] var Player : CogPath;
+  // CONSTANTS
+  var ANIME : Integer = 0;
+  var REAGAN : Integer = 1;
+  var SCOUT : Integer = 2;
   
+  // Properties
+  [Property] var Player : CogPath;
+  [Property] var Gun : CogPath;
+  
+  // HUD Booleans
   var IsArming : Boolean = false; // true when animation is playing
   var ReadyToArm : Boolean = false; // true when Reagan is out and animation has yet to play
   
+  // Gun Variables
+  var CurrentWeapon : Integer = -1;
+  var WeaponSpawnIn : Integer = -1;
+  var BeginFadeOut : Boolean = false;
+  var BeginFadeIn : Boolean = false;
+  
+  // SpriteSource arrays
+  var ActiveGuns : Array[SpriteSource] = Array[SpriteSource]();
+  var FadeOutGuns : Array[SpriteSource] = Array[SpriteSource]();
+  var FadeInGuns : Array[SpriteSource] = Array[SpriteSource]();
+  
+  function AddSprites() { // I'm so sorry
+    this.ActiveGuns.Add(SpriteSource.Anime_wep);
+    this.ActiveGuns.Add(SpriteSource.Reagan_wep);
+    this.ActiveGuns.Add(SpriteSource.Scout_wep);
+    
+    this.FadeOutGuns.Add(SpriteSource.Anime_swap_out);
+    this.FadeOutGuns.Add(SpriteSource.Reagan_swap_out);
+    this.FadeOutGuns.Add(SpriteSource.Scout_swap_out);
+    
+    this.FadeInGuns.Add(SpriteSource.Anime_swap_in);
+    this.FadeInGuns.Add(SpriteSource.Reagan_swap_in);
+    this.FadeInGuns.Add(SpriteSource.Scout_swap_in);
+  }
+  
+  function FadeInOut(gun : Integer, fadeIn : Boolean) {
+    if (fadeIn) {
+      this.Gun.Sprite.SpriteSource = this.FadeInGuns[gun];
+      this.BeginFadeIn = true;
+    } else {
+      this.Gun.Sprite.SpriteSource = this.FadeOutGuns[gun];
+      this.BeginFadeOut = true;
+    }
+  }
+  
+  
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.AddSprites();
   }
   
   function ArmHUD() {
@@ -29,17 +74,19 @@ class CurrentPlayerIndicator : ZilchComponent {
     //RIP Macho Cheese
      else if (ship == Ship.Reagan) {
       //this.Owner.Sprite.SpriteSource = SpriteSource.NameReagan;
-        if (this.Player.PlayerShooting.TimeSinceLastBullet < this.Player.PlayerShooting.MachoBombFireDelay) {
-          this.DisarmHUD();
-        } else {
-          this.ArmHUD();
-        }
+      if (this.Player.PlayerShooting.TimeSinceLastBullet < this.Player.PlayerShooting.MachoBombFireDelay) {
+        this.DisarmHUD();
+      } else {
+        this.ArmHUD();
+      }
     } else if (ship == Ship.Scout) {
       //this.Owner.Sprite.SpriteSource = SpriteSource.NameScout;
     }
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
+    
+    // HUD Control
     if (this.ReadyToArm) {
       if (this.Player.PlayerShooting.BombCooldown >= this.Player.PlayerShooting.MachoBombFireDelay) {
         this.ArmHUD();
@@ -51,6 +98,21 @@ class CurrentPlayerIndicator : ZilchComponent {
         this.Owner.Sprite.SpriteSource = SpriteSource.Hud_armed;
       }
     }
+    
+    // Gun Control
+    if (this.BeginFadeIn) {
+      if (this.Gun.Sprite.CurrentFrame >= 2) {
+        this.Gun.Sprite.SpriteSource = this.ActiveGuns[this.WeaponSpawnIn];
+        this.BeginFadeIn = false;
+      }
+    }
+    if (this.BeginFadeOut) {
+      if (this.Gun.Sprite.CurrentFrame >= 2) {
+        this.BeginFadeOut = false;
+        this.FadeInOut(this.WeaponSpawnIn, true);
+      }
+    }
+    
   }
   
 }

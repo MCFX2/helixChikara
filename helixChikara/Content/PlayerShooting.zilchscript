@@ -94,8 +94,22 @@ class PlayerShooting : ZilchComponent
   }
   
   function ChangeShip(newShip : Ship){
+    if (this.CurrentShip == Ship.Anime) {
+      this.HUDBar.CurrentPlayerIndicator.CurrentWeapon = this.HUDBar.CurrentPlayerIndicator.ANIME;
+    } else if (this.CurrentShip == Ship.Reagan) {
+      this.HUDBar.CurrentPlayerIndicator.CurrentWeapon = this.HUDBar.CurrentPlayerIndicator.REAGAN;
+    } else if (this.CurrentShip == Ship.Scout) {
+      this.HUDBar.CurrentPlayerIndicator.CurrentWeapon = this.HUDBar.CurrentPlayerIndicator.SCOUT;
+    }
+    this.HUDBar.CurrentPlayerIndicator.FadeInOut(this.HUDBar.CurrentPlayerIndicator.CurrentWeapon, false);
     this.CurrentShip = newShip;
-    //do other stuff we do when switching here
+    if (newShip == Ship.Anime) {
+      this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.ANIME;
+    } else if (newShip == Ship.Reagan) {
+      this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.REAGAN;
+    } else if (newShip == Ship.Scout) {
+      this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.SCOUT;
+    }
   }
   
   
@@ -103,7 +117,7 @@ class PlayerShooting : ZilchComponent
     if(Zero.Keyboard.KeyIsDown(this.ShootKey) && this.Owner.PlayerController.ControlType == ControlTypes.Keyboard){
       this.Shoot();
     }
-    if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD/mouse to select a ship to replace from a radial menu
+    if(Zero.Keyboard.KeyIsDown(this.AnimeShipKey)){//TODO. make a single ship key and use WAD/mouse to select a ship to replace from a radial menu (no)
       this.ChangeShip(Ship.Anime);
       //this.HUDCharacterIndicator.CurrentPlayerIndicator.UpdateShipName(Ship.Anime);
     }

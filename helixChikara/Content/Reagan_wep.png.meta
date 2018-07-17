@@ -3,8 +3,8 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Scoutwep"
-		var ResourceId = 0x5b6500d0eb171dcf
+		var Name = "Reagan_wep"
+		var ResourceId = 0x5b6500d0eb16e6a9
 		var FrameSizeX = 64
 		var FrameSizeY = 64
 		var FrameCount = 1
