@@ -36,6 +36,13 @@ class PlayerShooting : ZilchComponent
     this.Controller = Zero.Gamepads.GetGamePad(0);
   }
   
+  function GetAngle(v : Real2) : Real{
+    var mag : Real = Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2));
+    var angle = Math.ACos(v.X/mag);
+    if (v.Y < 0) angle = (2*Math.Pi)-angle;
+    return angle;
+  }
+  
   function Shoot(){
     if(this.CurrentShip == Ship.Anime){
       if(this.TimeSinceLastBullet >= this.BulletFireDelayAnime){
@@ -47,6 +54,7 @@ class PlayerShooting : ZilchComponent
         currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
         //Note that bullets are intentionally NOT made children of Screen, so if the level changes direction bullets don't follow. Realism!
         this.TimeSinceLastBullet = 0;
+        this.HUDBar.CurrentPlayerIndicator.AngleGun(0);
       }
     }
     else if (this.CurrentShip == Ship.Reagan){
@@ -56,6 +64,7 @@ class PlayerShooting : ZilchComponent
         this.TimeSinceLastBullet = 0;
         this.BombCooldown = 0;
         this.HUDBar.CurrentPlayerIndicator.DisarmHUD();
+        this.HUDBar.CurrentPlayerIndicator.AngleGun(0);
       }
     }
     else if (this.CurrentShip == Ship.Scout){
@@ -87,6 +96,7 @@ class PlayerShooting : ZilchComponent
         var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
         currentBullet.RigidBody.Velocity = Real3(newVel * this.RandalFireSpeed, 0);
         currentBullet.Orientation.LookAtPoint(targetPos);
+        this.HUDBar.CurrentPlayerIndicator.AngleGun(this.GetAngle(currentBullet.RigidBody.Velocity.XY));
         //currentBullet.RigidBody.Velocity 
         this.TimeSinceLastBullet = 0;
       }
