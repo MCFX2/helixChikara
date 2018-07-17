@@ -1,5 +1,7 @@
 class MainMenuButtonClick : ZilchComponent {
   
+  [Property] var BGM : CogPath;
+  
   var Button : Cog;
   
   function Initialize(init : CogInitializer) {
@@ -19,12 +21,10 @@ class MainMenuButtonClick : ZilchComponent {
       if (this.Owner.MenuNavigator.CurrentState == MenuStates.SelectMode) {
         var newLevelSpace : Space = this.GameSession.CreateSpace(Archetype.Space);
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
-          
-          
+          this.Space.Destroy();
           newLevelSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
-
-          
+          this.Space.Destroy();
           this.GameSession.GlobalVariables.DoTutorial = true;
           newLevelSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {

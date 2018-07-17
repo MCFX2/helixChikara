@@ -113,6 +113,7 @@ class WaveSpawner : ZilchComponent
       //"you win" or some shit
       if(!this.GameSession.MarkedForDestruction){ //fixes annoying editor error
         var victorySpace : Space = this.GameSession.CreateSpace(Archetype.Space);
+        this.Space.Destroy();
         victorySpace.LoadLevel(this.VictoryLevel);
       }
 

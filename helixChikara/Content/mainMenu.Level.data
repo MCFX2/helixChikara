@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 12.3091497
+			var Size = 22.4287205
 		}
 		EditorCameraController 
 		{
@@ -333,6 +333,21 @@ Level
 				}
 				MainMenuButtonClick 
 				{
+					var BGM = CogPath
+					{
+						var Path = ":/BGMusic"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 10
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
 				}
 				MenuNavigator 
 				{
@@ -352,13 +367,13 @@ Level
 						var PathPreference2 = CogPathPreference.Absolute
 					}
 					var GameLevel1 = "59097123da28242a:level1"
-					var MainMenuLevel = "5b3c55ba57dd01ce:mainMenu"
+					var MainMenuLevel = "5b3c55ba57dd01ce:MainMenu"
 					var InstructionsLevel = "577d126becbdd810:EmptyLevel"
 				}
 			}
 		}
 	}
-	Cog [ContextId:10]
+	Cog [ContextId:11]
 	{
 		var Name = "BGEnemySpawner"
 		Transform 
@@ -378,7 +393,7 @@ Level
 			var BaseSize = 3
 		}
 	}
-	Cog [ContextId:11]
+	Cog [ContextId:10]
 	{
 		var Name = "BGMusic"
 		Transform 
