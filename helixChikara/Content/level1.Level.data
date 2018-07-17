@@ -4,25 +4,6 @@ Level
 	Cog [ContextId:1]
 	{
 		var Name = "LevelSettings"
-		GravityEffect 
-		{
-			var Active = false
-			var WakeUpOnChange = false
-			var DebugDrawEffect = false
-			var LocalSpaceDirection = true
-			var Strength = 10
-			var Direction = Real3{0, -1, 0}
-		}
-		DragEffect 
-		{
-			var Active = false
-			var WakeUpOnChange = false
-			var DebugDrawEffect = false
-			var LinearDamping = 0.200000003
-			var AngularDamping = 0.100000001
-			var LinearDrag = 0
-			var AngularDrag = 0
-		}
 		GridDraw 
 		{
 			var Active = true
@@ -48,7 +29,7 @@ Level
 			var GameDebugDraw = true
 			var RenderDiffuse = true
 			var RenderSpecular = true
-			var RenderSkybox = true
+			var RenderSkybox = false
 			var Skybox = "5822dec85e380cf1:SimpleSkybox"
 			var ClearColor = Real4{0, 0, 0, 1}
 			var DirectLighting = true
@@ -77,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-4.57211065, 9.50416374, 20.1800003}
+			var Translation = Real3{7.84636593, -0.0599780381, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 39.6398849
+			var Size = 32.4543915
 		}
 		EditorCameraController 
 		{
@@ -139,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-4.57211065, 9.50416374, 0.17999962}
+			var LookTarget = Real3{7.84636593, -0.0599780381, 0.180000126}
 			var MoveSensitivity = 1
 		}
 	}
@@ -395,13 +376,19 @@ Level
 					{
 						Transform 
 						{
-							var Translation = Real3{0, 9.25, -6.63206265e-07}
+							var Translation = Real3{-4.91155386, 9.48143578, -6.63206265e-07}
 							var Rotation = Quaternion{0, 0, 0, 1}
 							var Scale = Real3{1, 1, 1}
 						}
 						SpriteText 
 						{
-							var VertexColor = Real4{0.800000072, 1, 0, 1}
+							var VertexColor = Real4{1, 1, 1, 1}
+							var Text = "Score:"
+							var Font = "5bb40a4f43f00049:VT323Regular"
+							var TextAlign = TextAlign.Left
+						}
+						HUDScoreController [LocallyRemoved]
+						{
 						}
 					}
 					Cog [Id:0x5b6c5fa70808ff81][ContextId:14]
@@ -409,7 +396,7 @@ Level
 						var Name = "ScoreCounter"
 						Transform 
 						{
-							var Translation = Real3{11.5, 9.25, -6.63206265e-07}
+							var Translation = Real3{17.2163105, 9.48143959, -6.63206265e-07}
 							var Scale = Real3{1, 1, 1}
 							var Rotation = Quaternion{0, 0, 0, 1}
 						}
@@ -423,17 +410,18 @@ Level
 							var LocalAabbHalfExtents = Real3{1, 1, 1}
 							var GroupSortValue = 0
 							var Material = "582c575af53d18c9:AlphaSprite"
-							var VertexColor = Real4{0.799999714, 1, 0, 1}
+							var VertexColor = Real4{1, 1, 1, 1}
 							var GeometryMode = SpriteGeometryMode.ZPlane
-							var Text = "High Score: 0"
-							var Font = "57343753bb4eaaec:NotoSans-Regular"
+							var Text = "0"
+							var Font = "5bb40a4f43f00049:VT323Regular"
 							var FontSize = 128
 							var PixelsPerUnit = 128
-							var TextAlign = TextAlign.Center
+							var TextAlign = TextAlign.Right
 						}
 						HUDScoreController 
 						{
 							var ScoreType = ScoreTypes.HighScore
+							var IncTime = 0.200000003
 						}
 					}
 					Cog [Id:0x5bce8f7097ef93e0][ContextId:15]
@@ -550,9 +538,50 @@ Level
 							var HalfSize = Real3{0.5, 0.5, 0.5}
 						}
 					}
+					Cog [Id:0x5bb40ad60e445d48][InheritId:"5b15ae58d5f8afc6:ScoreCounter"][ContextId:18]
+					{
+						Transform 
+						{
+							var Translation = Real3{5.27156448, 9.43000507, -6.63206265e-07}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+						SpriteText 
+						{
+							var Text = "0"
+						}
+					}
+					Cog [Id:0x5bb4091fdae19d59][ContextId:19]
+					{
+						var Name = "ScoreCounter"
+						Transform 
+						{
+							var Translation = Real3{6.19199848, 9.48143959, -6.63206265e-07}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						SpriteText 
+						{
+							var Visible = true
+							var ViewCulling = true
+							var VisibilityEvents = true
+							var OverrideBoundingBox = false
+							var LocalAabbCenter = Real3{0, 0, 0}
+							var LocalAabbHalfExtents = Real3{1, 1, 1}
+							var GroupSortValue = 0
+							var Material = "582c575af53d18c9:AlphaSprite"
+							var VertexColor = Real4{1, 1, 1, 1}
+							var GeometryMode = SpriteGeometryMode.ZPlane
+							var Text = "Best:"
+							var Font = "5bb40a4f43f00049:VT323Regular"
+							var FontSize = 128
+							var PixelsPerUnit = 128
+							var TextAlign = TextAlign.Left
+						}
+					}
 				}
 			}
-			Cog [Id:0x5bc97f206589e5ae][ContextId:18]
+			Cog [Id:0x5bc97f206589e5ae][ContextId:20]
 			{
 				var Name = "User"
 				Transform 
@@ -615,7 +644,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 19
+								var Cog = 21
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -661,7 +690,7 @@ Level
 							var BulletFireDelayAnime = 6
 							var BulletSpreadAnime = 0.0199999996
 							var MachoBombFireDelay = 240
-							var MachoBombVelocity = 5
+							var MachoBombVelocity = 20
 							var RandalFireDelay = 4
 							var RandalFireSpeed = 80
 							var WaveController = CogPath
@@ -726,7 +755,7 @@ Level
 								var UpdatePathOnCogChange = true
 								var UpdateCogOnInitialize = true
 								var ResolvedNullErrorOccurred = false
-								var Cog = 19
+								var Cog = 21
 								var PathPreference0 = CogPathPreference.CogRelative
 								var PathPreference1 = CogPathPreference.SpaceRelative
 								var PathPreference2 = CogPathPreference.Absolute
@@ -758,7 +787,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:19]
+							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:21]
 							{
 								var Name = "Ship"
 								Transform 
@@ -793,7 +822,7 @@ Level
 									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
 									var CollisionGroup = "5bc1b14a9170e41f:NoCollide"
 									var Offset = Real3{0, 0, 0}
-									var Radius = 0.300000012
+									var Radius = 0.5
 								}
 								NearMissTrigger 
 								{
@@ -849,7 +878,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bcce1d27e108e02][ContextId:20]
+					Cog [Id:0x5bcce1d27e108e02][ContextId:22]
 					{
 						var Name = "PlayerRestrictingWalls"
 						Transform 
@@ -860,7 +889,7 @@ Level
 						}
 						Hierarchy 
 						{
-							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:21]
+							Cog [Id:0x5bce7ff228dd6797][InheritId:"5bce473859846841:obstacleWall"][ContextId:23]
 							{
 								Transform 
 								{
@@ -877,7 +906,7 @@ Level
 									var SendsEvents = true
 								}
 							}
-							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:22]
+							Cog [Id:0x5bcce7ec4b0409aa][InheritId:"5bce473859846841:obstacleWall"][ContextId:24]
 							{
 								Transform 
 								{
@@ -892,7 +921,7 @@ Level
 							}
 						}
 					}
-					Cog [Id:0x5bc1b16bafc525e0][ContextId:23]
+					Cog [Id:0x5bc1b16bafc525e0][ContextId:25]
 					{
 						var Name = "MouseSnapTo"
 						Transform 
@@ -963,7 +992,7 @@ Level
 			}
 		}
 	}
-	Cog [ContextId:24]
+	Cog [ContextId:26]
 	{
 		var Name = "BGMusic"
 		Transform 

@@ -1,23 +1,51 @@
 class HUDScoreController : ZilchComponent {
   
   [Property] var ScoreType : ScoreTypes = ScoreTypes.CurrentScore;
-  
+  [Property] var IncTime : Real = 0.6;
   var Score : Integer = 0;
   var HighScore : Integer = 0;
+  var IsCounting : Boolean = false;
+  var ScoreDiscrepancy : Boolean = false;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    this.Score = this.GameSession.GlobalVariables.Score;
-    this.HighScore = this.GameSession.GlobalVariables.HighScore;       
+    this.Score = 0;//this.GameSession.GlobalVariables.Score;
+    this.HighScore = 0;//this.GameSession.GlobalVariables.HighScore;       
+  }
+  
+  function ClearDiscrepancy(){
+    this.IsCounting = false;
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
-    if (this.ScoreType == ScoreTypes.CurrentScore) {
-      this.Score = this.GameSession.GlobalVariables.Score;
-      this.Owner.SpriteText.Text = "Score: `this.Score`";
+    if (this.ScoreType == ScoreTypes.CurrentScore){
+      this.Owner.SpriteText.Text = "`this.Score`";
+      if(!this.IsCounting) {
+        if(this.Score != this.GameSession.GlobalVariables.Score){
+          this.IsCounting = true;
+          var incSeq = Actions.Sequence(this.Owner.Actions);
+          Actions.Property(incSeq,
+          @this.Score,
+          this.GameSession.GlobalVariables.Score,
+          this.IncTime,
+          Ease.Linear);
+          Actions.Call(incSeq, this.ClearDiscrepancy);
+        }
+      }
     } else {
-      this.HighScore = this.GameSession.GlobalVariables.HighScore;
-      this.Owner.SpriteText.Text = "High Score: `this.HighScore`";    }
+      this.Owner.SpriteText.Text = "`this.HighScore`";
+      if(!this.IsCounting) {
+        if(this.HighScore != this.GameSession.GlobalVariables.HighScore){
+          this.IsCounting = true;
+          var incSeq = Actions.Sequence(this.Owner.Actions);
+          Actions.Property(incSeq,
+          @this.HighScore,
+          this.GameSession.GlobalVariables.HighScore,
+          this.IncTime,
+          Ease.Linear);
+          Actions.Call(incSeq, this.ClearDiscrepancy);
+        }
+      }
+    }
   }
-  
 }
