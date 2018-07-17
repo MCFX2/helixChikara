@@ -48,7 +48,7 @@ Cog
 	}
 	MachoBombBase 
 	{
-		var FuseTime = 90
+		var FuseTime = 40
 		var EjectionVelocity = 2
 	}
 }
