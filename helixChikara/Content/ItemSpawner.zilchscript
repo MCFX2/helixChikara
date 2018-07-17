@@ -2,14 +2,16 @@ class ItemSpawner : ZilchComponent {
   
   [Property] var UpperLeftPoint : Real2 = Real2(-12, 6);
   [Property] var LowerRightPoint : Real2 = Real2(0, -6);
-  [Property] var SpawnRatePerFrame : Real = 0.005;
   [Property] var ShipHitBox : CogPath;
+  [Property] var WaveController : CogPath;
   
   function CreatePickup() {
     var random : Random = Random();
     var coords : Real3 = Real3(0, 0, 0.1);
-    coords.X = random.Range(this.UpperLeftPoint.X, this.LowerRightPoint.X);
-    coords.Y = random.Range(this.LowerRightPoint.Y, this.UpperLeftPoint.Y);
+    //coords.X = random.Range(this.UpperLeftPoint.X, this.LowerRightPoint.X);
+    //coords.Y = random.Range(this.LowerRightPoint.Y, this.UpperLeftPoint.Y);
+    coords.X = this.WaveController.WaveSpawner.LastEnemyCoords.X;
+    coords.Y = this.WaveController.WaveSpawner.LastEnemyCoords.Y;
     var pickup = this.Space.CreateAtPosition(Archetype.ItemPickup, coords);
     if (this.ShipHitBox.ManagePlayerHealth.PlayerHealth != 10) {
       pickup.Sprite.VertexColor = Real4(1.0, 0, 0, 1.0);
