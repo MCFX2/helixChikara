@@ -30,16 +30,15 @@ class PlayerShooting : ZilchComponent
   
   var Rand : Random = Random();
     
-  function Initialize(init : CogInitializer)
-  {
+  function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.Controller = Zero.Gamepads.GetGamePad(0);
   }
   
-  function GetAngle(v : Real2) : Real{
-    var mag : Real = Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2));
-    var angle = Math.ACos(v.X/mag);
-    if (v.Y < 0) angle = (2*Math.Pi)-angle;
+  function GetAngle(v : Real2) : Real {
+    var mag : Real = Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2)); // magnitude of velocity vector
+    var angle = Math.ACos(v.X/mag); // x = r*cos(theta)
+    if (v.Y < 0) angle = (2*Math.Pi)-angle; // ArcCosine yields a value in range [0, Pi], accounting for that
     return angle;
   }
   

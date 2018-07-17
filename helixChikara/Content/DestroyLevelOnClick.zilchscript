@@ -1,0 +1,13 @@
+class DestroyLevelOnClick : ZilchComponent {
+  
+  var CreditsSpace : Space;
+  
+  function Initialize(init : CogInitializer) {
+    Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
+    this.CreditsSpace = this.Space.GameSession.GlobalVariables.CreditsSpace;
+  }
+
+  function OnLeftClick(event : ViewportMouseEvent) {
+    this.CreditsSpace.Destroy();
+  }
+}

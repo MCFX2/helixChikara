@@ -8,7 +8,7 @@ enum TutorialPhase {Init, Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrac
 enum StatTypes {EnemiesKilled, NearMisses, Score}
 
 class GlobalVariables : ZilchComponent {
-    var ControlType : ControlTypes = ControlTypes.Mouse;
+  var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentWave : Integer = -1;
   
   var Score : Integer = 0;
@@ -19,6 +19,7 @@ class GlobalVariables : ZilchComponent {
   var ButtonClick : Boolean = false;
   var DoTutorial : Boolean = false;
   
+  [Property] var CreditsSpace : Space;
   
   function AddToScore(score : Integer) {
     this.Score += score;

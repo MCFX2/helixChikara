@@ -10,7 +10,7 @@ class MenuNavigator : ZilchComponent {
   // Accessible Levels
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
-  [Property] var InstructionsLevel : Level;  
+  [Property] var CreditsLevel : Level;  
 
   var TitleContent : String;
   
@@ -24,19 +24,24 @@ class MenuNavigator : ZilchComponent {
   }
   
   function LoadButtons() {
-    this.CreateButton(Real3(0, 1, 3.1));
-    this.CreateButton(Real3(0, -1, 3.1));
-    this.CreateButton(Real3(0, -3, 3.1));
+    this.CreateButton(Real3(0, 1.53125, 3.1)); // Top Button
+    this.CreateButton(Real3(0, -0.3125, 3.1)); // Middle Button
+    this.CreateButton(Real3(0, -4, 3.1)); // Bottom Button
+    this.CreateButton(Real3(0, -2.15625, 3.1)); // Credits Button
   }
   
   function SetMainMenu(firstLoad : Boolean) {
     //this.TitleContent = "Helix Force";
     if (firstLoad) {
       this.LoadButtons();
+    } else {
+      this.CreateButton(Real3(0, -2.15625, 3.1));
+      this.MoveButton(this.Buttons[2], Real3(0, -0.3125, 3.1));
     }
     this.Buttons[1].SpriteText.Text = "PLAY";
     this.Buttons[3].SpriteText.Text = "OPTIONS";
     this.Buttons[5].SpriteText.Text = "QUIT";
+    this.Buttons[7].SpriteText.Text = "CREDITS";
     this.CurrentState = MenuStates.MainMenu;
   }
 
@@ -44,14 +49,20 @@ class MenuNavigator : ZilchComponent {
     this.Buttons[1].SpriteText.Text = "PLAY NOW";
     this.Buttons[3].SpriteText.Text = "TUTORIAL";
     this.Buttons[5].SpriteText.Text = "BACK";
+    this.PurgeButton(this.Buttons.LastIndex-1);
+    this.MoveButton(this.Buttons[2], Real3(0, -1.234375, 3.1));
     this.TitleContent = "Select Mode";
     this.CurrentState = MenuStates.SelectMode;
   }
   
-  function SetOptionsMenu() {
+  function SetOptionsMenu(fromMain : Boolean) {
     this.Buttons[1].SpriteText.Text = "CONTROL TYPE";
     this.Buttons[3].SpriteText.Text = "VOLUME[NO]";
     this.Buttons[5].SpriteText.Text = "BACK";
+    if (fromMain) {
+      this.PurgeButton(this.Buttons.LastIndex-1);
+      this.MoveButton(this.Buttons[2], Real3(0, -1.234375, 3.1));
+    }
     this.TitleContent = "Options";
     this.CurrentState = MenuStates.Options;    
   }
@@ -64,13 +75,15 @@ class MenuNavigator : ZilchComponent {
     this.CurrentState = MenuStates.ControlType;    
   }
   
-  //function PurgeButton(button : Cog) {
-  //  button.Destroy();
-  //}
+  function PurgeButton(i : Integer) {
+    this.Buttons[i].Destroy();
+    this.Buttons.RemoveAt(i);
+    this.Buttons.RemoveAt(i);
+  }
   
-  //function MoveButton(button : Cog, coords : Real3) {
-  //  button.Transform.Translation = coords;
-  //}
+  function MoveButton(button : Cog, coords : Real3) {
+    button.Transform.Translation = coords;
+  }
   
   
   function Initialize(init : CogInitializer) {

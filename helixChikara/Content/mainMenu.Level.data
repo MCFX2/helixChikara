@@ -58,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.864095271, -0.331065297, 20.4004993}
+			var Translation = Real3{0.307443798, -0.731610835, 21.9004993}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 22.4287205
+			var Size = 18.3630867
 		}
 		EditorCameraController 
 		{
@@ -120,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.864095271, -0.331065297, 0.40049994}
+			var LookTarget = Real3{0.307443798, -0.731610835, 1.90050006}
 			var MoveSensitivity = 1
 		}
 	}
@@ -219,7 +219,7 @@ Level
 				var Name = "TitleText"
 				Transform 
 				{
-					var Translation = Real3{0, 0.0143854618, 3.90100002}
+					var Translation = Real3{0, 0.25, 3.90100002}
 					var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
 					var Rotation = Quaternion{0, 0, 0, 1}
 				}
@@ -368,7 +368,7 @@ Level
 					}
 					var GameLevel1 = "59097123da28242a:level1"
 					var MainMenuLevel = "5b3c55ba57dd01ce:MainMenu"
-					var InstructionsLevel = "577d126becbdd810:EmptyLevel"
+					var CreditsLevel = "5bb47265320d285e:Credits"
 				}
 			}
 		}
