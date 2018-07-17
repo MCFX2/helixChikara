@@ -3,7 +3,8 @@ class MainMenuButtonClick : ZilchComponent {
   [Property] var BGM : CogPath;
   
   var Button : Cog;
-  var NewLevelSpace : Space;
+  
+
   var DestroyCredits : Boolean = false;
   
   function Initialize(init : CogInitializer) {
@@ -18,17 +19,17 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function OnLogicUpdate(event : UpdateEvent) {
+    if(this.Owner.MenuNavigator.CurrentState == MenuStates.Inactive) return;
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
       this.Space.GameSession.GlobalVariables.ButtonClick = false;
       if (this.Owner.MenuNavigator.CurrentState == MenuStates.SelectMode) {
-        this.NewLevelSpace = this.GameSession.CreateSpace(Archetype.Space);
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Space.Destroy();
-          this.NewLevelSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
+          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.Space.Destroy();
           this.GameSession.GlobalVariables.DoTutorial = true;
-          this.NewLevelSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
+          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetMainMenu(false);
         }
@@ -54,7 +55,7 @@ class MainMenuButtonClick : ZilchComponent {
         }
         
       } else if (this.Owner.MenuNavigator.CurrentState == MenuStates.MainMenu) {
-        this.NewLevelSpace = this.GameSession.CreateSpace(Archetype.Space);
+        this.GameSession.GlobalVariables.CreditsSpace = this.GameSession.CreateSpace(Archetype.Space);
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Owner.MenuNavigator.SetModeMenu();
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
@@ -62,8 +63,9 @@ class MainMenuButtonClick : ZilchComponent {
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.GameSession.RequestQuit();
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[6]) {
-          this.Space.GameSession.GlobalVariables.CreditsSpace = this.NewLevelSpace;
-          this.NewLevelSpace.LoadLevel(this.Owner.MenuNavigator.CreditsLevel);
+          //this.Space.GameSession.GlobalVariables.CreditsSpace = this.NewLevelSpace;
+          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.CreditsLevel);
+          this.Owner.MenuNavigator.CurrentState = MenuStates.Inactive;
         } 
       }
 

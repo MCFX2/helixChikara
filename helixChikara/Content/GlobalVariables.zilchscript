@@ -1,4 +1,4 @@
-enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType}
+enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType, Inactive}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
