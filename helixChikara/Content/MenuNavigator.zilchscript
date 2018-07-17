@@ -54,7 +54,7 @@ class MenuNavigator : ZilchComponent {
   }
   
   function SetOptionsMenu(fromMain : Boolean) {
-    this.Buttons[1].SpriteText.Text = "CONTROL TYPE";
+    this.Buttons[1].SpriteText.Text = "CONTROLS";
     this.Buttons[3].SpriteText.Text = "VOLUME[NO]";
     this.Buttons[5].SpriteText.Text = "BACK";
     if (fromMain) {

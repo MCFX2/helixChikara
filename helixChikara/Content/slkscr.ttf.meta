@@ -1,0 +1,9 @@
+[Version:1]
+FontContent 
+{
+	FontBuilder 
+	{
+		var Name = "slkscr"
+		var ResourceId = 0x5bb4359cd9e7a13a
+	}
+}

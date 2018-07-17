@@ -4,7 +4,7 @@ Cog
 	var Name = "MenuButton"
 	Transform 
 	{
-		var Translation = Real3{0, 0, 0}
+		var Translation = Real3{4.35557222, 0.809499264, -0.0950012207}
 		var Scale = Real3{1.75, 1, 0.99999994}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -50,8 +50,8 @@ Cog
 			var Name = "MenuText"
 			Transform 
 			{
-				var Translation = Real3{0, 0, 9.99999975e-05}
-				var Scale = Real3{0.600000024, 1, 1}
+				var Translation = Real3{0, 0.134859085, 9.99999975e-05}
+				var Scale = Real3{0.57099998, 1, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
 			SpriteText 
@@ -67,7 +67,7 @@ Cog
 				var VertexColor = Real4{0, 0, 0, 1}
 				var GeometryMode = SpriteGeometryMode.ZPlane
 				var Text = "OPTIONS"
-				var Font = "57343753bb4eaaec:NotoSans-Regular"
+				var Font = "5bb4359cd9e717e5:slkscrb"
 				var FontSize = 48
 				var PixelsPerUnit = 64
 				var TextAlign = TextAlign.Center
