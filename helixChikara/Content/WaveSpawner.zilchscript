@@ -111,8 +111,11 @@ class WaveSpawner : ZilchComponent
     
     if(this.CurrentWave == this.TotalWaves){
       //"you win" or some shit
-      this.GameSession.GlobalVariables.CheckHighScore();
-      this.Space.LoadLevel(this.VictoryLevel);
+      if(!this.GameSession.MarkedForDestruction){ //fixes annoying editor error
+        var victorySpace : Space = this.GameSession.CreateSpace(Archetype.Space);
+        victorySpace.LoadLevel(this.VictoryLevel);
+      }
+
     }
     else{
       this.SummonWave(this.CurrentWave);

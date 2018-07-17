@@ -77,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{-8.3969574, 4.44006395, 20.1800003}
+			var Translation = Real3{-10.3684072, 0.633987129, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 19.6845779
+			var Size = 2.94419575
 		}
 		EditorCameraController 
 		{
@@ -139,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{-8.3969574, 4.44006395, 0.179999396}
+			var LookTarget = Real3{-10.3684072, 0.633987129, 0.179999396}
 			var MoveSensitivity = 1
 		}
 	}
@@ -778,7 +778,7 @@ Level
 									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
 									var CollisionGroup = "5bc1b14a9170e41f:NoCollide"
 									var Offset = Real3{0, 0, 0}
-									var Radius = 0.100000001
+									var Radius = 0.300000012
 								}
 								NearMissTrigger 
 								{

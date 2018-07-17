@@ -49,8 +49,8 @@ class ManagePlayerHealth : ZilchComponent {
   function OnLogicUpdate(event : UpdateEvent) {
     if (this.PlayerHealth <= 0) {
       // Ideally we want a destruction animation to play before the Game Over Screen
-      this.GameSession.GlobalVariables.CheckHighScore();
-      this.Space.LoadLevel(this.GameOver);
+      var tempSpace : Space = this.GameSession.CreateSpace(Archetype.Space);
+      tempSpace.LoadLevel(this.GameOver);
     }
   }
   

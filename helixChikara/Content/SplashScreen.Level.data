@@ -4,6 +4,25 @@ Level
 	Cog [ContextId:1]
 	{
 		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
 		GridDraw 
 		{
 			var Active = true
@@ -58,7 +77,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.864095271, -0.331065297, 20.4004993}
+			var Translation = Real3{0, 0, 20}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 12.3091497
+			var Size = 73.3858795
 		}
 		EditorCameraController 
 		{
@@ -120,7 +139,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.864095271, -0.331065297, 0.40049994}
+			var LookTarget = Real3{0, 0, 0}
 			var MoveSensitivity = 1
 		}
 	}
@@ -191,7 +210,7 @@ Level
 			var FarPlane = 200
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 60
-			var Size = 10
+			var Size = 20
 		}
 		SoundListener 
 		{
@@ -201,206 +220,34 @@ Level
 	}
 	Cog [ContextId:5]
 	{
-		var Name = "Background"
-		Transform 
-		{
-			var Translation = Real3{-0.0854567364, 0.75728792, -3.73539644e-09}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		Reactive 
-		{
-			var Active = true
-		}
-		Hierarchy 
-		{
-			Cog [Id:0x5bb1e1e23915696d][ContextId:6]
-			{
-				var Name = "TitleText"
-				Transform 
-				{
-					var Translation = Real3{0, 0.0143854618, 3.90100002}
-					var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
-					var Rotation = Quaternion{0, 0, 0, 1}
-				}
-				Sprite 
-				{
-					var Visible = true
-					var ViewCulling = true
-					var VisibilityEvents = true
-					var OverrideBoundingBox = false
-					var LocalAabbCenter = Real3{0, 0, 0}
-					var LocalAabbHalfExtents = Real3{1, 1, 1}
-					var GroupSortValue = 0
-					var Material = "582c575af53d18c9:AlphaSprite"
-					var VertexColor = Real4{1, 1, 1, 1}
-					var GeometryMode = SpriteGeometryMode.ZPlane
-					var SpriteSource = "5bb698ec4e405bcf:HFrevised"
-					var FlipX = false
-					var FlipY = false
-					var AnimationActive = true
-					var AnimationSpeed = 1
-					var StartFrame = 0
-				}
-			}
-			Cog [Id:0x5be67a16587b50db][ContextId:7]
-			{
-				var Name = "BGImage"
-				Transform 
-				{
-					var Translation = Real3{0, 0, -0.100000001}
-					var Scale = Real3{1, 1, 1}
-					var Rotation = Quaternion{0, 0, 0, 1}
-				}
-				Sprite 
-				{
-					var Visible = true
-					var ViewCulling = true
-					var VisibilityEvents = true
-					var OverrideBoundingBox = false
-					var LocalAabbCenter = Real3{0, 0, 0}
-					var LocalAabbHalfExtents = Real3{1, 1, 1}
-					var GroupSortValue = 0
-					var Material = "582c575af53d18c9:AlphaSprite"
-					var VertexColor = Real4{0.395000041, 0.945550084, 1, 1}
-					var GeometryMode = SpriteGeometryMode.ZPlane
-					var SpriteSource = "5bb350b9e283ae48:starsforothers"
-					var FlipX = false
-					var FlipY = false
-					var AnimationActive = true
-					var AnimationSpeed = 1
-					var StartFrame = 0
-				}
-				Area 
-				{
-					var Size = Real2{19, 12.25}
-					var Origin = Location.Center
-				}
-				MoveLevel 
-				{
-					var Speed = 0.0500000007
-					var Direction = -1
-				}
-				Hierarchy 
-				{
-					Cog [Id:0x5bb1e1d3332ab48d][ContextId:8]
-					{
-						var Name = "BGImage"
-						Transform 
-						{
-							var Translation = Real3{19, 0, 0}
-							var Scale = Real3{1, 1, 1}
-							var Rotation = Quaternion{0, 0, 0, 1}
-						}
-						Sprite 
-						{
-							var Visible = true
-							var ViewCulling = true
-							var VisibilityEvents = true
-							var OverrideBoundingBox = false
-							var LocalAabbCenter = Real3{0, 0, 0}
-							var LocalAabbHalfExtents = Real3{1, 1, 1}
-							var GroupSortValue = 0
-							var Material = "582c575af53d18c9:AlphaSprite"
-							var VertexColor = Real4{0.395000041, 0.945550084, 1, 1}
-							var GeometryMode = SpriteGeometryMode.ZPlane
-							var SpriteSource = "5bb350b9e283ae48:starsforothers"
-							var FlipX = false
-							var FlipY = false
-							var AnimationActive = true
-							var AnimationSpeed = 1
-							var StartFrame = 0
-						}
-						Area 
-						{
-							var Size = Real2{19, 12.25}
-							var Origin = Location.Center
-						}
-						Hierarchy 
-						{
-						}
-					}
-				}
-			}
-			Cog [Id:0x5bc6937866aa41ef][ContextId:9]
-			{
-				var Name = "MenuController"
-				Transform 
-				{
-					var Translation = Real3{0, 0, 0}
-					var Scale = Real3{1, 1, 1}
-					var Rotation = Quaternion{0, 0, 0, 1}
-				}
-				MainMenuButtonClick 
-				{
-				}
-				MenuNavigator 
-				{
-					var MenuBG = CogPath
-					{
-						var Path = ".."
-						var ErrorOnResolveToNull = false
-						var ErrorOnPathCantCompute = false
-						var ErrorOnDirectLinkFail = false
-						var UpdateCogOnPathChange = true
-						var UpdatePathOnCogChange = true
-						var UpdateCogOnInitialize = true
-						var ResolvedNullErrorOccurred = false
-						var Cog = 5
-						var PathPreference0 = CogPathPreference.CogRelative
-						var PathPreference1 = CogPathPreference.SpaceRelative
-						var PathPreference2 = CogPathPreference.Absolute
-					}
-					var GameLevel1 = "59097123da28242a:level1"
-					var MainMenuLevel = "5b3c55ba57dd01ce:mainMenu"
-					var InstructionsLevel = "577d126becbdd810:EmptyLevel"
-				}
-			}
-		}
-	}
-	Cog [ContextId:10]
-	{
-		var Name = "BGEnemySpawner"
-		Transform 
-		{
-			var Translation = Real3{-0.119593143, -0.904873013, -0.0500000007}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		CinematicEnemies 
-		{
-			var SpawnX = 15
-			var Direction = -1
-			var LiveTime = 600
-			var FloatSpeed = 0.200000003
-			var SpawnRate = 0.200000003
-			var SpeedVariance = Real2{0.100000001, 5}
-			var BaseSize = 3
-		}
-	}
-	Cog [ContextId:11]
-	{
-		var Name = "BGMusic"
+		var Name = "Sprite"
 		Transform 
 		{
 			var Translation = Real3{0, 0, 0}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
-		SoundEmitter 
+		Sprite 
 		{
-			var Volume = 1
-			var Pitch = 0
-			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
-			var Directional = false
-			var EmitAngle = 90
-			var RearVolume = 0.200000003
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 0}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5bb70c6f5b49778c:helixsplash"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
 		}
-		SimpleSound 
+		FadeInAndGoToTitle 
 		{
-			var StartPlaying = true
-			var Positional = false
-			var Cue = "5bb19ac8fc083c23:MainMenuMusic"
 		}
 	}
 }

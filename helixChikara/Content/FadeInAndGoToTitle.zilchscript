@@ -1,0 +1,42 @@
+class FadeInAndGoToTitle : ZilchComponent
+{
+  [Property] var FadeTime : Real = 1.0;
+  [Property] var HoldTime : Real = 1.0;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.MouseDown, this.MousePressed);
+    Zero.Connect(this.Space, Events.KeyDown, this.KeyPressed);
+    
+    var acseq = Actions.Sequence(this.Owner.Actions);
+    Actions.Property(acseq,
+    @this.Owner.Sprite.VertexColor,
+    Real4(1),
+    this.FadeTime,
+    Ease.Linear);
+
+    Actions.Delay(acseq, this.HoldTime);
+    
+    Actions.Property(acseq,
+    @this.Owner.Sprite.VertexColor,
+    Real4(0),
+    this.FadeTime,
+    Ease.Linear);
+    
+    Actions.Call(acseq, this.GoToTitle);
+    
+  }
+  
+  function MousePressed(event : MouseEvent){
+    this.GoToTitle();
+  }
+  
+  function KeyPressed(event : KeyboardEvent){
+    this.GoToTitle();
+  }
+
+  function GoToTitle(){
+    this.Space.LoadLevel(Level.MainMenu);
+    
+  }
+  
+}
