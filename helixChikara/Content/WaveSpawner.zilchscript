@@ -10,6 +10,8 @@ class WaveSpawner : ZilchComponent
   var TotalWaves = 0;
   var CurrentlyInWave = false;
   
+  var LastEnemyCoords : Real2 = Real2(0);
+  
   [Property] var TestArray : Array[Integer] = Array[Integer](){0, 1, 2};
   
   var EnemiesLeft : Integer = 0;
@@ -403,6 +405,9 @@ class WaveSpawner : ZilchComponent
   }
   
   function EnemyDestroyed(which : Cog){
+    if(this.EnemiesLeft == 1){
+      this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
+    }
     this.CurrentEnemies.RemoveFirst(which);
     --this.EnemiesLeft;
     this.CheckWaveCompletion();
