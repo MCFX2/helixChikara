@@ -694,6 +694,8 @@ Level
 							var ControllerSpeed = 1.10000002
 							var TopOfScreen = 7.86999989
 							var BottomOfScreen = -8.5
+							var LeftOfScreen = -17.8999996
+							var RightOfScreen = 17.8999996
 							var Deceleration = Real2{0.800000012, 0.800000012}
 							var MaxRVel = 10
 							var MaxLVel = 10

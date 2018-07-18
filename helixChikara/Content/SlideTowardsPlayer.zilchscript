@@ -1,6 +1,9 @@
 class SlideTowardsPlayer : ZilchComponent
 {
   [Property] var Player : CogPath;
+  
+  [Property] var Speed : Real = 1.0;
+  var PlayerDir : Real2 = Real2(0);
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -8,5 +11,8 @@ class SlideTowardsPlayer : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
+    this.PlayerDir = Math.Normalize(this.Player.Cog.Transform.Translation.XY - this.Owner.Transform.Translation.XY);
+    this.Owner.RigidBody.ApplyForce(this.Speed * Real3(this.PlayerDir, 0));
+    //this.Owner.Transform.Translation += Real3(this.PlayerDir, 0) * this.Speed;
   }
 }
