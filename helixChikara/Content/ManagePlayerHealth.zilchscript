@@ -74,7 +74,8 @@ class ManagePlayerHealth : ZilchComponent {
         if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Health && this.PlayerHealth<5) {
           this.AddToHealthBar(1);
         } else if (event.OtherObject.ItemPickupProperties.State == ItemTypes.Shield) {
-          // make a heckin cool shield
+          //its just worth points, sorry
+          this.GameSession.GlobalVariables.AddToScore((this.GameSession.GlobalVariables.Score * 0.01) as Integer * 10);
         }
         event.OtherObject.Destroy();
       }

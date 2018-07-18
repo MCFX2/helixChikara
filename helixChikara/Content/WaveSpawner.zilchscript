@@ -5,14 +5,16 @@ class WaveSpawner : ZilchComponent
   [Property] var Player : CogPath;
   [Property] var ItemSpawn : CogPath;
   
+  var CurrentMode : WaveType = WaveType.Normal;
+  var CurrentFrame : Integer = 0;
+  [Property] var RushModeDelay : Integer = 300;
+  
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
   var TotalWaves = 0;
   var CurrentlyInWave = false;
   
   var LastEnemyCoords : Real2 = Real2(0);
-  
-  [Property] var TestArray : Array[Integer] = Array[Integer](){0, 1, 2};
   
   var EnemiesLeft : Integer = 0;
   
@@ -101,6 +103,15 @@ class WaveSpawner : ZilchComponent
     
   }
   
+  function WinGame(){
+      if(!this.GameSession.MarkedForDestruction){ //fixes annoying editor error
+        var victorySpace : Space = this.GameSession.CreateSpace(Archetype.Space);
+        this.Space.Destroy();
+        victorySpace.LoadLevel(this.VictoryLevel);
+      }
+    
+  }
+  
   function NextWave(){
     
     ++this.CurrentWave;
@@ -111,15 +122,7 @@ class WaveSpawner : ZilchComponent
     }
     this.Player.WavePerfect.ResetAttempt();
     
-    if(this.CurrentWave == this.TotalWaves){
-      //"you win" or some shit
-      if(!this.GameSession.MarkedForDestruction){ //fixes annoying editor error
-        var victorySpace : Space = this.GameSession.CreateSpace(Archetype.Space);
-        this.Space.Destroy();
-        victorySpace.LoadLevel(this.VictoryLevel);
-      }
-
-    }
+    if(this.CurrentWave == this.TotalWaves) this.EnterRushMode();
     else{
       this.SummonWave(this.CurrentWave);
     }
@@ -131,6 +134,8 @@ class WaveSpawner : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
     //add waves to wavetable
     this.RegisterWave(this.WaveTutorial);
     this.RegisterWave(this.Wave1);
@@ -405,11 +410,32 @@ class WaveSpawner : ZilchComponent
   }
   
   function EnemyDestroyed(which : Cog){
+    if(this.CurrentMode == WaveType.Rush) return;
     if(this.EnemiesLeft == 1){
       this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
     }
     this.CurrentEnemies.RemoveFirst(which);
     --this.EnemiesLeft;
     this.CheckWaveCompletion();
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent){
+    if(this.CurrentMode == WaveType.Normal) return;
+    
+    if(this.CurrentWave == this.TotalWaves) this.WinGame();
+    
+    ++this.CurrentFrame;
+    if(this.CurrentFrame%this.RushModeDelay == 0){
+      this.SummonWave(this.CurrentWave);
+      ++this.CurrentWave;
+    }
+    
+    
+  }
+  
+  function EnterRushMode(){
+    this.CurrentMode = WaveType.Rush;
+    this.CurrentWave = 0;
+    
   }
 }

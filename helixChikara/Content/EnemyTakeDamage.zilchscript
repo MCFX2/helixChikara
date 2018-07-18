@@ -28,8 +28,8 @@ class EnemyTakeDamage : ZilchComponent {
     for (var i : Integer = 0; i<24; ++i) {
       mag = magRand.Range(1, 15);
       angle+=(i*(Math.Pi/12));
-      ex = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
-      ex.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
+      this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords)
+      .RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
     }
   }
   

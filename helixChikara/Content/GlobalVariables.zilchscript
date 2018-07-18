@@ -5,6 +5,7 @@ enum ScoreTypes {CurrentScore, HighScore}
 enum ItemTypes {Health, Shield}
 enum TutorialPhase {Init, Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrack, Final}
 enum StatTypes {EnemiesKilled, NearMisses, Score}
+enum WaveType {Normal, Rush}
 
 class GlobalVariables : ZilchComponent {
   var ControlType : ControlTypes = ControlTypes.Mouse;
