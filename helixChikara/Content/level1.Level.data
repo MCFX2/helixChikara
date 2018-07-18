@@ -58,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.0841601789, 0.736862421, 20.1800003}
+			var Translation = Real3{-9.92961597, 0.900554001, 20.1799984}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 32.4544449
+			var Size = 3.97425961
 		}
 		EditorCameraController 
 		{
@@ -120,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.0841601789, 0.736862421, 0.179999575}
+			var LookTarget = Real3{-9.92961597, 0.900554001, 0.179999128}
 			var MoveSensitivity = 1
 		}
 	}
@@ -837,7 +837,7 @@ Level
 								var Name = "Ship"
 								Transform 
 								{
-									var Translation = Real3{0.0284194946, 0, 0.0799999982}
+									var Translation = Real3{0.0284194946, 0, 0}
 									var Scale = Real3{5, 5, 1}
 									var Rotation = Quaternion{0, 0, 0, 1}
 								}
@@ -851,7 +851,7 @@ Level
 									var LocalAabbHalfExtents = Real3{1, 1, 1}
 									var GroupSortValue = 0
 									var Material = "582c575af53d18c9:AlphaSprite"
-									var VertexColor = Real4{1, 1, 1, 0.300000012}
+									var VertexColor = Real4{1, 1, 1, 1}
 									var GeometryMode = SpriteGeometryMode.ZPlane
 									var SpriteSource = "5b64e56bb93f6e0c:Ship2"
 									var FlipX = false
@@ -897,8 +897,8 @@ Level
 								var Name = "Gun"
 								Transform 
 								{
-									var Translation = Real3{3.37900925, -0.131266952, 0.200000018}
-									var Scale = Real3{3.57142854, 3.57142854, 1}
+									var Translation = Real3{1.90358984, 1.06467652, 0.200000018}
+									var Scale = Real3{5, 5, 1}
 									var Rotation = Quaternion{0, 0, 0, 1}
 								}
 								Sprite 
