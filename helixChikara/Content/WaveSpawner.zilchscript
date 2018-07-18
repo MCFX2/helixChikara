@@ -190,7 +190,11 @@ class WaveSpawner : ZilchComponent
     
     // Tutorial "Wave" 2
     
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -2), this.ENEMYNOSHOOT, 2, 4, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -3), this.ENEMYNOSHOOT, 2, 4, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -4), this.ENEMYNOSHOOT, 2, 4, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -5), this.ENEMYNOSHOOT, 2, 4, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 4, 3);
     
     
     // Tutorial "Wave" 3
@@ -426,7 +430,9 @@ class WaveSpawner : ZilchComponent
         this.TutController.TutorialController.WaveSpawn = this.Owner;
         this.GameSession.GlobalVariables.BeginTutorial = false;
       }
-      this.TutController.TutorialController.AdvanceText();
+      if (this.EnemiesLeft == 0) {
+        this.TutController.TutorialController.AdvanceText();
+      }
     }
   }
   
@@ -436,31 +442,27 @@ class WaveSpawner : ZilchComponent
       if(this.EnemiesLeft == 1){
         this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
       }
-      this.CurrentEnemies.RemoveFirst(which);
-      --this.EnemiesLeft;
     }
+    --this.EnemiesLeft;
+    this.CurrentEnemies.RemoveFirst(which);
     this.CheckWaveCompletion();
   }
   
   function OnLogicUpdate(event : UpdateEvent){
-    if(this.CurrentMode == WaveType.Normal) return;
-    
-    if(this.CurrentWave == this.TotalWaves) this.WinGame();
-    
-    ++this.CurrentFrame;
-    if(this.CurrentFrame%this.RushModeDelay == 0){
-      if (this.CurrentWave > this.Waves.LastIndex) this.SummonWave(this.Waves.LastIndex);
-      else this.SummonWave(this.CurrentWave);
-      ++this.CurrentWave;
-      
+    if(this.CurrentMode == WaveType.Normal) {
+      //if(this.CurrentWave == this.TotalWaves) this.WinGame();
+    } else {
+      ++this.CurrentFrame;
+      if(this.CurrentFrame%this.RushModeDelay == 0){
+        if (this.CurrentWave > this.Waves.LastIndex) this.SummonWave(this.Waves.LastIndex);
+        else this.SummonWave(this.CurrentWave);
+        ++this.CurrentWave;
+      }
     }
-    
-    
   }
   
   function EnterRushMode(){
     this.CurrentMode = WaveType.Rush;
     this.CurrentWave = 0;
-    
   }
 }
