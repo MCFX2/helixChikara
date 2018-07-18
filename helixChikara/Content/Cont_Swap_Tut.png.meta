@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Cont_Swap_Tut"
+		var ResourceId = 0x5b66767fc5ba30f0
+		var FrameSizeX = 1080
+		var FrameSizeY = 1080
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 540
+		var OriginY = 540
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

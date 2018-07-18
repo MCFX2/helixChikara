@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b16f069a5a269eb:Enemy1"
+		var SpriteSource = "5b4f86f36e45138b:Enemy1_0"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -39,8 +39,9 @@ Cog
 	EnemyTakeDamage 
 	{
 		var Health = 5
-		var ScoreIncrease = 1000
+		var ScoreIncrease = 0
 		var IsTutorial = true
+		var FlashingColor = Real4{255, 0, 0, 1}
 	}
 	RigidBody 
 	{
