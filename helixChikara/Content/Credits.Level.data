@@ -299,7 +299,7 @@ Level
 		var Name = "Sprite"
 		Transform 
 		{
-			var Translation = Real3{0, 2.5, 0.5}
+			var Translation = Real3{0, 0, 1}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
@@ -327,7 +327,7 @@ Level
 	{
 		Transform 
 		{
-			var Translation = Real3{0, -7, 0.504999161}
+			var Translation = Real3{13.4666748, -7, 0.504999161}
 			var Rotation = Quaternion{0, 0, 0, 1}
 			var Scale = Real3{1.75, 1, 0.99999994}
 		}
