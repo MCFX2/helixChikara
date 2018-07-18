@@ -422,6 +422,7 @@ class WaveSpawner : ZilchComponent
     } else {
       var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,1));
       tutController.TutorialController.WaveSpawn = this.Owner;
+      tutController.TutorialController.AdvanceText();
     }
   }
   

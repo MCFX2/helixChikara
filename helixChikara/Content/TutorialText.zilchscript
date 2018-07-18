@@ -22,13 +22,17 @@ class TutorialText : ZilchComponent {
     if(moveMethod == ControlTypes.GamePad){
       return gamepad;
     }
-    this.HasChanged = true;
     return null;
   }
   
   function CenterText(center : Boolean) {
     if (center) this.Owner.Children.Current.Transform.Translation = Real3(0, 0, 0);
     else this.Owner.Children.Current.Transform.Translation = Real3(0, -0.6, 0);
+  }
+  
+  function ToggleSprite() {
+    if (this.Owner.Sprite.Visible == true) this.Owner.Sprite.Visible = false;
+    else this.Owner.Sprite.Visible = true;
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
@@ -41,6 +45,7 @@ class TutorialText : ZilchComponent {
           SpriteSource.Cont_Move_Tut);//"Use the left joystick to move");
         this.Owner.Children.Current.SpriteText.Text = "";
         this.AutoSequence = true;
+        this.HasChanged = true;
       }
       
       if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot) {
@@ -50,11 +55,14 @@ class TutorialText : ZilchComponent {
           SpriteSource.Cont_Shoot_Tut);//"A,B and triggers shoot");
         this.Owner.Children.Current.SpriteText.Text = "";
         this.AutoSequence = true;
+        this.HasChanged = true;
       }
       
       if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy) {
+        this.ToggleSprite();
         this.CenterText(true);
         this.Owner.Children.Current.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
+        this.HasChanged = true;
       }
 
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
@@ -81,7 +89,7 @@ class TutorialText : ZilchComponent {
         this.AutoSequence = false;
         this.HasChanged = false;
         this.CurrentFrame = 0;
-        this.Owner.Destroy();
+        this.TutorialController.AdvanceText();
       }
     }
     

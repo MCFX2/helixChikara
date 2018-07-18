@@ -33,10 +33,14 @@ class TutorialController : ZilchComponent {
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponBomb){
       this.CurrentPhase = TutorialPhase.ChangeWeaponTrack;
+      ++this.CurrentWave;
+      this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponTrack){
       this.CurrentPhase = TutorialPhase.Final;
+      ++this.CurrentWave;
+      this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.Final){
