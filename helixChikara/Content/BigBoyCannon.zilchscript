@@ -1,0 +1,33 @@
+class BigBoyCannon : ZilchComponent
+{
+  [Property] var NumSpreadShots : Integer = 60;
+  [Property] var EjectionVelocity : Real = 2.5;
+  [Property] var FireDelay : Integer = 30;
+  var CFrame : Integer = 0;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function Shoot(){
+    var bulletSpread = (2 * Math.Pi / this.NumSpreadShots);
+    for(var i = 0; i < this.NumSpreadShots; ++i){
+      var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+      var velY = Math.Pow(this.EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
+      var velX = Math.Pow(this.EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+      
+      
+      currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
+      currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+      
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    ++this.CFrame;
+    if(this.CFrame%this.FireDelay==0) this.Shoot();
+  }
+}

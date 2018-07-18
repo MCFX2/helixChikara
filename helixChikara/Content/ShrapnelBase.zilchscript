@@ -1,0 +1,18 @@
+class ShrapnelBase : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.WallHit);
+  }
+
+  function DoesDestroyBullet(cg : CollisionGroup) : Boolean {
+    if ( cg != CollisionGroup.EnemyPierce) return true;
+    return false;
+  }
+  
+  function WallHit(event : CollisionEvent){
+    if(this.DoesDestroyBullet(event.OtherObject.Collider.CollisionGroup)){
+      this.Owner.Destroy();
+    }
+  }
+}

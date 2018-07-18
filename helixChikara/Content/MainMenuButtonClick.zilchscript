@@ -4,11 +4,15 @@ class MainMenuButtonClick : ZilchComponent {
   
   var Button : Cog;
   
+  var Controller : Gamepad;
+  
   var DestroyCredits : Boolean = false;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.Controller = Zero.Gamepads.GetGamePad(0);
+    Console.WriteLine(this.Controller);
   }
   
   function OnLeftClick(event : ViewportMouseEvent) {   
@@ -24,10 +28,12 @@ class MainMenuButtonClick : ZilchComponent {
       if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.SelectMode) {
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Space.Destroy();
+          Zero.Mouse.Cursor = Cursor.Arrow;
           this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.Space.Destroy();
           this.GameSession.GlobalVariables.DoTutorial = true;
+          Zero.Mouse.Cursor = Cursor.Arrow;
           this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetMainMenu(false);

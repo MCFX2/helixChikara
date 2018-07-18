@@ -58,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.109231703, 0.686836481, 20.1800003}
+			var Translation = Real3{0.0841601789, 0.736862421, 20.1800003}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 32.4544601
+			var Size = 32.4544449
 		}
 		EditorCameraController 
 		{
@@ -120,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.109231703, 0.686836481, 0.179999769}
+			var LookTarget = Real3{0.0841601789, 0.736862421, 0.179999575}
 			var MoveSensitivity = 1
 		}
 	}
@@ -281,9 +281,7 @@ Level
 						var PathPreference1 = CogPathPreference.SpaceRelative
 						var PathPreference2 = CogPathPreference.Absolute
 					}
-					var TestArray = Array[Integer]
-					{
-					}
+					var RushModeDelay = 300
 				}
 			}
 			Cog [Id:0x5bc978d484a97104][ContextId:11]

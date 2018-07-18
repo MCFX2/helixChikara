@@ -58,6 +58,7 @@ class WaveSpawner : ZilchComponent
   var ENEMYSPREAD = 2;
   var ENEMYTRACKER = 3;
   var ENEMYNOSHOOT = 4;
+  var ENEMYBOSS = 5;
   
   /////////////////
   //no touch zone//
@@ -75,6 +76,8 @@ class WaveSpawner : ZilchComponent
       return Archetype.TrackerEnemy;
     } else if (enemy == this.ENEMYNOSHOOT){
       return Archetype.NoShootEnemy;
+    } else if (enemy == this.ENEMYBOSS){
+      return Archetype.BigBoy;
     }
     
     else{
