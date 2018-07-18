@@ -148,16 +148,14 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.WaveTutorial2);
     this.RegisterWave(this.WaveTutorial3);
     
-    ////////////////this.RegisterWave(this.Wave1);
-    //this.RegisterWave(this.Wave2);
-    ////////////////this.RegisterWave(this.Wave3);
-    //this.RegisterWave(this.Wave4);
-    //this.RegisterWave(this.Wave5);
-    //this.RegisterWave(this.Wave6);
-    //this.RegisterWave(this.Wave7);
-    //this.RegisterWave(this.Wave8);
-    //this.RegisterWave(this.Wave9);
-    //this.RegisterWave(this.Wave10);
+    this.RegisterWave(this.Wave2);
+    this.RegisterWave(this.Wave4);
+    this.RegisterWave(this.Wave5);
+    this.RegisterWave(this.Wave6);
+    this.RegisterWave(this.Wave7);
+    this.RegisterWave(this.Wave8);
+    this.RegisterWave(this.Wave9);
+    this.RegisterWave(this.Wave10);
     
     this.RegisterWave(this.Wave11);
     
