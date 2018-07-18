@@ -193,11 +193,7 @@ class WaveSpawner : ZilchComponent
     
     // Tutorial "Wave" 2
     
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -2), this.ENEMYNOSHOOT, 2, 4, 3);
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -3), this.ENEMYNOSHOOT, 2, 4, 3);
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -4), this.ENEMYNOSHOOT, 2, 4, 3);
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -5), this.ENEMYNOSHOOT, 2, 4, 3);
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 4, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
     
     
     // Tutorial "Wave" 3
@@ -207,8 +203,8 @@ class WaveSpawner : ZilchComponent
     
     //Wave 1 here
 
-    //this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBURST, 1, 60, 3);
-    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYBOSS, 1, 60, 3);
+    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBURST, 1, 60, 3);
+    this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYBURST, 1, 60, 3);
     
     
     //Wave 2 here
@@ -433,9 +429,7 @@ class WaveSpawner : ZilchComponent
         this.TutController.TutorialController.WaveSpawn = this.Owner;
         this.GameSession.GlobalVariables.BeginTutorial = false;
       }
-      if (this.EnemiesLeft == 0) {
-        this.TutController.TutorialController.AdvanceText();
-      }
+      this.TutController.TutorialController.AdvanceText();
     }
   }
   
@@ -445,27 +439,31 @@ class WaveSpawner : ZilchComponent
       if(this.EnemiesLeft == 1){
         this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
       }
+      this.CurrentEnemies.RemoveFirst(which);
+      --this.EnemiesLeft;
     }
-    --this.EnemiesLeft;
-    this.CurrentEnemies.RemoveFirst(which);
     this.CheckWaveCompletion();
   }
   
   function OnLogicUpdate(event : UpdateEvent){
-    if(this.CurrentMode == WaveType.Normal) {
-      //if(this.CurrentWave == this.TotalWaves) this.WinGame();
-    } else {
-      ++this.CurrentFrame;
-      if(this.CurrentFrame%this.RushModeDelay == 0){
-        if (this.CurrentWave > this.Waves.LastIndex) this.SummonWave(this.Waves.LastIndex);
-        else this.SummonWave(this.CurrentWave);
-        ++this.CurrentWave;
-      }
+    if(this.CurrentMode == WaveType.Normal) return;
+    
+    if(this.CurrentWave == this.TotalWaves) this.WinGame();
+    
+    ++this.CurrentFrame;
+    if(this.CurrentFrame%this.RushModeDelay == 0){
+      if (this.CurrentWave > this.Waves.LastIndex) this.SummonWave(this.Waves.LastIndex);
+      else this.SummonWave(this.CurrentWave);
+      ++this.CurrentWave;
+      
     }
+    
+    
   }
   
   function EnterRushMode(){
     this.CurrentMode = WaveType.Rush;
     this.CurrentWave = 0;
+    
   }
 }
