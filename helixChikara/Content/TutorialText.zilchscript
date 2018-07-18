@@ -79,7 +79,6 @@ class TutorialText : ZilchComponent {
       }
 
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb) {
-        Console.WriteLine("NOOT NOOT");
         this.CenterText(false);
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
           null,
@@ -87,19 +86,22 @@ class TutorialText : ZilchComponent {
           SpriteSource.Cont_Swap_Tut);
         this.ToggleSprite();
         this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2",
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2",
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
         this.HasChanged = true;
       }
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack) {
+        this.ToggleSprite();
+        this.CenterText(true);
         this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-          "This one's not so harmless. Try using Scout's weapon (3)",
-          "This one's not so harmless. Try using Scout's weapon (3)",
-          "This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)");//); //in the future maybe this can see which button the player actually used
+          "This one's not so harmless.\nTry using Scout's weapon (3)",
+          "This one's not so harmless.\nTry using Scout's weapon (3)",
+          "This one's not so harmless.\nTry using Scout's weapon (X, Y, or shoulder again)");//); //in the future maybe this can see which button the player actually used
         this.HasChanged = true;
       }
       if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
+        Console.WriteLine("i will taunt u a second time");
         this.Owner.Children.Current.SpriteText.Text = "You got it now, Good luck";
         this.HasChanged = true;
         this.EndTutorial = true;
@@ -115,8 +117,10 @@ class TutorialText : ZilchComponent {
     }
     if (this.EndTutorial) {
       ++this.CurrentFrame;
-      if(this.CurrentFrame >= this.TextChangeTime*60) this.TutorialController.AdvanceText();
-      this.Owner.Destroy();
+      if(this.CurrentFrame >= this.TextChangeTime*60) {
+        this.TutorialController.AdvanceText();
+        this.Owner.Destroy();
+      }
     }
     
   }
