@@ -30,7 +30,6 @@ class TutorialController : ZilchComponent {
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.Enemy){
-      Console.WriteLine("YEET");
       this.CurrentPhase = TutorialPhase.ChangeWeaponBomb;
       ++this.CurrentWave;
       this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
