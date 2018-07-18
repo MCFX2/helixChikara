@@ -19,8 +19,11 @@ class PlayerShooting : ZilchComponent
   
   [Property] var RandalFireDelay = 4;
   [Property] var RandalFireSpeed = 8;  
+  
+  
   [Property] var WaveController : CogPath;
   [Property] var HUDBar : CogPath;
+  [Property] var CurrentPlayerText : CogPath;
   
   var Controller : Gamepad;
   
@@ -33,13 +36,6 @@ class PlayerShooting : ZilchComponent
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.Controller = Zero.Gamepads.GetGamePad(0);
-  }
-  
-  function GetAngle(v : Real2) : Real {
-    var mag : Real = Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2)); // magnitude of velocity vector
-    var angle = Math.ACos(v.X/mag); // x = r*cos(theta)
-    if (v.Y < 0) angle = (2*Math.Pi)-angle; // ArcCosine yields a value in range [0, Pi], accounting for that
-    return angle;
   }
   
   function Shoot(){
@@ -95,7 +91,7 @@ class PlayerShooting : ZilchComponent
         var newVel = Math.Normalize(Real2(xdirection, dx * ydirection));
         currentBullet.RigidBody.Velocity = Real3(newVel * this.RandalFireSpeed, 0);
         currentBullet.Orientation.LookAtPoint(targetPos);
-        this.HUDBar.CurrentPlayerIndicator.AngleGun(this.GetAngle(currentBullet.RigidBody.Velocity.XY));
+        this.HUDBar.CurrentPlayerIndicator.AngleGun(this.GameSession.GlobalVariables.GetAngle(currentBullet.RigidBody.Velocity.XY));
         //currentBullet.RigidBody.Velocity 
         this.TimeSinceLastBullet = 0;
       }
@@ -114,10 +110,13 @@ class PlayerShooting : ZilchComponent
     this.CurrentShip = newShip;
     if (newShip == Ship.Anime) {
       this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.ANIME;
+      this.CurrentPlayerText.SpriteText.Text = "ANNIE";
     } else if (newShip == Ship.Reagan) {
       this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.REAGAN;
+      this.CurrentPlayerText.SpriteText.Text = "REAGAN";
     } else if (newShip == Ship.Scout) {
       this.HUDBar.CurrentPlayerIndicator.WeaponSpawnIn = this.HUDBar.CurrentPlayerIndicator.SCOUT;
+      this.CurrentPlayerText.SpriteText.Text = "SCOUT";
     }
   }
   

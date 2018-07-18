@@ -22,6 +22,11 @@ class PlayerController : ZilchComponent
   
   [Property] var ControllerSpeed = 1.1;
   
+  [Property] var TopOfScreen : Real = 7.87;
+  [Property] var BottomOfScreen : Real = -8.5;
+  [Property] var LeftOfScreen : Real = -17.9;
+  [Property] var RightOfScreen : Real = 17.9;
+  
   [Property] var Deceleration : Real2 = Real2(0.2); //deceleration X,Y. Lower = slippery
   
   [Property] var MaxRVel = 10.0; //max right velocity
@@ -180,10 +185,27 @@ class PlayerController : ZilchComponent
       this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
     }
   }
+  
+  function ClampPosition(){
+    if(this.Owner.Transform.Translation.Y > this.TopOfScreen)
+      this.Owner.Transform.Translation =
+        Real3(this.Owner.Transform.Translation.X, this.TopOfScreen, this.Owner.Transform.Translation.Z);
+        
+    if(this.Owner.Transform.Translation.Y < this.BottomOfScreen)
+      this.Owner.Transform.Translation =
+        Real3(this.Owner.Transform.Translation.X, this.BottomOfScreen, this.Owner.Transform.Translation.Z);
+        
+    if(this.Owner.Transform.Translation.X > this.RightOfScreen)
+      this.Owner.Transform.Translation = Real3(this.RightOfScreen, this.Owner.Transform.Translation.YZ);
+    
+    if(this.Owner.Transform.Translation.X < this.LeftOfScreen)
+      this.Owner.Transform.Translation = Real3(this.LeftOfScreen, this.Owner.Transform.Translation.YZ);
+  }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
     this.Accelerate();
+    this.ClampPosition();
     this.ClampVelocity(); //clamping must be the last movement step
   }
   

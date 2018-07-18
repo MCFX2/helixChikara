@@ -17,6 +17,9 @@ class MachoBombBase : ZilchComponent
       var currentBullet = this.Space.CreateAtPosition(Archetype.MachoShrapnel, this.Owner.Transform.Translation);
       var velY = Math.Pow(this.EjectionVelocity, 2) * Math.Sin(i * bulletSpread);
       var velX = Math.Pow(this.EjectionVelocity, 2) * Math.Cos(i * bulletSpread);
+      
+      
+      currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
       currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
       
     }

@@ -27,6 +27,13 @@ class GlobalVariables : ZilchComponent {
     this.CheckHighScore();
   }
   
+  function GetAngle(v : Real2) : Real {
+    var mag : Real = Math.Sqrt(Math.Pow(v.X, 2) + Math.Pow(v.Y, 2)); // magnitude of velocity vector
+    var angle = Math.ACos(v.X/mag); // x = r*cos(theta)
+    if (v.Y < 0) angle = (2*Math.Pi)-angle; // ArcCosine yields a value in range [0, Pi], accounting for that
+    return angle;
+  }
+  
   function CheckHighScore() {
     if (this.Score > this.HighScore) this.HighScore = this.Score;
   }
