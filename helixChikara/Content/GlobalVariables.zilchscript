@@ -19,6 +19,7 @@ class GlobalVariables : ZilchComponent {
   
   var ButtonClick : Boolean = false;
   var DoTutorial : Boolean = false;
+  var BeginTutorial : Boolean = true; // THIS IS NECESSARY
   var BackToMain : Boolean = false;
   
   [Property] var CreditsSpace : Space;

@@ -30,8 +30,6 @@ class EnemySpawnComponenent : ZilchComponent
     ++this.CurrentFrame;
   }
   function OnDestroy(event : Event){
-    if (!this.GameSession.GlobalVariables.DoTutorial) {
-      this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
-    }
+    this.WaveController.WaveSpawner.EnemyDestroyed(this.Owner);
   }
 }

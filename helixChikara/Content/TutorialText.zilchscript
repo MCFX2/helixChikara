@@ -7,12 +7,26 @@ class TutorialText : ZilchComponent {
   var CurrentFrame = 0;
   var AutoSequence = false;
   var HasChanged = false;
+  var EndTutorial = false;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
   
   function ControlBasedText(moveMethod : ControlTypes, keyboard : SpriteSource, mouse : SpriteSource, gamepad : SpriteSource) : SpriteSource {
+    if(moveMethod == ControlTypes.Keyboard){
+      return keyboard;
+    }
+    if(moveMethod == ControlTypes.Mouse){
+      return mouse;
+    }
+    if(moveMethod == ControlTypes.GamePad){
+      return gamepad;
+    }
+    return null;
+  }
+  
+  function ControlBasedText(moveMethod : ControlTypes, keyboard : String, mouse : String, gamepad : String) : String {
     if(moveMethod == ControlTypes.Keyboard){
       return keyboard;
     }
@@ -53,7 +67,6 @@ class TutorialText : ZilchComponent {
           null,//"Press SPACE to shoot",
           null,//"Click to shoot",
           SpriteSource.Cont_Shoot_Tut);//"A,B and triggers shoot");
-        this.Owner.Children.Current.SpriteText.Text = "";
         this.AutoSequence = true;
         this.HasChanged = true;
       }
@@ -65,32 +78,45 @@ class TutorialText : ZilchComponent {
         this.HasChanged = true;
       }
 
-      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
+      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb) {
+        Console.WriteLine("NOOT NOOT");
+        this.CenterText(false);
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-          null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-          null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-          SpriteSource.Cont_Swap_Tut);//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
-      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack)
-        this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-          null,//"This one's not so harmless. Try using Scout's weapon (3)",
-          null,//"This one's not so harmless. Try using Scout's weapon (3)",
-          null);//"This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
-    
+          null,
+          null,
+          SpriteSource.Cont_Swap_Tut);
+        this.ToggleSprite();
+        this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+          "A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+        this.HasChanged = true;
+      }
+      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack) {
+        this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+          "This one's not so harmless. Try using Scout's weapon (3)",
+          "This one's not so harmless. Try using Scout's weapon (3)",
+          "This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)");//); //in the future maybe this can see which button the player actually used
+        this.HasChanged = true;
+      }
       if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
-        //this.Owner.SpriteText.Text = "You got it now, Good luck";
-        ++this.CurrentFrame;
-        if(this.CurrentFrame >= this.TextChangeTime*60) this.TutorialController.AdvanceText();
-        
+        this.Owner.Children.Current.SpriteText.Text = "You got it now, Good luck";
+        this.HasChanged = true;
+        this.EndTutorial = true;
       }
     }
     if(this.AutoSequence) {
       ++this.CurrentFrame;
       if(this.CurrentFrame >= this.SecondsBeforeDeath*60) {
         this.AutoSequence = false;
-        this.HasChanged = false;
         this.CurrentFrame = 0;
         this.TutorialController.AdvanceText();
       }
+    }
+    if (this.EndTutorial) {
+      ++this.CurrentFrame;
+      if(this.CurrentFrame >= this.TextChangeTime*60) this.TutorialController.AdvanceText();
+      this.Owner.Destroy();
     }
     
   }

@@ -8,6 +8,7 @@ class WaveSpawner : ZilchComponent
   var CurrentMode : WaveType = WaveType.Normal;
   var CurrentFrame : Integer = 0;
   [Property] var RushModeDelay : Integer = 300;
+  var TutController : Cog;
   
   var TUTORIAL_WAVE_COUNT : Integer = 3;
   
@@ -420,19 +421,24 @@ class WaveSpawner : ZilchComponent
         this.NextWave();        
       }
     } else {
-      var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,1));
-      tutController.TutorialController.WaveSpawn = this.Owner;
-      tutController.TutorialController.AdvanceText();
+      if (this.GameSession.GlobalVariables.BeginTutorial) { // THIS MUST ONLY RUN ONCE
+        this.TutController = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,1));
+        this.TutController.TutorialController.WaveSpawn = this.Owner;
+        this.GameSession.GlobalVariables.BeginTutorial = false;
+      }
+      this.TutController.TutorialController.AdvanceText();
     }
   }
   
   function EnemyDestroyed(which : Cog){
-    if(this.CurrentMode == WaveType.Rush) return;
-    if(this.EnemiesLeft == 1){
-      this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
+    if(!this.GameSession.GlobalVariables.DoTutorial) {
+      if(this.CurrentMode == WaveType.Rush) return;
+      if(this.EnemiesLeft == 1){
+        this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
+      }
+      this.CurrentEnemies.RemoveFirst(which);
+      --this.EnemiesLeft;
     }
-    this.CurrentEnemies.RemoveFirst(which);
-    --this.EnemiesLeft;
     this.CheckWaveCompletion();
   }
   

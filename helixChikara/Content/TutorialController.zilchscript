@@ -12,39 +12,46 @@ class TutorialController : ZilchComponent {
 
   function AdvanceText(){
     if(this.CurrentPhase == TutorialPhase.Init){
-      this.Space.CreateAtPosition(Archetype.TutorialObject, Real3(0, 5, 1)).TutorialText.TutorialController = this;
+      this.TutObject = this.Space.CreateAtPosition(Archetype.TutorialObject, Real3(0, 5, 1));
+      this.TutObject.TutorialText.TutorialController = this;
       this.CurrentPhase = TutorialPhase.Move;
       return;
     }
-
     if(this.CurrentPhase == TutorialPhase.Move){
       this.CurrentPhase = TutorialPhase.Shoot;
+      this.TutObject.TutorialText.HasChanged = false;
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.Shoot){
       this.CurrentPhase = TutorialPhase.Enemy;
+      ++this.CurrentWave;
+      this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
+      this.TutObject.TutorialText.HasChanged = false;
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.Enemy){
+      Console.WriteLine("YEET");
       this.CurrentPhase = TutorialPhase.ChangeWeaponBomb;
       ++this.CurrentWave;
       this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
+      this.TutObject.TutorialText.HasChanged = false;
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponBomb){
       this.CurrentPhase = TutorialPhase.ChangeWeaponTrack;
       ++this.CurrentWave;
       this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
+      this.TutObject.TutorialText.HasChanged = false;
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponTrack){
       this.CurrentPhase = TutorialPhase.Final;
-      ++this.CurrentWave;
-      this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
+      this.TutObject.TutorialText.HasChanged = false;
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.Final){
       this.GameSession.GlobalVariables.DoTutorial = false;
+      this.TutObject.TutorialText.HasChanged = false;
       this.WaveSpawn.WaveSpawner.EnemiesLeft = 0;
       this.WaveSpawn.WaveSpawner.CheckWaveCompletion();
       this.Owner.Destroy();
