@@ -1,9 +1,10 @@
 class TutorialController : ZilchComponent {
   
   var WaveSpawn : Cog;
-  
+  var TutObject : Cog;
   var CurrentPhase : TutorialPhase = TutorialPhase.Init;
   var CurrentFrame = 0;
+  var CurrentWave : Integer = -1;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -13,22 +14,30 @@ class TutorialController : ZilchComponent {
     if(this.CurrentPhase == TutorialPhase.Init){
       this.Space.CreateAtPosition(Archetype.TutorialObject, Real3(0, 5, 1)).TutorialText.TutorialController = this;
       this.CurrentPhase = TutorialPhase.Move;
+      return;
     }
 
     if(this.CurrentPhase == TutorialPhase.Move){
       this.CurrentPhase = TutorialPhase.Shoot;
+      return;
     }
     else if(this.CurrentPhase == TutorialPhase.Shoot){
       this.CurrentPhase = TutorialPhase.Enemy;
+      return;
     }
     else if(this.CurrentPhase == TutorialPhase.Enemy){
       this.CurrentPhase = TutorialPhase.ChangeWeaponBomb;
+      ++this.CurrentWave;
+      this.WaveSpawn.WaveSpawner.SummonWave(this.CurrentWave);
+      return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponBomb){
       this.CurrentPhase = TutorialPhase.ChangeWeaponTrack;
+      return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponTrack){
       this.CurrentPhase = TutorialPhase.Final;
+      return;
     }
     else if(this.CurrentPhase == TutorialPhase.Final){
       this.GameSession.GlobalVariables.DoTutorial = false;
@@ -38,7 +47,7 @@ class TutorialController : ZilchComponent {
     }
   }
   function OnLogicUpdate(event : UpdateEvent) {
-    ++this.CurrentFrame;
-    if(this.CurrentFrame % 300 == 1) this.AdvanceText(); //workaround until proper moving forward is in
+    //++this.CurrentFrame;
+    //if(this.CurrentFrame % 300 == 1) this.AdvanceText(); //workaround until proper moving forward is in
   }
 }

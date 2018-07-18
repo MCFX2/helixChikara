@@ -1,11 +1,13 @@
 class WaveChange : ZilchComponent {
+  
+  var TUTORIAL_WAVE_COUNT : Integer = 3;
     
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.ChangeWave);
   }
   
   function ChangeWave(event : UpdateEvent) {
-    this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave`";
+    this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave-this.TUTORIAL_WAVE_COUNT+1`";
   }
 
 

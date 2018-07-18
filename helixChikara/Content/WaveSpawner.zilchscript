@@ -9,6 +9,8 @@ class WaveSpawner : ZilchComponent
   var CurrentFrame : Integer = 0;
   [Property] var RushModeDelay : Integer = 300;
   
+  var TUTORIAL_WAVE_COUNT : Integer = 3;
+  
   var CurrentWave : Integer = -1; //starts at wave 0 since NextWave() immediately triggers
   var EnemyOffscreenX : Real = 20;
   var TotalWaves = 0;
@@ -22,8 +24,9 @@ class WaveSpawner : ZilchComponent
   
   var CurrentEnemies : Array[Cog] = Array[Cog]();
   
-  var WaveTutorial : Array[Array[Real]] = Array[Array[Real]]();
-  
+  var WaveTutorial1 : Array[Array[Real]] = Array[Array[Real]]();
+  var WaveTutorial2 : Array[Array[Real]] = Array[Array[Real]]();
+  var WaveTutorial3: Array[Array[Real]] = Array[Array[Real]]();
   
   var Wave1 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave2 : Array[Array[Real]] = Array[Array[Real]]();
@@ -137,7 +140,10 @@ class WaveSpawner : ZilchComponent
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     
     //add waves to wavetable
-    this.RegisterWave(this.WaveTutorial);
+    this.RegisterWave(this.WaveTutorial1);
+    this.RegisterWave(this.WaveTutorial2);
+    this.RegisterWave(this.WaveTutorial3);
+    
     this.RegisterWave(this.Wave1);
     this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave3);
@@ -176,10 +182,20 @@ class WaveSpawner : ZilchComponent
     */
     
         
-    // Tutorial "Wave"
+    // Tutorial "Wave" 1
+    
+    this.AddEnemy(this.WaveTutorial1, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3);
     
     
-    this.AddEnemy(this.WaveTutorial, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3);
+    // Tutorial "Wave" 2
+    
+    this.AddEnemy(this.WaveTutorial1, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    
+    
+    // Tutorial "Wave" 3
+    
+    this.AddEnemy(this.WaveTutorial1, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    
     
     //Wave 1 here
 
@@ -398,13 +414,13 @@ class WaveSpawner : ZilchComponent
   
   function CheckWaveCompletion(){
     if (!this.GameSession.GlobalVariables.DoTutorial) {
-      if(this.CurrentWave == -1) ++this.CurrentWave;
+      if(this.CurrentWave == -1) this.CurrentWave+=this.TUTORIAL_WAVE_COUNT;
       if(this.EnemiesLeft == 0){
         this.CurrentlyInWave = false;
         this.NextWave();        
       }
     } else {
-      var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,0));
+      var tutController : Cog = this.Space.CreateAtPosition(Archetype.TutorialController, Real3(0,0,1));
       tutController.TutorialController.WaveSpawn = this.Owner;
     }
   }
@@ -426,8 +442,10 @@ class WaveSpawner : ZilchComponent
     
     ++this.CurrentFrame;
     if(this.CurrentFrame%this.RushModeDelay == 0){
-      this.SummonWave(this.CurrentWave);
+      if (this.CurrentWave > this.Waves.LastIndex) this.SummonWave(this.Waves.LastIndex);
+      else this.SummonWave(this.CurrentWave);
       ++this.CurrentWave;
+      
     }
     
     

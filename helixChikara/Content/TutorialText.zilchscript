@@ -1,8 +1,12 @@
 class TutorialText : ZilchComponent {
-  [Property] var SecondsBeforeDeath : Integer = 300;
+  
+  [Property] var SecondsBeforeDeath : Integer = 5;
+  [Property] var TextChangeTime : Integer = 5;
   [Property] var TutorialController : TutorialController;
 
   var CurrentFrame = 0;
+  var AutoSequence = false;
+  var HasChanged = false;
   
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -18,42 +22,68 @@ class TutorialText : ZilchComponent {
     if(moveMethod == ControlTypes.GamePad){
       return gamepad;
     }
+    this.HasChanged = true;
     return null;
+  }
+  
+  function CenterText(center : Boolean) {
+    if (center) this.Owner.Children.Current.Transform.Translation = Real3(0, 0, 0);
+    else this.Owner.Children.Current.Transform.Translation = Real3(0, -0.6, 0);
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
     var inferredMoveMethod = this.GameSession.GlobalVariables.ControlType;
-    if(this.TutorialController.CurrentPhase == TutorialPhase.Move)
-      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-        null,//"Use WASD to move",
-        null,//"The ship follows your mouse",
-        null);//"Use the left joystick to move");
-    
-    if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot)
-      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-        null,//"Press SPACE to shoot",
-        null,//"Click to shoot",
-        null);//"A,B and triggers shoot");
-    
-    if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy)
-      //this.Owner.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
-    
-    if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
-      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-        null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-        null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
-        null);//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
-    if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack)
-      this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-        null,//"This one's not so harmless. Try using Scout's weapon (3)",
-        null,//"This one's not so harmless. Try using Scout's weapon (3)",
-        null);//"This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
-  
-    if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
-      //this.Owner.SpriteText.Text = "You got it now, Good luck";
-      ++this.CurrentFrame;
-      if(this.CurrentFrame == this.SecondsBeforeDeath) this.Owner.Destroy();
+    if (!this.HasChanged) {
+      if(this.TutorialController.CurrentPhase == TutorialPhase.Move) {
+        this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+          null,//"Use WASD to move",
+          null,//"The ship follows your mouse",
+          SpriteSource.Cont_Move_Tut);//"Use the left joystick to move");
+        this.Owner.Children.Current.SpriteText.Text = "";
+        this.AutoSequence = true;
+      }
       
+      if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot) {
+        this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+          null,//"Press SPACE to shoot",
+          null,//"Click to shoot",
+          SpriteSource.Cont_Shoot_Tut);//"A,B and triggers shoot");
+        this.Owner.Children.Current.SpriteText.Text = "";
+        this.AutoSequence = true;
+      }
+      
+      if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy) {
+        this.CenterText(true);
+        this.Owner.Children.Current.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
+      }
+
+      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb)
+        this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+          null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+          null,//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with 2",
+          SpriteSource.Cont_Swap_Tut);//"A bunch of harmless enemies. It's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+      if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack)
+        this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
+          null,//"This one's not so harmless. Try using Scout's weapon (3)",
+          null,//"This one's not so harmless. Try using Scout's weapon (3)",
+          null);//"This one's not so harmless. Try using Scout's weapon (X, Y, or shoulder again)"); //in the future maybe this can see which button the player actually used
+    
+      if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
+        //this.Owner.SpriteText.Text = "You got it now, Good luck";
+        ++this.CurrentFrame;
+        if(this.CurrentFrame >= this.TextChangeTime*60) this.TutorialController.AdvanceText();
+        
+      }
     }
+    if(this.AutoSequence) {
+      ++this.CurrentFrame;
+      if(this.CurrentFrame >= this.SecondsBeforeDeath*60) {
+        this.AutoSequence = false;
+        this.HasChanged = false;
+        this.CurrentFrame = 0;
+        this.Owner.Destroy();
+      }
+    }
+    
   }
 }

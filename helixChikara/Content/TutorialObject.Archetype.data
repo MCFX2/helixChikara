@@ -1,7 +1,7 @@
 [Version:1]
 Cog 
 {
-	var Name = "TutorialText"
+	var Name = "TutorialObject"
 	Transform 
 	{
 		var Translation = Real3{0, 0, 0}
@@ -11,6 +11,7 @@ Cog
 	TutorialText 
 	{
 		var SecondsBeforeDeath = 5
+		var TextChangeTime = 5
 		var TutorialController = TutorialController
 		{
 		}
@@ -33,5 +34,36 @@ Cog
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b66e62fa32ef5c4]
+		{
+			var Name = "TutorialText"
+			Transform 
+			{
+				var Translation = Real3{0, -0.600000024, 0}
+				var Scale = Real3{0.199999988, 0.199999988, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteText 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var Text = "Sprite Text..."
+				var Font = "5bb40a4f43f00049:VT323Regular"
+				var FontSize = 128
+				var PixelsPerUnit = 128
+				var TextAlign = TextAlign.Center
+			}
+		}
 	}
 }
