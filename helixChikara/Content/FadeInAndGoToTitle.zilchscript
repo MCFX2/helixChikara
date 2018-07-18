@@ -7,6 +7,7 @@ class FadeInAndGoToTitle : ZilchComponent
     Zero.Connect(this.Space, Events.MouseDown, this.MousePressed);
     Zero.Connect(this.Space, Events.KeyDown, this.KeyPressed);
     
+    Zero.Mouse.Cursor = Cursor.Invisible;
     var acseq = Actions.Sequence(this.Owner.Actions);
     Actions.Property(acseq,
     @this.Owner.Sprite.VertexColor,
@@ -35,6 +36,7 @@ class FadeInAndGoToTitle : ZilchComponent
   }
 
   function GoToTitle(){
+    Zero.Mouse.Cursor = Cursor.Arrow;
     this.Space.LoadLevel(Level.MainMenu);
     
   }
