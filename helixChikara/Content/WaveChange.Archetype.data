@@ -5,10 +5,17 @@ Cog
 	Transform 
 	{
 		var Translation = Real3{0, 0, 0}
-		var Scale = Real3{1, 1, 1}
+		var Scale = Real3{4, 4, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
-	SpriteText 
+	WaveChange 
+	{
+		var InTime = 0.699999988
+		var OutTime = 0.699999988
+		var HoldTime = 0.5
+		var TransType = Ease.WarpInOut
+	}
+	Sprite 
 	{
 		var Visible = true
 		var ViewCulling = true
@@ -18,19 +25,13 @@ Cog
 		var LocalAabbHalfExtents = Real3{1, 1, 1}
 		var GroupSortValue = 0
 		var Material = "582c575af53d18c9:AlphaSprite"
-		var VertexColor = Real4{0.169999957, 1, 0, 1}
+		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var Text = "Wave: 1"
-		var Font = "57343753bb4eaaec:NotoSans-Regular"
-		var FontSize = 128
-		var PixelsPerUnit = 128
-		var TextAlign = TextAlign.Center
-	}
-	DestroyOnTimer 
-	{
-		var SecondsBeforeDeath = 1
-	}
-	WaveChange 
-	{
+		var SpriteSource = "5b9f5aea1db155ad:Wave"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
 	}
 }

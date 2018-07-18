@@ -1,13 +1,43 @@
 class WaveChange : ZilchComponent {
   
   var TUTORIAL_WAVE_COUNT : Integer = 3;
+  [Property] var InTime : Real = 0.7;
+  [Property] var OutTime : Real = 0.7;
+  [Property] var HoldTime : Real = 1.0;
+  [Property] var TransType : Ease;
+  var XEdge : Real = 25;
+  var R : Random = Random();
     
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.ChangeWave);
-  }
+    
+    var xdir = this.R.DieRoll(3) - 2;
+    
+    var ydir = this.R.DieRoll(3) - 2;
+    
+    this.Owner.Transform.Translation = Real3(20 * xdir, 20 * ydir, this.Owner.Transform.Translation.Z);
+    
+    var seq = Actions.Sequence(this.Owner.Actions);
+    
+    Actions.Property(seq,
+    @this.Owner.Transform.Translation,
+    Real3(0, 5, this.Owner.Transform.Translation.Z),
+    this.InTime,
+    this.TransType);
+    
+    Actions.Delay(seq, this.HoldTime);
+    
+    Actions.Property(seq,
+    @this.Owner.Transform.Translation,
+    Real3(-20 * xdir, -20 * ydir, this.Owner.Transform.Translation.Z),
+    this.OutTime,
+    this.TransType);
+    
+    }
   
   function ChangeWave(event : UpdateEvent) {
-    this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave-this.TUTORIAL_WAVE_COUNT+1`";
+    //this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave-this.TUTORIAL_WAVE_COUNT+1`";
+    
   }
 
 
