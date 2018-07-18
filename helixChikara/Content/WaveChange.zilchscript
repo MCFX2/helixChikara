@@ -6,16 +6,17 @@ class WaveChange : ZilchComponent {
   [Property] var HoldTime : Real = 1.0;
   [Property] var TransType : Ease;
   var XEdge : Real = 25;
+  var YEdge : Real = 25;
   var R : Random = Random();
     
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.ChangeWave);
     
     var xdir = this.R.DieRoll(3) - 2;
-    
     var ydir = this.R.DieRoll(3) - 2;
+    if(xdir == 0 && ydir == 0) xdir = 1; //prevent bug
     
-    this.Owner.Transform.Translation = Real3(20 * xdir, 20 * ydir, this.Owner.Transform.Translation.Z);
+    this.Owner.Transform.Translation = Real3(this.XEdge * xdir, this.YEdge * ydir, this.Owner.Transform.Translation.Z);
     
     var seq = Actions.Sequence(this.Owner.Actions);
     
@@ -29,9 +30,11 @@ class WaveChange : ZilchComponent {
     
     Actions.Property(seq,
     @this.Owner.Transform.Translation,
-    Real3(-20 * xdir, -20 * ydir, this.Owner.Transform.Translation.Z),
+    Real3(-1 * this.XEdge * xdir, -1 * this.YEdge * ydir, this.Owner.Transform.Translation.Z),
     this.OutTime,
     this.TransType);
+    
+    Actions.Call(seq, this.Owner.Destroy);
     
     }
   

@@ -14,10 +14,8 @@ class ItemSpawner : ZilchComponent {
     coords.Y = this.WaveController.WaveSpawner.LastEnemyCoords.Y;
     var pickup = this.Space.CreateAtPosition(Archetype.ItemPickup, coords);
     if (this.ShipHitBox.ManagePlayerHealth.PlayerHealth < 5) {
-      pickup.Sprite.VertexColor = Real4(1.0, 0, 0, 1.0);
       pickup.ItemPickupProperties.State = ItemTypes.Health;
     } else {
-      pickup.Sprite.VertexColor = Real4(0, 0, 1.0, 1.0);
       pickup.ItemPickupProperties.State = ItemTypes.Shield;
     }
   }
