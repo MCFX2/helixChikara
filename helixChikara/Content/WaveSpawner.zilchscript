@@ -190,12 +190,12 @@ class WaveSpawner : ZilchComponent
     
     // Tutorial "Wave" 2
     
-    this.AddEnemy(this.WaveTutorial1, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
     
     
     // Tutorial "Wave" 3
     
-    this.AddEnemy(this.WaveTutorial1, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    this.AddEnemy(this.WaveTutorial3, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
     
     
     //Wave 1 here
