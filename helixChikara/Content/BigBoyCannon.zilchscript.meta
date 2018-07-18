@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "BigBoyCannon"
+		var ResourceId = 0x5bb5fed658e7fb5d
+	}
+}
