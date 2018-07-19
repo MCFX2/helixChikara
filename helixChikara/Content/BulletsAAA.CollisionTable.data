@@ -1,0 +1,187 @@
+[Version:1]
+CollisionTable 
+{
+	var RegisteredGroups = Array
+	{
+		"5bcc8a8adae77ab2:EnemyPierce"
+		"4e740859314e5515:DefaultGroup"
+		"5b62a702621957a6:ItemPickup"
+		"5bcc8fccebcfe79f:PlayerBullet"
+		"5bc1b14a9170e41f:NoCollide"
+		"5bcc88a3c458b53e:EnemyDestructible"
+		"5bcce5b14bf497f6:EnemyIgnore"
+		"5bc49ed3a608f151:PlayerBulletPiercing"
+		"5bc49dcffdb7207f:KillEverything"
+		"5bcc805e1ee7bce2:PlayerEnemy"
+		"5bc1b79941bf53bd:PlayerSnapTo"
+	}
+	var CollisionFilters = Array
+	{
+		Object
+		{
+			var TypeA = "5bc1b79941bf53bd:PlayerSnapTo"
+			var TypeB = "5bc1b79941bf53bd:PlayerSnapTo"
+			var SkipResolution = false
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcc8a8adae77ab2:EnemyPierce"
+			var TypeB = "5bcc8a8adae77ab2:EnemyPierce"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc1b14a9170e41f:NoCollide"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc1b14a9170e41f:NoCollide"
+			var TypeB = "5bcc8fccebcfe79f:PlayerBullet"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc1b14a9170e41f:NoCollide"
+			var TypeB = "5bc49ed3a608f151:PlayerBulletPiercing"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc1b14a9170e41f:NoCollide"
+			var TypeB = "5bcc805e1ee7bce2:PlayerEnemy"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc1b14a9170e41f:NoCollide"
+			var TypeB = "5bc1b79941bf53bd:PlayerSnapTo"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bc49dcffdb7207f:KillEverything"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5b62a702621957a6:ItemPickup"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "4e740859314e5515:DefaultGroup"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcc88a3c458b53e:EnemyDestructible"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcce5b14bf497f6:EnemyIgnore"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcc8a8adae77ab2:EnemyPierce"
+			var TypeB = "5bc1b14a9170e41f:NoCollide"
+			var SkipResolution = true
+			var SkipDetectingCollision = false
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcce5b14bf497f6:EnemyIgnore"
+			var TypeB = "5bcc8a8adae77ab2:EnemyPierce"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+		Object
+		{
+			var TypeA = "5bcc8a8adae77ab2:EnemyPierce"
+			var TypeB = "5bcc805e1ee7bce2:PlayerEnemy"
+			var SkipResolution = false
+			var SkipDetectingCollision = true
+			var StartEvent = false
+			var EndEvent = false
+			var PersistedEvent = false
+			var PreSolveEvent = false
+		}
+	}
+	var AutoRegister = true
+}
