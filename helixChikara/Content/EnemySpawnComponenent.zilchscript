@@ -25,7 +25,9 @@ class EnemySpawnComponenent : ZilchComponent
         Real3(this.ActionData[0], this.ActionData[1], 0),
         this.ActionData[3],
         Ease.QuadInOut);
+  
     }
+    
     
     ++this.CurrentFrame;
     if (this.Owner.Transform.Translation.XY == Real2(this.ActionData[0], this.ActionData[1])) {
