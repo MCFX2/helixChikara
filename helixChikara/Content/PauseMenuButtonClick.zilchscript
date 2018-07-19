@@ -104,6 +104,7 @@ class PauseMenuButtonClick : ZilchComponent {
       if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Default) {
         
         if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
+          Zero.Mouse.Cursor = Cursor.Arrow;
           this.GameSession.GlobalVariables.ExitPauseMenu = true;
           this.GameSession.GlobalVariables.GameSpace.TimeSpace.Paused = false;
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
