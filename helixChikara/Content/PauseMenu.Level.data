@@ -355,7 +355,7 @@ Level
 		{
 			var MenuBG = CogPath
 			{
-				var Path = ""
+				var Path = ":/Background/BGImage"
 				var ErrorOnResolveToNull = false
 				var ErrorOnPathCantCompute = false
 				var ErrorOnDirectLinkFail = false
@@ -368,9 +368,6 @@ Level
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
 			}
-			var GameLevel1 = "null"
-			var MainMenuLevel = "null"
-			var CreditsLevel = "null"
 		}
 		PauseMenuButtonClick 
 		{
@@ -389,6 +386,31 @@ Level
 				var PathPreference1 = CogPathPreference.SpaceRelative
 				var PathPreference2 = CogPathPreference.Absolute
 			}
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "BGMusic"
+		Transform 
+		{
+			var Translation = Real3{-11.3828754, 0.0855844468, 0.180000007}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SoundEmitter 
+		{
+			var Volume = 1
+			var Pitch = 0
+			var Attenuator = "57ca8a6ad262efe5:DefaultNoAttenuation"
+			var Directional = false
+			var EmitAngle = 90
+			var RearVolume = 0.200000003
+		}
+		SimpleSound 
+		{
+			var StartPlaying = false
+			var Positional = false
+			var Cue = "5bb1981b40591f87:BGMusic"
 		}
 	}
 }
