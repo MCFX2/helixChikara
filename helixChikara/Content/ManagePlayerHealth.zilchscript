@@ -40,6 +40,7 @@ class ManagePlayerHealth : ZilchComponent {
       // Ideally we want a destruction animation to play before the Game Over Screen
       var tempSpace : Space = this.GameSession.CreateSpace(Archetype.Space);
       this.Space.Destroy();
+      this.GameSession.GlobalVariables.BGMSoundSpace.Destroy();
       
       tempSpace.LoadLevel(this.GameOver);
     }

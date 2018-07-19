@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SoundVolumeControl"
+		var ResourceId = 0x5b791ae67222b9f7
+	}
+}

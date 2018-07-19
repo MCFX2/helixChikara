@@ -30,9 +30,10 @@ class GlobalVariables : ZilchComponent {
   var GameIsPaused = false;
   var ExitPauseMenu = false;
   
-  [Property] var CreditsSpace : Space;
-  [Property] var PauseSpace : Space;
-  [Property] var GameSpace : Space;
+  var CreditsSpace : Space;
+  var PauseSpace : Space;
+  var GameSpace : Space;
+  var BGMSoundSpace : Space;
   [Property] var PauseLevel : Level;
 
   

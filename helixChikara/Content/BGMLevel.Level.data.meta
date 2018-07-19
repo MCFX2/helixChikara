@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BGMLevel"
+		var ResourceId = 0x5b78e64ae472e76c
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}
