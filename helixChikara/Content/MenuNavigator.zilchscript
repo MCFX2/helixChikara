@@ -10,7 +10,8 @@ class MenuNavigator : ZilchComponent {
   // Accessible Levels
   [Property] var GameLevel1 : Level;
   [Property] var MainMenuLevel : Level;
-  [Property] var CreditsLevel : Level;  
+  [Property] var CreditsLevel : Level;
+  [Property] var BGMLevel : Level;  
 
   var TitleContent : String;
   
