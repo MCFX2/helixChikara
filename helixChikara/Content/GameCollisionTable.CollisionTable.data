@@ -164,8 +164,8 @@ CollisionTable
 		{
 			var TypeA = "5bcce5b14bf497f6:EnemyIgnore"
 			var TypeB = "5bcc8a8adae77ab2:EnemyPierce"
-			var SkipResolution = false
-			var SkipDetectingCollision = true
+			var SkipResolution = true
+			var SkipDetectingCollision = false
 			var StartEvent = false
 			var EndEvent = false
 			var PersistedEvent = false
