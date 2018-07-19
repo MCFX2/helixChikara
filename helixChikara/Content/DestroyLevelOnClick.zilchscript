@@ -1,12 +1,15 @@
 class DestroyLevelOnClick : ZilchComponent {
-  
-  
+    
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
   }
 
   function OnLeftClick(event : ViewportMouseEvent) {
-    this.GameSession.GlobalVariables.CreditsSpace.Destroy();
-    this.GameSession.GlobalVariables.BackToMain = true;
+    if (this.GameSession.GlobalVariables.CurrentDestroyableSpace == DestroyableSpaces.Credits) {
+      this.GameSession.GlobalVariables.CreditsSpace.Destroy();
+      this.GameSession.GlobalVariables.BackToMain = true;
+    } else if (this.GameSession.GlobalVariables.CurrentDestroyableSpace == DestroyableSpaces.Pause) {
+      this.GameSession.GlobalVariables.PauseSpace.Destroy();
+    }
   }
 }

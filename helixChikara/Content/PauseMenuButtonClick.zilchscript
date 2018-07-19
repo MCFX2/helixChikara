@@ -1,5 +1,4 @@
-class MainMenuButtonClick : ZilchComponent {
-  
+class PauseMenuButtonClick : ZilchComponent {
   [Property] var BGM : CogPath;
   
   var Button : Cog;
@@ -15,9 +14,7 @@ class MainMenuButtonClick : ZilchComponent {
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LeftClick, this.OnLeftClick);
     Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
-    Zero.Connect(this.Space, Events.GamepadUpdated, this.OnGamepadUpdate);
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    
     this.Controller = Zero.Gamepads.GetGamePad(0);
     Zero.Connect(this.Controller, Events.ButtonDown, this.OnButtonDown);
     Zero.Connect(this.Controller, Events.ButtonUp, this.OnButtonUp);
@@ -30,23 +27,12 @@ class MainMenuButtonClick : ZilchComponent {
     var buttons : Array[Cog] = this.Owner.MenuNavigator.Buttons;
     var prevIndex : Integer = buttons.FindFirstIndex(this.CurrentlySelected);
     if (up) {
-      if (prevIndex==0) {
-        if (buttons.LastIndex==7) newIndex=6;
-        else newIndex=4;
-      }
+      if (prevIndex==0) newIndex=4;
       if (prevIndex==2) newIndex=0;
-      if (prevIndex==4) {
-        if (buttons.LastIndex==7) newIndex=6;
-        else newIndex=2;
-      }
-      if (prevIndex==6) newIndex=2;
+      if (prevIndex==4) newIndex=2;
     } else {
       if (prevIndex==0) newIndex=2;
-      if (prevIndex==2) {
-        if (buttons.LastIndex==7) newIndex=6;
-        else newIndex=4;
-      }
-      if (prevIndex==6) newIndex=4;
+      if (prevIndex==2) newIndex=4;
       if (prevIndex==4) newIndex=0;
     }
     this.CurrentlySelected = buttons[newIndex];
@@ -86,10 +72,6 @@ class MainMenuButtonClick : ZilchComponent {
     }
   }
   
-  function OnGamepadUpdate(event : GamepadEvent) {
-
-  }
-  
   function OnLogicUpdate(event : UpdateEvent) {
     var leftStick = this.Controller.LeftStick;
     if (!this.ControllerInput && Math.Length(leftStick)>this.Deadzone) {
@@ -112,65 +94,39 @@ class MainMenuButtonClick : ZilchComponent {
         }
       }
     }
+    
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
       this.Space.GameSession.GlobalVariables.ButtonClick = false;
-      if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.SelectMode) {
-        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
-          this.Space.Destroy();
-          Zero.Mouse.Cursor = Cursor.Arrow;
-          if (this.ControllerInput) {
-            this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
-            Zero.Mouse.Cursor = Cursor.Invisible;
-          }
-          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
-          this.Space.Destroy();
-          this.GameSession.GlobalVariables.DoTutorial = true;
-          Zero.Mouse.Cursor = Cursor.Arrow;
-          if (this.ControllerInput) {
-            this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
-            Zero.Mouse.Cursor = Cursor.Invisible;
-          }
-          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
-          this.Owner.MenuNavigator.SetMainMenu(false);
+      if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Default) {
+        
+        if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
+
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
+          this.Owner.PauseMenuController.SetOptionsMenu();
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
+          
         }
         
-      } else if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.ControlType) {
+      } else if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Options) {
         
-        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
-          this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
-          this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
-          this.Owner.MenuNavigator.SetOptionsMenu(false);
-        }
-        
-      } else if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.Options) {
-        
-        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
-          this.Owner.MenuNavigator.SetControlTypeMenu();
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
+        if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
+          this.Owner.PauseMenuController.SetControlTypeMenu();
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
           // We'll figure it out
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
-          this.Owner.MenuNavigator.SetMainMenu(false);
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
+          this.Owner.PauseMenuController.SetPauseMenu(false);
         }
+      } else if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Control) {
         
-      } else if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.MainMenu) {
-        this.GameSession.GlobalVariables.CreditsSpace = this.GameSession.CreateSpace(Archetype.Space);
-        if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
-          this.Owner.MenuNavigator.SetModeMenu();
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
-          this.Owner.MenuNavigator.SetOptionsMenu(true);
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
-          this.GameSession.RequestQuit();
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[6]) {
-          //this.Space.GameSession.GlobalVariables.CreditsSpace = this.NewLevelSpace;
-          this.GameSession.GlobalVariables.CurrentDestroyableSpace = DestroyableSpaces.Credits;
-          this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.CreditsLevel);
-          this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.Inactive;
-        } 
+        if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
+          this.Owner.PauseMenuController.SetOptionsMenu();
+        }
       }
+
       if (this.GameSession.GlobalVariables.BackToMain) {
           this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.MainMenu;
           this.GameSession.GlobalVariables.BackToMain = false;

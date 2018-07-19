@@ -1,33 +1,110 @@
 class BigBoyCannon : ZilchComponent
 {
-  [Property] var NumSpreadShots : Integer = 60;
-  [Property] var EjectionVelocity : Real = 2.5;
-  [Property] var FireDelay : Integer = 30;
+  [Property] var AnimationScaleRate : Real = 0.7;
+  
+  [Property] var Phase1NumSpreadShots : Integer = 20;
+  [Property] var Phase1EjectionVelocity : Real = 1;
+  [Property] var Phase1FireDelay : Integer = 90;
+  
+  [Property] var Phase2NumSpreadShots : Integer = 30;
+  [Property] var Phase2EjectionVelocity : Real = 1.1;
+  [Property] var Phase2FireDelay : Integer = 60;
+  
+  [Property] var Phase3NumSpreadShots : Integer = 60;
+  [Property] var Phase3EjectionVelocity : Real = 1.3;
+  [Property] var Phase3FireDelay : Integer = 40;
+  
+  [Property] var Phase4NumSpreadShots : Integer = 90;
+  [Property] var Phase4EjectionVelocity : Real = 2;
+  [Property] var Phase4FireDelay : Integer = 30;
+  
+  [Property] var Phase2Pct : Real = 0.75;
+  [Property] var Phase3Pct : Real = 0.5;
+  [Property] var Phase4Pct : Real = 0.25;
+  
+  var CPhase : Integer = 1;
   var CFrame : Integer = 0;
-  
-  
+
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
   }
   
   function Shoot(){
-    var bulletSpread = (2 * Math.Pi / this.NumSpreadShots);
-    for(var i = 0; i < this.NumSpreadShots; ++i){
-      var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
-      var velY = Math.Pow(this.EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
-      var velX = Math.Pow(this.EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+    if(this.CPhase >= 1){
+      var bulletSpread = (2 * Math.Pi / this.Phase1NumSpreadShots);
       
+      for(var i = 0; i < this.Phase1NumSpreadShots; ++i){
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
+        var velY = Math.Pow(this.Phase1EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
+        var velX = Math.Pow(this.Phase1EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+        
+        
+        currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
+        currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+        
+      }
+    }
+    if(this.CPhase >= 2){
+      var bulletSpread = (2 * Math.Pi / this.Phase2NumSpreadShots);
       
-      currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
-      currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+      for(var i = 0; i < this.Phase2NumSpreadShots; ++i){
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
+        var velY = Math.Pow(this.Phase2EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
+        var velX = Math.Pow(this.Phase2EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+        
+        
+        currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
+        currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+        
+      }
       
     }
+    if(this.CPhase >= 3){
+      var bulletSpread = (2 * Math.Pi / this.Phase3NumSpreadShots);
+      
+      for(var i = 0; i < this.Phase3NumSpreadShots; ++i){
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
+        var velY = Math.Pow(this.Phase3EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
+        var velX = Math.Pow(this.Phase3EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+        
+        
+        currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
+        currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+        
+      }
+    }
+    if(this.CPhase >= 4){
+      var bulletSpread = (2 * Math.Pi / this.Phase4NumSpreadShots);
+      
+      for(var i = 0; i < this.Phase4NumSpreadShots; ++i){
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
+        var velY = Math.Pow(this.Phase4EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
+        var velX = Math.Pow(this.Phase4EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
+        
+        
+        currentBullet.Transform.Rotation = Math.ToQuaternion(Real3(0, 0, this.GameSession.GlobalVariables.GetAngle(Real2(velX, velY))));
+        currentBullet.RigidBody.Velocity = Real3(velX, velY, 0);
+        
+      }
+    
+    }
+  }
+  function NextPhase(){
+    ++this.CPhase;
+    this.Owner.Sprite.AnimationSpeed *= this.AnimationScaleRate;
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
     ++this.CFrame;
-    if(this.CFrame%this.FireDelay==0) this.Shoot();
+    if(this.CPhase == 1 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase2Pct)) this.NextPhase();
+    if(this.CPhase == 2 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase3Pct)) this.NextPhase();
+    if(this.CPhase == 3 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase4Pct)) this.NextPhase();
+    
+    if(this.CPhase == 1 && this.CFrame%this.Phase1FireDelay==0) this.Shoot();
+    if(this.CPhase == 2 && this.CFrame%this.Phase2FireDelay==0) this.Shoot();
+    if(this.CPhase == 3 && this.CFrame%this.Phase3FireDelay==0) this.Shoot();
+    if(this.CPhase == 4 && this.CFrame%this.Phase4FireDelay==0) this.Shoot();
   }
 }

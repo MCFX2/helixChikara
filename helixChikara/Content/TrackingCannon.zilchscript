@@ -12,6 +12,7 @@ class TrackingCannon : ZilchComponent
   function OnLogicUpdate(event : UpdateEvent)
   {
     if(this.CurrentCooldown == this.FireDelay){
+      if(this.Space.MarkedForDestruction) return; //editor crash
       var bullet = this.Space.CreateAtPosition(Archetype.EnemyBulletTracking, this.Owner.Transform.Translation);
       //bullet.BasicShot.PlayerPosAtInit = this.Player.Cog.Transform.Translation;
       
