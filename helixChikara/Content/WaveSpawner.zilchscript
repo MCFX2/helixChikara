@@ -191,9 +191,8 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave29);
     this.RegisterWave(this.Wave30);
 
-  
-    
-    
+  */
+ 
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
     //Detailed description below
     

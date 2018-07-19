@@ -333,39 +333,35 @@ Level
 				}
 				MainMenuButtonClick 
 				{
-					var BGM = CogPath
-					{
-						var Path = ":/BGMusic"
-						var ErrorOnResolveToNull = false
-						var ErrorOnPathCantCompute = false
-						var ErrorOnDirectLinkFail = false
-						var UpdateCogOnPathChange = true
-						var UpdatePathOnCogChange = true
-						var UpdateCogOnInitialize = true
-						var ResolvedNullErrorOccurred = false
-						var Cog = 10
-						var PathPreference0 = CogPathPreference.CogRelative
-						var PathPreference1 = CogPathPreference.SpaceRelative
-						var PathPreference2 = CogPathPreference.Absolute
-					}
+					var BGM = CogPath{					var Path = ":/BGMusic"
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var Cog = 10
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+}
 				}
 				MenuNavigator 
 				{
-					var MenuBG = CogPath
-					{
-						var Path = ".."
-						var ErrorOnResolveToNull = false
-						var ErrorOnPathCantCompute = false
-						var ErrorOnDirectLinkFail = false
-						var UpdateCogOnPathChange = true
-						var UpdatePathOnCogChange = true
-						var UpdateCogOnInitialize = true
-						var ResolvedNullErrorOccurred = false
-						var Cog = 5
-						var PathPreference0 = CogPathPreference.CogRelative
-						var PathPreference1 = CogPathPreference.SpaceRelative
-						var PathPreference2 = CogPathPreference.Absolute
-					}
+					var MenuBG = CogPath{					var Path = ".."
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var Cog = 5
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+}
 					var GameLevel1 = "59097123da28242a:level1"
 					var MainMenuLevel = "5b3c55ba57dd01ce:MainMenu"
 					var CreditsLevel = "5bb47265320d285e:Credits"
@@ -373,7 +369,7 @@ Level
 			}
 		}
 	}
-	Cog [ContextId:11]
+	Cog [ContextId:10]
 	{
 		var Name = "BGEnemySpawner"
 		Transform 
@@ -393,7 +389,7 @@ Level
 			var BaseSize = 3
 		}
 	}
-	Cog [ContextId:10]
+	Cog [ContextId:11]
 	{
 		var Name = "BGMusic"
 		Transform 
@@ -416,15 +412,6 @@ Level
 			var StartPlaying = true
 			var Positional = false
 			var Cue = "5bb19ac8fc083c23:MainMenuMusic"
-		}
-	}
-	Cog [InheritId:"5bb5fe51a0eb23df:BigBoy"][ContextId:12]
-	{
-		Transform 
-		{
-			var Translation = Real3{9.99478531, 1.4155426, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{6, 6, 1}
 		}
 	}
 }
