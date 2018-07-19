@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 3.97425961
+			var Size = 3.25384831
 		}
 		EditorCameraController 
 		{
@@ -715,7 +715,7 @@ Level
 							var AnimeShipKey = Keys.One
 							var ReaganShipKey = Keys.Two
 							var ScoutShipKey = Keys.Three
-							var BulletSpawnOffset = Real2{1.79999995, 0}
+							var BulletSpawnOffset = Real2{1.79999995, 0.400000006}
 							var BulletSpeedAnime = 5
 							var BulletFireDelayAnime = 6
 							var BulletSpreadAnime = 0.0199999996
@@ -832,6 +832,35 @@ Level
 						}
 						Hierarchy 
 						{
+							Cog [Id:0x5b659e7ce947c90c][ContextId:17]
+							{
+								var Name = "Gun"
+								Transform 
+								{
+									var Translation = Real3{1.41193664, 1.31050313, 0.200000018}
+									var Scale = Real3{5, 5, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Sprite 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "582c575af53d18c9:AlphaSprite"
+									var VertexColor = Real4{1, 1, 1, 1}
+									var GeometryMode = SpriteGeometryMode.ZPlane
+									var SpriteSource = "5b6500d0eb16a472:Anime_wep"
+									var FlipX = false
+									var FlipY = false
+									var AnimationActive = true
+									var AnimationSpeed = 1
+									var StartFrame = 0
+								}
+							}
 							Cog [Id:0x5bc0e2934b1b7fe8][ContextId:22]
 							{
 								var Name = "Ship"
@@ -890,35 +919,6 @@ Level
 								}
 								Hierarchy 
 								{
-								}
-							}
-							Cog [Id:0x5b659e7ce947c90c][ContextId:17]
-							{
-								var Name = "Gun"
-								Transform 
-								{
-									var Translation = Real3{1.90358984, 1.06467652, 0.200000018}
-									var Scale = Real3{5, 5, 1}
-									var Rotation = Quaternion{0, 0, 0, 1}
-								}
-								Sprite 
-								{
-									var Visible = true
-									var ViewCulling = true
-									var VisibilityEvents = true
-									var OverrideBoundingBox = false
-									var LocalAabbCenter = Real3{0, 0, 0}
-									var LocalAabbHalfExtents = Real3{1, 1, 1}
-									var GroupSortValue = 0
-									var Material = "582c575af53d18c9:AlphaSprite"
-									var VertexColor = Real4{1, 1, 1, 1}
-									var GeometryMode = SpriteGeometryMode.ZPlane
-									var SpriteSource = "5b6500d0eb16a472:Anime_wep"
-									var FlipX = false
-									var FlipY = false
-									var AnimationActive = true
-									var AnimationSpeed = 1
-									var StartFrame = 0
 								}
 							}
 						}
