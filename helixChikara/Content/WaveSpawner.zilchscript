@@ -124,7 +124,6 @@ class WaveSpawner : ZilchComponent
       if(!this.GameSession.MarkedForDestruction){ //fixes annoying editor error
         var victorySpace : Space = this.GameSession.CreateSpace(Archetype.Space);
         this.Space.Destroy();
-        this.GameSession.GlobalVariables.BGMSoundSpace.Destroy();
         victorySpace.LoadLevel(this.VictoryLevel);
       }
     
@@ -162,8 +161,8 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.WaveTutorial2);
     this.RegisterWave(this.WaveTutorial3);
         
-    this.RegisterWave(this.Wave1);
-/*
+    //this.RegisterWave(this.Wave1);
+
     this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave4);
     this.RegisterWave(this.Wave5);
@@ -183,10 +182,8 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave17);
     
     this.RegisterWave(this.Wave18);
-    
     this.RegisterWave(this.Wave19);
-    */
-    //this.RegisterWave(this.Wave20);
+    this.RegisterWave(this.Wave20);
     this.RegisterWave(this.Wave21);
     this.RegisterWave(this.Wave22);
     this.RegisterWave(this.Wave23);
@@ -197,8 +194,7 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave28);
     this.RegisterWave(this.Wave29);
     this.RegisterWave(this.Wave30);
-    
-    
+ 
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
     //Detailed description below
     
@@ -519,9 +515,6 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave20, Real2(7, 0), this.ENEMYNOSHOOT, 2, 0, 3);
     
     //wave 21
-    
-    this.AddEnemy(this.Wave21, Real2(3, 0), this.ENEMYBURST, 2, 0, 3);
-    this.AddEnemy(this.Wave21, Real2(4, 1), this.ENEMYBASIC, 2, 0, 3);
     
     this.CheckWaveCompletion();
   }
