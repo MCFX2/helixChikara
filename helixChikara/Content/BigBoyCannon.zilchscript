@@ -1,5 +1,7 @@
 class BigBoyCannon : ZilchComponent
 {
+  [Property] var AnimationScaleRate : Real = 0.7;
+  
   [Property] var Phase1NumSpreadShots : Integer = 20;
   [Property] var Phase1EjectionVelocity : Real = 1;
   [Property] var Phase1FireDelay : Integer = 90;
@@ -33,7 +35,7 @@ class BigBoyCannon : ZilchComponent
       var bulletSpread = (2 * Math.Pi / this.Phase1NumSpreadShots);
       
       for(var i = 0; i < this.Phase1NumSpreadShots; ++i){
-        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
         var velY = Math.Pow(this.Phase1EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
         var velX = Math.Pow(this.Phase1EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
         
@@ -47,7 +49,7 @@ class BigBoyCannon : ZilchComponent
       var bulletSpread = (2 * Math.Pi / this.Phase2NumSpreadShots);
       
       for(var i = 0; i < this.Phase2NumSpreadShots; ++i){
-        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
         var velY = Math.Pow(this.Phase2EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
         var velX = Math.Pow(this.Phase2EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
         
@@ -62,7 +64,7 @@ class BigBoyCannon : ZilchComponent
       var bulletSpread = (2 * Math.Pi / this.Phase3NumSpreadShots);
       
       for(var i = 0; i < this.Phase3NumSpreadShots; ++i){
-        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
         var velY = Math.Pow(this.Phase3EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
         var velX = Math.Pow(this.Phase3EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
         
@@ -72,11 +74,11 @@ class BigBoyCannon : ZilchComponent
         
       }
     }
-    if(this.CPhase >= 4){ //go nuts with this
+    if(this.CPhase >= 4){
       var bulletSpread = (2 * Math.Pi / this.Phase4NumSpreadShots);
       
       for(var i = 0; i < this.Phase4NumSpreadShots; ++i){
-        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, this.Owner.Transform.Translation);
+        var currentBullet = this.Space.CreateAtPosition(Archetype.EnemyBulletBasic, Real3(this.Owner.Transform.Translation.XY, -0.01));
         var velY = Math.Pow(this.Phase4EjectionVelocity, 2) * Math.Sin(i * bulletSpread + this.CFrame/30);
         var velX = Math.Pow(this.Phase4EjectionVelocity, 2) * Math.Cos(i * bulletSpread + this.CFrame/30);
         
@@ -88,17 +90,21 @@ class BigBoyCannon : ZilchComponent
     
     }
   }
+  function NextPhase(){
+    ++this.CPhase;
+    this.Owner.Sprite.AnimationSpeed *= this.AnimationScaleRate;
+  }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
     ++this.CFrame;
-    if(this.CPhase == 1 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase2Pct)) ++this.CPhase;
-    if(this.CPhase == 2 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase3Pct)) ++this.CPhase;
-    if(this.CPhase == 3 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase4Pct)) ++this.CPhase;
+    if(this.CPhase == 1 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase2Pct)) this.NextPhase();
+    if(this.CPhase == 2 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase3Pct)) this.NextPhase();
+    if(this.CPhase == 3 && (this.Owner.EnemyTakeDamage.Health / this.Owner.EnemyTakeDamage.MaxHP < this.Phase4Pct)) this.NextPhase();
     
     if(this.CPhase == 1 && this.CFrame%this.Phase1FireDelay==0) this.Shoot();
-    if(this.CPhase == 2 && this.CFrame%this.Phase1FireDelay==0) this.Shoot();
-    if(this.CPhase == 3 && this.CFrame%this.Phase1FireDelay==0) this.Shoot();
-    if(this.CPhase == 4 && this.CFrame%this.Phase1FireDelay==0) this.Shoot();
+    if(this.CPhase == 2 && this.CFrame%this.Phase2FireDelay==0) this.Shoot();
+    if(this.CPhase == 3 && this.CFrame%this.Phase3FireDelay==0) this.Shoot();
+    if(this.CPhase == 4 && this.CFrame%this.Phase4FireDelay==0) this.Shoot();
   }
 }
