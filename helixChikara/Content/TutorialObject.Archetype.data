@@ -10,7 +10,7 @@ Cog
 	}
 	TutorialText 
 	{
-		var SecondsBeforeDeath = 1
+		var SecondsBeforeDeath = 5
 		var TextChangeTime = 5
 		var TutorialController = TutorialController
 		{

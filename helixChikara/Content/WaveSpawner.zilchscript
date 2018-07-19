@@ -191,7 +191,11 @@ class WaveSpawner : ZilchComponent
     
     // Tutorial "Wave" 2
     
-    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -2), this.ENEMYNOSHOOT, 2, 0, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -3), this.ENEMYNOSHOOT, 2, 0, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -4), this.ENEMYNOSHOOT, 2, 0, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -5), this.ENEMYNOSHOOT, 2, 0, 3);
+    this.AddEnemy(this.WaveTutorial2, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3);
     
     
     // Tutorial "Wave" 3
@@ -450,7 +454,10 @@ class WaveSpawner : ZilchComponent
         this.TutController.TutorialController.WaveSpawn = this.Owner;
         this.GameSession.GlobalVariables.BeginTutorial = false;
       }
-      this.TutController.TutorialController.AdvanceText();
+      if(this.EnemiesLeft == 0){
+        this.CurrentlyInWave = false;
+        this.TutController.TutorialController.AdvanceText();
+      }
     }
   }
   
@@ -460,9 +467,9 @@ class WaveSpawner : ZilchComponent
       if(this.EnemiesLeft == 1){
         this.LastEnemyCoords = this.CurrentEnemies[this.CurrentEnemies.FindFirstIndex(which)].Transform.Translation.XY;
       }
-      this.CurrentEnemies.RemoveFirst(which);
-      --this.EnemiesLeft;
     }
+    this.CurrentEnemies.RemoveFirst(which);
+    --this.EnemiesLeft;
     this.CheckWaveCompletion();
   }
   

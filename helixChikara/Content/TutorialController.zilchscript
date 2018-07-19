@@ -44,6 +44,11 @@ class TutorialController : ZilchComponent {
       return;
     }
     else if(this.CurrentPhase == TutorialPhase.ChangeWeaponTrack){
+      this.CurrentPhase = TutorialPhase.NearMiss;
+      this.TutObject.TutorialText.HasChanged = false;
+      return;
+    }
+    else if(this.CurrentPhase == TutorialPhase.NearMiss){
       this.CurrentPhase = TutorialPhase.Final;
       this.TutObject.TutorialText.HasChanged = false;
       return;
