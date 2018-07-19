@@ -54,10 +54,17 @@ class TutorialText : ZilchComponent {
     if (!this.HasChanged) {
       if(this.TutorialController.CurrentPhase == TutorialPhase.Move) {
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
-          null,//"Use WASD to move",
-          null,//"The ship follows your mouse",
-          SpriteSource.Cont_Move_Tut);//"Use the left joystick to move");
-        this.Owner.Children.Current.SpriteText.Text = "";
+          null,
+          SpriteSource.Mouse_Move_Tut,
+          SpriteSource.Cont_Move_Tut);
+        this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+          "Use WASD to move",
+          "The ship follows your mouse",
+          "Use the left joystick to move");
+        if (inferredMoveMethod == ControlTypes.Keyboard) {
+          this.ToggleSprite();
+          this.CenterText(true);
+        }
         this.AutoSequence = true;
         this.HasChanged = true;
       }
@@ -65,43 +72,64 @@ class TutorialText : ZilchComponent {
       if(this.TutorialController.CurrentPhase == TutorialPhase.Shoot) {
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
           null,//"Press SPACE to shoot",
-          null,//"Click to shoot",
-          SpriteSource.Cont_Shoot_Tut);//"A,B and triggers shoot");
+          SpriteSource.Mouse_Shoot_Tut,//"Click to shoot",
+          SpriteSource.Cont_Shoot_Tut);
+        this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
+          "Press SPACE to shoot",
+          "Click to shoot",
+          "A,B and triggers shoot");
         this.AutoSequence = true;
         this.HasChanged = true;
       }
       
       if(this.TutorialController.CurrentPhase == TutorialPhase.Enemy) {
-        this.ToggleSprite();
-        this.CenterText(true);
+        if (inferredMoveMethod != ControlTypes.Keyboard) {
+          this.ToggleSprite();
+          this.CenterText(true);
+        }
         this.Owner.Children.Current.SpriteText.Text = "A harmless enemy has appeared. Kill it.";
         this.HasChanged = true;
       }
 
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb) {
-        this.CenterText(false);
+        if (inferredMoveMethod == ControlTypes.GamePad) {
+          this.CenterText(false);
+        }
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
           null,
           null,
           SpriteSource.Cont_Swap_Tut);
-        this.ToggleSprite();
         this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
-          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2",
-          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2",
-          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button");
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2\nBe warned, bomb frags can hurt you!",
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2\nBe warned, bomb frags can hurt you!",
+          "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button\nBe warned, bomb frags can hurt you!");
+        if (inferredMoveMethod == ControlTypes.GamePad) {
+          this.CenterText(false);
+          this.ToggleSprite();
+        }
         this.HasChanged = true;
       }
+      
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponTrack) {
-        this.ToggleSprite();
+        if (inferredMoveMethod == ControlTypes.GamePad) {
+          this.ToggleSprite();
+        }
         this.CenterText(true);
         this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
           "This one's not so harmless.\nTry using Scout's weapon (3)",
           "This one's not so harmless.\nTry using Scout's weapon (3)",
-          "This one's not so harmless.\nTry using Scout's weapon (X, Y, or shoulder again)");//); //in the future maybe this can see which button the player actually used
+          "This one's not so harmless.\nTry using Scout's weapon (X, Y, or shoulder again)");
+        if (inferredMoveMethod == ControlTypes.GamePad) this.CenterText(true);
         this.HasChanged = true;
       }
+      
+      if(this.TutorialController.CurrentPhase == TutorialPhase.NearMiss){
+        this.Owner.Children.Current.SpriteText.Text = "One last thing.\nIf you just barely miss an enemy bullet,\n you will get a 'Near Miss' point bonus!";
+        this.HasChanged = true;
+        this.AutoSequence = true;      
+      }
+      
       if(this.TutorialController.CurrentPhase == TutorialPhase.Final){
-        Console.WriteLine("i will taunt u a second time");
         this.Owner.Children.Current.SpriteText.Text = "You got it now, Good luck";
         this.HasChanged = true;
         this.EndTutorial = true;

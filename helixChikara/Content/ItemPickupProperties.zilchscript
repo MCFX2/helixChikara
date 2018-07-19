@@ -12,7 +12,7 @@ class ItemPickupProperties : ZilchComponent {
 
   function OnLogicUpdate(event : UpdateEvent) {
     if(this.Iterations == 0){
-      if(this.State == ItemTypes.Shield) this.Owner.Sprite.SpriteSource;//?
+      if(this.State == ItemTypes.Shield) this.Owner.Sprite.SpriteSource = SpriteSource.Diamond;
       if(this.State == ItemTypes.Health) this.Owner.Sprite.SpriteSource = SpriteSource.Heart000;
     }
     ++this.Iterations;

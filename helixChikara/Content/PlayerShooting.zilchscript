@@ -30,12 +30,14 @@ class PlayerShooting : ZilchComponent
   var TimeSinceLastBullet = 0;
   var BombCooldown = 0;
   var CurrentShip : Ship = Ship.Anime;
+  var ScoutShootingOffset : Real2;
   
   var Rand : Random = Random();
     
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.Controller = Zero.Gamepads.GetGamePad(0);
+    this.ScoutShootingOffset = this.Owner.Children.Current.Transform.Translation.XY - Real2(1, 0.9);
   }
   
   function Shoot(){
@@ -63,9 +65,9 @@ class PlayerShooting : ZilchComponent
       }
     }
     else if (this.CurrentShip == Ship.Scout){
-      if(this.TimeSinceLastBullet >= this.RandalFireDelay){
+      if(this.TimeSinceLastBullet >= this.RandalFireDelay && this.WaveController.WaveSpawner.CurrentlyInWave){
         if(this.WaveController.WaveSpawner.CurrentMode == WaveType.Rush) return; //breaks, fix later maybe
-        var currentBullet = this.Space.CreateAtPosition(Archetype.RandallBullet, this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0));
+        var currentBullet = this.Space.CreateAtPosition(Archetype.RandallBullet, this.Owner.Transform.Translation + Real3(this.ScoutShootingOffset, 0));
         //if(this.WaveController.WaveSpawner.CurrentEnemies == Array[Cog](){}) return;
         if(this.WaveController.WaveSpawner.CurrentEnemies.Count == 0) return;
         var nearestEnemyPos = Math.Distance(this.WaveController.WaveSpawner.CurrentEnemies[0].Transform.Translation, this.Owner.Transform.Translation);

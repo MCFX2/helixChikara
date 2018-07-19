@@ -67,7 +67,7 @@ class MenuNavigator : ZilchComponent {
   
   function SetControlTypeMenu() {
     this.Buttons[1].SpriteText.Text = "MOUSE";
-    this.Buttons[3].SpriteText.Text = "CONTROLLER";
+    this.Buttons[3].SpriteText.Text = "KEYNOARD";
     this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Choose Control Style";
     this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.ControlType;    

@@ -3,7 +3,10 @@ class EnemyTakeDamage : ZilchComponent {
   [Dependency] var Transform : Transform;
   [Dependency] var RigidBody : RigidBody;
   
+  var PostInit : Boolean = false;
+  
   [Property] var Health : Real = 5.0;
+  var MaxHP : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
   [Property] var IsTutorial : Boolean = false;
   [Property] var FlashingColor : Real4 = Real4(255, 0, 0, 1.0);
@@ -54,44 +57,50 @@ class EnemyTakeDamage : ZilchComponent {
   }
   
   function OnCollide(event : CollisionEvent){
-    if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerBullet ||
-        event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything){
-      
-      //first check what type of bullet it was and apply the corresponding damage
-      if(event.OtherObject.Archetype == Archetype.AnimeBullet){
-        this.Health -= 0.5;
-        this.Owner.SimpleSound.Play();
-      }
-      else if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
-        this.Health -= this.BombWeakness;
-        this.Owner.SimpleSound.Play();
-      }
-      else if(event.OtherObject.Archetype == Archetype.RandallBullet){
-        this.Health -= 0.09; //not kidding
-        this.Owner.SimpleSound.Play();
-      }
-      
-      //next apply feedback effects here (blinking/whatever)
-      
-      this.HandleAnimationChange();
-      
-      //finally,
-      if(this.Health <= 0){
-        //On-death effects here
-        var coords : Real3 = this.Owner.Transform.Translation;
-        this.Owner.Destroy();
-        this.SpawnParticles(coords);
-        this.Space.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
-        ++this.Space.GameSession.GlobalVariables.EnemiesKilled;
-        var pointThing = this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
-        Actions.Property(pointThing.Actions, @pointThing.Transform.Translation, Real3(coords.X, coords.Y + 1, coords.Z), 1, Ease.Linear);
+    if(this.Owner.EnemySpawnComponenent.CanTakeDamage) {
+      if(event.OtherObject.Collider.CollisionGroup == CollisionGroup.PlayerBullet ||
+          event.OtherObject.Collider.CollisionGroup == CollisionGroup.KillEverything){
         
+        //first check what type of bullet it was and apply the corresponding damage
+        if(event.OtherObject.Archetype == Archetype.AnimeBullet){
+          this.Health -= 0.5;
+          this.Owner.SimpleSound.Play();
+        }
+        else if(event.OtherObject.Archetype == Archetype.MachoShrapnel){
+          this.Health -= this.BombWeakness;
+          this.Owner.SimpleSound.Play();
+        }
+        else if(event.OtherObject.Archetype == Archetype.RandallBullet){
+          this.Health -= 0.09; //not kidding
+          this.Owner.SimpleSound.Play();
+        }
         
+        //next apply feedback effects here (blinking/whatever)
+        
+        this.HandleAnimationChange();
+        
+        //finally,
+        if(this.Health <= 0){
+          //On-death effects here
+          var coords : Real3 = this.Owner.Transform.Translation;
+          this.Owner.Destroy();
+          this.SpawnParticles(coords);
+          this.Space.GameSession.GlobalVariables.AddToScore(this.ScoreIncrease);
+          ++this.Space.GameSession.GlobalVariables.EnemiesKilled;
+          var pointThing = this.Space.CreateAtPosition(Archetype.PointPopUp, coords);
+          Actions.Property(pointThing.Actions, @pointThing.Transform.Translation, Real3(coords.X, coords.Y + 1, coords.Z), 1, Ease.Linear);
+          
+          
+        }
       }
     }
   }
   
   function OnLogicUpdate (event : UpdateEvent) {
+    if(!this.PostInit){
+      this.MaxHP = this.Health;
+      this.PostInit = true;
+    }
     if (this.IsHit) {
       ++this.Iterations;
       if (this.Iterations <= 20) {
