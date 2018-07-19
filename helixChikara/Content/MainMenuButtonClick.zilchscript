@@ -69,6 +69,7 @@ class MainMenuButtonClick : ZilchComponent {
     if (this.ControllerInput) {
       this.ControllerInput = false;
       Zero.Mouse.Cursor = Cursor.Arrow;
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_reg_2;
     }
   }
   
