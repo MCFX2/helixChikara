@@ -93,7 +93,6 @@ class TutorialText : ZilchComponent {
 
       if(this.TutorialController.CurrentPhase == TutorialPhase.ChangeWeaponBomb) {
         if (inferredMoveMethod == ControlTypes.GamePad) {
-          this.ToggleSprite();
           this.CenterText(false);
         }
         this.Owner.Sprite.SpriteSource = this.ControlBasedText(inferredMoveMethod,
