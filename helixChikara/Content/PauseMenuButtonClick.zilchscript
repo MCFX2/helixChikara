@@ -1,5 +1,5 @@
 class PauseMenuButtonClick : ZilchComponent {
-  [Property] var BGM : CogPath;
+  [Property] var MainMenu : Level;
   
   var Button : Cog;
   var Controller : Gamepad;
@@ -105,7 +105,11 @@ class PauseMenuButtonClick : ZilchComponent {
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
           this.Owner.PauseMenuController.SetOptionsMenu();
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
-          
+          var tempSpace = this.GameSession.CreateSpace(Archetype.Space);
+          this.GameSession.GlobalVariables.PauseSpace.Destroy();
+          this.GameSession.GlobalVariables.GameSpace.Destroy();
+          this.GameSession.GlobalVariables.BGMSoundSpace.Destroy();
+          tempSpace.LoadLevel(this.MainMenu);
         }
         
       } else if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Options) {
