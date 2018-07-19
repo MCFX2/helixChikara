@@ -2,13 +2,12 @@ class EnemySpawnComponenent : ZilchComponent
 {
   //this component freezes the enemy once it reaches the target coordinates at TargetPosition=(X,Y)
   //it also acts as the interface from Enemy types to the Wave Controller.
-  [Property] var DecelDistance : Real = 1.0;
   [Property] var WaveController : Cog;
   var CurrentFrame = 0;
   var DecelRate : Real;
   var ErrorBound = 0.05;
   var CanTakeDamage : Boolean = false;
-  [Property] var ActionData : Array[Real];
+  var ActionData : Array[Real];
   
   function Initialize(init : CogInitializer)
   {
@@ -25,7 +24,6 @@ class EnemySpawnComponenent : ZilchComponent
         Real3(this.ActionData[0], this.ActionData[1], 0),
         this.ActionData[3],
         Ease.QuadInOut);
-  
     }
     
     
