@@ -1,4 +1,5 @@
 enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType, Inactive}
+enum PauseStates {Default, Options, Control}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
@@ -6,11 +7,14 @@ enum ItemTypes {Health, Shield}
 enum TutorialPhase {Init, Move, Shoot, Enemy, ChangeWeaponBomb, ChangeWeaponTrack, NearMiss, Final}
 enum StatTypes {EnemiesKilled, NearMisses, Score}
 enum WaveType {Normal, Rush}
+enum DestroyableSpaces {Credits, Pause}
 
 class GlobalVariables : ZilchComponent {
   var ControlType : ControlTypes = ControlTypes.Mouse;
   var CurrentMenuState : MenuStates;
+  var CurrentPauseState : PauseStates;
   var CurrentWave : Integer = -1;
+  var CurrentDestroyableSpace : DestroyableSpaces;
   
   var Score : Integer = 0;
   var HighScore : Integer = 0;
@@ -23,6 +27,7 @@ class GlobalVariables : ZilchComponent {
   var BackToMain : Boolean = false;
   
   [Property] var CreditsSpace : Space;
+  [Property] var PauseSpace : Space;
   
   function AddToScore(score : Integer) {
     this.Score += score;

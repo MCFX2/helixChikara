@@ -1,0 +1,64 @@
+class PauseMenuController : ZilchComponent { // THIS ONLY EXISTS DUE TO TIME CRUNCH
+
+  [Dependency] var Transform : Transform;
+  
+  [Property] var MenuBG : CogPath;
+  //[Property] var Title : CogPath;
+  
+  var Buttons : Array[Cog] = Array[Cog]();
+
+  var TitleContent : String;
+  
+  function CreateButton(coords : Real3){
+    var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.MenuButton, coords);
+    this.Buttons.Add(buttonBase);
+    var buttonText : Cog = buttonBase.Children.Current;
+    this.Buttons.Add(buttonText);
+  }
+  
+  function LoadButtons() {
+    this.CreateButton(Real3(0, 1, 3.1)); // Top Button
+    this.CreateButton(Real3(0, -1.25, 3.1)); // Middle Button
+    this.CreateButton(Real3(0, -3.5, 3.1)); // Bottom Button
+  }
+  
+  function SetPauseMenu(firstLoad : Boolean) {
+    if (firstLoad) this.LoadButtons();
+    this.Buttons[1].SpriteText.Text = "RESUME";
+    this.Buttons[3].SpriteText.Text = "OPTIONS";
+    this.Buttons[5].SpriteText.Text = "QUIT";
+    this.GameSession.GlobalVariables.CurrentPauseState = PauseStates.Default;
+  }
+  
+  function SetOptionsMenu() {
+    this.Buttons[1].SpriteText.Text = "CONTROLS";
+    this.Buttons[3].SpriteText.Text = "VOLUME[NO]";
+    this.Buttons[5].SpriteText.Text = "BACK";
+    this.TitleContent = "Options";
+    this.GameSession.GlobalVariables.CurrentPauseState = PauseStates.Options;    
+  }
+  
+  function SetControlTypeMenu() {
+    this.Buttons[1].SpriteText.Text = "MOUSE";
+    this.Buttons[3].SpriteText.Text = "KEYNOARD";
+    this.Buttons[5].SpriteText.Text = "BACK";
+    this.TitleContent = "Choose Control Style";
+    this.GameSession.GlobalVariables.CurrentPauseState = PauseStates.Control;    
+  }
+  
+  function PurgeButton(i : Integer) {
+    this.Buttons[i].Destroy();
+    this.Buttons.RemoveAt(i);
+    this.Buttons.RemoveAt(i);
+  }
+  
+  function MoveButton(button : Cog, coords : Real3) {
+    button.Transform.Translation = coords;
+  }
+  
+  
+  function Initialize(init : CogInitializer) {
+    this.SetPauseMenu(true);
+  }
+}
+
