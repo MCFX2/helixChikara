@@ -178,8 +178,10 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave17);
     
     this.RegisterWave(this.Wave18);
+    
     this.RegisterWave(this.Wave19);
-    this.RegisterWave(this.Wave20);
+    */
+    //this.RegisterWave(this.Wave20);
     this.RegisterWave(this.Wave21);
     this.RegisterWave(this.Wave22);
     this.RegisterWave(this.Wave23);
@@ -514,6 +516,9 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave20, Real2(7, 0), this.ENEMYNOSHOOT, 2, 0, 3);
     
     //wave 21
+    
+    this.AddEnemy(this.Wave21, Real2(3, 0), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave21, Real2(4, 1), this.ENEMYBASIC, 2, 0, 3);
     
     this.CheckWaveCompletion();
   }

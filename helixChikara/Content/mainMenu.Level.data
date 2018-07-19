@@ -418,13 +418,4 @@ Level
 			var Cue = "5bb19ac8fc083c23:MainMenuMusic"
 		}
 	}
-	Cog [InheritId:"5bb5fe51a0eb23df:BigBoy"][ContextId:12]
-	{
-		Transform 
-		{
-			var Translation = Real3{9.99478531, 1.4155426, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{6, 6, 1}
-		}
-	}
 }
