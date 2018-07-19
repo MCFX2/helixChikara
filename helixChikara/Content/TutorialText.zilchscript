@@ -100,12 +100,14 @@ class TutorialText : ZilchComponent {
           null,
           null,
           SpriteSource.Cont_Swap_Tut);
-        this.ToggleSprite();
         this.Owner.Children.Current.SpriteText.Text = this.ControlBasedText(inferredMoveMethod,
           "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2\nBe warned, bomb frags can hurt you!",
           "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with 2\nBe warned, bomb frags can hurt you!",
           "A bunch of harmless enemies.\nIt's better to use Reagan's weapon, try switching to it with X, Y, or a shoulder button\nBe warned, bomb frags can hurt you!");
-        if (inferredMoveMethod == ControlTypes.GamePad) this.CenterText(false);
+        if (inferredMoveMethod == ControlTypes.GamePad) {
+          this.CenterText(false);
+          this.ToggleSprite();
+        }
         this.HasChanged = true;
       }
       
