@@ -17,12 +17,11 @@ class MainMenuButtonClick : ZilchComponent {
     Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
     Zero.Connect(this.Space, Events.GamepadUpdated, this.OnGamepadUpdate);
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    if (this.Controller != null) {
-      Zero.Connect(this.Controller, Events.ButtonDown, this.OnButtonDown);
-      Zero.Connect(this.Controller, Events.ButtonUp, this.OnButtonUp);
-    }
+    
     this.Controller = Zero.Gamepads.GetGamePad(0);
-    Console.WriteLine(this.Controller);
+    Zero.Connect(this.Controller, Events.ButtonDown, this.OnButtonDown);
+    Zero.Connect(this.Controller, Events.ButtonUp, this.OnButtonUp);
+
   }
   
   function ToggleSelectedMenu(up : Boolean) {
