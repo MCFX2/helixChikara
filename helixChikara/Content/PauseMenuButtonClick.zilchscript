@@ -24,7 +24,7 @@ class PauseMenuButtonClick : ZilchComponent {
   function ToggleSelectedMenu(up : Boolean) {
     var newIndex : Integer = 0;
     var prevSelected = this.CurrentlySelected;
-    var buttons : Array[Cog] = this.Owner.MenuNavigator.Buttons;
+    var buttons : Array[Cog] = this.Owner.PauseMenuController.Buttons;
     var prevIndex : Integer = buttons.FindFirstIndex(this.CurrentlySelected);
     if (up) {
       if (prevIndex==0) newIndex=4;
@@ -77,7 +77,7 @@ class PauseMenuButtonClick : ZilchComponent {
     if (!this.ControllerInput && Math.Length(leftStick)>this.Deadzone) {
       this.ControllerInput = true;
       Zero.Mouse.Cursor = Cursor.Invisible;
-      this.CurrentlySelected = this.Owner.MenuNavigator.Buttons[0];
+      this.CurrentlySelected = this.Owner.PauseMenuController.Buttons[0];
       this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
     } else {
       if (!this.DoneControllerAction ) {
@@ -93,6 +93,10 @@ class PauseMenuButtonClick : ZilchComponent {
           }
         }
       }
+    }
+    if (this.CurrentlySelected == null) {
+      this.CurrentlySelected = this.Owner.PauseMenuController.Buttons[0];
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
     }
     
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
