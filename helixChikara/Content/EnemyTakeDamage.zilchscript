@@ -3,7 +3,10 @@ class EnemyTakeDamage : ZilchComponent {
   [Dependency] var Transform : Transform;
   [Dependency] var RigidBody : RigidBody;
   
+  var PostInit : Boolean = false;
+  
   [Property] var Health : Real = 5.0;
+  var MaxHP : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
   [Property] var IsTutorial : Boolean = false;
   [Property] var FlashingColor : Real4 = Real4(255, 0, 0, 1.0);
@@ -94,6 +97,10 @@ class EnemyTakeDamage : ZilchComponent {
   }
   
   function OnLogicUpdate (event : UpdateEvent) {
+    if(!this.PostInit){
+      this.MaxHP = this.Health;
+      this.PostInit = true;
+    }
     if (this.IsHit) {
       ++this.Iterations;
       if (this.Iterations <= 20) {

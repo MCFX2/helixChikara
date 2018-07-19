@@ -25,19 +25,31 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function ToggleSelectedMenu(up : Boolean) {
+    var newIndex : Integer = 0;
     var prevSelected = this.CurrentlySelected;
     var buttons : Array[Cog] = this.Owner.MenuNavigator.Buttons;
-    var index : Integer = buttons.FindFirstIndex(this.CurrentlySelected);
+    var prevIndex : Integer = buttons.FindFirstIndex(this.CurrentlySelected);
     if (up) {
-      if (index-2<0) {
-        if (buttons.LastIndex == 7) index = 6;
-        else index = 4;
-      } else index-=2;
+      if (prevIndex==0) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=4;
+      }
+      if (prevIndex==2) newIndex=0;
+      if (prevIndex==4) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=2;
+      }
+      if (prevIndex==6) newIndex=2;
     } else {
-      if (index+2>buttons.LastIndex) index=0;
-      else index+=2;
+      if (prevIndex==0) newIndex=2;
+      if (prevIndex==2) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=4;
+      }
+      if (prevIndex==6) newIndex=4;
+      if (prevIndex==4) newIndex=0;
     }
-    this.CurrentlySelected = buttons[index];
+    this.CurrentlySelected = buttons[newIndex];
     prevSelected.Sprite.SpriteSource = SpriteSource.Button_reg_2;
     this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
   }
@@ -50,7 +62,7 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function OnButtonDown(event : GamepadEvent) {
-    if(event.Button == Buttons.A) {
+    if(event.Button == Buttons.A && this.CurrentlySelected != null) {
       this.Button = this.CurrentlySelected;
       this.Button.Sprite.SpriteSource = SpriteSource.Button_click_1;
     } else if (event.Button == Buttons.B) {
@@ -60,7 +72,7 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function OnButtonUp(event : GamepadEvent) {
-    if(event.Button == Buttons.A || event.Button == Buttons.B) {
+    if(event.Button == Buttons.A && this.CurrentlySelected != null || event.Button == Buttons.B ) {
       this.Space.GameSession.GlobalVariables.ButtonClick = true;
       this.Button.Sprite.SpriteSource = SpriteSource.Button_hover_2;
     }
@@ -75,14 +87,18 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function OnGamepadUpdate(event : GamepadEvent) {
-    if (!this.ControllerInput) {
+
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent) {
+    var leftStick = this.Controller.LeftStick;
+    if (!this.ControllerInput && Math.Length(leftStick)>this.Deadzone) {
       this.ControllerInput = true;
       Zero.Mouse.Cursor = Cursor.Invisible;
       this.CurrentlySelected = this.Owner.MenuNavigator.Buttons[0];
       this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
     } else {
-      var leftStick = this.Controller.LeftStick;
-      if (!this.DoneControllerAction) {
+      if (!this.DoneControllerAction ) {
         if (Math.Length(leftStick) > this.Deadzone) {
           if (this.GameSession.GlobalVariables.GetAngle(leftStick) > (Math.Pi/4) &&
               this.GameSession.GlobalVariables.GetAngle(leftStick) < (3*Math.Pi/4)) {
@@ -96,20 +112,25 @@ class MainMenuButtonClick : ZilchComponent {
         }
       }
     }
-  }
-  
-  function OnLogicUpdate(event : UpdateEvent) {
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
       this.Space.GameSession.GlobalVariables.ButtonClick = false;
       if (this.GameSession.GlobalVariables.CurrentMenuState == MenuStates.SelectMode) {
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.Space.Destroy();
           Zero.Mouse.Cursor = Cursor.Arrow;
+          if (this.ControllerInput) {
+            this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
+            Zero.Mouse.Cursor = Cursor.Invisible;
+          }
           this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
           this.Space.Destroy();
           this.GameSession.GlobalVariables.DoTutorial = true;
           Zero.Mouse.Cursor = Cursor.Arrow;
+          if (this.ControllerInput) {
+            this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
+            Zero.Mouse.Cursor = Cursor.Invisible;
+          }
           this.GameSession.GlobalVariables.CreditsSpace.LoadLevel(this.Owner.MenuNavigator.GameLevel1);
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetMainMenu(false);
@@ -120,7 +141,7 @@ class MainMenuButtonClick : ZilchComponent {
         if (this.Button == this.Owner.MenuNavigator.Buttons[0]) {
           this.GameSession.GlobalVariables.ControlType = ControlTypes.Mouse;
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[2]) {
-          this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
+          this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
         } else if (this.Button == this.Owner.MenuNavigator.Buttons[4]) {
           this.Owner.MenuNavigator.SetOptionsMenu(false);
         }

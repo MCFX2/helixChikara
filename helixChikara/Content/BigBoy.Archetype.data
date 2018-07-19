@@ -39,10 +39,10 @@ Cog
 	EnemyTakeDamage 
 	{
 		var Health = 5000
-		var ScoreIncrease = 10000
+		var ScoreIncrease = 100000
 		var IsTutorial = false
 		var FlashingColor = Real4{255, 0, 0, 1}
-		var BombWeakness = 0.00999999978
+		var BombWeakness = 0.0700000003
 	}
 	RigidBody 
 	{
@@ -56,7 +56,6 @@ Cog
 	}
 	EnemySpawnComponenent 
 	{
-		var TargetPosition = Real2{0, 0}
 		var DecelDistance = 1
 		var ActionData = Array[Real]
 		{
@@ -79,8 +78,20 @@ Cog
 	}
 	BigBoyCannon 
 	{
-		var NumSpreadShots = 60
-		var EjectionVelocity = 2.5
-		var FireDelay = 30
+		var Phase1NumSpreadShots = 20
+		var Phase1EjectionVelocity = 1
+		var Phase1FireDelay = 70
+		var Phase2NumSpreadShots = 30
+		var Phase2EjectionVelocity = 1.5
+		var Phase2FireDelay = 50
+		var Phase3NumSpreadShots = 60
+		var Phase3EjectionVelocity = 2
+		var Phase3FireDelay = 30
+		var Phase4NumSpreadShots = 90
+		var Phase4EjectionVelocity = 5
+		var Phase4FireDelay = 20
+		var Phase2Pct = 0.75
+		var Phase3Pct = 0.5
+		var Phase4Pct = 0.25
 	}
 }
