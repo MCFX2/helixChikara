@@ -100,7 +100,8 @@ class PauseMenuButtonClick : ZilchComponent {
       if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Default) {
         
         if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
-
+          this.GameSession.GlobalVariables.ExitPauseMenu = true;
+          this.GameSession.GlobalVariables.GameSpace.TimeSpace.Paused = false;
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
           this.Owner.PauseMenuController.SetOptionsMenu();
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
@@ -127,10 +128,11 @@ class PauseMenuButtonClick : ZilchComponent {
         }
       }
 
-      if (this.GameSession.GlobalVariables.BackToMain) {
-          this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.MainMenu;
-          this.GameSession.GlobalVariables.BackToMain = false;
-      }
+    if (this.GameSession.GlobalVariables.ExitPauseMenu && this.GameSession.GlobalVariables.GameIsPaused) {
+      this.GameSession.GlobalVariables.PauseSpace.Destroy();
+      this.GameSession.GlobalVariables.GameIsPaused = false;
+      this.GameSession.GlobalVariables.ExitPauseMenu = false;      
+    }
     }
     if (this.DoneControllerAction) {
       ++this.CurrentFrame;

@@ -5,11 +5,7 @@ class DestroyLevelOnClick : ZilchComponent {
   }
 
   function OnLeftClick(event : ViewportMouseEvent) {
-    if (this.GameSession.GlobalVariables.CurrentDestroyableSpace == DestroyableSpaces.Credits) {
-      this.GameSession.GlobalVariables.CreditsSpace.Destroy();
-      this.GameSession.GlobalVariables.BackToMain = true;
-    } else if (this.GameSession.GlobalVariables.CurrentDestroyableSpace == DestroyableSpaces.Pause) {
-      this.GameSession.GlobalVariables.PauseSpace.Destroy();
-    }
+    this.GameSession.GlobalVariables.CreditsSpace.Destroy();
+    this.GameSession.GlobalVariables.BackToMain = true;
   }
 }

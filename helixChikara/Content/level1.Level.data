@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 3.25384831
+			var Size = 5.36468983
 		}
 		EditorCameraController 
 		{
@@ -698,6 +698,7 @@ Level
 							var MaxRVel = 10
 							var MaxLVel = 10
 							var MaxVVel = 10
+							var PauseLevel = "5b78ddfab80f6c14:PauseMenu"
 						}
 						RigidBody 
 						{

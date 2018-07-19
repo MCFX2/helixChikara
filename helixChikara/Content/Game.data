@@ -36,5 +36,6 @@ GameSession
 	}
 	GlobalVariables 
 	{
+		var PauseLevel = "5b78ddfab80f6c14:PauseMenu"
 	}
 }

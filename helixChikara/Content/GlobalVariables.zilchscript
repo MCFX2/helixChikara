@@ -20,14 +20,21 @@ class GlobalVariables : ZilchComponent {
   var HighScore : Integer = 0;
   var EnemiesKilled : Integer = 0;
   var NearMisses : Integer = 0;
+  var CurrentPlaceInMusic : Real;
   
   var ButtonClick : Boolean = false;
   var DoTutorial : Boolean = false;
   var BeginTutorial : Boolean = true; // THIS IS NECESSARY
   var BackToMain : Boolean = false;
+  var HitPauseKey = false;
+  var GameIsPaused = false;
+  var ExitPauseMenu = false;
   
   [Property] var CreditsSpace : Space;
   [Property] var PauseSpace : Space;
+  [Property] var GameSpace : Space;
+  [Property] var PauseLevel : Level;
+
   
   function AddToScore(score : Integer) {
     this.Score += score;
