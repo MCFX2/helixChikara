@@ -1,11 +1,30 @@
 class DestroyLevelOnClick : ZilchComponent {
     
+  var Controller : Gamepad;
+  
+  
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
+    this.Controller = Zero.Gamepads.GetGamePad(0);
+    Zero.Connect(this.Controller, Events.ButtonDown, this.OnButtonDown);
+    Zero.Connect(this.Controller, Events.ButtonUp, this.OnButtonUp);
   }
 
   function OnLeftClick(event : ViewportMouseEvent) {
     this.GameSession.GlobalVariables.CreditsSpace.Destroy();
     this.GameSession.GlobalVariables.BackToMain = true;
+  }
+  
+  function OnButtonDown(event : GamepadEvent) {
+    if(event.Button == Buttons.A || event.Button == Buttons.B) {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Button_click_1;
+    }
+  }
+  
+  function OnButtonUp(event : GamepadEvent) {
+    if(event.Button == Buttons.A || event.Button == Buttons.B ) {
+      this.GameSession.GlobalVariables.CreditsSpace.Destroy();
+      this.GameSession.GlobalVariables.BackToMain = true;
+    }
   }
 }
