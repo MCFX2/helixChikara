@@ -164,8 +164,8 @@ class WaveSpawner : ZilchComponent
     //this.RegisterWave(this.Wave14);
     //this.RegisterWave(this.Wave15);
     //this.RegisterWave(this.Wave16);
-    this.RegisterWave(this.Wave17);
-    this.RegisterWave(this.Wave18);
+    //this.RegisterWave(this.Wave17);
+    //this.RegisterWave(this.Wave18);
     this.RegisterWave(this.Wave19);
     this.RegisterWave(this.Wave20);
   
@@ -431,22 +431,35 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave17, Real2(14, 0), this.ENEMYSPREAD, 2, 0, 3);
     this.AddEnemy(this.Wave17, Real2(8, 7), this.ENEMYTRACKER, 2, 0, 3);
     this.AddEnemy(this.Wave17, Real2(8, -7), this.ENEMYTRACKER, 2, 0, 3);
-    this.AddEnemy(this.Wave17, Real2(11, -3.5), this.ENEMYBURST, 2, 0, 3);
-    this.AddEnemy(this.Wave17, Real2(11, 3.5), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(11, -3.5), this.ENEMYTRACKER, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(11, 3.5), this.ENEMYTRACKER, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(11, 0), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(8, 0), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(8, 2), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave17, Real2(8, -2), this.ENEMYBURST, 2, 0, 3);
 
     
-    //wave 18
+    //wave 18 AKA WHAT THE HELL'S GOING ON CAN SOMEONE TELL ME PLEASE
     
     this.AddEnemy(this.Wave18, Real2(13, 0), this.ENEMYTRACKER, 2, 0, 3);
     this.AddEnemy(this.Wave18, Real2(13, 5), this.ENEMYSPREAD, 2, 0, 3);
     this.AddEnemy(this.Wave18, Real2(13, -5), this.ENEMYSPREAD, 2, 0, 3);
     this.AddEnemy(this.Wave18, Real2(13, 2.5), this.ENEMYBASIC, 2, 0, 3);
     this.AddEnemy(this.Wave18, Real2(13, -2.5), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(13, -7.25), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(13, 7.25), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, 0), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, 5), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, -5), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, 2.5), this.ENEMYSPREAD, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, -2.5), this.ENEMYSPREAD, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, -7.25), this.ENEMYTRACKER, 2, 0, 3);
+    this.AddEnemy(this.Wave18, Real2(16, 7.25), this.ENEMYTRACKER, 2, 0, 3);
     
     //wave 19
     
-    this.AddEnemy(this.Wave19, Real2(13, 0), this.ENEMYBASIC, 2, 0, 3);
-    this.AddEnemy(this.Wave19, Real2(12, 1), this.ENEMYBASIC, 2, 0, 3);
+    this.AddEnemy(this.Wave19, Real2(13, 0), this.ENEMYTRACKER, 2, 0, 3);
+    this.AddEnemy(this.Wave19, Real2(12, 1), this.ENEMYTRACKER, 2, 0, 3);
     this.AddEnemy(this.Wave19, Real2(12, -1), this.ENEMYBASIC, 2, 0, 3);
     this.AddEnemy(this.Wave19, Real2(11.5, -0.05), this.ENEMYBURST, 2, 0, 3);
     this.AddEnemy(this.Wave19, Real2(15, 3), this.ENEMYTRACKER, 2, 0, 3);
@@ -454,6 +467,10 @@ class WaveSpawner : ZilchComponent
     this.AddEnemy(this.Wave19, Real2(15, 6), this.ENEMYBURST, 2, 0, 3);
     this.AddEnemy(this.Wave19, Real2(15, -6), this.ENEMYBURST, 2, 0, 3);
     this.AddEnemy(this.Wave19, Real2(15, 0), this.ENEMYSPREAD, 2, 0, 3);
+    this.AddEnemy(this.Wave19, Real2(12, 3), this.ENEMYSPREAD, 2, 0, 3);
+    this.AddEnemy(this.Wave19, Real2(12, -3), this.ENEMYSPREAD, 2, 0, 3);
+    this.AddEnemy(this.Wave19, Real2(10, 0), this.ENEMYTRACKER, 2, 0, 3);
+    
     
     //wave20
     
