@@ -8,7 +8,6 @@ class EnemyTakeDamage : ZilchComponent {
   [Property] var Health : Real = 5.0;
   var MaxHP : Real = 5.0;
   [Property] var ScoreIncrease : Integer = 1000;
-  [Property] var IsTutorial : Boolean = false;
   [Property] var FlashingColor : Real4 = Real4(255, 0, 0, 1.0);
   
   [Property] var BombWeakness = 1.0;

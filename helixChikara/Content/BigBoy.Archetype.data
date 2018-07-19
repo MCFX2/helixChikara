@@ -40,7 +40,6 @@ Cog
 	{
 		var Health = 5000
 		var ScoreIncrease = 100000
-		var IsTutorial = false
 		var FlashingColor = Real4{255, 0, 0, 1}
 		var BombWeakness = 0.0700000003
 	}
@@ -56,10 +55,6 @@ Cog
 	}
 	EnemySpawnComponenent 
 	{
-		var DecelDistance = 1
-		var ActionData = Array[Real]
-		{
-		}
 	}
 	SoundEmitter 
 	{
@@ -91,8 +86,8 @@ Cog
 		var Phase4NumSpreadShots = 90
 		var Phase4EjectionVelocity = 5
 		var Phase4FireDelay = 20
-		var Phase2Pct = 1
-		var Phase3Pct = 1
-		var Phase4Pct = 1
+		var Phase2Pct = 0.75
+		var Phase3Pct = 0.5
+		var Phase4Pct = 0.25
 	}
 }

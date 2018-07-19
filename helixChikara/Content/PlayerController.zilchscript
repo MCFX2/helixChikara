@@ -33,8 +33,9 @@ class PlayerController : ZilchComponent
   [Property] var MaxLVel = 10.0; //max left velocity
   [Property] var MaxVVel = 10.0; //max vertical velocity
   
+  [Property] var PauseLevel : Level;
   var Controller : Gamepad;
-  
+    
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
@@ -43,6 +44,7 @@ class PlayerController : ZilchComponent
     Zero.Connect(this.Owner, Events.CollisionStarted, this.AttemptMouseSnap);
     this.ControlType = this.GameSession.GlobalVariables.ControlType;
     this.Controller = Zero.Gamepads.GetGamePad(0);
+    this.GameSession.GlobalVariables.GameSpace = this.Space;
   }
   
   
@@ -182,7 +184,8 @@ class PlayerController : ZilchComponent
   
   function OnKeyDown(event : KeyboardEvent){ //pause
     if(event.Key == this.PauseKey){
-      this.Space.TimeSpace.Paused = !this.Space.TimeSpace.Paused;
+      this.GameSession.GlobalVariables.HitPauseKey = true;
+      
     }
   }
   
@@ -207,6 +210,18 @@ class PlayerController : ZilchComponent
     this.Accelerate();
     this.ClampPosition();
     this.ClampVelocity(); //clamping must be the last movement step
+    if (this.GameSession.GlobalVariables.HitPauseKey && !this.GameSession.GlobalVariables.GameIsPaused) {
+      this.GameSession.GlobalVariables.HitPauseKey = false;
+      this.GameSession.GlobalVariables.GameIsPaused = true;
+      this.Space.TimeSpace.Paused = true;
+      Console.WriteLine(this.PauseLevel);
+      this.GameSession.GlobalVariables.PauseSpace = this.GameSession.CreateSpace(Archetype.Space);
+      this.GameSession.GlobalVariables.PauseSpace.LoadLevel(this.PauseLevel);
+    } else if (this.GameSession.GlobalVariables.ExitPauseMenu && this.GameSession.GlobalVariables.GameIsPaused) {
+      this.GameSession.GlobalVariables.ExitPauseMenu = false;
+      this.GameSession.GlobalVariables.GameIsPaused = false;
+    }
+    
   }
   
 }
