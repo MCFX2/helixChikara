@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b795096e1b69c5f:Button_main"
+		var SpriteSource = "5b796a3514c9bf99:Button_main"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -29,12 +29,12 @@ Cog
 	}
 	Hierarchy 
 	{
-		Cog [Id:0x5b79541b2c71cc17]
+		Cog [Id:0x5b796ceae97db356]
 		{
-			var Name = "NumText"
+			var Name = "Number"
 			Transform 
 			{
-				var Translation = Real3{0, 0.25, 1}
+				var Translation = Real3{0, 0.25, 0.0967507362}
 				var Scale = Real3{4.5454545, 1, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}

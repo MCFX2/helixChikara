@@ -9,13 +9,14 @@ class WaveChange : ZilchComponent {
   [Property] var Ones : CogPath;
   [Property] var Tens : CogPath;
   
-  var WaveTens = 0;
-  var WaveOnes = 0;
-  var RealWave = 0;
+  var WaveOnes : Integer = 0;
+  var WaveTens : Integer = 0;
   
   var XEdge : Real = 25;
   var YEdge : Real = 25;
   var R : Random = Random();
+  
+  var RealWave : Integer = 0;
     
   function Initialize(init : CogInitializer) {
     Zero.Connect(this.Space, Events.LogicUpdate, this.ChangeWave);
@@ -44,35 +45,34 @@ class WaveChange : ZilchComponent {
     
     Actions.Call(seq, this.Owner.Destroy);
     
-  }
-  
-  function IntToFont(int : Integer) : SpriteSource{
-    if(int == 0) return SpriteSource.Numbers_Font052;
-    if(int == 1) return SpriteSource.Numbers_Font053;
-    if(int == 2) return SpriteSource.Numbers_Font054;
-    if(int == 3) return SpriteSource.Numbers_Font055;
-    if(int == 4) return SpriteSource.Numbers_Font056;
-    if(int == 5) return SpriteSource.Numbers_Font057;
-    if(int == 6) return SpriteSource.Numbers_Font058;
-    if(int == 7) return SpriteSource.Numbers_Font059;
-    if(int == 8) return SpriteSource.Numbers_Font060;
-    if(int == 9) return SpriteSource.Numbers_Font061;
+    }
     
-    return SpriteSource.HUD; //obvious error sprite
-    
-  }  
+    function IntToFont(int : Integer) : SpriteSource{
+      if(int == 0) return SpriteSource.Number000;
+      if(int == 1) return SpriteSource.Number001;
+      if(int == 2) return SpriteSource.Number002;
+      if(int == 3) return SpriteSource.Number003;
+      if(int == 4) return SpriteSource.Number004;
+      if(int == 5) return SpriteSource.Number005;
+      if(int == 6) return SpriteSource.Number006;
+      if(int == 7) return SpriteSource.Number007;
+      if(int == 8) return SpriteSource.Number008;
+      if(int == 9) return SpriteSource.Number009;
+      
+      return SpriteSource.Button_reg; //obvious error sprite
+    }
   
   function ChangeWave(event : UpdateEvent) {
-    this.RealWave = this.Owner.GameSession.GlobalVariables.CurrentWave - this.TUTORIAL_WAVE_COUNT+1;
     
-    //this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave-this.TUTORIAL_WAVE_COUNT+1`";
-    
+    this.RealWave = this.Owner.GameSession.GlobalVariables.CurrentWave - this.TUTORIAL_WAVE_COUNT + 1;
     this.WaveTens = this.RealWave / 10;
     this.WaveOnes = this.RealWave - this.WaveTens;
     
     this.Ones.Sprite.SpriteSource = this.IntToFont(this.WaveOnes);
     this.Tens.Sprite.SpriteSource = this.IntToFont(this.WaveTens);
-     
+    
+    //this.Owner.SpriteText.Text = "Wave `this.GameSession.GlobalVariables.CurrentWave-this.TUTORIAL_WAVE_COUNT+1`";
+    
   }
 
 

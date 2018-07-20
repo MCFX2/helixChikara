@@ -133,7 +133,7 @@ class WaveSpawner : ZilchComponent
     
     ++this.CurrentWave;
     this.GameSession.GlobalVariables.CurrentWave = this.CurrentWave;
-    var wc = this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
+    this.Space.CreateAtPosition(Archetype.WaveChange, Real3(0, 2, 1));
     if(this.Player.WavePerfect.IsPerfect){
       this.ItemSpawn.ItemSpawner.CreatePickup();
     }

@@ -4,7 +4,7 @@ ImageContent
 	SpriteSourceBuilder 
 	{
 		var Name = "Numbers_Font074"
-		var ResourceId = 0x5bab1f0b66268fa4
+		var ResourceId = 0x5b586d1240a1a977
 		var FrameSizeX = 28
 		var FrameSizeY = 36
 		var FrameCount = 1

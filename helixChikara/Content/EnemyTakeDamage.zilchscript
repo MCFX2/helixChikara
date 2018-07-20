@@ -4,7 +4,6 @@ class EnemyTakeDamage : ZilchComponent {
   [Dependency] var RigidBody : RigidBody;
   
   var Rand : Random = Random();
-  
   var PostInit : Boolean = false;
   
   [Property] var Health : Real = 5.0;
@@ -34,9 +33,9 @@ class EnemyTakeDamage : ZilchComponent {
     for (var i : Integer = 0; i<24; ++i) {
       mag = magRand.Range(1, 15);
       angle+=(i*(Math.Pi/12));
-      var particle = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
-      particle.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
-      particle.Transform.Rotation = this.Rand.Rotation();
+      var x = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
+      x.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
+      x.Transform.Rotation = this.Rand.Rotation();
     }
   }
   

@@ -20,7 +20,7 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b795096e1b69c5f:Button_main"
+		var SpriteSource = "5b796a3514c9bf99:Button_main"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
@@ -36,13 +36,13 @@ Cog
 	}
 	Hierarchy 
 	{
-		Cog [Id:0x5b79595b07fe2e5b]
+		Cog [Id:0x5b796d1dc2a24e78]
 		{
 			var Name = "Icon"
 			Transform 
 			{
 				var Translation = Real3{0, 0, 1}
-				var Scale = Real3{0.540540516, 0.99999994, 0.99999994}
+				var Scale = Real3{1, 1, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
 			Sprite 

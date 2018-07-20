@@ -4,7 +4,7 @@ ImageContent
 	SpriteSourceBuilder 
 	{
 		var Name = "Mute_off"
-		var ResourceId = 0x5b795b05df833390
+		var ResourceId = 0x5b796a542345965c
 		var FrameSizeX = 64
 		var FrameSizeY = 64
 		var FrameCount = 1

@@ -4,7 +4,7 @@ Cog
 	var Name = "VolumeButton"
 	Transform 
 	{
-		var Translation = Real3{0, 0, -0.5}
+		var Translation = Real3{0, 0, -0.0483753681}
 		var Scale = Real3{0.5, 1, 1}
 		var Rotation = Quaternion{0, 0, 0.707106829, 0.707106829}
 	}
@@ -20,30 +20,30 @@ Cog
 		var Material = "582c575af53d18c9:AlphaSprite"
 		var VertexColor = Real4{1, 1, 1, 1}
 		var GeometryMode = SpriteGeometryMode.ZPlane
-		var SpriteSource = "5b795096e1b69c5f:Button_main"
+		var SpriteSource = "5b796a3514c9bf99:Button_main"
 		var FlipX = false
 		var FlipY = false
 		var AnimationActive = true
 		var AnimationSpeed = 1
 		var StartFrame = 0
 	}
-	ButtonHover 
-	{
-	}
 	Reactive 
 	{
 		var Active = true
 	}
+	ButtonHover 
+	{
+	}
 	Hierarchy 
 	{
-		Cog [Id:0x5b7920ea4519e05c]
+		Cog [Id:0x5b796fa9895c642c]
 		{
-			var Name = "VolumeText"
+			var Name = "Sign"
 			Transform 
 			{
-				var Translation = Real3{0.219999999, 0, 1}
-				var Scale = Real3{0.999999881, 0.999999881, 1}
-				var Rotation = Quaternion{0, 0, -0.707106829, 0.707106769}
+				var Translation = Real3{0.879999876, -5.24520729e-08, 0.0967507362}
+				var Scale = Real3{0.999999881, 1.99999976, 1}
+				var Rotation = Quaternion{0, 0, -0.707106888, 0.707106709}
 			}
 			SpriteText 
 			{
@@ -57,10 +57,10 @@ Cog
 				var Material = "582c575af53d18c9:AlphaSprite"
 				var VertexColor = Real4{0, 0, 0, 1}
 				var GeometryMode = SpriteGeometryMode.ZPlane
-				var Text = "+"
+				var Text = "-"
 				var Font = "5bb40a4f43f00049:VT323Regular"
 				var FontSize = 128
-				var PixelsPerUnit = 128
+				var PixelsPerUnit = 64
 				var TextAlign = TextAlign.Center
 			}
 		}

@@ -58,7 +58,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0.597630918, 0.508986175, 22.9032497}
+			var Translation = Real3{0.645665824, 0.173889369, 22.9032497}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
 		}
@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 5.00453329
+			var Size = 11.1377907
 		}
 		EditorCameraController 
 		{
@@ -120,7 +120,7 @@ Level
 			var LookDistance = 20
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0.597630918, 0.508986175, 2.90324926}
+			var LookTarget = Real3{0.645665824, 0.173889369, 2.90324926}
 			var MoveSensitivity = 1
 		}
 	}
@@ -369,7 +369,7 @@ Level
 					var GameLevel1 = "59097123da28242a:level1"
 					var MainMenuLevel = "5b3c55ba57dd01ce:MainMenu"
 					var CreditsLevel = "5bb47265320d285e:Credits"
-					var BGMLevel = "577d126becbdd810:EmptyLevel"
+					var BGMLevel = "5b78e64ae472e76c:BGMLevel"
 				}
 			}
 		}
@@ -424,15 +424,6 @@ Level
 			var MixType = AudioMixTypes.AutoDetect
 			var MinVolumeThreshold = 0.0149999997
 			var Latency = AudioLatency.Low
-		}
-	}
-	Cog [InheritId:"5b36ff7f43d6d35b:WaveChange"][ContextId:12]
-	{
-		Transform 
-		{
-			var Translation = Real3{-4.98207903, -0.013628006, -0.0950012207}
-			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{4, 4, 1}
 		}
 	}
 }

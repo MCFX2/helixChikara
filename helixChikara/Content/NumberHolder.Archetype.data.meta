@@ -4,7 +4,7 @@ DataContent
 	DataBuilder 
 	{
 		var Name = "NumberHolder"
-		var ResourceId = 0x5b795720c0e0bd56
+		var ResourceId = 0x5b796ccaef95f0bd
 		var LoaderType = "Cog"
 		var Version = 0
 		var ShowInEditor = true

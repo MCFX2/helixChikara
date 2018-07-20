@@ -110,4 +110,3 @@ class PauseMenuController : ZilchComponent { // THIS ONLY EXISTS DUE TO TIME CRU
     this.SetPauseMenu(true);
   }
 }
-

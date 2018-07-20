@@ -4,7 +4,7 @@ ImageContent
 	SpriteSourceBuilder 
 	{
 		var Name = "Button_main"
-		var ResourceId = 0x5b795096e1b69c5f
+		var ResourceId = 0x5b796a3514c9bf99
 		var FrameSizeX = 448
 		var FrameSizeY = 105
 		var FrameCount = 12

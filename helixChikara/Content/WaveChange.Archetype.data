@@ -4,7 +4,7 @@ Cog
 	var Name = "WaveCounter"
 	Transform 
 	{
-		var Translation = Real3{-4.98207903, -0.013628006, -0.0950012207}
+		var Translation = Real3{2.43853283, 1.10957134, 3.90599823}
 		var Scale = Real3{4, 4, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
@@ -16,7 +16,7 @@ Cog
 		var TransType = Ease.WarpInOut
 		var Ones = CogPath
 		{
-			var Path = "num2"
+			var Path = "num1"
 			var ErrorOnResolveToNull = false
 			var ErrorOnPathCantCompute = false
 			var ErrorOnDirectLinkFail = false
@@ -31,7 +31,7 @@ Cog
 		}
 		var Tens = CogPath
 		{
-			var Path = "num1"
+			var Path = "num2"
 			var ErrorOnResolveToNull = false
 			var ErrorOnPathCantCompute = false
 			var ErrorOnDirectLinkFail = false
@@ -66,12 +66,12 @@ Cog
 	}
 	Hierarchy 
 	{
-		Cog [Id:0x5bab1f684a2d3b9b]
+		Cog [Id:0x5b585190735dc568]
 		{
 			var Name = "num1"
 			Transform 
 			{
-				var Translation = Real3{0.494765341, 0.335840583, 2.99825048}
+				var Translation = Real3{0.875672102, 0.313119203, -1.00274897}
 				var Scale = Real3{0.5, 0.5, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
@@ -87,7 +87,7 @@ Cog
 				var Material = "582c575af53d18c9:AlphaSprite"
 				var VertexColor = Real4{1, 1, 1, 1}
 				var GeometryMode = SpriteGeometryMode.ZPlane
-				var SpriteSource = "5bab1f0a663424d9:Numbers_Font052"
+				var SpriteSource = "5b7823c02d2bc017:Number000"
 				var FlipX = false
 				var FlipY = false
 				var AnimationActive = true
@@ -95,12 +95,12 @@ Cog
 				var StartFrame = 0
 			}
 		}
-		Cog [Id:0x5bab1d3d4afb922b]
+		Cog [Id:0x5b58519173b18433]
 		{
 			var Name = "num2"
 			Transform 
 			{
-				var Translation = Real3{0.863391876, 0.335840583, 2.99825048}
+				var Translation = Real3{0.504174829, 0.313119203, -1.00274897}
 				var Scale = Real3{0.5, 0.5, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
@@ -116,7 +116,7 @@ Cog
 				var Material = "582c575af53d18c9:AlphaSprite"
 				var VertexColor = Real4{1, 1, 1, 1}
 				var GeometryMode = SpriteGeometryMode.ZPlane
-				var SpriteSource = "5bab1f0a663424d9:Numbers_Font052"
+				var SpriteSource = "5b7823c02d2bc017:Number000"
 				var FlipX = false
 				var FlipY = false
 				var AnimationActive = true
