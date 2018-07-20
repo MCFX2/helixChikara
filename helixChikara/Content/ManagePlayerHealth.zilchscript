@@ -27,7 +27,7 @@ class ManagePlayerHealth : ZilchComponent {
     for (var i : Integer = 0; i<24; ++i) {
       mag = magRand.Range(1, 15);
       angle+=(i*(Math.Pi/12));
-      var x = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
+      var x = this.Space.CreateAtPosition(Archetype.PlayerDeathParticles, coords);
       x.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
       x.Transform.Rotation = this.Rand.Rotation();
     }
