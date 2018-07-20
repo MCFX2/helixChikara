@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "pointdeath"
+		var ResourceId = 0x5b58712d54a7d232
+		var FrameSizeX = 108
+		var FrameSizeY = 41
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 54
+		var OriginY = 20.5
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}
