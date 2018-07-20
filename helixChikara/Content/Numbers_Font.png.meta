@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Numbers_Font"
+		var ResourceId = 0x5bab18d2937723ec
+		var FrameSizeX = 366
+		var FrameSizeY = 218
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 183
+		var OriginY = 109
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}
