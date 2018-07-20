@@ -4,6 +4,8 @@ class CreateStatDisplay : ZilchComponent {
   [Property] var NearMissesCoords : Real3 = Real3(0, -1, 1);
   [Property] var ScoreCoords : Real3 = Real3(0, -3, 1);
   
+  [Property] var FontSize : Integer = 128;
+  
   
   function CreateStatistic(stat : StatTypes, coords : Real3) {
     var text = this.Space.CreateAtPosition(Archetype.StatDisplay, coords);
@@ -14,6 +16,7 @@ class CreateStatDisplay : ZilchComponent {
     } else if (stat == StatTypes.Score) {
       text.SpriteText.Text = "Score: `this.Space.GameSession.GlobalVariables.Score`";
     }
+    text.SpriteText.FontSize = this.FontSize;
   }
   
   function Initialize(init : CogInitializer) {

@@ -130,7 +130,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 26.9971695
+			var Size = 26.9971752
 		}
 		EditorCameraController 
 		{
@@ -218,45 +218,7 @@ Level
 			var AttenuationScale = 1
 		}
 	}
-	Cog [ContextId:5]
-	{
-		var Name = "SpriteText"
-		Transform 
-		{
-			var Translation = Real3{0, 7, 0}
-			var Scale = Real3{1, 1, 1}
-			var Rotation = Quaternion{0, 0, 0, 1}
-		}
-		SpriteText 
-		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{1, 1, 1, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var Text = "what a master. You won"
-			var Font = "57343753bb4eaaec:NotoSans-Regular"
-			var FontSize = 128
-			var PixelsPerUnit = 128
-			var TextAlign = TextAlign.Center
-		}
-		WinScreen 
-		{
-			var MainMenu = "5b3c55ba57dd01ce:MainMenu"
-		}
-		CreateStatDisplay 
-		{
-			var EnemiesKilledCoords = Real3{0, 3, 1}
-			var NearMissesCoords = Real3{0, 0, 1}
-			var ScoreCoords = Real3{0, -3, 1}
-		}
-	}
-	Cog [InheritId:"5b32ec83c5947d93:MenuButton"][ContextId:6]
+	Cog [InheritId:"5b32ec83c5947d93:MenuButton"][ContextId:5]
 	{
 		Transform 
 		{
@@ -270,13 +232,48 @@ Level
 		}
 		Hierarchy 
 		{
-			Cog [Id:0x5b3c54d298194842][ContextId:7]
+			Cog [Id:0x5b3c54d298194842][ContextId:6]
 			{
 				SpriteText 
 				{
 					var Text = "MAIN MENU"
 				}
 			}
+		}
+	}
+	Cog [ContextId:7]
+	{
+		var Name = "Sprite"
+		Transform 
+		{
+			var Translation = Real3{0, 6, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "5b7967835e341f1c:You_win"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		CreateStatDisplay 
+		{
+			var EnemiesKilledCoords = Real3{0, 1, 1}
+			var NearMissesCoords = Real3{0, -1, 1}
+			var ScoreCoords = Real3{0, -3, 1}
 		}
 	}
 }
