@@ -75,6 +75,7 @@ class WaveSpawner : ZilchComponent
   var ENEMYTRACKER = 3;
   var ENEMYNOSHOOT = 4;
   var ENEMYBOSS = 5;
+  var ENEMYIMPOSSIBLE = 6;
   
   /////////////////
   //no touch zone//
@@ -94,6 +95,8 @@ class WaveSpawner : ZilchComponent
       return Archetype.NoShootEnemy;
     } else if (enemy == this.ENEMYBOSS){
       return Archetype.BigBoy;
+    } else if (enemy == this.ENEMYIMPOSSIBLE){
+      return Archetype.ImpossibleEnemy;
     }
     
     else{
@@ -182,7 +185,7 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.WaveTutorial2);
     this.RegisterWave(this.WaveTutorial3);
         
-    this.RegisterWave(this.Wave1);
+    //this.RegisterWave(this.Wave1);
 
     this.RegisterWave(this.Wave2);
     this.RegisterWave(this.Wave4);
@@ -253,12 +256,12 @@ class WaveSpawner : ZilchComponent
     
     // Tutorial "Wave" 3
     
-    this.AddEnemy(this.WaveTutorial3, Real2(12, -6), this.ENEMYNOSHOOT, 2, 0, 3); // CHANGE
+    this.AddEnemy(this.WaveTutorial3, Real2(12, -6), this.ENEMYIMPOSSIBLE, 2, 0, 3); // CHANGE
     
     
     //Wave 1 here
 
-    this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBOSS, 1, 60, 100);
+    //this.AddEnemy(this.Wave1, Real2(9, 5), this.ENEMYBOSS, 1, 60, 100);
     //this.AddEnemy(this.Wave1, Real2(9, -5), this.ENEMYBOSS, 1, 60, 30);
     //this.AddEnemy(this.Wave1, Real2(9, 0), this.ENEMYTRACKER, 1, 60, 30);
     //Wave 2 here
