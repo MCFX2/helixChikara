@@ -22,6 +22,27 @@ class MenuNavigator : ZilchComponent {
     this.Buttons.Add(buttonText);
   }
   
+  function CreateVolButton(coords : Real3){
+    var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.VolumeButton, coords);
+    this.Buttons.Add(buttonBase);
+    var buttonText : Cog = buttonBase.Children.Current;
+    this.Buttons.Add(buttonText);
+  }
+  
+  function CreateIconButton(coords : Real3){
+    var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.IconButton, coords);
+    this.Buttons.Add(buttonBase);
+    var buttonText : Cog = buttonBase.Children.Current;
+    this.Buttons.Add(buttonText);
+  }
+  
+  function CreateVolumeIndicator(coords : Real3){
+    var buttonBase : Cog = this.Space.CreateAtPosition(Archetype.NumberHolder, coords);
+    this.Buttons.Add(buttonBase);
+    var buttonText : Cog = buttonBase.Children.Current;
+    this.Buttons.Add(buttonText);
+  }
+  
   function LoadButtons() {
     this.CreateButton(Real3(0, 1.53125, 3.1)); // Top Button
     this.CreateButton(Real3(0, -0.3125, 3.1)); // Middle Button
@@ -54,21 +75,48 @@ class MenuNavigator : ZilchComponent {
     this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.SelectMode;
   }
   
-  function SetOptionsMenu(fromMain : Boolean) {
-    this.Buttons[1].SpriteText.Text = "CONTROLS";
-    this.Buttons[3].SpriteText.Text = "VOLUME[NO]";
-    this.Buttons[5].SpriteText.Text = "BACK";
+  function SetOptionsMenu(fromMain : Boolean, fromVolume : Boolean) {
     if (fromMain) {
       this.PurgeButton(this.Buttons.LastIndex-1);
       this.MoveButton(this.Buttons[2], Real3(0, -1.234375, 3.1));
+    } else if (fromVolume) {
+      this.MoveButton(this.Buttons[0], Real3(0, 1.53125, 3.1));
+      this.PurgeButton(this.Buttons.LastIndex-1);
+      this.PurgeButton(this.Buttons.LastIndex-1);
+      this.PurgeButton(this.Buttons.LastIndex-1);
+      this.PurgeButton(this.Buttons.LastIndex-1);
+      this.CreateButton(Real3(0, -1.234375, 3.1));
+      this.CreateButton(Real3(0, -4, 3.1)); 
     }
+    this.Buttons[1].SpriteText.Text = "CONTROLS";
+    this.Buttons[3].SpriteText.Text = "VOLUME";
+    this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Options";
     this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.Options;    
   }
   
+  function SetVolumeMenu() {
+    this.PurgeButton(this.Buttons.LastIndex-1);
+    this.PurgeButton(this.Buttons.LastIndex-1);
+    this.CreateVolButton(Real3(-2, 0.75, 3.1));
+    this.CreateVolButton(Real3(2, 0.75, 3.1));
+    this.CreateIconButton(Real3(0, -2.15625, 3.1));
+    this.CreateVolumeIndicator(Real3(0, 0.75, 3.1));
+    if (this.GameSession.GlobalVariables.Muted) this.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_on;
+    else this.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_off;
+    this.MoveButton(this.Buttons[0], Real3(0, -4, 3.1));
+    this.Buttons[1].SpriteText.Text = "BACK";
+    this.Buttons[3].SpriteText.Text = "-";
+    this.Buttons[5].SpriteText.Text = "+";
+    if (this.GameSession.GlobalVariables.AudioValue < 0.2) this.Buttons[9].SpriteText.Text = "0";
+    else this.Buttons[9].SpriteText.Text = "`this.GameSession.GlobalVariables.AudioValue*5`";
+    this.TitleContent = "Options";
+    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.Volume;    
+  }
+  
   function SetControlTypeMenu() {
     this.Buttons[1].SpriteText.Text = "MOUSE";
-    this.Buttons[3].SpriteText.Text = "KEYNOARD";
+    this.Buttons[3].SpriteText.Text = "KEYBOARD";
     this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Choose Control Style";
     this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.ControlType;    

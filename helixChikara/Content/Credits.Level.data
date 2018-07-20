@@ -329,7 +329,7 @@ Level
 		{
 			var Translation = Real3{13.4666748, -7, 0.504999161}
 			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1.75, 1, 0.99999994}
+			var Scale = Real3{1, 1, 0.99999994}
 		}
 		DestroyLevelOnClick [LocallyAdded]
 		{

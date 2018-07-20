@@ -8,21 +8,21 @@ class ButtonHover : ZilchComponent {
   }
 
   function OnMouseEnter(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Menu_button_hover;
     Zero.Mouse.Cursor = Cursor.Hand;
   }
 
   function OnMouseExit(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_main;
     Zero.Mouse.Cursor = Cursor.Arrow;
   }
   
   function OnLeftDown(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_click_1;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Menu_button_click;
   }
   
   function OnLeftUp(event : ViewportMouseEvent) {
-    this.Owner.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+    this.Owner.Sprite.SpriteSource = SpriteSource.Button_main;
     this.Space.GameSession.GlobalVariables.ButtonClick = true;
   }
 }

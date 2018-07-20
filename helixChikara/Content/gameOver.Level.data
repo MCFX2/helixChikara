@@ -258,11 +258,11 @@ Level
 		{
 			var Translation = Real3{0, -4, 0}
 			var Rotation = Quaternion{0, 0, 0, 1}
-			var Scale = Real3{1.75, 1, 0.99999994}
+			var Scale = Real3{1, 1, 0.99999994}
 		}
 		BackToMain [LocallyAdded]
 		{
-			var MainMenu = "5b3c55ba57dd01ce:mainMenu"
+			var MainMenu = "5b3c55ba57dd01ce:MainMenu"
 		}
 		Hierarchy 
 		{
