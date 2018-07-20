@@ -22,6 +22,7 @@ class BigBoyCannon : ZilchComponent
   [Property] var Phase3Pct : Real = 0.5;
   [Property] var Phase4Pct : Real = 0.25;
   
+  [Property] var MaxPhase : Integer = 4;
   var CPhase : Integer = 1;
   var CFrame : Integer = 0;
 
@@ -91,6 +92,7 @@ class BigBoyCannon : ZilchComponent
     }
   }
   function NextPhase(){
+    if(this.CPhase == this.MaxPhase) return;
     ++this.CPhase;
     this.Owner.Sprite.AnimationSpeed *= this.AnimationScaleRate;
   }

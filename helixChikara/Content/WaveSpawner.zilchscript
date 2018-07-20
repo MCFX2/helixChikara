@@ -5,6 +5,8 @@ class WaveSpawner : ZilchComponent
   [Property] var Player : CogPath;
   [Property] var ItemSpawn : CogPath;
   
+  var BossEncounterNum : Integer = 0;
+  
   var CurrentMode : WaveType = WaveType.Normal;
   var CurrentFrame : Integer = 0;
   [Property] var RushModeDelay : Integer = 300;
@@ -61,6 +63,10 @@ class WaveSpawner : ZilchComponent
   var Wave29 : Array[Array[Real]] = Array[Array[Real]]();
   var Wave30 : Array[Array[Real]] = Array[Array[Real]]();
   
+  var WaveBoss1 : Array[Array[Real]] = Array[Array[Real]]();
+  var WaveBoss2 : Array[Array[Real]] = Array[Array[Real]]();
+  var WaveBoss3 : Array[Array[Real]] = Array[Array[Real]]();
+  
 
   
   var ENEMYBASIC = 0;
@@ -108,16 +114,31 @@ class WaveSpawner : ZilchComponent
   
   function SummonWave(waveNumber : Integer){
     this.CurrentEnemies.Clear();
-    foreach(var enemy in this.Waves[waveNumber]){
-      ++this.EnemiesLeft;
-      var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
-      currentEnemy.EnemySpawnComponenent.ActionData = enemy;
-      currentEnemy.EnemyTakeDamage.Health = enemy[5];
-      currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
-      this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
+    var thisWave = this.Waves[waveNumber];
+    var firstEnemy = thisWave[0];
+    if(this.GetEnemyArchetypeByInt(firstEnemy[2] as Integer) == Archetype.BigBoy){
+      //override for boss waves
+        ++this.EnemiesLeft;
+        var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(firstEnemy[2] as Integer), Real3(this.EnemyOffscreenX, firstEnemy[1], 0));
+        currentEnemy.EnemySpawnComponenent.ActionData = firstEnemy;
+        currentEnemy.EnemyTakeDamage.Health = firstEnemy[5];
+        currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
+        currentEnemy.BigBoyCannon.MaxPhase = this.BossEncounterNum + 2;
+        ++this.BossEncounterNum;
+        this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
+      
     }
-    this.CurrentlyInWave = true;
-    
+    else{
+      foreach(var enemy in this.Waves[waveNumber]){
+        ++this.EnemiesLeft;
+        var currentEnemy : Cog = this.Space.CreateAtPosition(this.GetEnemyArchetypeByInt(enemy[2] as Integer), Real3(this.EnemyOffscreenX, enemy[1], 0));
+        currentEnemy.EnemySpawnComponenent.ActionData = enemy;
+        currentEnemy.EnemyTakeDamage.Health = enemy[5];
+        currentEnemy.EnemySpawnComponenent.WaveController = this.Owner; //tell the enemy who the spawn controller is (its us)
+        this.CurrentEnemies.Add(currentEnemy); //track the enemy via this table
+      }
+      this.CurrentlyInWave = true;
+    }
   }
   
   function WinGame(){
@@ -171,8 +192,9 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave8);
     this.RegisterWave(this.Wave9);
     this.RegisterWave(this.Wave10);
-    
     this.RegisterWave(this.Wave11);
+  
+    this.RegisterWave(this.WaveBoss1);
     
     this.RegisterWave(this.Wave12);
     this.RegisterWave(this.Wave13);
@@ -180,10 +202,12 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave15);
     this.RegisterWave(this.Wave16);
     this.RegisterWave(this.Wave17);
-    
     this.RegisterWave(this.Wave18);
     this.RegisterWave(this.Wave19);
     this.RegisterWave(this.Wave20);
+    
+    this.RegisterWave(this.WaveBoss2);
+ 
     this.RegisterWave(this.Wave21);
     this.RegisterWave(this.Wave22);
     this.RegisterWave(this.Wave23);
@@ -191,9 +215,9 @@ class WaveSpawner : ZilchComponent
     this.RegisterWave(this.Wave25);
     this.RegisterWave(this.Wave26);
     this.RegisterWave(this.Wave27);
-    this.RegisterWave(this.Wave28);
-    this.RegisterWave(this.Wave29);
-    this.RegisterWave(this.Wave30);
+    
+    this.RegisterWave(this.WaveBoss3);
+ 
  
     //this.AddEnemy(this.Wave#, Real2(X, Y), EnemyTypeID, MoveTime, SpawnDelay);
     //Detailed description below
@@ -206,6 +230,11 @@ class WaveSpawner : ZilchComponent
     
     
     */
+        //boss waves
+    this.AddEnemy(this.WaveBoss1, Real2(10, 0), this.ENEMYBOSS, 2, 0, 80);
+    this.AddEnemy(this.WaveBoss2, Real2(10, 0), this.ENEMYBOSS, 5, 0, 200);
+    this.AddEnemy(this.WaveBoss3, Real2(10, 0), this.ENEMYBOSS, 10, 0, 400);
+    
     
         
     // Tutorial "Wave" 1
