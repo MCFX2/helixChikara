@@ -15,7 +15,7 @@ class SoundVolumeControl : ZilchComponent
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    if (this.GameSession.GlobalVariables.GameIsPaused && !this.HasDecreasedVolume) {
+    if (this.GameSession.GlobalVariables.GameIsPaused && !this.HasDecreasedVolume && !this.GameSession.GlobalVariables.MidgameMute) {
       this.Owner.AudioSettings.SystemVolume = 0.5*this.GameSession.GlobalVariables.AudioValue;
       this.HasDecreasedVolume = true;
       this.HasIncreasedVolume = false;
@@ -24,6 +24,16 @@ class SoundVolumeControl : ZilchComponent
       this.Owner.AudioSettings.SystemVolume = this.GameSession.GlobalVariables.AudioValue;
       this.HasIncreasedVolume = true;
       this.HasDecreasedVolume = false;
+    }
+    if (this.GameSession.GlobalVariables.MidgameMute) {
+      this.Owner.AudioSettings.SystemVolume = 0;
+      this.GameSession.GlobalVariables.MidgameMute = false;
+      this.GameSession.GlobalVariables.MidgameUnmute = false;
+    }
+    if (this.GameSession.GlobalVariables.MidgameUnmute) {
+      this.Owner.AudioSettings.SystemVolume = 0.5*this.GameSession.GlobalVariables.AudioValue;
+      this.GameSession.GlobalVariables.MidgameMute = false;
+      this.GameSession.GlobalVariables.MidgameUnmute = false;
     }
   }
 }

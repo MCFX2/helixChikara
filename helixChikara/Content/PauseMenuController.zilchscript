@@ -65,7 +65,7 @@ class PauseMenuController : ZilchComponent { // THIS ONLY EXISTS DUE TO TIME CRU
     this.Buttons[3].SpriteText.Text = "VOLUME";
     this.Buttons[5].SpriteText.Text = "BACK";
     this.TitleContent = "Options";
-    this.GameSession.GlobalVariables.CurrentMenuState = MenuStates.Options;    
+    this.GameSession.GlobalVariables.CurrentPauseState = PauseStates.Options;    
   }
   
   function SetVolumeMenu() {

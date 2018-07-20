@@ -165,11 +165,16 @@ class PauseMenuButtonClick : ZilchComponent {
           if (this.GameSession.GlobalVariables.AudioValue < 2) this.GameSession.GlobalVariables.AudioValue += 0.2;
           if (this.GameSession.GlobalVariables.AudioValue < 0.2) this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "0";
           else this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "`this.GameSession.GlobalVariables.AudioValue*5`";
-        } else if (this.Button == this.Owner.MenuNavigator.Buttons[6]) {
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[6]) {
           this.GameSession.GlobalVariables.Muted = !this.GameSession.GlobalVariables.Muted;
-          if (this.GameSession.GlobalVariables.Muted)
+          if (this.GameSession.GlobalVariables.Muted) {
             this.Owner.PauseMenuController.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_on;
-          else this.Owner.PauseMenuController.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_off;
+            this.GameSession.GlobalVariables.MidgameMute = true;
+          }
+          else {
+            this.Owner.PauseMenuController.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_off;
+            this.GameSession.GlobalVariables.MidgameUnmute = true;
+          }
         }
         
       } 

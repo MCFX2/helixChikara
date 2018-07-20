@@ -31,6 +31,8 @@ class GlobalVariables : ZilchComponent {
   var HitPauseKey = false;
   var GameIsPaused = false;
   var ExitPauseMenu = false;
+  var MidgameMute = false;
+  var MidgameUnmute = false;
   
   var CreditsSpace : Space;
   var PauseSpace : Space;
