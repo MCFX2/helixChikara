@@ -831,6 +831,10 @@ Level
 						WavePerfect 
 						{
 						}
+						DelayedAction 
+						{
+							var Duration = 1
+						}
 						Hierarchy 
 						{
 							Cog [Id:0x5b659e7ce947c90c][ContextId:17]
