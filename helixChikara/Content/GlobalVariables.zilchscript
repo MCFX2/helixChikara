@@ -1,5 +1,5 @@
-enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType, Inactive}
-enum PauseStates {Default, Options, Control}
+enum MenuStates {MainMenu, SelectMode, SelectMission, Options, ControlType, Inactive, Volume}
+enum PauseStates {Default, Options, Control, Volume}
 enum Ship {Anime, Reagan, Scout}
 enum ControlTypes {Keyboard, Mouse, GamePad}
 enum ScoreTypes {CurrentScore, HighScore}
@@ -20,8 +20,10 @@ class GlobalVariables : ZilchComponent {
   var HighScore : Integer = 0;
   var EnemiesKilled : Integer = 0;
   var NearMisses : Integer = 0;
+  var AudioValue : Real = 1.0;
   var CurrentPlaceInMusic : Real;
   
+  var Muted : Boolean = false;
   var ButtonClick : Boolean = false;
   var DoTutorial : Boolean = false;
   var BeginTutorial : Boolean = true; // THIS IS NECESSARY

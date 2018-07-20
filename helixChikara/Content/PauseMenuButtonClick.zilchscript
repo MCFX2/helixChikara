@@ -21,23 +21,39 @@ class PauseMenuButtonClick : ZilchComponent {
 
   }
   
+  //function UpdateBGMVolume() {
+  //  if (this.GameSession.GlobalVariables.Muted) this.BGM.AudioSettings.SystemVolume = 0;
+  //  else this.BGM.AudioSettings.SystemVolume = this.GameSession.GlobalVariables.AudioValue;
+  //}
+  
   function ToggleSelectedMenu(up : Boolean) {
     var newIndex : Integer = 0;
     var prevSelected = this.CurrentlySelected;
-    var buttons : Array[Cog] = this.Owner.PauseMenuController.Buttons;
+    var buttons : Array[Cog] = this.Owner.MenuNavigator.Buttons;
     var prevIndex : Integer = buttons.FindFirstIndex(this.CurrentlySelected);
     if (up) {
-      if (prevIndex==0) newIndex=4;
+      if (prevIndex==0) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=4;
+      }
       if (prevIndex==2) newIndex=0;
-      if (prevIndex==4) newIndex=2;
+      if (prevIndex==4) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=2;
+      }
+      if (prevIndex==6) newIndex=2;
     } else {
       if (prevIndex==0) newIndex=2;
-      if (prevIndex==2) newIndex=4;
+      if (prevIndex==2) {
+        if (buttons.LastIndex==7) newIndex=6;
+        else newIndex=4;
+      }
+      if (prevIndex==6) newIndex=4;
       if (prevIndex==4) newIndex=0;
     }
     this.CurrentlySelected = buttons[newIndex];
-    prevSelected.Sprite.SpriteSource = SpriteSource.Button_reg_2;
-    this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+    prevSelected.Sprite.SpriteSource = SpriteSource.Button_main;
+    this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Menu_button_hover;
   }
     
   
@@ -48,19 +64,21 @@ class PauseMenuButtonClick : ZilchComponent {
   }
   
   function OnButtonDown(event : GamepadEvent) {
+    this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
     if(event.Button == Buttons.A && this.CurrentlySelected != null) {
       this.Button = this.CurrentlySelected;
-      this.Button.Sprite.SpriteSource = SpriteSource.Button_click_1;
+      this.Button.Sprite.SpriteSource = SpriteSource.Menu_button_click;
     } else if (event.Button == Buttons.B) {
       this.Button = this.Owner.MenuNavigator.Buttons[4];
-      this.Button.Sprite.SpriteSource = SpriteSource.Button_click_1;
+      this.Button.Sprite.SpriteSource = SpriteSource.Menu_button_click;
     }
   }
   
   function OnButtonUp(event : GamepadEvent) {
     if(event.Button == Buttons.A && this.CurrentlySelected != null || event.Button == Buttons.B ) {
       this.Space.GameSession.GlobalVariables.ButtonClick = true;
-      this.Button.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+      this.Button.Sprite.SpriteSource = SpriteSource.Button_main;
+      this.CurrentlySelected = null;
     }
   }
   
@@ -68,7 +86,7 @@ class PauseMenuButtonClick : ZilchComponent {
     if (this.ControllerInput) {
       this.ControllerInput = false;
       Zero.Mouse.Cursor = Cursor.Arrow;
-      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_main;
     }
   }
   
@@ -77,8 +95,8 @@ class PauseMenuButtonClick : ZilchComponent {
     if (!this.ControllerInput && Math.Length(leftStick)>this.Deadzone) {
       this.ControllerInput = true;
       Zero.Mouse.Cursor = Cursor.Invisible;
-      this.CurrentlySelected = this.Owner.PauseMenuController.Buttons[0];
-      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+      this.CurrentlySelected = this.Owner.MenuNavigator.Buttons[0];
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Menu_button_hover;
     } else {
       if (!this.DoneControllerAction ) {
         if (Math.Length(leftStick) > this.Deadzone) {
@@ -96,7 +114,7 @@ class PauseMenuButtonClick : ZilchComponent {
     }
     if (this.CurrentlySelected == null) {
       this.CurrentlySelected = this.Owner.PauseMenuController.Buttons[0];
-      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Menu_button_hover;
     }
     
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
@@ -108,7 +126,7 @@ class PauseMenuButtonClick : ZilchComponent {
           this.GameSession.GlobalVariables.ExitPauseMenu = true;
           this.GameSession.GlobalVariables.GameSpace.TimeSpace.Paused = false;
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
-          this.Owner.PauseMenuController.SetOptionsMenu();
+          this.Owner.PauseMenuController.SetOptionsMenu(false);
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
           var tempSpace = this.GameSession.CreateSpace(Archetype.Space);
           this.GameSession.GlobalVariables.PauseSpace.Destroy();
@@ -122,7 +140,7 @@ class PauseMenuButtonClick : ZilchComponent {
         if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
           this.Owner.PauseMenuController.SetControlTypeMenu();
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
-          // We'll figure it out
+          this.Owner.PauseMenuController.SetVolumeMenu();
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
           this.Owner.PauseMenuController.SetPauseMenu(false);
         }
@@ -133,9 +151,28 @@ class PauseMenuButtonClick : ZilchComponent {
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
           this.GameSession.GlobalVariables.ControlType = ControlTypes.Keyboard;
         } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
-          this.Owner.PauseMenuController.SetOptionsMenu();
+          this.Owner.PauseMenuController.SetOptionsMenu(false);
         }
-      }
+      } else if (this.GameSession.GlobalVariables.CurrentPauseState == PauseStates.Volume) {
+        
+        if (this.Button == this.Owner.PauseMenuController.Buttons[0]) {
+          this.Owner.PauseMenuController.SetOptionsMenu(true);
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[2]) {
+          if (this.GameSession.GlobalVariables.AudioValue > 0) this.GameSession.GlobalVariables.AudioValue -= 0.2;
+          if (this.GameSession.GlobalVariables.AudioValue < 0.2) this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "0";
+          else this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "`this.GameSession.GlobalVariables.AudioValue*5`";
+        } else if (this.Button == this.Owner.PauseMenuController.Buttons[4]) {
+          if (this.GameSession.GlobalVariables.AudioValue < 2) this.GameSession.GlobalVariables.AudioValue += 0.2;
+          if (this.GameSession.GlobalVariables.AudioValue < 0.2) this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "0";
+          else this.Owner.PauseMenuController.Buttons[9].SpriteText.Text = "`this.GameSession.GlobalVariables.AudioValue*5`";
+        } else if (this.Button == this.Owner.MenuNavigator.Buttons[6]) {
+          this.GameSession.GlobalVariables.Muted = !this.GameSession.GlobalVariables.Muted;
+          if (this.GameSession.GlobalVariables.Muted)
+            this.Owner.PauseMenuController.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_on;
+          else this.Owner.PauseMenuController.Buttons[7].Sprite.SpriteSource = SpriteSource.Mute_off;
+        }
+        
+      } 
 
     if (this.GameSession.GlobalVariables.ExitPauseMenu && this.GameSession.GlobalVariables.GameIsPaused) {
       this.GameSession.GlobalVariables.PauseSpace.Destroy();

@@ -1,11 +1,11 @@
 [Version:1]
 Cog 
 {
-	var Name = "MenuButton"
+	var Name = "NumberHolder"
 	Transform 
 	{
-		var Translation = Real3{0, 0, 0}
-		var Scale = Real3{1, 1, 0.99999994}
+		var Translation = Real3{0, 0, 2.90324926}
+		var Scale = Real3{0.219999999, 1, 1}
 		var Rotation = Quaternion{0, 0, 0, 1}
 	}
 	Sprite 
@@ -27,31 +27,15 @@ Cog
 		var AnimationSpeed = 1
 		var StartFrame = 0
 	}
-	Reactive 
-	{
-		var Active = true
-	}
-	ButtonHover 
-	{
-	}
-	BoxCollider 
-	{
-		var Ghost = false
-		var SendsEvents = true
-		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
-		var CollisionGroup = "4e740859314e5515:DefaultGroup"
-		var Offset = Real3{0, 0, 0}
-		var HalfSize = Real3{0.5, 0.5, 0.5}
-	}
 	Hierarchy 
 	{
-		Cog [Id:0x5b3c54d298194842]
+		Cog [Id:0x5b79541b2c71cc17]
 		{
-			var Name = "MenuText"
+			var Name = "NumText"
 			Transform 
 			{
-				var Translation = Real3{0, 0.134859085, 9.99999975e-05}
-				var Scale = Real3{0.57099998, 1, 1}
+				var Translation = Real3{0, 0.25, 1}
+				var Scale = Real3{4.5454545, 1, 1}
 				var Rotation = Quaternion{0, 0, 0, 1}
 			}
 			SpriteText 
@@ -66,10 +50,10 @@ Cog
 				var Material = "582c575af53d18c9:AlphaSprite"
 				var VertexColor = Real4{0, 0, 0, 1}
 				var GeometryMode = SpriteGeometryMode.ZPlane
-				var Text = "OPTIONS"
-				var Font = "5bb4359cd9e717e5:slkscrb"
-				var FontSize = 48
-				var PixelsPerUnit = 64
+				var Text = "0"
+				var Font = "5bb40a4f43f00049:VT323Regular"
+				var FontSize = 128
+				var PixelsPerUnit = 128
 				var TextAlign = TextAlign.Center
 			}
 		}

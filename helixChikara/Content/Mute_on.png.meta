@@ -3,14 +3,14 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Button_reg"
-		var ResourceId = 0x5b4ebd8120835691
-		var FrameSizeX = 128
-		var FrameSizeY = 60
+		var Name = "Mute_on"
+		var ResourceId = 0x5b795b05df837bbf
+		var FrameSizeX = 64
+		var FrameSizeY = 64
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 64
-		var OriginY = 30
+		var OriginX = 32
+		var OriginY = 32
 		var PixelsPerUnit = 64
 		var Sampling = SpriteSampling.Linear
 		var Looping = true

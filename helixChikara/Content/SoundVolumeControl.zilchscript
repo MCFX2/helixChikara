@@ -9,18 +9,19 @@ class SoundVolumeControl : ZilchComponent
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     this.HasDecreasedVolume = false;
     this.HasIncreasedVolume = true;
-    this.Owner.AudioSettings.SystemVolume = 1.0;
+    if (this.GameSession.GlobalVariables.Muted) this.Owner.AudioSettings.SystemVolume = 0;
+    else this.Owner.AudioSettings.SystemVolume = this.GameSession.GlobalVariables.AudioValue;
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
     if (this.GameSession.GlobalVariables.GameIsPaused && !this.HasDecreasedVolume) {
-      this.Owner.AudioSettings.SystemVolume = 0.5;
+      this.Owner.AudioSettings.SystemVolume = 0.5*this.GameSession.GlobalVariables.AudioValue;
       this.HasDecreasedVolume = true;
       this.HasIncreasedVolume = false;
     }
     if (!this.GameSession.GlobalVariables.GameIsPaused && !this.HasIncreasedVolume) {
-      this.Owner.AudioSettings.SystemVolume = 1.0;
+      this.Owner.AudioSettings.SystemVolume = this.GameSession.GlobalVariables.AudioValue;
       this.HasIncreasedVolume = true;
       this.HasDecreasedVolume = false;
     }
