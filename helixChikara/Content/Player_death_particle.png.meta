@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "Player_death_particle"
+		var ResourceId = 0x5b796316ce9161c5
+		var FrameSizeX = 64
+		var FrameSizeY = 64
+		var FrameCount = 6
+		var FrameDelay = 0.142857149
+		var OriginX = 32
+		var OriginY = 32
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

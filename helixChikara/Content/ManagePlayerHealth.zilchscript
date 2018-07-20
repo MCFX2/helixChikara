@@ -5,7 +5,9 @@ class ManagePlayerHealth : ZilchComponent {
   [Property] var GameOver : Level;
   [Property] var NearMissBox : CogPath;
   
+  var Rand : Random = Random();
   var HealthIcons : Array[Cog] = Array[Cog]();
+  var HasDied : Boolean;
   
   function CreateHealthBar() {
     var healthIcon : Cog = null;
@@ -14,6 +16,20 @@ class ManagePlayerHealth : ZilchComponent {
       healthIcon = this.Space.CreateAtPosition(Archetype.HealthIcon, coords);
       this.HealthIcons.Add(healthIcon);
       coords += Real3(1.1, 0, 0);
+    }
+  }
+  
+  function SpawnParticles (coords : Real3) {
+    var angle : Real = 0;
+    var ex : Cog = null;
+    var magRand : Random = Random();
+    var mag : Real = 0;
+    for (var i : Integer = 0; i<24; ++i) {
+      mag = magRand.Range(1, 15);
+      angle+=(i*(Math.Pi/12));
+      var x = this.Space.CreateAtPosition(Archetype.EnemyExplosion, coords);
+      x.RigidBody.Velocity = Real3(mag*Math.Cos(angle), mag*Math.Sin(angle), 0);
+      x.Transform.Rotation = this.Rand.Rotation();
     }
   }
   
@@ -33,17 +49,31 @@ class ManagePlayerHealth : ZilchComponent {
     Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollide);
     this.GameSession.GlobalVariables.Score = 0;
     this.CreateHealthBar();
+    this.HasDied = false;
   }
 
   function OnLogicUpdate(event : UpdateEvent) {
     if (this.PlayerHealth <= 0) {
-      // Ideally we want a destruction animation to play before the Game Over Screen
-      var tempSpace : Space = this.GameSession.CreateSpace(Archetype.Space);
-      this.Space.Destroy();
-      this.GameSession.GlobalVariables.BGMSoundSpace.Destroy();
-      
-      tempSpace.LoadLevel(this.GameOver);
+      if (!this.HasDied) {
+        var coords = this.Owner.Transform.Translation;
+        // Ideally we want a destruction animation to play before the Game Over Screen
+        this.Owner.Sprite.Visible = false;
+        this.SpawnParticles(coords);
+        this.Owner.DelayedAction.IsActive = true;
+        this.HasDied = true;
+      }
     }
+    if (this.Owner.DelayedAction.HasFinished) {
+      this.Die();
+    }
+  }
+  
+  function Die() {
+    var tempSpace : Space = this.GameSession.CreateSpace(Archetype.Space);
+    this.Space.Destroy();
+    this.GameSession.GlobalVariables.BGMSoundSpace.Destroy();
+    
+    tempSpace.LoadLevel(this.GameOver);
   }
   
   function OnCollide(event : CollisionEvent) {
