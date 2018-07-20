@@ -78,7 +78,7 @@ class PlayerShooting : ZilchComponent
             nearestEnemy = enemy;
           }
         }
-        var bulletPos = this.Owner.Transform.Translation + Real3(this.BulletSpawnOffset, 0);
+        var bulletPos = this.Owner.Transform.Translation + Real3(this.ScoutShootingOffset, 0);
         var targetPos = nearestEnemy.Transform.Translation;
         
         //ripped from basic enemy bullet script

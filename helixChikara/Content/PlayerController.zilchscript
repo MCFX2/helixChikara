@@ -44,7 +44,9 @@ class PlayerController : ZilchComponent
     Zero.Connect(this.Owner, Events.CollisionStarted, this.AttemptMouseSnap);
     this.ControlType = this.GameSession.GlobalVariables.ControlType;
     this.Controller = Zero.Gamepads.GetGamePad(0);
+    Zero.Connect(this.Controller, Events.ButtonDown, this.OnButtonDown);
     this.GameSession.GlobalVariables.GameSpace = this.Space;
+    this.GameSession.GlobalVariables.GameIsPaused = false;
   }
   
   
@@ -185,7 +187,12 @@ class PlayerController : ZilchComponent
   function OnKeyDown(event : KeyboardEvent){ //pause
     if(event.Key == this.PauseKey){
       this.GameSession.GlobalVariables.HitPauseKey = true;
-      
+    }
+  }
+  
+  function OnButtonDown(event : GamepadEvent){ //pause
+    if(event.Button == Buttons.Start){
+      this.GameSession.GlobalVariables.HitPauseKey = true;
     }
   }
   

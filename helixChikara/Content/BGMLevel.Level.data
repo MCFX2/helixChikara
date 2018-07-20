@@ -245,5 +245,12 @@ Level
 		SoundVolumeControl 
 		{
 		}
+		AudioSettings 
+		{
+			var SystemVolume = 1
+			var MixType = AudioMixTypes.AutoDetect
+			var MinVolumeThreshold = 0.0149999997
+			var Latency = AudioLatency.Low
+		}
 	}
 }

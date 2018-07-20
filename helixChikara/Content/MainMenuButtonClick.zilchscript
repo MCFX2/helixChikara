@@ -61,6 +61,7 @@ class MainMenuButtonClick : ZilchComponent {
   }
   
   function OnButtonDown(event : GamepadEvent) {
+    this.GameSession.GlobalVariables.ControlType = ControlTypes.GamePad;
     if(event.Button == Buttons.A && this.CurrentlySelected != null) {
       this.Button = this.CurrentlySelected;
       this.Button.Sprite.SpriteSource = SpriteSource.Button_click_1;
@@ -73,7 +74,8 @@ class MainMenuButtonClick : ZilchComponent {
   function OnButtonUp(event : GamepadEvent) {
     if(event.Button == Buttons.A && this.CurrentlySelected != null || event.Button == Buttons.B ) {
       this.Space.GameSession.GlobalVariables.ButtonClick = true;
-      this.Button.Sprite.SpriteSource = SpriteSource.Button_hover_2;
+      this.Button.Sprite.SpriteSource = SpriteSource.Button_reg_2;
+      this.CurrentlySelected = null;
     }
   }
   
@@ -106,6 +108,10 @@ class MainMenuButtonClick : ZilchComponent {
           }
         }
       }
+    }
+    if (this.CurrentlySelected == null) {
+      this.CurrentlySelected = this.Owner.MenuNavigator.Buttons[0];
+      this.CurrentlySelected.Sprite.SpriteSource = SpriteSource.Button_hover_2;
     }
     if (this.Space.GameSession.GlobalVariables.ButtonClick) {
       this.Space.GameSession.GlobalVariables.ButtonClick = false;
