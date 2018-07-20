@@ -3,14 +3,14 @@ ImageContent
 {
 	SpriteSourceBuilder 
 	{
-		var Name = "Near_miss"
-		var ResourceId = 0x5b7967835e0b7c66
-		var FrameSizeX = 79
-		var FrameSizeY = 41
+		var Name = "SHINJI2"
+		var ResourceId = 0x5b7967835e0bcd95
+		var FrameSizeX = 3124
+		var FrameSizeY = 1900
 		var FrameCount = 1
 		var FrameDelay = 0.0833333358
-		var OriginX = 39
-		var OriginY = 20
+		var OriginX = 1562
+		var OriginY = 950
 		var PixelsPerUnit = 64
 		var Sampling = SpriteSampling.Linear
 		var Looping = true
