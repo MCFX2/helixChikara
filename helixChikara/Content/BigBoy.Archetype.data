@@ -83,11 +83,12 @@ Cog
 		var Phase3NumSpreadShots = 60
 		var Phase3EjectionVelocity = 2
 		var Phase3FireDelay = 30
-		var Phase4NumSpreadShots = 500
+		var Phase4NumSpreadShots = 75
 		var Phase4EjectionVelocity = 5
 		var Phase4FireDelay = 20
 		var Phase2Pct = 0.75
 		var Phase3Pct = 0.5
 		var Phase4Pct = 0.25
+		var MaxPhase = 4
 	}
 }
