@@ -469,14 +469,14 @@ class WaveSpawner : ZilchComponent
 
     //wave 16
     
-    this.AddEnemy(this.Wave16, Real2(12, 0), this.ENEMYSPREAD, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(8, 0), this.ENEMYBURST, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(12, 5), this.ENEMYBASIC, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(12, -5), this.ENEMYBASIC, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(14, 2.5), this.ENEMYTRACKER, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(14, -2.5), this.ENEMYTRACKER, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(11, 7), this.ENEMYBURST, 2, 0, 3);
-    this.AddEnemy(this.Wave16, Real2(11, -7), this.ENEMYBURST, 2, 0, 3);
+    this.AddEnemy(this.Wave16, Real2(12, 0), this.ENEMYSPREAD, 2, 14, 3);
+    this.AddEnemy(this.Wave16, Real2(8, 0), this.ENEMYBURST, 2, 17, 3);
+    this.AddEnemy(this.Wave16, Real2(12, 5), this.ENEMYBASIC, 2, 24, 3);
+    this.AddEnemy(this.Wave16, Real2(12, -5), this.ENEMYBASIC, 2, 34, 3);
+    this.AddEnemy(this.Wave16, Real2(14, 2.5), this.ENEMYTRACKER, 2, 23, 3);
+    this.AddEnemy(this.Wave16, Real2(14, -2.5), this.ENEMYTRACKER, 2, 21, 3);
+    this.AddEnemy(this.Wave16, Real2(11, 7), this.ENEMYBURST, 2, 12, 3);
+    this.AddEnemy(this.Wave16, Real2(11, -7), this.ENEMYBURST, 2, 18, 3);
     
     //wave 17
     
