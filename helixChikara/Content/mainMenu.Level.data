@@ -111,7 +111,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 20.2943668
+			var Size = 18.3631039
 		}
 		EditorCameraController 
 		{
@@ -369,7 +369,7 @@ Level
 					var GameLevel1 = "59097123da28242a:level1"
 					var MainMenuLevel = "5b3c55ba57dd01ce:MainMenu"
 					var CreditsLevel = "5bb47265320d285e:Credits"
-					var BGMLevel = "5b78e64ae472e76c:BGMLevel"
+					var BGMLevel = "577d126becbdd810:EmptyLevel"
 				}
 			}
 		}
@@ -417,6 +417,15 @@ Level
 			var StartPlaying = true
 			var Positional = false
 			var Cue = "5bb19ac8fc083c23:MainMenuMusic"
+		}
+	}
+	Cog [InheritId:"5b36ff7f43d6d35b:WaveChange"][ContextId:12]
+	{
+		Transform 
+		{
+			var Translation = Real3{-4.98207903, -0.013628006, -0.0950012207}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{4, 4, 1}
 		}
 	}
 }
